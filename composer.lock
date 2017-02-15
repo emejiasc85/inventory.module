@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7859e847687bd762fc8e082a3cbd9603",
-    "content-hash": "ac7628dca55ffc9e58a29e0b9561c45e",
+    "hash": "993aa28572292e6460a17cc7c9e8d807",
+    "content-hash": "b3f963eeb722da8004907495f91090fa",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1152,6 +1152,44 @@
             "time": "2016-11-22 19:21:44"
         },
         {
+            "name": "styde/dawn",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StydeNet/dawn.git",
+                "reference": "50e79b5086a01ba66ce5a1a0ce503a47d0b6e051"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StydeNet/dawn/zipball/50e79b5086a01ba66ce5a1a0ce503a47d0b6e051",
+                "reference": "50e79b5086a01ba66ce5a1a0ce503a47d0b6e051",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/css-selector": "~3.1",
+                "symfony/dom-crawler": "~3.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Styde\\Dawn\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Duilio Palacios",
+                    "email": "duilio@styde.net"
+                }
+            ],
+            "description": "Browser kit testing for Laravel 5.4, compatible with Laravel Dusk",
+            "time": "2017-02-14 19:51:22"
+        },
+        {
             "name": "styde/html",
             "version": "1.3.0",
             "source": {
@@ -1418,6 +1456,62 @@
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
             "time": "2017-01-28 02:37:08"
+        },
+        {
+            "name": "symfony/dom-crawler",
+            "version": "v3.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dom-crawler.git",
+                "reference": "b814b41373fc4e535aff8c765abe39545216f391"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/b814b41373fc4e535aff8c765abe39545216f391",
+                "reference": "b814b41373fc4e535aff8c765abe39545216f391",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "require-dev": {
+                "symfony/css-selector": "~2.8|~3.0"
+            },
+            "suggest": {
+                "symfony/css-selector": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DomCrawler\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony DomCrawler Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-01-21 17:14:11"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -3541,7 +3635,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "styde/dawn": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

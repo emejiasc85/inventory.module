@@ -1,5 +1,7 @@
 <?php
 
+use EmejiasInventory\Entities\User;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -12,7 +14,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(EmejiasInventory\User::class, function (Faker\Generator $faker) {
+$factory->define(User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [

@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => EmejiasInventory\User::class,
+            'model' => EmejiasInventory\Entities\User::class,
         ],
 
         // 'users' => [
