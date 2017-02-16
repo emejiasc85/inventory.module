@@ -1,10 +1,10 @@
 <?php
 namespace Tests;
 
-use Tests\TestCase;
+use Tests\BrowserKitTest;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class FeatureTesTCase extends TestCase
+class FeatureTesTCase extends BrowserKitTest
 {
 	use DatabaseTransactions;
 

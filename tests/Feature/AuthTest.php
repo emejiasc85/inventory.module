@@ -21,11 +21,14 @@ class AuthTest extends FeatureTestCase
 
         //when
         $this->visit('/login')
-        	->type('email',$user->email)
-        	->type('password', 'secret')
+        	->type($user->email, 'email')
+        	->type('secret', 'password')
         	->press('Ingresar');
 
-
+        //then
+        $this->seeIsAuthenticatedAs($user);
+        $this->seePageIs('/home')
+        ->see('Enrique Mejias');
 
     }
 }
