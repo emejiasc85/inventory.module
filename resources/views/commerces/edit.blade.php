@@ -13,11 +13,14 @@
                     <strong>{{ $commerce->name }}</strong>
                     <small>Editar</small>
                 </div>
-				{!! Form::model($commerce, ['route' => ['commerces.update', $commerce], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+				{!! Form::model($commerce, ['route' => ['commerces.update', $commerce], 'method' => 'PUT', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
                 <div class="card-block">
                     <div class="row">
                         <div class="col-sm-12">
 							@include('commerces.partials.fields')
+							@if ($commerce->logo_path)
+	                            <img src="{{  route('commerces.logo', $commerce) }} " alt="" width="100">
+	                        @endif
                         </div>
                     </div>
                     <!--/.row-->
