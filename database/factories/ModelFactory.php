@@ -1,6 +1,7 @@
 <?php
 
-use EmejiasInventory\Entities\User;
+use EmejiasInventory\Entities\{User, Commerce};
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,21 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(Commerce::class, function (Faker\Generator $faker) {
+
+    $name = $faker->company;
+    return [
+        'name' => $name,
+    	'patent_name' => $name,
+    	'patent' => $faker->randomNumber,
+    	'address' => $faker->address,
+    	'phone' =>  $faker->e164PhoneNumber,
+    	'other_phone' => $faker->e164PhoneNumber,
+    	'nit' => $faker->randomNumber,
+    	'tax' => 3,
+    	'profit' => 10,
     ];
 });
