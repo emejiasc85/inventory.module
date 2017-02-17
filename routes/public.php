@@ -28,3 +28,8 @@ Route::put('{commerce}/editar', [
 	'uses' => 'EditCommerceController@update',
 	'as'	=> 'commerces.update'
 ]);
+
+Route::get('{commerce}/logo', [
+	'uses' 	=> 'CommerceController@logo',
+	'as'	=> 'commerces.logo'
+]);
