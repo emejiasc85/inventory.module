@@ -13,8 +13,8 @@ class EditCommerceTest extends FeatureTestCase
     	//having
     	$name    = 'Farmacia Maya';
     	$address = 'Santa Elena';
-    	$phone	 = '79261212';
-    	$nit	 = '6158063-5';
+    	$phone  = '79261212';
+    	$nit	 = '61580635';
     	$iva	 = 2;
     	$profit  =  20;
 
@@ -28,7 +28,8 @@ class EditCommerceTest extends FeatureTestCase
         	->type($name, 'patent_name')
         	->type($address, 'address')
         	->type($nit, 'nit')
-        	->type($phone, 'phone')
+            ->type($phone, 'phone')
+        	->type('', 'other_phone')
         	->type($iva, 'tax')
         	->type($profit, 'profit')
         	->press('Guardar');
