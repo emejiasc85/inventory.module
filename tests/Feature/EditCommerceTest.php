@@ -8,7 +8,7 @@ use Tests\FeatureTestCase;
 class EditCommerceTest extends FeatureTestCase
 {
 
-    public function test_a_user_can_edit_a_commerce()
+   	function test_a_user_can_edit_a_commerce()
     {
     	//having
     	$name    = 'Farmacia Maya';
@@ -45,5 +45,30 @@ class EditCommerceTest extends FeatureTestCase
 
         $this->see('Se realizaron los cambios correctamente');
 
+    }
+
+    function test_validate_form_on_edit_commerce($value='')
+    {
+    	//having
+    	$user = $this->defaultUser();
+        $commerce = factory(Commerce::class)->create();
+        //when
+        $this->actingAs($user)
+        	->visit($commerce->url)
+        	->see($commerce->name)
+        	->type('', 'name')
+        	->type('', 'patent_name')
+        	->type('', 'address')
+        	->type('', 'nit')
+        	->type('', 'phone')
+        	->type('', 'tax')
+        	->type('', 'profit')
+        	->press('Guardar');
+        //then
+        $this->seeErrors([
+        	'name'		=> 'El campo nombre es obligatorio',
+        	'address'	=> 'El campo dirección es obligatorio',
+        	'phone'		=> 'El campo teléfono es obligatorio',
+        ]);
     }
 }
