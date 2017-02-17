@@ -11,14 +11,3 @@
 |
 */
 
-Route::get('{commerce}/{slug}/editar', [
-	'uses' => 'EditCommerceController@edit',
-	'as'	=> 'commerces.edit'
-]);
-
-Route::PUT('{commerce}/editar', [
-	'uses' => 'EditCommerceController@update',
-	'as'	=> 'commerces.update'
-]);
-
-

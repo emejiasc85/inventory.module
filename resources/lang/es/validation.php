@@ -144,6 +144,11 @@ return [
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
+        'patent_name'           => 'nombre Legal',
+        'patent'                => 'patente',
+        'other_phone'           => 'otro teléfono',
+        'tax'                   => 'Impuestos',
+        'profit'                => 'Ganacia'
     ],
 
 ];

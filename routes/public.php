@@ -18,3 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('{commerce}/{slug}/editar', [
+	'uses' => 'EditCommerceController@edit',
+	'as'	=> 'commerces.edit'
+]);
+
+Route::put('{commerce}/editar', [
+	'uses' => 'EditCommerceController@update',
+	'as'	=> 'commerces.update'
+]);
