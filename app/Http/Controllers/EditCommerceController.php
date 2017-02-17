@@ -18,6 +18,10 @@ class EditCommerceController extends Controller
 	{
 
 		$commerce->fill($request->all());
+		if ($request->hasFile('logo'))
+        {
+            $commerce->logo_path = $request->file('logo')->store('logos');
+        }
 		$commerce->save();
 
 		Alert::success('Se realizaron los cambios correctamente');
