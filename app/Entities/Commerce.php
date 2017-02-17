@@ -28,10 +28,16 @@ class Commerce extends Model
     	$this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
 	public function getUrlAttribute()
 	{
 		return route('commerces.edit', [$this, $this->slug]);
 	}
+
+    public function getLogoFileAttribute()
+    {
+       return storage_path('app/'.$this->logo_path);
+    }
 }
 
 
