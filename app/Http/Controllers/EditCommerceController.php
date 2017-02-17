@@ -3,6 +3,7 @@
 namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\Commerce;
+use EmejiasInventory\Http\Requests\CommerceRequest;
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
 
@@ -13,7 +14,7 @@ class EditCommerceController extends Controller
 		return view('commerces.edit', compact('commerce'));
 	}
 
-	public function update(Request $request, Commerce $commerce)
+	public function update(CommerceRequest $request, Commerce $commerce)
 	{
 
 		$commerce->fill($request->all());
