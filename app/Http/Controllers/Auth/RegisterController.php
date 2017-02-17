@@ -2,10 +2,10 @@
 
 namespace EmejiasInventory\Http\Controllers\Auth;
 
-use EmejiasInventory\User;
+use EmejiasInventory\Entities\User;
 use EmejiasInventory\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
