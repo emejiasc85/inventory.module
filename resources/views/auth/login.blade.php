@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Real Bootstrap 4 Admin Template">
     <meta name="author" content="emejias">
-    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -79,9 +79,9 @@
 
     <!-- Bootstrap and necessary plugins -->
 
-    {!! Html::script('js/libs/jquery.min.js') !!}
-    {!! Html::script('js/libs/tether.min.js') !!}
-    {!! Html::script('js/libs/bootstrap.min.js') !!}
+    {!! Html::script('assets/js/libs/jquery.min.js') !!}
+    {!! Html::script('assets/js/libs/tether.min.js') !!}
+    {!! Html::script('assets/js/libs/bootstrap.min.js') !!}
 
 </body>
 

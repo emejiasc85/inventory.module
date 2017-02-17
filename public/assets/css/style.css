@@ -2815,10 +2815,10 @@ header.navbar {
     margin-right: 0;
     padding: 0.5rem 1rem;
     background-color: #fff;
-    background-image: url("../img/logo.png");
+    background-image: url("../img/emejias.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 80px auto;
+    background-size: 40px auto;
     border-bottom: 1px solid #d1d4d7; }
   header.navbar .navbar-nav {
     flex-direction: row;

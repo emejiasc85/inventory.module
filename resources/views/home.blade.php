@@ -1,5 +1,7 @@
-@extends('layouts.app')
-
+@extends('layouts.base')
+@section('breadcrumb')
+     <li class="breadcrumb-item">Inicio</li>
+@stop
 @section('content')
 <div class="container">
     <div class="row">
