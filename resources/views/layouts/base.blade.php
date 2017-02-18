@@ -104,6 +104,8 @@
     {!! Html::script('assets/js/libs/daterangepicker.js') !!}
 
     <!-- Custom scripts required by this view -->
+    @yield('scripts')
+
 
 </body>
 

@@ -19,25 +19,51 @@
                         <div class="col-sm-12">
 							@include('commerces.partials.fields')
 							@if ($commerce->logo_path)
-	                            <img src="{{  route('commerces.logo', $commerce) }} " alt="" width="100">
-	                        @endif
+                                <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="150" id="blah">
+                            @endif
                         </div>
                     </div>
                     <!--/.row-->
                 </div>
                 <div class="card-footer">
-					<button type="submit" class="btn btn-primary">
-					<i class="fa fa-dot-circle-o"></i>
-					Guardar</button>
-                	<a href="{{ URL::previous() }}" class="btn btn-danger">
-                	<i class="fa fa-ban"></i>
-                	Cancelar
-                	</a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-dot-circle-o"></i>
+                        Guardar
+                    </button>
+                    <a href="{{ URL::previous() }}" class="btn btn-link text-danger">
+                        <i class="fa fa-ban"></i>
+                        Cancelar
+                    </a>
                 </div>
 				{!! Form::close() !!}
             </div>
 
         </div>
 	</div>
+@stop
+
+@section('scripts')
+    <script>
+        $(document).ready(function () {
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $('#blah').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#logo").change(function(){
+                readURL(this);
+            });
+            // body...
+        });
+
+
+    </script>
 @stop
 
