@@ -17,19 +17,3 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
-Route::get('{commerce}/{slug}/editar', [
-	'uses' => 'EditCommerceController@edit',
-	'as'	=> 'commerces.edit'
-]);
-
-Route::put('{commerce}/editar', [
-	'uses' => 'EditCommerceController@update',
-	'as'	=> 'commerces.update'
-]);
-
-Route::get('{commerce}/logo', [
-	'uses' 	=> 'CommerceController@logo',
-	'as'	=> 'commerces.logo'
-]);
