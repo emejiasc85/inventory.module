@@ -14,6 +14,15 @@
 
 Route::get('/home', 'HomeController@index');
 
+
+Route::get('agregar-comercio', [
+	'uses'	=> 'CreateCommerceController@create',
+	'as'	=> 'commerces.create'
+]);
+Route::post('agregar-comercio', [
+	'uses'	=> 'CreateCommerceController@store',
+	'as'	=> 'commerces.store'
+]);
 Route::get('{commerce}/{slug}/editar', [
 	'uses' => 'EditCommerceController@edit',
 	'as'	=> 'commerces.edit'
