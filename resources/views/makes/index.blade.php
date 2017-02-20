@@ -33,9 +33,8 @@
                     <!--/.row-->
                 </div>
                 <div class="card-footer">
-
+                    {{ $makes->links() }}
                 </div>
-
             </div>
 
         </div>

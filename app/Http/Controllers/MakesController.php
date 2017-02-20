@@ -9,7 +9,7 @@ class MakesController extends Controller
 {
     public function index()
     {
-    	$makes = Make::all();
+    	$makes = Make::orderBy('id', 'DESC')->paginate();
     	return view('makes.index', compact('makes'));
     }
 }
