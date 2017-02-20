@@ -58,5 +58,10 @@ Route::put('editar-marcas/{make}', [
 	'as'	=> 'makes.update'
 ]);
 
+Route::get('marcas', [
+	'uses'	=> 'MakesController@index',
+	'as'	=> 'makes.index'
+]);
+
 
 
