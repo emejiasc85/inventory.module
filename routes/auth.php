@@ -14,7 +14,7 @@
 
 Route::get('/home', 'HomeController@index');
 
-
+//commerces
 Route::get('agregar-comercio', [
 	'uses'	=> 'CreateCommerceController@create',
 	'as'	=> 'commerces.create'
@@ -37,4 +37,17 @@ Route::get('{commerce}/logo', [
 	'uses' 	=> 'CommerceController@logo',
 	'as'	=> 'commerces.logo'
 ]);
+
+//makes
+
+Route::get('agregar-marcas', [
+	'uses'	=> 'CreateMakeController@create',
+	'as'	=> 'makes.create'
+]);
+Route::post('agregar-marcas', [
+	'uses'	=> 'CreateMakeController@store',
+	'as'	=> 'makes.store'
+]);
+
+
 
