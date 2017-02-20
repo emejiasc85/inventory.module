@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class MakesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    	$makes = Make::orderBy('id', 'DESC')->paginate();
+
+    	$makes = Make::name($request->get('name'))->orderBy('id', 'DESC')->paginate();
     	return view('makes.index', compact('makes'));
     }
 }

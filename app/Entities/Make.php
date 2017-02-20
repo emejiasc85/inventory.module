@@ -20,5 +20,12 @@ class Make extends Model
     	return route('makes.edit', [$this, $this->slug]);
     }
 
+    public function scopeName($query, $value)
+    {
+        if (trim($value) != '') {
+            return $query->where('name', 'LIKE', "%$value%");
+        }
+    }
+
 
 }

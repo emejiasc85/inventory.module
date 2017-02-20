@@ -15,7 +15,12 @@
 
                 <div class="card-block">
                     <div class="row">
-                       <table class="table">
+                        {{ Form::open(['makes.index', 'method' => 'get']) }}
+                        {!!  Field::text('name')!!}
+                        <button type="submit"><i class="fa fa-loop"></i>Buscar</button>
+                        {{ Form::close() }}
+                        <hr class="m-0">
+                        <table class="table">
                            <tr>
                                <th></th>
                                <th>Marca</th>
