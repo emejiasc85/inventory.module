@@ -17,7 +17,12 @@ class CreateMakeController extends Controller
     {
 
     	$this->validate($request, ['name' => 'required', 'logo' => 'image']);
-    	$new = Make::create($request->all());
+    	$make = Make::create($request->all());
+    	if ($request->hasFile('logo'))
+        {
+            $make->logo_path = $request->file('logo')->store('logos');
+        }
+		$make->save();
     	Alert::success('Marca agregada correctamente');
     	return redirect('/home');
     }
