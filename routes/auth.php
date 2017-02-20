@@ -49,5 +49,14 @@ Route::post('agregar-marcas', [
 	'as'	=> 'makes.store'
 ]);
 
+Route::get('editar-marcas/{make}/{slug}', [
+	'uses'	=> 'EditMakeController@edit',
+	'as'	=> 'makes.edit'
+]);
+Route::put('editar-marcas/{make}', [
+	'uses'	=> 'EditMakeController@update',
+	'as'	=> 'makes.update'
+]);
+
 
 

@@ -1,6 +1,6 @@
 <?php
 
-use EmejiasInventory\Entities\{User, Commerce};
+use EmejiasInventory\Entities\{User, Commerce, Make};
 use Illuminate\Support\Str;
 
 /*
@@ -39,5 +39,15 @@ $factory->define(Commerce::class, function (Faker\Generator $faker) {
     	'nit' => $faker->randomNumber,
     	'tax' => 3,
     	'profit' => 10,
+        'logo_path' => Str::slug($name)
+    ];
+});
+
+
+$factory->define(Make::class, function (Faker\Generator $faker) {
+    $name = $faker->company;
+    return [
+        'name' => $name,
+        'logo_path' => Str::slug($name)
     ];
 });

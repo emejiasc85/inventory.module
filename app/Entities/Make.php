@@ -15,5 +15,10 @@ class Make extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
+    public function getEditUrlAttribute()
+    {
+    	return route('makes.edit', [$this, $this->slug]);
+    }
+
 
 }
