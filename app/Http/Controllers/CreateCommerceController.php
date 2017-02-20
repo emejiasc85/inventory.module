@@ -16,7 +16,12 @@ class CreateCommerceController extends Controller
 
     public function store(CommerceRequest $request)
     {
-    	$new = Commerce::create($request->all());
+    	$commerce = Commerce::create($request->all());
+        if ($request->hasFile('logo'))
+        {
+            $commerce->logo_path = $request->file('logo')->store('logos');
+        }
+        $commerce->save();
     	Alert::success('Comercio creado correctamente.');
     	return redirect('/home');
     }
