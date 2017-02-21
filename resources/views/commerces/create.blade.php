@@ -13,7 +13,7 @@
                     <strong>Comercio</strong>
                     <small>Nuevo</small>
                 </div>
-				{!! Form::open(['route' => ['commerces.create'], 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+				{!! Form::open(['route' => ['commerces.store'], 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
                 <div class="card-block">
                     <div class="row">
                         <div class="col-sm-12">
