@@ -100,6 +100,14 @@ Route::post('agregar-presentacion-de-productos', [
 	'uses'	=> 'CreateProductPresentationsController@store',
 	'as'	=> 'product.presentations.store'
 ]);
+Route::get('editar-presentaciones-de-productos/{presentation}/{slug}', [
+	'uses'	=> 'EditProductPresentationsController@edit',
+	'as'	=> 'product.presentations.edit'
+]);
+Route::put('editar-presentaciones-de-productos/{presentation}', [
+	'uses'	=> 'EditProductPresentationsController@update',
+	'as'	=> 'product.presentations.update'
+]);
 
 
 

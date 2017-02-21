@@ -1,11 +1,10 @@
 <?php
 
-namespace EmejiasInventory;
+namespace EmejiasInventory\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class ProductPresentation extends Model
+class ProductPresentation extends Entity
 {
     protected $fillable = ['name', 'description', 'slug'];
 
@@ -13,5 +12,10 @@ class ProductPresentation extends Model
     {
     	$this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
+    }
+
+    public function getEditUrlAttribute()
+    {
+    	return route('product.presentations.edit', [$this, $this->slug]);
     }
 }
