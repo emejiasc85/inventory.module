@@ -9,7 +9,7 @@
 	                    <a class="nav-link" href="{{ route('makes.index') }}" target="_top"><i class="icon-badge"></i> Marcas</a>
 	                </li>
 	                <li class="nav-item">
-	                    <a class="nav-link" href="{{ route('product.groups.index') }}" target="_top"><i class="icon-badge"></i> Grupos de Productos</a>
+	                    <a class="nav-link" href="{{ route('product.groups.index') }}" target="_top"><i class="icon-grid"></i> Grupos de Productos</a>
 	                </li>
 	            </ul>
 	        </li>

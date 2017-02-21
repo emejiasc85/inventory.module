@@ -91,5 +91,16 @@ Route::get('grupos-de-productos', [
 
 ]);
 
+//products presentations
+Route::get('agregar-presentacion-de-productos', [
+	'uses'	=> 'CreateProductPresentationsController@create',
+	'as'	=> 'product.presentations.create'
+]);
+Route::post('agregar-presentacion-de-productos', [
+	'uses'	=> 'CreateProductPresentationsController@store',
+	'as'	=> 'product.presentations.store'
+]);
+
+
 
 
