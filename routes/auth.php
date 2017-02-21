@@ -88,7 +88,6 @@ Route::put('editar-grupo-de-productos/{group}', [
 Route::get('grupos-de-productos', [
 	'uses'	=> 'ProductGroupsController@index',
 	'as'	=> 'product.groups.index'
-
 ]);
 
 //products presentations
@@ -107,6 +106,10 @@ Route::get('editar-presentaciones-de-productos/{presentation}/{slug}', [
 Route::put('editar-presentaciones-de-productos/{presentation}', [
 	'uses'	=> 'EditProductPresentationsController@update',
 	'as'	=> 'product.presentations.update'
+]);
+Route::get('presentaciones-de-productos', [
+	'uses'	=> 'ProductPresentationsController@index',
+	'as'	=> 'product.presentations.index'
 ]);
 
 
