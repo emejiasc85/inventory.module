@@ -1,11 +1,9 @@
 <?php
 
 namespace EmejiasInventory\Entities;
-
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Make extends Model
+class Make extends Entity
 {
     protected $fillable = ['name', 'slug', 'logo_path'];
 
@@ -18,13 +16,6 @@ class Make extends Model
     public function getEditUrlAttribute()
     {
     	return route('makes.edit', [$this, $this->slug]);
-    }
-
-    public function scopeName($query, $value)
-    {
-        if (trim($value) != '') {
-            return $query->where('name', 'LIKE', "%$value%");
-        }
     }
 
     public function getLogoFileAttribute()

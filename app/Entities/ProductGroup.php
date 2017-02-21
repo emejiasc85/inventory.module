@@ -2,10 +2,9 @@
 
 namespace EmejiasInventory\Entities;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class ProductGroup extends Model
+class ProductGroup extends Entity
 {
     protected $fillable = ['name', 'description', 'slug'];
 
@@ -20,10 +19,4 @@ class ProductGroup extends Model
     	return route('product.groups.edit', [$this, $this->slug]);
     }
 
-    public function scopeName($query, $value)
-    {
-        if (trim($value) != '') {
-            return $query->where('name', 'LIKE', "%$value%");
-        }
-    }
 }
