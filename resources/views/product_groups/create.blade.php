@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
+     <li class="breadcrumb-item">Herramientas</li>
 	 <li class="breadcrumb-item">Productos</li>
      <li class="breadcrumb-item active">Grupos</li>
 	 <li class="breadcrumb-item active">Nuevo</li>
