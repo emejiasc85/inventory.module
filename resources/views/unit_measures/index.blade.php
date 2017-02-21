@@ -24,7 +24,7 @@
                                   <div class="input-group">
                                       <input type="text" id="name" name="name" class="form-control" placeholder="Buscar marca">
                                       <span class="input-group-btn">
-                                          <button type="button" class="btn btn-info"><i class="fa fa-search"></i>Buscar</button>
+                                          <button type="submit" class="btn btn-info"><i class="fa fa-search"></i>Buscar</button>
                                       </span>
                                   </div>
                               </div>
@@ -34,7 +34,6 @@
 
                         <table class="table col-sm-12">
                            <tr>
-                               <th></th>
                                <th>Unidad</th>
                                <th>Acciones</th>
                            </tr>

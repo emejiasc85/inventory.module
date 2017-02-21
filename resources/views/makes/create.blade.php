@@ -13,7 +13,7 @@
                     <strong>Marcas</strong>
                     <small>Nuevo</small>
                 </div>
-				{!! Form::open(['route' => ['makes.create'], 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
+				{!! Form::open(['route' => ['makes.store'], 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
                 <div class="card-block">
                     <div class="row">
                         <div class="col-sm-12">

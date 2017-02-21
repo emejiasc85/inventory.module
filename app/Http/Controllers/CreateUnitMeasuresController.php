@@ -20,6 +20,6 @@ class CreateUnitMeasuresController extends Controller
     	$make = UnitMeasure::create($request->all());
 
     	Alert::success('Unidad agregada correctamente');
-    	return redirect('/home');
+    	return redirect()->route('unit.measures.index');
     }
 }

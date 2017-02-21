@@ -14,6 +14,9 @@
 	                <li class="nav-item">
 	                    <a class="nav-link" href="{{ route('product.presentations.index') }}" target="_top"><i class="icon-tag"></i> Presentaciones de Prod.</a>
 	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="{{ route('unit.measures.index') }}" target="_top"><i class="icon-chemistry"></i> Unidades de Medida</a>
+	                </li>
 	            </ul>
 	        </li>
         </ul>

@@ -21,6 +21,7 @@ class EditUnitMeasuresController extends Controller
 
 		$unit->save();
     	Alert::success('Unidad editada correctamente');
-        return redirect('/home');
+        return redirect()->route('unit.measures.index');
+
     }
 }
