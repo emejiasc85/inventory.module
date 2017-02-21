@@ -130,6 +130,11 @@ Route::put('editar-unidad-de-medidad/{unit}', [
 	'as'	=> 'unit.measures.update'
 ]);
 
+Route::get('unidades-de-medidas', [
+	'uses' 	=> 'UnitMeasuresController@index',
+	'as'	=> 'unit.measures.index'
+]);
+
 
 
 
