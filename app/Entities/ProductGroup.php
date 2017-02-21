@@ -14,4 +14,9 @@ class ProductGroup extends Model
     	$this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    public function getEditUrlAttribute()
+    {
+    	return route('product.groups.edit', [$this, $this->slug]);
+    }
 }

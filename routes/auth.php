@@ -76,6 +76,14 @@ Route::post('agregar-grupo-de-productos', [
 	'uses'	=> 'CreateProductGroupController@store',
 	'as'	=> 'product.groups.store'
 ]);
+Route::get('editar-grupo-de-productos/{group}/{slug}', [
+	'uses'	=> 'EditProductGroupController@edit',
+	'as'	=> 'product.groups.edit'
+]);
+Route::put('editar-grupo-de-productos/{group}', [
+	'uses'	=> 'EditProductGroupController@update',
+	'as'	=> 'product.groups.update'
+]);
 
 
 
