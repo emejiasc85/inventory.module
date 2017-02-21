@@ -62,6 +62,10 @@ Route::get('marcas', [
 	'uses'	=> 'MakesController@index',
 	'as'	=> 'makes.index'
 ]);
+Route::get('marcas/{make}/logo', [
+	'uses' 	=> 'MakesController@logo',
+	'as'	=> 'makes.logo'
+]);
 
 
 

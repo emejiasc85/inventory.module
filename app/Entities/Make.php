@@ -27,5 +27,10 @@ class Make extends Model
         }
     }
 
+    public function getLogoFileAttribute()
+    {
+       return storage_path('app/'.$this->logo_path);
+    }
+
 
 }
