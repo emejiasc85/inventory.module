@@ -2,7 +2,7 @@
 
 namespace EmejiasInventory\Http\Controllers;
 
-use EmejiasInventory\ProductPresentation;
+use EmejiasInventory\Entities\ProductPresentation;
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
 
