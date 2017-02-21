@@ -19,4 +19,11 @@ class ProductGroup extends Model
     {
     	return route('product.groups.edit', [$this, $this->slug]);
     }
+
+    public function scopeName($query, $value)
+    {
+        if (trim($value) != '') {
+            return $query->where('name', 'LIKE', "%$value%");
+        }
+    }
 }

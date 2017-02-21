@@ -49,6 +49,7 @@
                     <!--/.row-->
                 </div>
                 <div class="card-footer">
+                  {{ $groups->links() }}
                 </div>
             </div>
 

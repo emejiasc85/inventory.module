@@ -12,9 +12,9 @@ class ProductGroupsController extends Controller
     	$this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-    	$groups = ProductGroup::all();
+    	$groups = ProductGroup::name($request->get('name'))->orderBy('id', 'DESC')->paginate();
 
     	return view('product_groups.index', compact('groups'));
     }
