@@ -24,7 +24,6 @@ class EditMakeController extends Controller
         }
 		$make->save();
     	Alert::success('Marca editada correctamente');
-    	return redirect('/home');
-
+        return redirect()->route('makes.index');
     }
 }

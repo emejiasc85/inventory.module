@@ -24,6 +24,6 @@ class CreateProductGroupController extends Controller
 		$this->validate($request, ['name' => 'required']);
 	 	$new = ProductGroup::create($request->all());
 	 	Alert::success('Grupo agregado correctamente');
-	 	return redirect('/home');
+    	return redirect()->route('product.groups.index');
 	}
 }

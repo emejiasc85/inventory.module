@@ -27,6 +27,6 @@ class EditProductGroupController extends Controller
 
     	Alert::success('Grupo editado correctamente');
 
-    	return redirect('/home');
+    	return redirect()->route('product.groups.index');
     }
 }

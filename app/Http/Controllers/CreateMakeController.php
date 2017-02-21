@@ -24,6 +24,6 @@ class CreateMakeController extends Controller
         }
 		$make->save();
     	Alert::success('Marca agregada correctamente');
-    	return redirect('/home');
+    	return redirect()->route('makes.index');
     }
 }
