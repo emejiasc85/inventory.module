@@ -112,6 +112,17 @@ Route::get('presentaciones-de-productos', [
 	'as'	=> 'product.presentations.index'
 ]);
 
+//unit measures
+Route::get('agregar-unidades-de-medidas', [
+	'uses'	=> 'CreateUnitMeasuresController@create',
+	'as'	=> 'unit.measures.create'
+]);
+Route::post('agregar-unidades-de-medidas', [
+	'uses'	=> 'CreateUnitMeasuresController@store',
+	'as'	=> 'unit.measures.store'
+]);
+
+
 
 
 
