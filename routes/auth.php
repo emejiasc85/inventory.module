@@ -67,5 +67,15 @@ Route::get('marcas/{make}/logo', [
 	'as'	=> 'makes.logo'
 ]);
 
+//product_groups
+Route::get('agregar-grupo-de-productos', [
+	'uses'	=> 'CreateProductGroupController@create',
+	'as'	=> 'product.groups.create'
+]);
+Route::post('agregar-grupo-de-productos', [
+	'uses'	=> 'CreateProductGroupController@store',
+	'as'	=> 'product.groups.store'
+]);
+
 
 
