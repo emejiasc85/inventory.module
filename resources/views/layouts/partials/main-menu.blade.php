@@ -11,6 +11,9 @@
 	                <li class="nav-item">
 	                    <a class="nav-link" href="{{ route('product.groups.index') }}" target="_top"><i class="icon-grid"></i> Grupos de Productos</a>
 	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="{{ route('product.presentations.index') }}" target="_top"><i class="icon-tag"></i> Presentaciones de Prod.</a>
+	                </li>
 	            </ul>
 	        </li>
         </ul>

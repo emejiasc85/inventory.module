@@ -28,6 +28,6 @@ class EditProductPresentationsController extends Controller
 
     	Alert::success('Presentación editada correctamente');
 
-    	return redirect('/home');
+        return redirect()->route('product.presentations.index');
     }
 }

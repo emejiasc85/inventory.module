@@ -24,6 +24,6 @@ class CreateProductPresentationsController extends Controller
 
     	$new = ProductPresentation::create($request->all());
     	Alert::success('Presentación agregada correctamente');
-    	return redirect('/home');
+    	return redirect()->route('product.presentations.index');
     }
 }
