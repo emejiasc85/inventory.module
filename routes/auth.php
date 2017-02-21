@@ -85,5 +85,11 @@ Route::put('editar-grupo-de-productos/{group}', [
 	'as'	=> 'product.groups.update'
 ]);
 
+Route::get('grupos-de-productos', [
+	'uses'	=> 'ProductGroupsController@index',
+	'as'	=> 'product.groups.index'
+
+]);
+
 
 
