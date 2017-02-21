@@ -121,6 +121,14 @@ Route::post('agregar-unidades-de-medidas', [
 	'uses'	=> 'CreateUnitMeasuresController@store',
 	'as'	=> 'unit.measures.store'
 ]);
+Route::get('editar-unidad-de-medidad/{unit}/{slug}', [
+	'uses'	=> 'EditUnitMeasuresController@edit',
+	'as'	=> 'unit.measures.edit'
+]);
+Route::put('editar-unidad-de-medidad/{unit}', [
+	'uses'	=> 'EditUnitMeasuresController@update',
+	'as'	=> 'unit.measures.update'
+]);
 
 
 

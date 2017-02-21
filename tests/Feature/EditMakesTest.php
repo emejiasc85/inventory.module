@@ -8,12 +8,7 @@ use Tests\FeatureTestCase;
 
 class EditMakesTest extends FeatureTestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_a_user_can_edit_a_make()
+    function test_a_user_can_edit_a_make()
     {
         //having
        	$user = $this->defaultUser();

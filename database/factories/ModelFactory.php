@@ -1,6 +1,6 @@
 <?php
 
-use EmejiasInventory\Entities\{User, Commerce, Make, ProductGroup, ProductPresentation};
+use EmejiasInventory\Entities\{User, Commerce, Make, ProductGroup, ProductPresentation, UnitMeasure};
 use Illuminate\Support\Str;
 
 /*
@@ -45,6 +45,13 @@ $factory->define(Commerce::class, function (Faker\Generator $faker) {
 
 
 $factory->define(Make::class, function (Faker\Generator $faker) {
+    $name = $faker->company;
+    return [
+        'name' => $name,
+        'slug' => Str::slug($name)
+    ];
+});
+$factory->define(UnitMeasure::class, function (Faker\Generator $faker) {
     $name = $faker->company;
     return [
         'name' => $name,

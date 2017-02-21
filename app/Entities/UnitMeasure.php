@@ -14,4 +14,9 @@ class UnitMeasure extends Entity
     	$this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    public function getEditUrlAttribute()
+    {
+     	return route('unit.measures.edit', [$this, $this->slug]);
+    }
 }
