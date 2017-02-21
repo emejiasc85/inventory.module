@@ -15,8 +15,8 @@ class CreateProductGroupsTable extends Migration
     {
         Schema::create('product_groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('slug');
+            $table->string('name')->index();
+            $table->string('slug')->index();
             $table->mediumtext('description')->nullable();
             $table->timestamps();
         });

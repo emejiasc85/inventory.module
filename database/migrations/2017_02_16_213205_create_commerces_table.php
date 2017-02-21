@@ -15,7 +15,7 @@ class CreateCommercesTable extends Migration
     {
         Schema::create('commerces', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->index();
             $table->string('patent_name')->nullable();
             $table->string('patent')->nullable();
             $table->mediumtext('address')->nullable();
@@ -24,7 +24,7 @@ class CreateCommercesTable extends Migration
             $table->string('nit')->nullable();
             $table->float('tax')->nullable();
             $table->float('profit')->nullable();
-            $table->string('logo_path')->nullable();
+            $table->string('logo_path')->nullable()->index();
             $table->string('slug')->nullable();
             $table->timestamps();
         });
