@@ -36,7 +36,7 @@ class ListUnitMeasuresTest extends FeatureTestCase
         ->dontSeeInElement('td', $last_unit->name);
     }
 
-    function test_a_user_can_search_a_make()
+    function test_a_user_can_search_a_unit_measures()
     {
     	//having
         $first_unit = factory(UnitMeasure::class)->create(['name' => 'litro']);
