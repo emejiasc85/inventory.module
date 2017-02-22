@@ -148,7 +148,12 @@ return [
         'patent'                => 'patente',
         'other_phone'           => 'otro teléfono',
         'tax'                   => 'Impuestos',
-        'profit'                => 'Ganacia'
+        'profit'                => 'Ganacia',
+        'barcode'               => 'Cod. Barras',
+        'minimum_stock'         => 'stock Minimo',
+        'product_presentation_id' => 'presentación',
+        'product_group_id'      => 'Grupo',
+        'unit_measure_id'       => 'Unidad de Medida'
     ],
 
 ];
