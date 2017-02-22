@@ -34,6 +34,29 @@ class CreateProductsTest extends FeatureTestCase
     	//then
     	$this->seeInDatabase('products', $fields);
     	$this->see('Producto creado correctamente');
+    }
+
+    function test_validate_form()
+    {
+        //having
+        $make = factory(Make::class)->create(['name' => 'Bayer']);
+        $group = factory(ProductGroup::class)->create(['name' => 'Medicina']);
+        $presentation = factory(ProductPresentation::class)->create(['name' => 'Pastilla']);
+        $unit = factory(UnitMeasure::class)->create(['name' => 'Unidad']);
+
+        //when
+        $this->actingAs($this->defaultUser())
+            ->visit(route('products.create'))
+            ->see('Productos')
+            ->press('Guardar');
+        //then
+        $this->seeErrors([
+            'name' => 'El campo nombre es obligatorio',
+            'description' => 'El campo descripción es obligatorio',
+            'product_presentation_id' => 'El campo presentación es obligatorio',
+            'product_group_id' => 'El campo grupo es obligatorio',
+            'unit_measure_id' => 'El campo unidad de medida es obligatorio'
+        ]);
 
     }
 }

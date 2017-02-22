@@ -8,6 +8,7 @@ use EmejiasInventory\Entities\{
 	UnitMeasure,
 	Product
 };
+use EmejiasInventory\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
 
@@ -21,7 +22,7 @@ class CreateProductsController extends Controller
     	return view('products.create', compact('presentations', 'groups', 'units'));
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
     	$new = Product::create($request->all());
     	Alert::success('Producto creado correctamente');
