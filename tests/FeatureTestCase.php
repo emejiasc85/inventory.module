@@ -16,4 +16,11 @@ class FeatureTesTCase extends BrowserKitTest
 			}
 		}
 	}
+
+	public function form(array $fields)
+	{
+		foreach ($fields as $name => $type) {
+			$this->type($type, $name);
+		}
+	}
 }
