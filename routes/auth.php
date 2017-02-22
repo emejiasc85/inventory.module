@@ -135,6 +135,17 @@ Route::get('unidades-de-medidas', [
 	'as'	=> 'unit.measures.index'
 ]);
 
+//products
+Route::get('agregar-productos', [
+	'uses'	=> 'CreateProductsController@create',
+	'as'	=> 'products.create'
+]);
+Route::post('agregar-productos', [
+	'uses'	=> 'CreateProductsController@store',
+	'as'	=> 'products.store'
+]);
+
+
 
 
 
