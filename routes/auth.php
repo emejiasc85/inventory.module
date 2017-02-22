@@ -144,7 +144,14 @@ Route::post('agregar-productos', [
 	'uses'	=> 'CreateProductsController@store',
 	'as'	=> 'products.store'
 ]);
-
+Route::get('editar-producto/{product}/{slug}', [
+	'uses'	=> 'EditProductsController@edit',
+	'as'	=> 'products.edit'
+]);
+Route::put('editar-producto/{product}', [
+	'uses'	=> 'EditProductsController@update',
+	'as'	=> 'products.update'
+]);
 
 
 

@@ -25,4 +25,9 @@ class Product extends Entity
         $this->attributes['slug'] = Str::slug($value);
         $this->attributes['full_name'] = $value;
     }
+
+    public function getEditUrlAttribute()
+    {
+        return route('products.edit', [$this, $this->slug]);
+    }
 }

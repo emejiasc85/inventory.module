@@ -178,6 +178,7 @@ return [
         // EmejiasInventory\Providers\BroadcastServiceProvider::class,
         EmejiasInventory\Providers\EventServiceProvider::class,
         EmejiasInventory\Providers\RouteServiceProvider::class,
+        EmejiasInventory\Providers\ViewServiceProvider::class,
 
     ],
 

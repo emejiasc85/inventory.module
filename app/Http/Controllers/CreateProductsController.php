@@ -14,12 +14,14 @@ use Styde\Html\Facades\Alert;
 
 class CreateProductsController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function create()
     {
-    	$presentations = ProductPresentation::pluck('name', 'id')->toArray();
-    	$groups = ProductGroup::pluck('name', 'id')->toArray();
-    	$units  = UnitMeasure::pluck('name', 'id')->toArray();
-    	return view('products.create', compact('presentations', 'groups', 'units'));
+    	return view('products.create');
     }
 
     public function store(ProductRequest $request)

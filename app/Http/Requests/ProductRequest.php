@@ -26,7 +26,6 @@ class ProductRequest extends FormRequest
         return [
             'name' => 'required',
             'description' => 'required',
-            'barcode' => 'numeric',
             'minimum_stock' => 'numeric',
             'product_presentation_id' => 'required|exists:product_presentations,id',
             'product_group_id' => 'required|exists:product_groups,id',

@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('slug')->index();
             $table->string('full_name')->nullable()->index();
             $table->mediumtext('description')->nullable();
-            $table->integer('barcode')->nullable();
+            $table->string('barcode')->nullable();
             $table->float('minimum_stock')->nullable();
             $table->unsignedInteger('product_presentation_id');
             $table->unsignedInteger('product_group_id');
