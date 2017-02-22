@@ -153,6 +153,11 @@ Route::put('editar-producto/{product}', [
 	'as'	=> 'products.update'
 ]);
 
+Route::get('productos', [
+	'uses'	=> 'ProductController@index',
+	'as'	=> 'products.index'
+]);
+
 
 
 
