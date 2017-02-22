@@ -28,6 +28,6 @@ class CreateProductsController extends Controller
     {
     	$new = Product::create($request->all());
     	Alert::success('Producto creado correctamente');
-    	return redirect('/home');
+    	return redirect()->route('products.index');
     }
 }

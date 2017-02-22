@@ -24,6 +24,6 @@ class EditProductsController extends Controller
     	$product->save();
 
     	Alert::success('Producto editado correctamente');
-    	return redirect('/home');
+    	return redirect()->route('products.index');
     }
 }

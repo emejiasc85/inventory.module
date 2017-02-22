@@ -1,5 +1,5 @@
 {!! Field::text('name', ['template' => 'templates.inline', 'required']) !!}
-{!! Field::number('description', ['template' => 'templates.inline', 'required']) !!}
+{!! Field::textarea('description', ['template' => 'templates.inline', 'required', 'rows' => 2]) !!}
 {!! Field::number('barcode', ['template' => 'templates.inline']) !!}
 {!! Field::number('minimum_stock', ['template' => 'templates.inline']) !!}
 {!! Field::select('product_presentation_id', $presentations, ['template' => 'templates.inline', 'required']) !!}

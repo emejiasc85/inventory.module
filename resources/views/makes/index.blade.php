@@ -40,7 +40,14 @@
                            </tr>
                            @foreach ($makes as $make)
                                <tr>
-                                   <td><img src="{{  route('makes.logo', $make) }}" alt="" class="img-rounded" width="50"></td>
+                                   <td>
+                                   @if ($make->logo_path)
+                                    <img src="{{  route('makes.logo', $make) }}" alt="" class="img-rounded" width="50">
+                                  @else
+                                    <img src="assets/img/picture.svg" alt="" class="img-rounded" width="30">
+
+                                   @endif
+                                   </td>
                                    <td>{{ $make->name }}</td>
                                    <td><a href="{{ $make->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>Editar</a></td>
                                </tr>

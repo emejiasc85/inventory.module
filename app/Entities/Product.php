@@ -19,6 +19,19 @@ class Product extends Entity
 	'slug'
     ];
 
+    public function group()
+    {
+        return $this->belongsTo(ProductGroup::class, 'product_group_id');
+    }
+    public function presentation()
+    {
+        return $this->belongsTo(ProductPresentation::class, 'product_presentation_id');
+    }
+    public function unit()
+    {
+        return $this->belongsTo(UnitMeasure::class, 'unit_measure_id');
+    }
+
     public function setNameAttribute($value)
     {
     	$this->attributes['name'] = $value;

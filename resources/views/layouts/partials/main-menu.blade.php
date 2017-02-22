@@ -6,6 +6,9 @@
 	            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-speedometer"></i> Herramientas</a>
 	            <ul class="nav-dropdown-items">
 	                <li class="nav-item">
+	                    <a class="nav-link" href="{{ route('products.index') }}" target="_top"><i class="icon-handbag"></i> Productos</a>
+	                </li>
+	                <li class="nav-item">
 	                    <a class="nav-link" href="{{ route('makes.index') }}" target="_top"><i class="icon-badge"></i> Marcas</a>
 	                </li>
 	                <li class="nav-item">
@@ -19,6 +22,7 @@
 	                </li>
 	            </ul>
 	        </li>
+
         </ul>
     </nav>
 </div>
