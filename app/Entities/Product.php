@@ -43,4 +43,29 @@ class Product extends Entity
     {
         return route('products.edit', [$this, $this->slug]);
     }
+
+    public function scopeGroup($query, $value)
+    {
+        $list = ProductGroup::pluck('name', 'id')->toArray();
+        if($value != '' && isset($list[$value]))
+        {
+            $query->where('product_group_id', $value);
+        }
+    }
+    public function scopePresentation($query, $value)
+    {
+        $list = ProductPresentation::pluck('name', 'id')->toArray();
+        if($value != '' && isset($list[$value]))
+        {
+            $query->where('product_presentation_id', $value);
+        }
+    }
+    public function scopeUnit($query, $value)
+    {
+        $list = UnitMeasure::pluck('name', 'id')->toArray();
+        if($value != '' && isset($list[$value]))
+        {
+            $query->where('unit_measure_id', $value);
+        }
+    }
 }

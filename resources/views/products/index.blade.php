@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+
 	<div class="row">
 		<div class="col-sm-12">
             <div class="card row">
@@ -15,21 +16,9 @@
                 </div>
 
                 <div class="card-block">
-                        <div class="col-xs-5">
-                          {{ Form::open(['products.index', 'method' => 'get']) }}
-                           <div class="form-group row">
-                              <div class="col-md-12">
-                                  <div class="input-group">
-                                      <input type="text" id="name" name="name" class="form-control" placeholder="Buscar producto">
-                                      <span class="input-group-btn">
-                                          <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Buscar</button>
-                                      </span>
-                                  </div>
-                              </div>
-                          </div>
-                          {{ Form::close() }}
-                        </div>
-
+                      <div class="col-xs-5">
+                        @include('products.partials.search')
+                      </div>
                       @include('products.partials.table')
 
                 </div>
