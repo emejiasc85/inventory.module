@@ -68,4 +68,12 @@ class Product extends Entity
             $query->where('unit_measure_id', $value);
         }
     }
+
+
+    public function scopeBarcode($query, $value)
+    {
+        if (trim($value) != '') {
+            $query->where('barcode', $value);
+        }
+    }
 }

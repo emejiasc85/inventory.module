@@ -53,7 +53,7 @@ class ListProductsTest extends FeatureTestCase
         $this->actingAs($this->defaultUser())
         ->visit(route('products.index'))
         ->see('Productos')
-        //->type('alka', 'name')
+        ->type($first_product->barcode, 'barcode')
         ->select($group->id, 'product_group_id')
         ->select($presentation->id, 'product_presentation_id')
         ->select($unit->id, 'unit_measure_id')

@@ -18,6 +18,7 @@ class ProductController extends Controller
     		->group($request->get('product_group_id'))
     		->presentation($request->get('product_presentation_id'))
     		->unit($request->get('unit_measure_id'))
+    		->barcode($request->get('barcode'))
     		->orderBy('id', 'DESC')
     		->paginate();
     	return view('products.index', compact('products'));
