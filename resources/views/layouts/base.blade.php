@@ -77,7 +77,7 @@
             </ol>
 
             <div class="container-fluid">
-                {!! Alert::render() !!}
+                {!! Alert::render('templates/alert') !!}
                 @yield('content')
             </div>
             <!-- /.conainer-fluid -->
