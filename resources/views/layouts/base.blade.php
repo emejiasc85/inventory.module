@@ -29,6 +29,7 @@
     {!! Html::style('assets/css/glyphicons-filetypes.css') !!}
     {!! Html::style('assets/css/glyphicons-social.css') !!}
 
+
     <!-- Main styles for this application -->
     {!! Html::style('assets/css/style.css') !!}
 
@@ -70,14 +71,14 @@
         @include('layouts.partials.main-menu')
         <!-- Main content -->
         <main class="main">
+        {!! Alert::render('templates/alert') !!}
 
             <!-- Breadcrumb -->
             <ol class="breadcrumb mb-0">
                 @yield('breadcrumb')
             </ol>
 
-            <div class="container-fluid">
-                {!! Alert::render('templates/alert') !!}
+            <div class="container">
                 @yield('content')
             </div>
             <!-- /.conainer-fluid -->
@@ -90,7 +91,7 @@
 
 
     <!-- Bootstrap and necessary plugins -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
