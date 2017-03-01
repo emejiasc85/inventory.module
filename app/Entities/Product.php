@@ -43,6 +43,10 @@ class Product extends Entity
     {
         return route('products.edit', [$this, $this->slug]);
     }
+    public function getAddImgUrlAttribute()
+    {
+        return route('product.images.create', [$this, $this->slug]);
+    }
 
     public function scopeGroup($query, $value)
     {
