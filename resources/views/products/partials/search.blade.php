@@ -1,18 +1,14 @@
-{{ Form::open(['products.index', 'method' => 'get']) }}
- <div class="form-group row">
-    <div class="col-md-11">
-        <div class="input-group">
-            <input type="text" id="name" name="name" class="form-control" placeholder="Buscar producto">
-            <span class="input-group-btn">
-                <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Buscar</button>
-            </span>
-        </div>
-
-    </div>
-
-    <div class="col-xs-1">
-      <button type="button" class="btn btn-outline-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-filter"></i></button>
-    </div>
+{{ Form::open(['products.index', 'method' => 'get', 'class' => 'form-horizontal']) }}
+ <div class=" col-xs-12">
+  <div class="controls">
+      <div class="input-group">
+          <input id="name" name="name" size="16" class="form-control" type="text">
+          <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
+              <button class="btn btn-outline-primary" type="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-filter"></i></button>
+          </span>
+      </div>
+  </div>
 </div>
 
 <div class="collapsing" id="collapseExample">
