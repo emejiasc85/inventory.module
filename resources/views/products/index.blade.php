@@ -18,13 +18,10 @@
                       <div class="col-xs-12">
                         @include('products.partials.search')
                       </div>
+                      <br />
                       <div class="col-xs-12">
                         @include('products.partials.table')
-
                       </div>
-
-
-
                 </div>
                 <div class="card-footer">
                     {{ $products->links() }}
