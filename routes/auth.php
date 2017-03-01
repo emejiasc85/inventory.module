@@ -158,6 +158,16 @@ Route::get('productos', [
 	'as'	=> 'products.index'
 ]);
 
+//product -images
+Route::get('producto/{product}-{slug}/agregar-imagen', [
+	'uses' 	=> 'ProductImagesController@create',
+	'as'	=> 'product.images.create'
+]);
+Route::post('producto/{product}/agregar-imagen', [
+	'uses' 	=> 'ProductImagesController@store',
+	'as'	=> 'product.images.store'
+]);
+
 
 
 
