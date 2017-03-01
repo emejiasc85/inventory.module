@@ -162,4 +162,13 @@ $(document).ready(function () {
     });
     // body...
 });
+/****
+* remove alerts
+*/
+ $(document).ready(function() {
+    $(".alert").fadeTo(7000, 0, function(){
+        $(this).alert('close')
+    });
+}, 4000);
+
 
