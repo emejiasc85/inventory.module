@@ -12,9 +12,15 @@ class ProductController extends Controller
 	{
 		$this->middleware('auth');
 	}
+
+    public function show(Product $product)
+    {
+        return view('products.show', compact('product'));
+    }
     public function index(Request $request)
     {
     	$products = Product::name($request->get('name'))
+            ->make($request->get('make_id'))
     		->group($request->get('product_group_id'))
     		->presentation($request->get('product_presentation_id'))
     		->unit($request->get('unit_measure_id'))
