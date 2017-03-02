@@ -15,9 +15,16 @@ class Product extends Entity
 	'product_presentation_id' ,
 	'product_group_id',
 	'unit_measure_id',
+    'make_id',
 	'minimum_stock',
 	'slug'
     ];
+
+
+    public function make()
+    {
+        return $this->belongsTo(Make::class);
+    }
 
     public function group()
     {
@@ -39,6 +46,10 @@ class Product extends Entity
         $this->attributes['full_name'] = $value;
     }
 
+    public function getUrlAttribute()
+    {
+        return route('products.show', [$this, $this->slug]);
+    }
     public function getEditUrlAttribute()
     {
         return route('products.edit', [$this, $this->slug]);
