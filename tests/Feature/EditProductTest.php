@@ -24,6 +24,7 @@ class EditProductTest extends FeatureTestCase
     		'product_group_id' 	=> $group->id,
     		'unit_measure_id' 	=> $unit->id,
     		'minimum_stock' 	=> 5,
+            'make_id'           => $make->id
     	];
     	//when
     	$this->actingAs($this->defaultUser())
