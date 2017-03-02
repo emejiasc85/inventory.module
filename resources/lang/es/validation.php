@@ -153,7 +153,8 @@ return [
         'minimum_stock'         => 'stock Minimo',
         'product_presentation_id' => 'presentación',
         'product_group_id'      => 'Grupo',
-        'unit_measure_id'       => 'Unidad de Medida'
+        'unit_measure_id'       => 'Unidad de Medida',
+        'make'                  => 'Marca'
     ],
 
 ];
