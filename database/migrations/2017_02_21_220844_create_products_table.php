@@ -21,9 +21,11 @@ class CreateProductsTable extends Migration
             $table->mediumtext('description')->nullable();
             $table->string('barcode')->nullable();
             $table->float('minimum_stock')->nullable();
+            $table->unsignedInteger('make_id');
             $table->unsignedInteger('product_presentation_id');
             $table->unsignedInteger('product_group_id');
             $table->unsignedInteger('unit_measure_id');
+            $table->foreign('make_id')->references('id')->on('makes');
             $table->foreign('product_group_id')->references('id')->on('product_groups');
             $table->foreign('product_presentation_id')->references('id')->on('product_presentations');
             $table->foreign('unit_measure_id')->references('id')->on('unit_measures');
