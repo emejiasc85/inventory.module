@@ -39,6 +39,11 @@ class Product extends Entity
         return $this->belongsTo(UnitMeasure::class, 'unit_measure_id');
     }
 
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
     public function setNameAttribute($value)
     {
     	$this->attributes['name'] = $value;
