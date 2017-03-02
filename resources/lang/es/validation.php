@@ -152,9 +152,9 @@ return [
         'barcode'               => 'Cod. Barras',
         'minimum_stock'         => 'stock Minimo',
         'product_presentation_id' => 'presentación',
-        'product_group_id'      => 'Grupo',
-        'unit_measure_id'       => 'Unidad de Medida',
-        'make'                  => 'Marca'
+        'product_group_id'      => 'grupo',
+        'unit_measure_id'       => 'unidad de medida',
+        'make_id'               => 'marca'
     ],
 
 ];
