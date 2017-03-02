@@ -22,6 +22,7 @@ class CreateProductsTest extends FeatureTestCase
     		'product_presentation_id' => $presentation->id,
     		'product_group_id' 	=> $group->id,
     		'unit_measure_id' 	=> $unit->id,
+            'make_id'           => $make->id,
     		'minimum_stock' 	=> 5,
     	];
     	//when
