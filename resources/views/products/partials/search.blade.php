@@ -20,6 +20,9 @@
         {!! Field::text('id') !!}
       </div>
       <div class="col-sm-4">
+        {!! Field::select('make_id', $makes) !!}
+      </div>
+      <div class="col-sm-4">
         {!! Field::select('product_presentation_id', $presentations) !!}
       </div>
       <div class="col-sm-4">
