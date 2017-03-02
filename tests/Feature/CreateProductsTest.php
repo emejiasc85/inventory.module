@@ -56,7 +56,8 @@ class CreateProductsTest extends FeatureTestCase
             'description' => 'El campo descripción es obligatorio',
             'product_presentation_id' => 'El campo presentación es obligatorio',
             'product_group_id' => 'El campo grupo es obligatorio',
-            'unit_measure_id' => 'El campo unidad de medida es obligatorio'
+            'unit_measure_id' => 'El campo unidad de medida es obligatorio',
+            'make_id' => 'El campo marca es obligatorio'
         ]);
 
     }
