@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use EmejiasInventory\Entities\{Product,ProductGroup, ProductPresentation, UnitMeasure};
+use EmejiasInventory\Entities\{Product,ProductGroup, ProductPresentation, UnitMeasure, Make};
 use Tests\FeatureTestCase;
 
 class ListProductsTest extends FeatureTestCase
@@ -39,6 +39,7 @@ class ListProductsTest extends FeatureTestCase
     {
     	//having
         $group = factory(ProductGroup::class)->create();
+        $make = factory(Make::class)->create();
 
         $presentation = factory(ProductPresentation::class)->create();
         $unit = factory(UnitMeasure::class)->create();
@@ -46,7 +47,8 @@ class ListProductsTest extends FeatureTestCase
             'name' => 'Alka',
             'product_presentation_id' => $presentation->id,
             'product_group_id' => $group->id,
-            'unit_measure_id' => $unit->id
+            'unit_measure_id' => $unit->id,
+            'make_id' => $make->id
         ]);
         $products = factory(Product::class)->times(15)->create();
         $last_product = factory(Product::class)->create(['name' => 'Acetaminofen']);
@@ -57,6 +59,7 @@ class ListProductsTest extends FeatureTestCase
         ->select($group->id, 'product_group_id')
         ->select($presentation->id, 'product_presentation_id')
         ->select($unit->id, 'unit_measure_id')
+        ->select($make->id, 'make_id')
         ->press('Buscar')
         ->seeInElement('td', $first_product->name)
         ->dontSeeInElement('td', $last_product->name);
