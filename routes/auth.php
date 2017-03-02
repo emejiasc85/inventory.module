@@ -136,6 +136,11 @@ Route::get('unidades-de-medidas', [
 ]);
 
 //products
+
+Route::get('producto/{product}-{slug}', [
+	'uses' 	=> 'ProductController@show',
+	'as'	=> 'products.show'
+]);
 Route::get('agregar-productos', [
 	'uses'	=> 'CreateProductsController@create',
 	'as'	=> 'products.create'
