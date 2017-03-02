@@ -1,6 +1,15 @@
 <?php
 
-use EmejiasInventory\Entities\{User, Commerce, Make, ProductGroup, ProductPresentation, UnitMeasure, Product};
+use EmejiasInventory\Entities\{
+        User,
+        Commerce,
+        Make,
+        ProductGroup,
+        ProductPresentation,
+        UnitMeasure,
+        Product,
+        ProductImage
+    };
 use Illuminate\Support\Str;
 
 /*
@@ -89,6 +98,18 @@ $factory->define(Product::class, function (Faker\Generator $faker) {
         'unit_measure_id'   => function () {
             return factory(UnitMeasure::class)->create()->id;
         },
+        'make_id'   => function () {
+            return factory(Make::class)->create()->id;
+        },
         'minimum_stock'     => 5,
+    ];
+});
+$factory->define(ProductImage::class, function (Faker\Generator $faker) {
+    return [
+        'description'   => $faker->name,
+        'product_id'   => function () {
+            return factory(Product::class)->create()->id;
+        },
+        'img_path' => public_path('assets/img/picture.svg')
     ];
 });
