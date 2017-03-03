@@ -7,30 +7,30 @@
 
 @section('content')
 	<div class="row">
-		<div class="col-sm-6">
-            <div class="card">
-                <div class="card-header">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-default" style="border-top: 2px solid #4dbd74">
+                <div class="panel-heading">
+                    <i class="icon-home"></i>
                     <strong>{{ $commerce->name }}</strong>
                     <small>Editar</small>
                 </div>
 				{!! Form::model($commerce, ['route' => ['commerces.update', $commerce], 'method' => 'PUT', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
-                <div class="card-block">
+                <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
 							@include('commerces.partials.fields')
 							@if ($commerce->logo_path)
-                                <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="150">
+                                <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="75">
                             @else
-                                <img src="assets/img/picture.svg" class="img-rounded" width="150" id="blah">
+                                <img src="{{ asset('/img/picture.svg') }}" class="img-rounded" width="75" id="blah">
                             @endif
-
                         </div>
                     </div>
                     <!--/.row-->
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-dot-circle-o"></i>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
                         Guardar
                     </button>
                     <a href="{{ URL::previous() }}" class="btn btn-link text-danger">

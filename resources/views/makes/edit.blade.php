@@ -20,7 +20,11 @@
                     <div class="row">
                         <div class="col-sm-12">
 							@include('makes.partials.fields')
-                            <img src="assets/img/picture.svg" class="img-rounded" width="50" id="blah">
+                           @if ($make->logo_path)
+                              <img src="{{  route('makes.logo', $make) }}" alt="" class="img-rounded" width="75">
+                            @else
+                              <img src="{{ asset('img/picture.svg') }}" alt="" class="img-rounded" width="75">
+                            @endif
                         </div>
                     </div>
                     <!--/.row-->

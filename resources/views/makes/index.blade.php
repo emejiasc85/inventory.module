@@ -44,7 +44,7 @@
                     @if ($make->logo_path)
                       <img src="{{  route('makes.logo', $make) }}" alt="" class="img-rounded" width="50">
                     @else
-                      <img src="assets/img/picture.svg" alt="" class="img-rounded" width="30">
+                      <img src="{{ asset('img/picture.svg') }}" alt="" class="img-rounded" width="30">
                     @endif
                     </td>
                     <td>{{ $make->name }}</td>

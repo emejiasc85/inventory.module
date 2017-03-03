@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="emejias.com">
-        <link rel="shortcut icon" href="assets/ico/favicon.png">
+        <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
         <title>{{ config('app.name', 'emejias.com') }}</title>
         <!-- Bootstrap core CSS -->
         {!! Html::style('css/bootstrap.min.css') !!}
@@ -122,6 +122,39 @@
         {!! Html::script('plugins/jquery-cookie/jquery.cookie.min.js') !!}
         {!! Html::script('js/demo.min.js') !!}
         <!-- end: JavaScript-->
+        <script>
+            /****
+            * upload image
+            */
+
+            $(document).ready(function () {
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                $("#logo").change(function(){
+                    readURL(this);
+                });
+                // body...
+            });
+            /****
+            * remove alerts
+            */
+             $(document).ready(function() {
+                $(".alert").fadeTo(7000, 0, function(){
+                    $(this).alert('close')
+                });
+            }, 4000);
+        </script>
+        @yield('scripts')
 
     </body>
 </html>
