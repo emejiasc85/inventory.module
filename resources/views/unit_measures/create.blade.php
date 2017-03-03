@@ -2,20 +2,21 @@
 
 @section('breadcrumb')
 	 <li class="breadcrumb-item">Herramientas</li>
-     <li class="breadcrumb-item active">Unidades de Medida</li>
+     <li class="breadcrumb-item active"><a href="{{ route('unit.measures.index') }}">Unidades de Medida</a></li>
 	 <li class="breadcrumb-item active">Nuevo</li>
 @stop
 
 @section('content')
 	<div class="row">
-		<div class="col-sm-6">
-            <div class="card">
-                <div class="card-header">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-default" style="border-top: 2px solid #20a8d8">
+                <div class="panel-heading" >
+                    <i class="icon-chemistry"></i>
                     <strong>Unidades de Medida</strong>
                     <small>Nuevo</small>
                 </div>
 				{!! Form::open(['route' => ['unit.measures.store'], 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
-                <div class="card-block">
+                <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
 							@include('unit_measures.partials.fields')
@@ -23,7 +24,7 @@
                     </div>
                     <!--/.row-->
                 </div>
-                <div class="card-footer">
+                <div class="panel-footer">
                     <button type="submit" class="btn btn-primary">
                         <i class="fa fa-dot-circle-o"></i>
                         Guardar

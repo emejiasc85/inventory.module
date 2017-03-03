@@ -172,6 +172,10 @@ Route::post('producto/{product}/agregar-imagen', [
 	'uses' 	=> 'ProductImagesController@store',
 	'as'	=> 'product.images.store'
 ]);
+Route::get('image/{image}', [
+	'uses' 	=> 'ProductImagesController@img',
+	'as'	=> 'product.images.img'
+]);
 
 
 

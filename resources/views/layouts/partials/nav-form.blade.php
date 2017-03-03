@@ -1,4 +1,4 @@
-<form class="form-inline float-left px-2 hidden-md-down">
+<form class="navbar-form navbar-left">
     <i class="fa fa-search"></i>
-    <input class="form-control" type="text" placeholder="¿Estas buscando algo?">
+    <input type="text" class="form-control" placeholder="Buscar">
 </form>

@@ -1,28 +1,28 @@
-<ul class="nav navbar-nav ml-auto">
+<ul class="nav navbar-nav navbar-right visible-md visible-lg">
+    <li><span class="timer"><i class="icon-clock"></i> <span id="clock"><!-- JavaScript clock will be displayed here, if you want to remove clock delete parent <li> --></span></span></li>
     @if (Auth::guest())
         <li><a href="{{ route('login') }}">Ingresar</a></li>
     @else
-        <li class="nav-item dropdown">
-            <a class="nav-link nav-pill" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="icon-user"></i>
 
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <div class="dropdown-header text-center">
-                    <strong>Cuenta</strong>
-                </div>
-                <div class="divider"></div>
-                <a href="{{ route('logout') }}" class="dropdown-item"
+    <li class="dropdown visible-md visible-lg">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i></a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-menu-header text-center">
+                <strong>Cuenta</strong>
+            </li>
+            <li>
+                <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
                     <i class="fa fa-lock"></i> Salir
                 </a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     {{ csrf_field() }}
                 </form>
-            </div>
-        </li>
+            </li>
+
+        </ul>
+    </li>
     @endif
 </ul>
 

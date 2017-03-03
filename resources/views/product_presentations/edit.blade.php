@@ -2,22 +2,22 @@
 
 @section('breadcrumb')
 	 <li class="breadcrumb-item">Herramientas</li>
-     <li class="breadcrumb-item active">Productos</li>
-     <li class="breadcrumb-item active">Presentación</li>
+     <li class="breadcrumb-item active"><a href="{{ route('product.presentations.index') }}">Presentación</a></li>
      <li class="breadcrumb-item active">{{ $presentation->name }}</li>
 	 <li class="breadcrumb-item active">Editar</li>
 @stop
 
 @section('content')
 	<div class="row">
-		<div class="col-sm-6">
-            <div class="card">
-                <div class="card-header">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-default" style="border-top: 2px solid #4dbd74">
+                <div class="panel-heading">
+                    <i class="fa fa-pencil"></i>
                     <strong>{{ $presentation->name }}</strong>
                     <small>Editar</small>
                 </div>
 				{!! Form::model($presentation, ['route' => ['product.presentations.update', $presentation], 'method' => 'PUT', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
-                <div class="card-block">
+                <div class="panel-block">
                     <div class="row">
                         <div class="col-sm-12">
 							@include('product_groups.partials.fields')
@@ -25,9 +25,9 @@
                     </div>
                     <!--/.row-->
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-dot-circle-o"></i>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
                         Editar
                     </button>
                     <a href="{{ URL::previous() }}" class="btn btn-link text-danger">

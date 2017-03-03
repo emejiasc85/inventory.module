@@ -8,7 +8,7 @@
             <p class="help-block">{{ $error }}</p>
         @endforeach
         @if ($required)
-	        <span class="badge badge-info">Obligatorio</span>
+	        <span class="label label-info">Obligatorio</span>
 	    @endif
     </div>
 </div>

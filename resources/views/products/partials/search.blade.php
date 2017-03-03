@@ -1,18 +1,20 @@
-{{ Form::open(['products.index', 'method' => 'get', 'class' => 'form-horizontal']) }}
- <div class=" col-xs-12">
+{{ Form::open(['products.index', 'method' => 'get']) }}
+<div class="col-xs-10 col-md-11">
   <div class="controls">
       <div class="input-group">
           <input id="name" name="name" size="16" class="form-control" type="text">
           <span class="input-group-btn">
               <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
-              <button class="btn btn-outline-primary" type="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-filter"></i></button>
           </span>
       </div>
   </div>
 </div>
-
-<div class="collapsing" id="collapseExample">
-  <div class="row">
+<div class="col-xs-1">
+  <a class="btn btn-default" role="button"   data-toggle="collapse" href="#collapseExample" title="Filtros" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-filter text-primary"></i></a>
+</div>
+<div class="col-xs-12">
+  <br/>
+  <div class="collapse row " id="collapseExample">
       <div class="col-sm-4">
         {!! Field::text('barcode') !!}
       </div>

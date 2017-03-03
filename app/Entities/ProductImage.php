@@ -13,4 +13,9 @@ class ProductImage extends Model
     	return $this->BelongsTo(Product::class);
     }
 
+    public function getImgFileAttribute()
+    {
+       return storage_path('app/'.$this->img_path);
+    }
+
 }

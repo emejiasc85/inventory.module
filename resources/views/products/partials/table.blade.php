@@ -1,6 +1,5 @@
- <table class="table table-responsive table-striped">
+ <table class="table table-striped">
     <thead>
-
     <tr>
          <th>Producto</th>
          <th>Descripción</th>
@@ -8,7 +7,7 @@
          <th>Presentación</th>
          <th>Unid. Medida</th>
          <th>Minimo</th>
-         <th>Acciones</th>
+         <th colspan="2">Acciones</th>
      </tr>
 
     </thead>
@@ -16,15 +15,17 @@
 
         @foreach ($products as $product)
              <tr>
-                 <td>{{ $product->name }}</td>
+                 <td><a href="{{ $product->url }}">{{ $product->name }}</a></td>
                  <td>{{ $product->description }}</td>
                  <td>{{ $product->group->name }}</td>
                  <td>{{ $product->presentation->name }}</td>
                  <td>{{ $product->unit->name }}</td>
                  <td>{{ $product->minimum_stock }}</td>
                  <td>
-                    <a href="{{ $product->url }}" class="btn btn-info "> <i class="fa fa-eye"></i>Detalle</a>
-                    <a href="{{ $product->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>Editar</a>
+                    <a href="{{ $product->url }}" class="btn btn-info "> <i class="fa fa-eye"></i> Detalle</a>
+                </td>
+                <td>
+                    <a href="{{ $product->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a>
                 </td>
              </tr>
          @endforeach

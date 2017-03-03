@@ -8,22 +8,23 @@
 
 	<div class="row">
 		<div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     <strong>Productos</strong>
                     <small>Listado</small>
-                    <a href="{{ route('products.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>Nuevo</a>
+                    <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm pull-right" style="margin-top: 5px"><span class="fa fa-plus"></span> Nuevo</a>
                 </div>
-                <div class="card-block">
+                <div class="panel-body">
                       <div class="col-xs-12">
                         @include('products.partials.search')
                       </div>
-                      <br />
                       <div class="col-xs-12">
-                        @include('products.partials.table')
+                        <div class="table-responsive">
+                          @include('products.partials.table')
+                        </div>
                       </div>
                 </div>
-                <div class="card-footer">
+                <div class="panel-footer">
                     {{ $products->links() }}
                 </div>
             </div>

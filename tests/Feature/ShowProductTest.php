@@ -24,10 +24,13 @@ class ShowProductTest extends FeatureTestCase
     		->see($product->group->name)
     		->see($product->presentation->name)
     		->see($product->unit->name)
-            ->see('Fotos del Producto');
-    	foreach ($images as $image) {
+            ->see('Imagenes');
+
+        /*
+        foreach ($images as $image) {
     		$this->see($image->description);
     	}
+        */
 
     }
 }
