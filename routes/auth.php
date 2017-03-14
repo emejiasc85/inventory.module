@@ -176,6 +176,10 @@ Route::get('image/{image}', [
 	'uses' 	=> 'ProductImagesController@img',
 	'as'	=> 'product.images.img'
 ]);
+Route::delete('image/delete', [
+	'uses' 	=> 'ProductImagesController@delete',
+	'as'	=> 'product.images.delete'
+]);
 
 
 

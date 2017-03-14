@@ -71,7 +71,7 @@
                                       <img src="{{ route('product.images.img', $image) }}" alt="...">
                                       <div class="caption">
                                         <p>{{ $image->description }}</p>
-                                        <p><a href="#" class="btn btn-danger btn-xs" role="button"><span class="fa fa-asterisk"></span></a></p>
+                                        <p><a href="#" class="btn btn-danger btn-xs destroy-value" data-id="{{ $image->id}}" title="Eliminar"><i class="glyphicon glyphicon-trash"></i> Eliminar</a></p>
                                       </div>
                                     </div>
                                   </div>
@@ -84,6 +84,45 @@
             </div>
         </div>
 	</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Alerta</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Una vez eliminando no podra acceder a esta imagen</p>
+                    <p>¿De veras quieres eliminarlo?</p>
+                </div>
+                <div class="modal-footer">
+                    {!! Form::open(['method' => 'DELETE', 'route' => ['product.images.delete'], 'id' => 'destroyValue']) !!}
+                        {!! Form::hidden('id', null, ['id' => 'value_id']) !!}
+                        <button type="button" id="delete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
+@section('scripts')
+
+<script>
+    $('.destroy-value').click( function (e) {
+        e.preventDefault();
+
+        var link    = $(this)
+        var value   = link.data('id');
+        var input_value = $('#value_id');
+
+        input_value.val(value);
+
+        $('#confirmDelete').modal('toggle');
+    });
+</script>
+@endsection
 
 

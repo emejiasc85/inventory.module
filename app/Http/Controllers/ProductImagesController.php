@@ -5,6 +5,7 @@ namespace EmejiasInventory\Http\Controllers;
 use EmejiasInventory\Entities\{Product, ProductImage};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Styde\Html\Facades\Alert;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
@@ -42,5 +43,24 @@ class ProductImagesController extends Controller
         $image->imgFile,
         null, $header, ResponseHeaderBag::DISPOSITION_INLINE
       );
+    }
+
+    public function delete(Request $request)
+    {
+
+        if (trim($request->get('id')))
+        {
+            $image = ProductImage::findOrFail($request->get('id'));
+            $image->delete();
+            Storage::delete($image->img_path);
+            alert::success('Imagen Borrada exitosamente');
+
+            return redirect()->back();
+
+        }
+
+        alert::warning('Debe Seleccionar una imagen');
+
+        return redirect()->back();
     }
 }

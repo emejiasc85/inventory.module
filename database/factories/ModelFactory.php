@@ -110,6 +110,6 @@ $factory->define(ProductImage::class, function (Faker\Generator $faker) {
         'product_id'   => function () {
             return factory(Product::class)->create()->id;
         },
-        'img_path' => public_path('assets/img/picture.svg')
+        'img_path' => public_path('img/picture.svg')
     ];
 });
