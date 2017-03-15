@@ -181,6 +181,16 @@ Route::delete('image/delete', [
 	'as'	=> 'product.images.delete'
 ]);
 
+//warehouses
+Route::get('agregar-bodega', [
+	'uses' 	=> 'CreateWarehouseController@create',
+	'as'	=> 'warehouses.create'
+]);
+Route::post('agregar-bodega', [
+	'uses' 	=> 'CreateWarehouseController@store',
+	'as'	=> 'warehouses.store'
+]);
+
 
 
 
