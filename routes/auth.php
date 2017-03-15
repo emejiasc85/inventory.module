@@ -190,7 +190,14 @@ Route::post('agregar-bodega', [
 	'uses' 	=> 'CreateWarehouseController@store',
 	'as'	=> 'warehouses.store'
 ]);
-
+Route::get('editar-bodega/{warehouse}/{slug}', [
+	'uses'	=> 'EditWarehouseController@edit',
+	'as'	=> 'warehouses.edit'
+]);
+Route::put('editar-bodega/{warehouse}', [
+	'uses'	=> 'EditWarehouseController@update',
+	'as'	=> 'warehouses.update'
+]);
 
 
 

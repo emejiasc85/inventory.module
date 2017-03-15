@@ -8,7 +8,8 @@ use EmejiasInventory\Entities\{
         ProductPresentation,
         UnitMeasure,
         Product,
-        ProductImage
+        ProductImage,
+        Warehouse
     };
 use Illuminate\Support\Str;
 
@@ -76,6 +77,13 @@ $factory->define(ProductGroup::class, function (Faker\Generator $faker) {
     ];
 });
 $factory->define(ProductPresentation::class, function (Faker\Generator $faker) {
+    $name = $faker->name;
+    return [
+        'name' => $name,
+        'slug' => Str::slug($name)
+    ];
+});
+$factory->define(Warehouse::class, function (Faker\Generator $faker) {
     $name = $faker->name;
     return [
         'name' => $name,

@@ -17,6 +17,7 @@ class CreateWarehousesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description')->nullable();
+            $table->string('slug');
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
