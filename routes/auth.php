@@ -199,6 +199,8 @@ Route::put('editar-bodega/{warehouse}', [
 	'as'	=> 'warehouses.update'
 ]);
 
+Route::name('warehouses.index')->get('bodegas', 'WarehousesController@index');
+
 
 
 

@@ -49,7 +49,6 @@ $factory->define(Commerce::class, function (Faker\Generator $faker) {
     	'nit' => $faker->randomNumber,
     	'tax' => 3,
     	'profit' => 10,
-        'slug' => Str::slug($name)
     ];
 });
 
@@ -58,14 +57,12 @@ $factory->define(Make::class, function (Faker\Generator $faker) {
     $name = $faker->company;
     return [
         'name' => $name,
-        'slug' => Str::slug($name)
     ];
 });
 $factory->define(UnitMeasure::class, function (Faker\Generator $faker) {
     $name = $faker->company;
     return [
         'name' => $name,
-        'slug' => Str::slug($name)
     ];
 });
 
@@ -73,21 +70,18 @@ $factory->define(ProductGroup::class, function (Faker\Generator $faker) {
     $name = $faker->name;
     return [
         'name' => $name,
-        'slug' => Str::slug($name)
     ];
 });
 $factory->define(ProductPresentation::class, function (Faker\Generator $faker) {
     $name = $faker->name;
     return [
         'name' => $name,
-        'slug' => Str::slug($name)
     ];
 });
 $factory->define(Warehouse::class, function (Faker\Generator $faker) {
     $name = $faker->name;
     return [
         'name' => $name,
-        'slug' => Str::slug($name)
     ];
 });
 $factory->define(Product::class, function (Faker\Generator $faker) {
