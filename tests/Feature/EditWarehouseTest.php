@@ -8,11 +8,7 @@ use Tests\FeatureTestCase;
 
 class EditWarehouseTest extends FeatureTestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+
     function test_a_user_can_edit_a_unit_warehouses()
     {
         //having
@@ -31,9 +27,5 @@ class EditWarehouseTest extends FeatureTestCase
       	]);
 
       	$this->see('Bodega editada correctamente');
-
-
-
-
     }
 }

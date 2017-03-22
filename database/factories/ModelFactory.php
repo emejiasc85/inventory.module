@@ -9,7 +9,8 @@ use EmejiasInventory\Entities\{
         UnitMeasure,
         Product,
         ProductImage,
-        Warehouse
+        Warehouse,
+        OrderType
     };
 use Illuminate\Support\Str;
 
@@ -57,6 +58,13 @@ $factory->define(Make::class, function (Faker\Generator $faker) {
     $name = $faker->company;
     return [
         'name' => $name,
+    ];
+});
+$factory->define(OrderType::class, function (Faker\Generator $faker) {
+    $name = $faker->company;
+    return [
+        'name' => $name,
+        'description' => $faker->paragraph
     ];
 });
 $factory->define(UnitMeasure::class, function (Faker\Generator $faker) {

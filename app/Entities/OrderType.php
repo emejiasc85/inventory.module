@@ -8,4 +8,9 @@ class OrderType extends Entity
     	'name',
     	'description'
     ];
+
+    public function getEditUrlAttribute()
+    {
+    	return route('orders.type.edit', $this);
+    }
 }
