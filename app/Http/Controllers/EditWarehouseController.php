@@ -22,6 +22,6 @@ class EditWarehouseController extends Controller
 
     	Alert::success('Bodega editada correctamente');
 
-    	return redirect('/home');
+    	return redirect()->route('warehouses.index');
     }
 }

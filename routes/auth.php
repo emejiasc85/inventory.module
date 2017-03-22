@@ -200,7 +200,8 @@ Route::put('editar-bodega/{warehouse}', [
 ]);
 
 Route::name('warehouses.index')->get('bodegas', 'WarehousesController@index');
-
-
+//order types
+Route::name('orders.type.create')->get('agregar-tipo-de-orden', 'CreateOrderTypeController@create');
+Route::name('orders.type.store')->post('agregar-tipo-de-orden', 'CreateOrderTypeController@store');
 
 

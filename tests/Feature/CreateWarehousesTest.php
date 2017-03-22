@@ -25,9 +25,9 @@ class CreateWarehousesTest extends FeatureTestCase
     	->visit(route('warehouses.create'))
     	->see('Bodega')
     	->form($fields);
+    	$this->press('Guardar');
 
         //then
-    	$this->press('Guardar');
     	$this->seeInDatabase('warehouses', $fields);
         $this->see('Bodega agregada correctamente');
     }

@@ -18,6 +18,6 @@ class CreateWarehouseController extends Controller
         $this->validate($request, ['name' => 'required']);
     	Warehouse::create($request->all());
     	Alert::success('Bodega agregada correctamente');
-    	return redirect('/home');
+    	return redirect()->route('warehouses.index');
     }
 }
