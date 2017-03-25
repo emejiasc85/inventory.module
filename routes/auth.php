@@ -206,5 +206,22 @@ Route::name('orders.type.create')->get('agregar-tipo-de-orden', 'CreateOrderType
 Route::name('orders.type.store')->post('agregar-tipo-de-orden', 'CreateOrderTypeController@store');
 Route::name('orders.type.edit')->get('editar-tipo-de-orden-{type}', 'EditOrderTypeController@edit');
 Route::name('orders.type.update')->put('editar-tipo-de-orden-{type}', 'EditOrderTypeController@update');
+//orders
+Route::name('orders.create')->get('agregar-orden', 'CreateOrderController@create');
+Route::name('orders.store')->post('agregar-orden', 'CreateOrderController@store');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
