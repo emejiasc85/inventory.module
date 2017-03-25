@@ -18,6 +18,6 @@ class CreateOrderTypeController extends Controller
     	$this->validate($request, ['name' => 'required']);
     	OrderType::create($request->all());
     	Alert::success('Tipo de orden creada correctamente');
-    	return redirect('/home');
+        return redirect()->route('orders.type.index');
     }
 }

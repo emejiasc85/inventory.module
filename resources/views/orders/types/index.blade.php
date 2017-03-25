@@ -34,6 +34,7 @@
               <thead>
                 <tr>
                   <th>Tipo</th>
+                  <th>Descripción</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -41,6 +42,7 @@
                 @foreach ($types as $type)
                   <tr>
                     <td>{{ $type->name }}</td>
+                    <td>{{ $type->description }}</td>
                     <td><a href="{{ $type->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a></td>
                   </tr>
                 @endforeach

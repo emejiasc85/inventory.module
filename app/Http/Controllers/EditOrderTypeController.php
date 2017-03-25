@@ -20,6 +20,6 @@ class EditOrderTypeController extends Controller
     	$type->fill($request->all());
     	$type->save();
     	Alert::success('Tipo de orden editado correctamente');
-    	return redirect('/home');
+    	return redirect()->route('orders.type.index');
     }
 }

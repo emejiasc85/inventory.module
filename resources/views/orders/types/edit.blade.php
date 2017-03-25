@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 	 <li class="breadcrumb-item">Herramientas</li>
-     <li class="breadcrumb-item active"><a href="#">Tipos de Ordenes</a></li>
+     <li class="breadcrumb-item"><a href="{{ route('orders.type.index') }}">Tipos de Ordenes</a></li>
      <li class="breadcrumb-item active">{{ $type->name }}</li>
 	 <li class="breadcrumb-item active">Editar</li>
 @stop

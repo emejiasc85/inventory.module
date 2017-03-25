@@ -21,6 +21,7 @@
                         <li><a href="{{ route('product.groups.index') }}"><i class="icon-grid"></i><span class="text"> Grupos</span></a></li>
                         <li><a href="{{ route('product.presentations.index') }}"><i class="icon-tag"></i><span class="text"> Presentaciones</span></a></li>
                         <li><a href="{{ route('unit.measures.index') }}"><i class="icon-chemistry"></i><span class="text"> Unidades</span></a></li>
+                        <li><a href="{{ route('orders.type.index') }}"><i class="fa fa-tags"></i><span class="text"> Tipos de ordenes</span></a></li>
                     </ul>
                 </li>
             </ul>
