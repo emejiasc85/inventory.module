@@ -12,6 +12,7 @@
         -->
         <div class="sidebar-menu">
             <ul class="nav nav-sidebar">
+                <li><a href="{{ route('orders.index') }}"><i class="fa fa-archive"></i><span class="text"> Ordenes</span></a></li>
                 <li><a href="{{ route('products.index') }}"><i class="fa fa-cubes"></i><span class="text"> Productos</span></a></li>
                 <li><a href="{{ route('warehouses.index') }}"><i class="fa fa-database"></i><span class="text"> Bodegas</span></a></li>
                 <li>
