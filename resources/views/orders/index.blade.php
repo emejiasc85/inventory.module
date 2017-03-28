@@ -1,0 +1,68 @@
+@extends('layouts.base')
+
+@section('breadcrumb')
+  <li class="breadcrumb-item">Ordenes</li>
+@stop
+
+@section('content')
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <i class="icon-badge"></i>
+          <strong>Ordenes</strong>
+          <small>Listado</small>
+          <a href="{{ route('orders.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
+        </div>
+        <div class="panel-body">
+          {{ Form::open(['orders.index', 'method' => 'get']) }}
+            <div class="form-group">
+            <div class="">
+              <div class="input-group">
+                <input type="text" id="id" name="id" class="form-control" placeholder="Buscar marca">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Buscar</button>
+                </span>
+              </div>
+              </div>
+            </div>
+          {{ Form::close() }}
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tipo</th>
+                  <th>Proveedor</th>
+                  <th>Priodidad</th>
+                  <th>Total</th>
+                  <th>Fecha</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($orders as $order)
+                  <tr>
+                    <td>{{ $order->id }}</td>
+                    <td>{{ $order->type->name }}</td>
+                    <td>{{ $order->provider->name }}</td>
+                    <td>{{ $order->priority }}</td>
+                    <td>{{ $order->created_at }}</td>
+                    <td>{{ $order->status }}</td>
+                    <td>Q. {{ $order->total }}</td>
+                    <td><a href="{{ $order->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a></td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel-footer">
+          {{ $orders->links() }}
+        </div>
+      </div>
+    </div>
+  </div>
+@stop
+
+
