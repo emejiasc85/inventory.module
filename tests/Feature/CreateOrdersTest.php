@@ -30,4 +30,25 @@ class CreateOrdersTest extends FeatureTestCase
         //then
         $this->seeInDatabase('orders', $fields);
     }
+
+    function test_form_validation()
+    {
+        //having
+        $user       = $this->defaultUser(['name' => 'Sonia Baldizon']);
+        $provider   = factory(User::class)->create(['name' => 'Lab. Prominente']);
+        $comerce    = factory(Commerce::class)->create(['name' => 'Centro Medico Maya']);
+        $orderType  = factory(OrderType::class)->create(['name' => 'Pedido']);
+        $this->actingAs($user);
+
+        //when
+        $this->visit(route('orders.create'))
+            ->see('Orden')
+            ->press('Siguiente');
+
+        //then
+        $this->seeErrors([
+            'order_type_id' => 'El campo tipo de orden es obligatorio.',
+            'provider_id' => 'El campo proveedor es obligatorio.',
+        ]);
+    }
 }

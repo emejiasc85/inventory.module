@@ -12,4 +12,9 @@ class Order extends Entity
     	'order_type_id',
     	'priority'
     ];
+
+    public function getEditUrlAttribute()
+    {
+    	return route('orders.edit', $this);
+    }
 }

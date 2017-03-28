@@ -209,6 +209,8 @@ Route::name('orders.type.update')->put('editar-tipo-de-orden-{type}', 'EditOrder
 //orders
 Route::name('orders.create')->get('agregar-orden', 'CreateOrderController@create');
 Route::name('orders.store')->post('agregar-orden', 'CreateOrderController@store');
+Route::name('orders.edit')->get('editar-orden/{order}', 'EditOrderController@edit');
+Route::name('orders.update')->put('editar-orden/{order}', 'EditOrderController@update');
 
 
 

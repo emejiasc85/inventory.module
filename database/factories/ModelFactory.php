@@ -12,6 +12,7 @@ use EmejiasInventory\Entities\{
         Warehouse,
         OrderType
     };
+use EmejiasInventory\Entities\Order;
 use Illuminate\Support\Str;
 
 /*
@@ -121,5 +122,19 @@ $factory->define(ProductImage::class, function (Faker\Generator $faker) {
             return factory(Product::class)->create()->id;
         },
         'img_path' => public_path('img/picture.svg')
+    ];
+});
+$factory->define(Order::class, function (Faker\Generator $faker) {
+    return [
+        'provider_id'   => function (){
+            return factory(User::class)->create()->id;
+        },
+        'user_id'   => function (){
+            return factory(User::class)->create()->id;
+        },
+        'order_type_id'   => function () {
+            return factory(OrderType::class)->create()->id;
+        },
+        'priority' => 'Baja'
     ];
 });
