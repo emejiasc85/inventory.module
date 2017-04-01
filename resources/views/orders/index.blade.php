@@ -35,9 +35,9 @@
                   <th>Tipo</th>
                   <th>Proveedor</th>
                   <th>Priodidad</th>
-                  <th>Total</th>
                   <th>Fecha</th>
                   <th>Estado</th>
+                  <th>Total</th>
                 </tr>
               </thead>
               <tbody>

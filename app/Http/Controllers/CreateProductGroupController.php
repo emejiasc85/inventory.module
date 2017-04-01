@@ -8,10 +8,6 @@ use Styde\Html\Facades\Alert;
 
 class CreateProductGroupController extends Controller
 {
-	function __construct()
-	{
-        $this->middleware('auth');
-	}
 
 	public function create()
 	{

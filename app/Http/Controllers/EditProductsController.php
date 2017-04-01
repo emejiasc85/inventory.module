@@ -8,10 +8,6 @@ use Styde\Html\Facades\Alert;
 
 class EditProductsController extends Controller
 {
-    function __construct()
-    {
-    	$this->middleware('auth');
-    }
 
     public function edit(Product $product, $slug)
     {

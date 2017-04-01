@@ -8,11 +8,6 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-	function __construct()
-	{
-		$this->middleware('auth');
-	}
-
     public function show(Product $product)
     {
         return view('products.show', compact('product'));

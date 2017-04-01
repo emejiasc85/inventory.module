@@ -10,15 +10,6 @@ use Styde\Html\Facades\Alert;
 class EditCommerceController extends Controller
 {
 
-	 /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
 	public function edit(Commerce $commerce, $slug)
 	{

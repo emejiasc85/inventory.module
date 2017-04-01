@@ -104,6 +104,8 @@
             </ol>
             @yield('content')
         </div>
+
+        @yield('modals')
         <!-- end: Content -->
 
         <!--

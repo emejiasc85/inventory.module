@@ -14,7 +14,12 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            ['products/create', 'products/edit', 'products/index' ],
+            [
+                'products/create',
+                'products/edit',
+                'products/index',
+                'orders/details/create'
+            ],
             'EmejiasInventory\Http\ViewComposers\ProductsComposer'
         );
     }

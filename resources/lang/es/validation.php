@@ -156,7 +156,8 @@ return [
         'unit_measure_id'       => 'unidad de medida',
         'make_id'               => 'marca',
         'order_type_id'         => 'tipo de orden',
-        'provider_id'           => 'proveedor'
+        'provider_id'           => 'proveedor',
+        'lot'                   => 'Cantidad'
     ],
 
 ];

@@ -27,7 +27,7 @@ class AuthTest extends FeatureTestCase
 
         //then
         $this->seeIsAuthenticatedAs($user);
-        $this->seePageIs('/home');
+        $this->seePageIs(route('index'));
         //->see('Enrique Mejias');
 
     }
