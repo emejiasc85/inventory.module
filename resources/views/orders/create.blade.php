@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-	 <li class="breadcrumb-item"><a href="">Ordenes</a></li>
+	 <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Ordenes</a></li>
 	 <li class="breadcrumb-item active">Nueva</li>
 @stop
 

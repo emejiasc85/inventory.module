@@ -78,7 +78,7 @@
                                  <td>{{ $detail->total}}</td>
                                  <td>{{ $detail->due_date}}</td>
                                  <td><a href="" class="btn btn-success"><i class="fa fa-pencil"></i></a></td>
-                                 <td><a href="" class="btn btn-danger"><i class="fa fa-minus-circle"></i></a></td>
+                                 <td><a href="#" data-id="{{ $detail->id }}"  data-name="{{ $detail->product->name }}" class="btn btn-danger OrderDetailDelete"><i class="fa fa-minus-circle"></i></a></td>
                              </tr>
                          @endforeach
                     </tbody>
@@ -88,6 +88,24 @@
 
         </div>
 	</div>
+@stop
+@section('modals')
+    @include('orders.details.partials.modal-destroy')
+@stop
+@section('scripts')
+    <script>
+        $('.OrderDetailDelete').click( function (e) {
+            e.preventDefault();
+            var link    = $(this)
+            var value   = link.data('id');
+            var name   = link.data('name');
+            var input_value = $('#value_id');
+            var ProductName = $('#ProductName');
+            input_value.val(value);
+            ProductName.text(name);
+            $('#confirmDelete').modal('toggle');
+        });
+    </script>
 @stop
 
 

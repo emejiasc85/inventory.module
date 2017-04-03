@@ -50,6 +50,7 @@
                     <td>{{ $order->created_at }}</td>
                     <td><span {!! Html::classes(['label', 'label-info' => $order->status == 'Creado', 'label-primary' => $order->status == 'Solicitado', 'label-warning' => $order->status == 'Confirmado', 'label-success' => $order->status == 'Entregado', 'label-default' => $order->status == 'Cancelado']) !!}>{{ $order->status }}</span></td>
                     <td>Q. {{ $order->total }}</td>
+                    <td><a href="{{ $order->url }}" class="btn btn-info "> <i class="fa fa-eye"></i> Ver</a></td>
                     <td><a href="{{ $order->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a></td>
                   </tr>
                 @endforeach

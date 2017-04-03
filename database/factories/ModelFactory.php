@@ -10,7 +10,8 @@ use EmejiasInventory\Entities\{
         Product,
         ProductImage,
         Warehouse,
-        OrderType
+        OrderType,
+        OrderDetail
     };
 use EmejiasInventory\Entities\Order;
 use Illuminate\Support\Str;
@@ -136,5 +137,16 @@ $factory->define(Order::class, function (Faker\Generator $faker) {
             return factory(OrderType::class)->create()->id;
         },
         'priority' => 'Baja'
+    ];
+});
+$factory->define(OrderDetail::class, function (Faker\Generator $faker) {
+    return [
+        'order_id'   => function (){
+            return factory(Order::class)->create()->id;
+        },
+        'product_id'   => function () {
+            return factory(Product::class)->create()->id;
+        },
+        'lot'       => 5,
     ];
 });

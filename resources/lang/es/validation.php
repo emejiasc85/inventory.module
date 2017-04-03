@@ -157,7 +157,8 @@ return [
         'make_id'               => 'marca',
         'order_type_id'         => 'tipo de orden',
         'provider_id'           => 'proveedor',
-        'lot'                   => 'Cantidad'
+        'lot'                   => 'Cantidad',
+        'status'                => 'Estado'
     ],
 
 ];

@@ -35,7 +35,7 @@
       e.preventDefault();
       var link    = $(this)
       var value   = link.data('id');
-      var name   = link.data('name');
+      var name    = link.data('name');
       var input_value = $('#value_id');
       var ProductName = $('#ProductName');
       input_value.val(value);
