@@ -21,6 +21,7 @@ class CreateOrderDetailsTest extends FeatureTestCase
         $fields = [
         	'product_id' => $product->id,
         	'lot' => 10,
+            'cost' => 10
        	];
         //when
         $this->visit(route('orders.details.create', $order))
@@ -32,7 +33,17 @@ class CreateOrderDetailsTest extends FeatureTestCase
         $this->press('Agregar');
 
         //then
-        $this->seeInDatabase('order_details', $fields);
+        $this->seeInDatabase('order_details', [
+            'order_id' => $order->id,
+            'product_id' => $product->id,
+            'lot' => 10,
+            'cost' => 10,
+            'total' => 100
+        ]);
+        $this->seeInDatabase('orders', [
+            'id' => $order->id,
+            'total' => 100
+        ]);
         $this->see('Producto Agregado correctamente');
         $this->seePageIs($order->url);
 

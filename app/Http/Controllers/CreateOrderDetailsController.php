@@ -37,10 +37,11 @@ class CreateOrderDetailsController extends Controller
 
    public function store(Request $request, Order $order)
    {
-
       $this->validate($request, $this->rules);
       $data = array_add($request->all(), 'order_id', $order->id);
    		$new_detail = OrderDetail::create($data);
+      $order->sumTotals();
+      $order->save();
    		Alert::success('Producto Agregado correctamente');
    		return redirect($order->url);
    }

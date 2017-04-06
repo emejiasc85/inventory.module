@@ -19,7 +19,7 @@
             <div class="form-group">
             <div class="">
               <div class="input-group">
-                <input type="text" id="id" name="id" class="form-control" placeholder="Buscar marca">
+                <input type="text" id="id" name="id" class="form-control" placeholder="Buscar">
                 <span class="input-group-btn">
                     <button type="submit" class="btn btn-info"><i class="fa fa-search"></i> Buscar</button>
                 </span>
@@ -36,6 +36,7 @@
                   <th>Proveedor</th>
                   <th>Priodidad</th>
                   <th>Fecha</th>
+                  <th>Fec. ingreso</th>
                   <th>Estado</th>
                   <th>Total</th>
                 </tr>
@@ -48,10 +49,13 @@
                     <td>{{ $order->provider->name }}</td>
                     <td><span {!! Html::classes(['label', 'label-danger' => $order->priority == 'Alta', 'label-warning' => $order->priority == 'Media', 'label-success' => $order->priority == 'Baja']) !!}>{{ $order->priority }}</span></td>
                     <td>{{ $order->created_at }}</td>
+                    <td>{{ $order->delivery }}</td>
                     <td><span {!! Html::classes(['label', 'label-info' => $order->status == 'Creado', 'label-primary' => $order->status == 'Solicitado', 'label-warning' => $order->status == 'Confirmado', 'label-success' => $order->status == 'Entregado', 'label-default' => $order->status == 'Cancelado']) !!}>{{ $order->status }}</span></td>
                     <td>Q. {{ $order->total }}</td>
-                    <td><a href="{{ $order->url }}" class="btn btn-info "> <i class="fa fa-eye"></i> Ver</a></td>
-                    <td><a href="{{ $order->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a></td>
+                    <td><a href="{{ $order->url }}" class="btn btn-info btn-sm"> <i class="fa fa-eye"></i> Detalle</a></td>
+                    @if (!$order->status == 'Cancelado')
+                      <td><a href="{{ $order->editUrl }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> Editar</a></td>
+                    @endif
                   </tr>
                 @endforeach
               </tbody>

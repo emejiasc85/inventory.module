@@ -18,6 +18,7 @@ class CreateOrderDetailsTable extends Migration
             $table->float('lot')->default(5);
             $table->float('cost')->nullable();
             $table->float('total')->nullable();
+            $table->float('sale')->nullable();
             $table->date('due_date')->nullable();
             $table->unsignedInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

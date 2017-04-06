@@ -23,4 +23,13 @@ class EditOrderController extends Controller
         Alert::success('Orden editada correctamente');
         return redirect('/home');
     }
+
+    public function updateStatus(Request $request, Order $order)
+    {
+        $this->validate($request, ['status' => 'required']);
+        $order->status = $request->get('status');
+        $order->save();
+        Alert::success('El estado de la orden fue cambiado a: '.$request->get('status'));
+        return redirect($order->url);
+    }
 }

@@ -40,4 +40,9 @@ class Order extends Entity
             return $query->where('id', $value);
         }
     }
+
+    public function sumTotals()
+    {
+        return $this->total = $this->details->sum('total');
+    }
 }

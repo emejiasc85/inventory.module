@@ -9,7 +9,8 @@
             {!! Form::open(['route' => ['orders.details.store', $order], 'method' => 'POST']) !!}
             <div class="modal-body">
                 <p id="ProductName"></p>
-                {!! Field::number('lot', 5) !!}
+                {!! Field::text('lot', 5) !!}
+                {!! Field::text('cost') !!}
                 {!! Field::hidden('product_id', null, ['id' => 'value_id']) !!}
             </div>
             <div class="modal-footer">

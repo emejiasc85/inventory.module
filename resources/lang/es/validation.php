@@ -158,7 +158,8 @@ return [
         'order_type_id'         => 'tipo de orden',
         'provider_id'           => 'proveedor',
         'lot'                   => 'Cantidad',
-        'status'                => 'Estado'
+        'status'                => 'Estado',
+        'cost'                  => 'Costo Unitario'
     ],
 
 ];

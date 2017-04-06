@@ -12,6 +12,8 @@ class DeleteOrderDetailsController extends Controller
     {
     	//App\Flight::destroy(1);
     	OrderDetail::destroy($request->get('id'));
+        $order->sumTotals();
+        $order->save();
         Alert::success('Se ha eliminado el detalle');
     	return redirect()->back();
     }

@@ -27,7 +27,7 @@
                 <div class="panel-footer">
                     <button type="submit" class="btn btn-success">
                         <i class="fa fa-pencil"></i>
-                        Siguiente
+                        Editar
                     </button>
                     <a href="{{ URL::previous() }}" class="btn btn-link text-danger">
                         <i class="fa fa-ban"></i>
