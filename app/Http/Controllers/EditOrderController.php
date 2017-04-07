@@ -40,7 +40,7 @@ class EditOrderController extends Controller
         $this->validate($request, ['status' => 'required']);
         $order->status = $request->get('status');
         $order->save();
-        Alert::success('El estado del pedido fue cambiado a: '.$request->get('status'))->details('El pedido fue ingresao al inventario');
+        Alert::success('El estado del pedido fue cambiado a: '.$request->get('status'));
         return redirect($order->url);
     }
 }
