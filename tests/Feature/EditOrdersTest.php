@@ -24,7 +24,7 @@ class EditOrdersTest extends FeatureTestCase
         	->select($provider->id, 'provider_id')
         	->select($orderType->id, 'order_type_id')
         	->select('Media', 'priority')
-        	->press('Siguiente');
+        	->press('Editar');
 
         //the
         $this->seeInDatabase('orders', [

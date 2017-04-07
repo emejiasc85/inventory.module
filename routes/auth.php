@@ -213,7 +213,7 @@
 	Route::name('orders.store')->post('agregar-orden', 'CreateOrderController@store');
 	Route::name('orders.edit')->get('editar-orden/{order}', 'EditOrderController@edit');
 	Route::name('orders.update')->put('editar-orden/{order}', 'EditOrderController@update');
-	Route::name('orders.updateStatus')->put('editar-orden/{order}', 'EditOrderController@updateStatus');
+	Route::name('orders.updateStatus')->put('editar-status-orden/{order}', 'EditOrderController@updateStatus');
 	//order details
 	Route::name('orders.details.create')->get('orden/{order}/agregar-detalle', 'CreateOrderDetailsController@create');
 	Route::name('orders.details.store')->post('orden/{order}/agregar-detalle', 'CreateOrderDetailsController@store');
