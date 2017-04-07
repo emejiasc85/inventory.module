@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 class UserTableSeeder extends Seeder {
     /**
      * Run the database seeds.
-     *
+     * preuba de git
      * @return void
      */
     public function run() {
