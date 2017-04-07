@@ -3,18 +3,19 @@
 use EmejiasInventory\Entities\User;
 use Illuminate\Database\Seeder;
 
-class UserTableSeeder extends Seeder
-{
+class UserTableSeeder extends Seeder {
     /**
      * Run the database seeds.
-     *
+     * preuba de git
      * @return void
      */
-    public function run()
-    {
+    public function run() {
         factory(User::class)->create([
-        	'name'	=> 'emejias',
-        	'email'	=> 'emejiasc85@gmail.com'
+            'name' => 'emejias',
+            'email' => 'emejiasc85@gmail.com',
+        ], [
+            'name' => 'Tonkry',
+            'email' => 'laga1254@gmail.com',
         ]);
     }
 }
