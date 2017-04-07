@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->enum('status', [
                 'Creado',
                 'Solicitado',
-                'Confirmado',
-                'Entregado',
+                //'Confirmado',
+                'Ingresado',
                 'Cancelado'
             ])->default('Creado');
             $table->enum('priority', [

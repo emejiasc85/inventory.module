@@ -26,10 +26,21 @@ class EditOrderController extends Controller
 
     public function updateStatus(Request $request, Order $order)
     {
+        $status = $request->get('status');
+        if ($status == 'Solicitado' && count($order->details)==0) {
+            Alert::warning('Alerta')->details('Debes ingresar al Menos un producto');
+            return redirect()->back();
+
+        }
+        if ($status == 'Ingresado' && $order->details->where('total', 0)->count() > 0) {
+            Alert::warning('Alerta')->details('Se debe de agregar precios a todos los productos');
+            return redirect()->back();
+        }
+
         $this->validate($request, ['status' => 'required']);
         $order->status = $request->get('status');
         $order->save();
-        Alert::success('El estado del pedido fue cambiado a: '.$request->get('status'));
+        Alert::success('El estado del pedido fue cambiado a: '.$request->get('status'))->details('El pedido fue ingresao al inventario');
         return redirect($order->url);
     }
 }

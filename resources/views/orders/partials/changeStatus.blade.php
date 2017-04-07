@@ -17,14 +17,11 @@
 	        		<button type="submit" {!! Html::classes([
                             'btn',
                             'btn-primary' => $order->status == 'Creado',
-                            'label-warning' => $order->status == 'Solicitado',
-                            'label-success' => $order->status == 'Confirmado',
+                            'btn-success' => $order->status == 'Solicitado',
                         ]) !!}>
                         @if ($order->status == 'Creado')
                             Solicitar
                         @elseif ($order->status == 'Solicitado')
-                            Confirmar
-                        @elseif ($order->status == 'Confirmado')
                             Ingresar
                         @endif
                         <i class="fa fa-angle-double-right"></i>
