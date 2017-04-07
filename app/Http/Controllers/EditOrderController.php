@@ -17,11 +17,11 @@ class EditOrderController extends Controller
     }
     public function update(Request $request,Order $order)
     {
-        $this->validate($request, ['provider_id' => 'required', 'order_type_id' => 'required']);
+        $this->validate($request, ['provider_id' => 'required']);
         $order->fill($request->all());
         $order->save();
-        Alert::success('Orden editada correctamente');
-        return redirect('/home');
+        Alert::success('Pedido editada correctamente');
+        return redirect($order->url);
     }
 
     public function updateStatus(Request $request, Order $order)
@@ -29,7 +29,7 @@ class EditOrderController extends Controller
         $this->validate($request, ['status' => 'required']);
         $order->status = $request->get('status');
         $order->save();
-        Alert::success('El estado de la orden fue cambiado a: '.$request->get('status'));
+        Alert::success('El estado del pedido fue cambiado a: '.$request->get('status'));
         return redirect($order->url);
     }
 }

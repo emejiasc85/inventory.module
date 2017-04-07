@@ -17,7 +17,6 @@ class ListOrdersTest extends FeatureTestCase
         ->visit(route('orders.index'))
         ->see('Ordenes')
         ->seeInElement('td', $order->id)
-        ->seeInElement('td', $order->type->name)
         ->seeInElement('td', $order->provider->name)
         ->seeInElement('td', $order->priority);
     }

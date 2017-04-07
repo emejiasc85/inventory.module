@@ -13,12 +13,10 @@ class CreateOrdersTest extends FeatureTestCase
         $user 		= $this->defaultUser(['name' => 'Sonia Baldizon']);
         $provider	= factory(User::class)->create(['name' => 'Lab. Prominente']);
         $comerce 	= factory(Commerce::class)->create(['name' => 'Centro Medico Maya']);
-        $orderType 	= factory(OrderType::class)->create(['name' => 'Pedido']);
         $this->actingAs($user);
 
         $fields = [
         	'provider_id'	=> $provider->id,
-        	'order_type_id' =>  $orderType->id,
         	'priority'		=> 'Alta'
        	];
         //having
@@ -47,7 +45,6 @@ class CreateOrdersTest extends FeatureTestCase
 
         //then
         $this->seeErrors([
-            'order_type_id' => 'El campo tipo de orden es obligatorio.',
             'provider_id' => 'El campo proveedor es obligatorio.',
         ]);
     }

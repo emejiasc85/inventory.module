@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-  <li class="breadcrumb-item">Ordenes</li>
+  <li class="breadcrumb-item">Pedidos</li>
 @stop
 
 @section('content')
@@ -10,7 +10,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <i class="icon-badge"></i>
-          <strong>Ordenes</strong>
+          <strong>Pedidos</strong>
           <small>Listado</small>
           <a href="{{ route('orders.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
         </div>
@@ -32,7 +32,6 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Tipo</th>
                   <th>Proveedor</th>
                   <th>Priodidad</th>
                   <th>Fecha</th>
@@ -45,7 +44,6 @@
                 @foreach ($orders as $order)
                   <tr>
                     <td>{{ $order->id }}</td>
-                    <td>{{ $order->type->name }}</td>
                     <td>{{ $order->provider->name }}</td>
                     <td><span {!! Html::classes(['label', 'label-danger' => $order->priority == 'Alta', 'label-warning' => $order->priority == 'Media', 'label-success' => $order->priority == 'Baja']) !!}>{{ $order->priority }}</span></td>
                     <td>{{ $order->created_at }}</td>
@@ -53,9 +51,9 @@
                     <td><span {!! Html::classes(['label', 'label-info' => $order->status == 'Creado', 'label-primary' => $order->status == 'Solicitado', 'label-warning' => $order->status == 'Confirmado', 'label-success' => $order->status == 'Entregado', 'label-default' => $order->status == 'Cancelado']) !!}>{{ $order->status }}</span></td>
                     <td>Q. {{ $order->total }}</td>
                     <td><a href="{{ $order->url }}" class="btn btn-info btn-sm"> <i class="fa fa-eye"></i> Detalle</a></td>
-                    @if (!$order->status == 'Cancelado')
+
                       <td><a href="{{ $order->editUrl }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> Editar</a></td>
-                    @endif
+
                   </tr>
                 @endforeach
               </tbody>
