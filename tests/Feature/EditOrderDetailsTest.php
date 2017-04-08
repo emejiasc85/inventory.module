@@ -9,9 +9,9 @@ use Tests\FeatureTestCase;
 
 class EditOrderDetailsTest extends FeatureTestCase
 {
+        /*
     function test_user_can_edit_order_details()
     {
-        /*
 
         $order = factory(Order::class)->create();
         $product = factory(Product::class)->create(['name' => 'acetaminofen']);
@@ -44,6 +44,6 @@ class EditOrderDetailsTest extends FeatureTestCase
         ]);
         $this->see('Detalle Editado correctamente');
         $this->seePageIs($order->url);
-         */
     }
+         */
 }
