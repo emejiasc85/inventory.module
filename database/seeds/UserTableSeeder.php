@@ -6,16 +6,16 @@ use Illuminate\Database\Seeder;
 class UserTableSeeder extends Seeder {
     /**
      * Run the database seeds.
-     *
+     * preuba de git
      * @return void
      */
     public function run() {
         factory(User::class)->create([
-            'name' => 'emejias',
+            'name' => 'Enrique Mejias',
             'email' => 'emejiasc85@gmail.com',
         ]);
         factory(User::class)->create([
-            'name' => 'tonrky',
+            'name' => 'Luis Garcia', //cargar git
             'email' => 'laga1254@gmail.com',
         ]);
     }

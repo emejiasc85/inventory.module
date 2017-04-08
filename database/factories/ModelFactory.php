@@ -133,9 +133,6 @@ $factory->define(Order::class, function (Faker\Generator $faker) {
         'user_id'   => function (){
             return factory(User::class)->create()->id;
         },
-        'order_type_id'   => function () {
-            return factory(OrderType::class)->create()->id;
-        },
         'priority' => 'Baja'
     ];
 });

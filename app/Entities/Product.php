@@ -8,16 +8,16 @@ use Illuminate\Support\Str;
 class Product extends Entity
 {
     protected $fillable = [
-    'name',
-    'full_name',
-	'description',
-	'barcode',
-	'product_presentation_id' ,
-	'product_group_id',
-	'unit_measure_id',
-    'make_id',
-	'minimum_stock',
-	'slug'
+        'name',
+        'full_name',
+    	'description',
+    	'barcode',
+    	'product_presentation_id' ,
+    	'product_group_id',
+    	'unit_measure_id',
+        'make_id',
+    	'minimum_stock',
+    	'slug'
     ];
 
 
@@ -102,6 +102,12 @@ class Product extends Entity
     {
         if (trim($value) != '') {
             $query->where('barcode', $value);
+        }
+    }
+    public function scopeId($query, $value)
+    {
+        if (trim($value) != '') {
+            $query->where('id', $value);
         }
     }
 }

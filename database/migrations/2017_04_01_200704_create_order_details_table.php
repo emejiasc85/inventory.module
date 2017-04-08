@@ -16,8 +16,9 @@ class CreateOrderDetailsTable extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->increments('id');
             $table->float('lot')->default(5);
-            $table->float('cost')->nullable();
-            $table->float('total')->nullable();
+            $table->float('purchase_price')->nullable();
+            $table->float('sale_price')->nullable();
+            $table->float('total_purchase')->nullable();
             $table->float('sale')->nullable();
             $table->date('due_date')->nullable();
             $table->unsignedInteger('order_id');

@@ -207,7 +207,7 @@
 	Route::name('orders.type.edit')->get('editar-tipo-de-orden-{type}', 'EditOrderTypeController@edit');
 	Route::name('orders.type.update')->put('editar-tipo-de-orden-{type}', 'EditOrderTypeController@update');
 	//orders
-	Route::name('orders.index')->get('ordenes', 'OrderController@index');
+	Route::name('orders.index')->get('pedidos', 'OrderController@index');
 	Route::name('orders.show')->get('ordenes/detalle/orden-{order}', 'OrderController@show');
 	Route::name('orders.create')->get('agregar-orden', 'CreateOrderController@create');
 	Route::name('orders.store')->post('agregar-orden', 'CreateOrderController@store');
@@ -217,7 +217,7 @@
 	//order details
 	Route::name('orders.details.create')->get('orden/{order}/agregar-detalle', 'CreateOrderDetailsController@create');
 	Route::name('orders.details.store')->post('orden/{order}/agregar-detalle', 'CreateOrderDetailsController@store');
-	Route::name('orders.details.update')->put('{detail}/editar-detalle', 'EditOrderDetailsController@update');
+	Route::name('orders.details.update')->put('pedido-{order}/editar-detalle', 'EditOrderDetailsController@update');
 
 	Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 'DeleteOrderDetailsController@destroy');
 

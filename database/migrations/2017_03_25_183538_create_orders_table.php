@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->enum('status', [
                 'Creado',
                 'Solicitado',
-                'Confirmado',
-                'Entregado',
+                //'Confirmado',
+                'Ingresado',
                 'Cancelado'
             ])->default('Creado');
             $table->enum('priority', [
@@ -29,11 +29,6 @@ class CreateOrdersTable extends Migration
             ])->default('Baja');
             $table->date('delivery')->nullable();
             $table->float('total')->nullable();
-            $table->unsignedInteger('order_type_id');
-            $table->foreign('order_type_id')
-                ->references('id')
-                ->on('order_types')
-                ->onDelete('cascade');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')

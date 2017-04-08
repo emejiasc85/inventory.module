@@ -22,7 +22,8 @@ class CreateOrderDetailsController extends Controller
       if (empty($data)) {
         $products = [];
       }else{
-     		$products = Product::name($request->get('make_id'))
+     		$products = Product::name($request->get('name'))
+          ->id($request->get('id'))
           ->make($request->get('make_id'))
       		->group($request->get('product_group_id'))
       		->presentation($request->get('product_presentation_id'))

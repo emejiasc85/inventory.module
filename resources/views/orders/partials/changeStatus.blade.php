@@ -14,18 +14,18 @@
 	        	{!! Form::open(['method' => 'put', 'route' => ['orders.updateStatus', $order]]) !!}
 					{!! Field::hidden('status', null, ['id' => 'value_status']) !!}
 	        		<button type="button" id="delete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	        		<button type="submit" {!! Html::classes([
+	        		<button id="buttonStatus" type="submit" {!! Html::classes([
                             'btn',
                             'btn-primary' => $order->status == 'Creado',
-                            'label-warning' => $order->status == 'Solicitado',
-                            'label-success' => $order->status == 'Confirmado',
+                            'btn-success' => $order->status == 'Solicitado',
+                            'btn-warning' => $order->status == 'Ingresado',
                         ]) !!}>
                         @if ($order->status == 'Creado')
                             Solicitar
                         @elseif ($order->status == 'Solicitado')
-                            Confirmar
-                        @elseif ($order->status == 'Confirmado')
                             Ingresar
+                        @elseif ($order->status == 'Ingresado')
+                            Revertir
                         @endif
                         <i class="fa fa-angle-double-right"></i>
 

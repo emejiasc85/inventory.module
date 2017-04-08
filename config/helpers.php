@@ -4,8 +4,8 @@ return [
 	'order_status' => [
 		'Creada' => 'Creado',
 		'Solicitado' => 'Solicitado',
-		'Confirmado' => 'Confirmado',
-		'Entregado' => 'Entregado',
+		//'Confirmado' => 'Confirmado',
+		'Ingresado' => 'Ingresado',
 		'Cancelado'	=> 'Cancelado'
 	],
 	'priority' => [
