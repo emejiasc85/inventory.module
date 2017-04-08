@@ -19,6 +19,6 @@ class Stock extends Model
 
     public function detail()
     {
-        return $this->belongsTo(OrderDetail::class);
+        return $this->belongsTo(OrderDetail::class, 'order_detail_id');
     }
 }

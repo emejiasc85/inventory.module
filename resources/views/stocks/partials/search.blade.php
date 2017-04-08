@@ -1,0 +1,40 @@
+<div class="col-xs-12">
+{{ Form::open(['route' => ['stocks.index'], 'method' => 'get']) }}
+    <div class="controls">
+        <div class="input-group">
+            <input id="name" name="name" size="16" class="form-control" type="text">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
+                <a class="btn btn-default" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa fa-filter">
+                    </i>
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="collapse" id="collapseExample">
+        <div class="well">
+            <div class="row ">
+                <div class="col-sm-4">
+                    {!! Field::text('barcode') !!}
+                </div>
+                <div class="col-sm-4">
+                    {!! Field::text('id') !!}
+                </div>
+                <div class="col-sm-4">
+                    {!! Field::select('make_id', $makes) !!}
+                </div>
+                <div class="col-sm-4">
+                    {!! Field::select('product_presentation_id', $presentations) !!}
+                </div>
+                <div class="col-sm-4">
+                    {!! Field::select('product_group_id', $groups) !!}
+                </div>
+                <div class="col-sm-4">
+                    {!! Field::select('unit_measure_id', $units) !!}
+                </div>
+            </div>
+        </div>
+    </div>
+{{ Form::close() }}
+</div>
