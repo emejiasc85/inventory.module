@@ -28,6 +28,11 @@ class EditOrderController extends Controller
     public function updateStatus(Request $request, Order $order)
     {
         $status = $request->get('status');
+        if ($status === 'Revertir') {
+            $this->reverse($order);
+            Alert::warning('Pedido Revertido');
+            return redirect()->back();
+        }
         if ($status == 'Solicitado' && count($order->details)==0) {
             Alert::warning('Alerta')->details('Debes ingresar al Menos un producto');
             return redirect()->back();
@@ -68,6 +73,17 @@ class EditOrderController extends Controller
             Alert::success('El estado del pedido fue cambiado a: '.$request->get('status'));
             return redirect($order->url);
 
+        }
+
+    }
+
+    public function reverse(Order $order)
+    {
+        $order->status = 'Solicitado';
+        $order->save();
+
+        foreach ($order->details as $detail) {
+           Stock::where('order_detail_id', $detail->id)->delete();
         }
 
     }

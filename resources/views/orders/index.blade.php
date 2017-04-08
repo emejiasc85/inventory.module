@@ -12,7 +12,7 @@
           <i class="icon-badge"></i>
           <strong>Pedidos</strong>
           <small>Listado</small>
-          <a href="{{ route('orders.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
+          <a href="{{ route('orders.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar Pedido</a>
         </div>
         <div class="panel-body">
           {{ Form::open(['orders.index', 'method' => 'get']) }}

@@ -18,11 +18,14 @@
                             'btn',
                             'btn-primary' => $order->status == 'Creado',
                             'btn-success' => $order->status == 'Solicitado',
+                            'btn-warning' => $order->status == 'Ingresado',
                         ]) !!}>
                         @if ($order->status == 'Creado')
                             Solicitar
                         @elseif ($order->status == 'Solicitado')
                             Ingresar
+                        @elseif ($order->status == 'Ingresado')
+                            Revertir
                         @endif
                         <i class="fa fa-angle-double-right"></i>
 
