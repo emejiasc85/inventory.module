@@ -15,7 +15,7 @@ class UserTableSeeder extends Seeder {
             'email' => 'emejiasc85@gmail.com',
         ]);
         factory(User::class)->create([
-            'name' => 'Antony',
+            'name' => 'Luis Garcia', //cargar git
             'email' => 'laga1254@gmail.com',
         ]);
     }
