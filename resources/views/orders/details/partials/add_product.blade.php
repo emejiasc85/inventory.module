@@ -10,7 +10,7 @@
             <div class="modal-body">
                 <p id="ProductName"></p>
                 {!! Field::text('lot', 5) !!}
-                {!! Field::text('cost') !!}
+                {!! Field::text('purchase_price') !!}
                 {!! Field::hidden('product_id', null, ['id' => 'value_id']) !!}
             </div>
             <div class="modal-footer">

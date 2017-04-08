@@ -11,9 +11,9 @@ class OrderDetail extends Model
     	'order_id',
     	'product_id',
     	'due_date',
-    	'cost',
-    	'total'
-
+        'purchase_price',
+        'sale_price',
+    	'total_purchase',
     ];
 
     public function product()
@@ -26,10 +26,10 @@ class OrderDetail extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function setCostAttribute($value)
+    public function setPurchasePriceAttribute($value)
     {
-        $this->attributes['cost'] = $value;
-        $this->attributes['total'] = $this->attributes['lot'] * $this->attributes['cost'];
+        $this->attributes['purchase_price'] = $value;
+        $this->attributes['total_purchase'] = $this->attributes['lot'] * $this->attributes['purchase_price'];
     }
 
 }

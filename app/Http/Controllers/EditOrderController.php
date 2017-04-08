@@ -2,7 +2,8 @@
 
 namespace EmejiasInventory\Http\Controllers;
 
-use EmejiasInventory\Entities\{Commerce,Order, User, OrderType};
+use EmejiasInventory\Entities\OrderDetail;
+use EmejiasInventory\Entities\{Commerce,Order, User, OrderType, Stock};
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
 
@@ -32,15 +33,42 @@ class EditOrderController extends Controller
             return redirect()->back();
 
         }
-        if ($status == 'Ingresado' && $order->details->where('total', 0)->count() > 0) {
-            Alert::warning('Alerta')->details('Se debe de agregar precios a todos los productos');
+        if ($status == 'Ingresado' && $order->details->where('total_purchase', 0)->count() > 0) {
+            Alert::warning('Alerta')->details('Se debe de agregar precios de compra a todos los productos');
+            return redirect()->back();
+        }
+        if ($status == 'Ingresado' && $order->details->where('sale_price', 0)->count() > 0) {
+            Alert::warning('Alerta')->details('Se debe de agregar precios de venta a todos los productos');
+            return redirect()->back();
+        }
+
+        $low_cost = OrderDetail::where('order_id', $order->id)->whereRaw('sale_price < purchase_price')->count();
+
+        if ($status == 'Ingresado' && $low_cost > 0) {
+            Alert::danger('Precio Bajo Costo')->details('El precio de venta de un producto no puede ser menor al precio de compra');
             return redirect()->back();
         }
 
         $this->validate($request, ['status' => 'required']);
         $order->status = $request->get('status');
         $order->save();
-        Alert::success('El estado del pedido fue cambiado a: '.$request->get('status'));
-        return redirect($order->url);
+
+        if ($status == 'Ingresado') {
+            foreach ($order->details as $detail) {
+                Stock::create([
+                    'stock'     => $detail->lot,
+                    'warehouse_id' => 1,
+                    'order_detail_id' => $detail->id
+                ]);
+            }
+            Alert::success('El Pedido fue ingresado al inventario correctamente');
+            return redirect($order->url);
+        }
+        else{
+            Alert::success('El estado del pedido fue cambiado a: '.$request->get('status'));
+            return redirect($order->url);
+
+        }
+
     }
 }

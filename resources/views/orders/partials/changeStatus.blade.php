@@ -14,7 +14,7 @@
 	        	{!! Form::open(['method' => 'put', 'route' => ['orders.updateStatus', $order]]) !!}
 					{!! Field::hidden('status', null, ['id' => 'value_status']) !!}
 	        		<button type="button" id="delete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	        		<button type="submit" {!! Html::classes([
+	        		<button id="buttonStatus" type="submit" {!! Html::classes([
                             'btn',
                             'btn-primary' => $order->status == 'Creado',
                             'btn-success' => $order->status == 'Solicitado',

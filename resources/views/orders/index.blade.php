@@ -47,7 +47,13 @@
                     <td>{{ $order->provider->name }}</td>
                     <td><span {!! Html::classes(['label', 'label-danger' => $order->priority == 'Alta', 'label-warning' => $order->priority == 'Media', 'label-success' => $order->priority == 'Baja']) !!}>{{ $order->priority }}</span></td>
                     <td>{{ $order->created_at }}</td>
-                    <td>{{ $order->delivery }}</td>
+                    <td>
+                      @if ($order->status == 'Ingresado')
+                          {{ $order->updated_at->format('d-m-y') }}
+                      @else
+                          N/A
+                      @endif
+                    </td>
                     <td><span {!! Html::classes(['label', 'label-info' => $order->status == 'Creado', 'label-primary' => $order->status == 'Solicitado', 'label-success' => $order->status == 'Ingresado', 'label-default' => $order->status == 'Cancelado']) !!}>{{ $order->status }}</span></td>
                     <td>Q. {{ $order->total }}</td>
                     <td><a href="{{ $order->url }}" class="btn btn-info btn-sm"> <i class="fa fa-eye"></i> Detalle</a></td>

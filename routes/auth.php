@@ -217,7 +217,7 @@
 	//order details
 	Route::name('orders.details.create')->get('orden/{order}/agregar-detalle', 'CreateOrderDetailsController@create');
 	Route::name('orders.details.store')->post('orden/{order}/agregar-detalle', 'CreateOrderDetailsController@store');
-	Route::name('orders.details.update')->put('{detail}/editar-detalle', 'EditOrderDetailsController@update');
+	Route::name('orders.details.update')->put('pedido-{order}/editar-detalle', 'EditOrderDetailsController@update');
 
 	Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 'DeleteOrderDetailsController@destroy');
 

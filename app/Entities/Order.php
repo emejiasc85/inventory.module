@@ -43,6 +43,6 @@ class Order extends Entity
 
     public function sumTotals()
     {
-        return $this->total = $this->details->sum('total');
+        return $this->total = $this->details->sum('total_purchase');
     }
 }

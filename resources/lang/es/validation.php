@@ -159,7 +159,10 @@ return [
         'provider_id'           => 'proveedor',
         'lot'                   => 'Cantidad',
         'status'                => 'Estado',
-        'cost'                  => 'Costo Unitario'
+        'cost'                  => 'Costo Unitario',
+        'purchase_price'        => 'Precio compra',
+        'sale_price'            => 'precion venta',
+        'total_purchase'        => 'total compra'
     ],
 
 ];

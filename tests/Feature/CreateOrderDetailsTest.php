@@ -21,7 +21,7 @@ class CreateOrderDetailsTest extends FeatureTestCase
         $fields = [
         	'product_id' => $product->id,
         	'lot' => 10,
-            'cost' => 10
+            'purchase_price' => 10
        	];
         //when
         $this->visit(route('orders.details.create', $order))
@@ -37,8 +37,8 @@ class CreateOrderDetailsTest extends FeatureTestCase
             'order_id' => $order->id,
             'product_id' => $product->id,
             'lot' => 10,
-            'cost' => 10,
-            'total' => 100
+            'purchase_price' => 10,
+            'total_purchase' => 100
         ]);
         $this->seeInDatabase('orders', [
             'id' => $order->id,
