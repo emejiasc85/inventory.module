@@ -8,24 +8,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Styde\Html\Facades\Alert;
 
-class EditOrderDetailsController extends Controller
-{
+class EditOrderDetailsController extends Controller {
     protected $rules = [
-        'id'             => 'required|exists:order_details,id',
-        'lot'            => 'required|numeric',
+        'id' => 'required|exists:order_details,id',
+        'lot' => 'required|numeric',
         'purchase_price' => 'numeric|nullable',
-        'due_date'       => 'date|nullable'
+        'due_date' => 'date|nullable',
     ];
-    public function update(Request $request, Order $order)
-    {
+    public function update(Request $request, Order $order) {
         //$this->validate($request, $this->rules);
         $input = Input::all();
         $condition = $input['id'];
-        $allOrders=array(); // make an array, for storing all detail order in it
+        $allOrders = array(); // make an array, for storing all detail order in it
         foreach ($condition as $key => $condition) {
             $detail = OrderDetail::findOrFail($input['id'][$key]);
             $detail->lot = $input['lot'][$key];
             $detail->purchase_price = $input['purchase_price'][$key];
+            $detail->due_date = $input['due_date'][$key];
             $detail->sale_price = $input['sale_price'][$key];
             $detail->save();
         }
