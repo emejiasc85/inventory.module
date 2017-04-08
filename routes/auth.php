@@ -433,6 +433,8 @@ Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 
 	Route::name('orders.details.update')->put('pedido-{order}/editar-detalle', 'EditOrderDetailsController@update');
 
 	Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 'DeleteOrderDetailsController@destroy');
+	//stoks
+	Route::name('stocks.index')->get('existencias', 'StocksController@index');
 
 
 

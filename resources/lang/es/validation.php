@@ -162,7 +162,8 @@ return [
         'cost'                  => 'Costo Unitario',
         'purchase_price'        => 'Precio compra',
         'sale_price'            => 'precion venta',
-        'total_purchase'        => 'total compra'
+        'total_purchase'        => 'total compra',
+        'product_id'            => 'producto',
     ],
 
 ];
