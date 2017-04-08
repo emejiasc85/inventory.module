@@ -12,7 +12,7 @@
             </span>
         </div>
     </div>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse in" id="collapseExample">
         <div class="well">
             <div class="row ">
                 <div class="col-sm-4">
@@ -32,6 +32,27 @@
                 </div>
                 <div class="col-sm-4">
                     {!! Field::select('unit_measure_id', $units) !!}
+                </div>
+                <div class="form-group col-lg-4">
+                    {!! Form::label('from_due', 'vence desde') !!}
+                    {!! Form::date('from_due', null,  ['class' => 'form-control ']) !!}
+                </div>
+                <div class="form-group col-lg-4">
+                    {!! Form::label('to_due', 'vence hasta') !!}
+                    {!! Form::date('to_due', null,  ['class' => 'form-control ']) !!}
+                </div>
+                <div class="col-xs-12">
+                <div class="row">
+                    <div class="form-group col-lg-1">
+                        {!! Form::label('simbol', 'Selector') !!}
+                        {!! Form::select('simbol', ['=' => '=', '<' => '<', '>' => '>'],null,  ['class' => 'form-control ']) !!}
+                    </div>
+                    <div class="form-group col-lg-1">
+                        {!! Form::label('stock', 'Existencia') !!}
+                        {!! Form::text('stock', null,  ['class' => 'form-control ', 'placeholder' => '5']) !!}
+                    </div>
+
+                </div>
                 </div>
             </div>
         </div>
