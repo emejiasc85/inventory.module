@@ -14,6 +14,7 @@ class CommerceTableSeeder extends Seeder
     {
     	$name = 'Centro Medico Maya';
         Commerce::create([
+            'id' => 1,
         	'name' => $name,
 	    	'patent_name' => $name,
 	    	'address' => 'Santa Elena',

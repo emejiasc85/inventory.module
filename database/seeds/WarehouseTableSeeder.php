@@ -14,7 +14,8 @@ class WarehouseTableSeeder extends Seeder
     {
         Warehouse::create([
             'id' => 1,
-            'name' => 'Inventario'
+            'commerce_id' => 1,
+            'name' => 'Inventario',
         ]);
     }
 }

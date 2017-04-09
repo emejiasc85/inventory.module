@@ -14,6 +14,11 @@ class Warehouse extends Entity
         $this->attributes['slug'] = Str::slug($value);
     }
 
+    public function commerce()
+    {
+        return $this->belongsTo(Commerce::class);
+    }
+
     public function getEditUrlAttribute()
     {
     	return route('warehouses.edit', [$this, $this->slug]);

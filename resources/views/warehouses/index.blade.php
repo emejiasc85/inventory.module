@@ -32,6 +32,7 @@
             <table class="table table-striped">
               <thead>
                 <tr>
+                  <th>Comercio</th>
                   <th>Bodega</th>
                   <th>Descripción</th>
                   <th>Acciones</th>
@@ -40,6 +41,7 @@
               <tbody>
                 @foreach ($warehouses as $warehouse)
                   <tr>
+                    <td>{{ $warehouse->commerce->name }}</td>
                     <td>{{ $warehouse->name }}</td>
                     <td>{{ $warehouse->description }}</td>
                     <td><a href="{{ $warehouse->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a></td>
