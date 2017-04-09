@@ -19,6 +19,8 @@ class CreateWarehousesTable extends Migration
             $table->string('description')->nullable();
             $table->string('slug');
             $table->boolean('status')->default(true);
+            $table->unsignedInteger('commerce_id');
+            $table->foreign('commerce_id')->references('id')->on('commerces');
             $table->timestamps();
         });
     }

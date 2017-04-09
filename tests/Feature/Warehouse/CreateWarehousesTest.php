@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use EmejiasInventory\Entities\Commerce;
 use Tests\FeatureTestCase;
 
 
@@ -14,10 +15,12 @@ class CreateWarehousesTest extends FeatureTestCase
      */
     function test_a_user_can_create_a_warehouse()
     {
+        $commerce = factory(Commerce::class)->create();
     	//having
     	$fields = [
     		'name' => 'bodega 1',
     		'description' => 'bodega principal',
+            'commerce_id' => $commerce->id
     	];
 
     	//when
@@ -42,7 +45,8 @@ class CreateWarehousesTest extends FeatureTestCase
 
          //then
         $this->seeErrors([
-            'name' => 'El campo nombre es obligatorio'
+            'name'        => 'El campo nombre es obligatorio',
+            'commerce_id' => 'El campo comercio es obligatorio'
         ]);
     }
 }

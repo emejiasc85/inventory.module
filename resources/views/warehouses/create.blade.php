@@ -18,7 +18,8 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
-                           {!! Field::text('name', ['template' => 'templates.inline']) !!}
+                            {!! Field::text('name', ['template' => 'templates.inline']) !!}
+                            {!! Field::select('commerce_id', $commerces, ['template' => 'templates.inline']) !!}
                             {!! Field::textarea('description', ['template' => 'templates.inline', 'rows' => 2]) !!}
                         </div>
                     </div>

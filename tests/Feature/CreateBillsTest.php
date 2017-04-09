@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class Createarehouses extends TestCase
+class CreateBillsTest extends TestCase
 {
     /**
      * A basic test example.
