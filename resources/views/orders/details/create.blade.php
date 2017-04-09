@@ -1,18 +1,19 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-     <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Ordenes</a></li>
-	 <li class="breadcrumb-item"><a href="{{ $order->url }}">Orden #{{ $order->id }}</a></li>
+     <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Pedidos</a></li>
+	 <li class="breadcrumb-item"><a href="{{ $order->url }}">Pedido #{{ $order->id }}</a></li>
 	 <li class="breadcrumb-item active">Agregar Producto</li>
 @stop
 
 @section('content')
+@include('partials.errors')
 	<div class="row">
 		<div class="col-xs-12">
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
                     <i class="fa fa-list-ol"></i>
-                    <strong>Orden</strong>
+                    <strong>Pedido</strong>
                     <small>Agregar Producto</small>
                 </div>
                 <div class="panel-body">
@@ -42,7 +43,14 @@
       ProductName.text(name);
       $('#addProduct').modal('toggle');
     });
-  </script>
+
+  $('#AddProductButton').on('click', function (e) {
+        e.preventDefault();
+        $(this).attr('disabled', 'disabled');
+        $(this).text('Espere...')
+        $('#AddProductForm').submit();
+  })
+</script>
 @stop
 
 
