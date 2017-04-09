@@ -9,7 +9,7 @@
 		<div class="col-xs-12 col-md-8 col-md-offset-2">
             <div class="panel panel-default" style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
-                    <i class="fa fa-cubes"></i>
+                    <i class="fa fa-barcode"></i>
                     <strong>Productos</strong>
                     <small>Nuevo</small>
                 </div>

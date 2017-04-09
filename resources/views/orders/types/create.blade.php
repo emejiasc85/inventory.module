@@ -10,7 +10,7 @@
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
-                    <i class="icon-badge"></i>
+                    <i class="fa fa-tags"></i>
                     <strong>Tipo de Orden</strong>
                     <small>Nuevo</small>
                 </div>

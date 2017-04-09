@@ -11,7 +11,7 @@
     <div class="col-sm-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <i class="icon-badge"></i>
+          <i class="fa fa-tags"></i>
           <strong>Tipos de Ordenes</strong>
           <small>Listado</small>
           <a href="{{ route('orders.type.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
