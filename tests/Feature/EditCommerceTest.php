@@ -22,7 +22,7 @@ class EditCommerceTest extends FeatureTestCase
         $commerce = factory(Commerce::class)->create();
         //when
         $this->actingAs($user)
-        	->visit($commerce->url)
+        	->visit($commerce->editUrl)
         	->see($commerce->name)
         	->type($name, 'name')
         	->type($name, 'patent_name')
@@ -48,14 +48,14 @@ class EditCommerceTest extends FeatureTestCase
 
     }
 
-    function test_validate_form_on_edit_commerce($value='')
+    function test_validate_form_on_edit_commerce()
     {
     	//having
     	$user = $this->defaultUser();
         $commerce = factory(Commerce::class)->create();
         //when
         $this->actingAs($user)
-        	->visit($commerce->url)
+        	->visit($commerce->editUrl)
         	->see($commerce->name)
         	->type('', 'name')
         	->type('', 'patent_name')

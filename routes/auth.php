@@ -15,6 +15,10 @@ Route::name('index')->get('/home', 'HomeController@index');
 Route::name('index')->get('/', 'HomeController@index');
 
 //commerces
+Route::get('comercios', [
+    'uses' => 'CommerceController@index',
+    'as' => 'commerces.index',
+]);
 Route::get('agregar-comercio', [
     'uses' => 'CreateCommerceController@create',
     'as' => 'commerces.create',

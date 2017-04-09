@@ -29,7 +29,7 @@ class Commerce extends Model
         $this->attributes['slug'] = Str::slug($value);
     }
 
-	public function getUrlAttribute()
+    public function getEditUrlAttribute()
 	{
 		return route('commerces.edit', [$this, $this->slug]);
 	}

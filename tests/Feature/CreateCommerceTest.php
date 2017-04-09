@@ -11,13 +11,13 @@ class CreateCommerceTest extends FeatureTestCase
     function test_a_user_can_create_a_commerce()
     {
     	//having
-    	$name    = 'Farmacia Maya';
-    	$address = 'Santa Elena';
-    	$phone  = '79261212';
-    	$nit	 = '61580635';
-    	$iva	 = 2;
-    	$profit  =  20;
-        $user = $this->defaultUser();
+        $name    = 'Farmacia Maya';
+        $address = 'Santa Elena';
+        $phone   = '79261212';
+        $nit     = '61580635';
+        $iva     = 2;
+        $profit  =  20;
+        $user    = $this->defaultUser();
         //when
         $this->actingAs($user)
         	->visit(route('commerces.create'))

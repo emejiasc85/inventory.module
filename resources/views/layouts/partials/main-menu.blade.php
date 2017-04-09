@@ -15,7 +15,8 @@
                 <li><a href="{{ route('orders.index') }}"><i class="fa fa-truck"></i><span class="text"> Pedidos</span></a></li>
                 <li><a href="{{ route('stocks.index') }}"><i class="fa fa-cubes"></i><span class="text"> Existencias</span></a></li>
                 <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li>
-                    <li>
+                <li><a href="{{ route('commerces.index') }}"><i class="fa fa-gear"></i><span class="text"> Configuraciones</span></a></li>
+                <li>
                     <a href="#"><i class="fa fa-book"></i><span class="text"> Catalagos</span> <span class="indicator"></span></a>
                     <ul>
                         <li><a href="{{ route('products.index') }}"><i class="fa fa-barcode"></i><span class="text"> Productos</span></a></li>
