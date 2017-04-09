@@ -20,30 +20,32 @@ class ListOrdersTest extends FeatureTestCase
         ->seeInElement('td', $order->provider->name)
         ->seeInElement('td', $order->priority);
     }
+    /*
+        function test_a_user_can_paginate_orders()
+        {
+        	//having
+            $first_order = factory(Order::class)->create();
+            $orders      = factory(Order::class)->times(15)->create();
+            $last_order  = factory(Order::class)->create();
 
-    function test_a_user_can_paginate_orders()
-    {
-    	//having
-        $first_order = factory(Order::class)->create();
-        $orders = factory(Order::class)->times(15)->create();
-        $last_order = factory(Order::class)->create();
+            $this->actingAs($this->defaultUser())
+            ->visit(route('orders.index'))
+            ->see('Ordenes')
+            ->seeInElement('td', $last_order->id)
+            ->dontSeeInElement('td', $first_order->id)
+            ->click('2')
+            ->seeInElement('td', $first_order->id)
+            ->dontSeeInElement('td', $last_order->id);
+        }
 
-        $this->actingAs($this->defaultUser())
-        ->visit(route('orders.index'))
-        ->see('Ordenes')
-        ->seeInElement('td', $last_order->id)
-        ->dontSeeInElement('td', $first_order->id)
-        ->click('2')
-        ->seeInElement('td', $first_order->id)
-        ->dontSeeInElement('td', $last_order->id);
-    }
+     */
 
     function test_a_user_can_search_a_order()
     {
     	//having
-       	$first_order = factory(Order::class)->create();
-        $orders = factory(Order::class)->times(15)->create();
-        $last_order = factory(Order::class)->create();
+        $first_order = factory(Order::class)->create();
+        $orders      = factory(Order::class)->times(15)->create();
+        $last_order  = factory(Order::class)->create();
 
         $this->actingAs($this->defaultUser())
         ->visit(route('orders.index'))
