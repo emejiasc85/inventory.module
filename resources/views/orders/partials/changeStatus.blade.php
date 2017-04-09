@@ -7,7 +7,7 @@
 	        	<h4 class="modal-title" id="myModalLabel">Alerta</h4>
 	      	</div>
 	    	<div class="modal-body">
-                <p>Se cambiara el estado de la orden</p>
+                <p>Se cambiara el estado del Pedido</p>
 		        <p>¿Esta seguro?</p>
 	    	</div>
 	      	<div class="modal-footer">

@@ -13,7 +13,7 @@
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
                     <i class="fa fa-list-ol"></i>
-                    <strong>Pedido</strong>
+                    <strong>Pedido #{{ $order->id }}</strong>
                     <small>Agregar Producto</small>
                 </div>
                 <div class="panel-body">
