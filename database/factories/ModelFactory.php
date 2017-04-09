@@ -93,6 +93,10 @@ $factory->define(Warehouse::class, function (Faker\Generator $faker) {
     $name = $faker->name;
     return [
         'name' => $name,
+        'commerce_id' => function ()
+        {
+            return factory(Commerce::class)->create()->id;
+        }
     ];
 });
 $factory->define(Product::class, function (Faker\Generator $faker) {

@@ -165,6 +165,7 @@ return [
         'total_purchase'        => 'total compra',
         'product_id'            => 'producto',
         'priority'              => 'prioridad',
+        'commerce_id'           => 'comercio',
     ],
 
 ];
