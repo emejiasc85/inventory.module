@@ -24,10 +24,15 @@
                     <!--/.row-->
                 </div>
                 <div class="panel-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button id="button" type="submit" class="btn btn-primary" onClick="siguiente()">
                         Siguiente
                         <i class="fa fa-angle-double-right "></i>
                     </button>
+
+                    <div class="col-sm-1" id="spiner" style="display: none">
+                        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+                        <span class="sr-only">Loading...</span>
+                    </div>
                     <a href="{{ URL::previous() }}" class="btn btn-link text-danger">
                         <i class="fa fa-ban"></i>
                         Cancelar
@@ -38,6 +43,12 @@
 
         </div>
 	</div>
+    <script type="text/javascript" >
+        function siguiente(){
+            $("#button").fadeOut(1);
+            $("#spiner").fadeIn(1);
+        }
+    </script>
 @stop
 
 
