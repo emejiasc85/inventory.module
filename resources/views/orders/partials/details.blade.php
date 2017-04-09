@@ -1,5 +1,9 @@
 <div class="panel panel-default" style="border-top: 2px solid #20a8d8">
     <div class="panel-heading">
+        @if ($order->status == 'Creado' || $order->status == 'Solicitado')
+            <a href="{{ route('orders.details.create', $order) }}" class="btn btn-primary">
+            <span class="fa fa-plus" ></span> Agregar Producto</a>
+        @endif
         <span {!! Html::classes(['pull-right label', 'label-info' => $order->status == 'Creado', 'label-primary' => $order->status == 'Solicitado', 'label-success' => $order->status == 'Ingresado', 'label-default' => $order->status == 'Cancelado']) !!}>{{ $order->status }}
         </span>
     </div>
@@ -9,9 +13,6 @@
             <thead>
                 <tr>
                      <th>
-                        @if ($order->status == 'Creado' || $order->status == 'Solicitado')
-                            <a href="{{ route('orders.details.create', $order) }}" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i></a>
-                        @endif
                      </th>
                      <th>Producto</th>
                      <th>Cant</th>
