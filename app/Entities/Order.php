@@ -12,6 +12,8 @@ class Order extends Entity
     	'order_type_id',
     	'priority'
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
     protected $date = ['delivery', 'created_at', 'updated_at'];
     public function type()
     {
@@ -40,9 +42,37 @@ class Order extends Entity
             return $query->where('id', $value);
         }
     }
+    public function scopeStatus($query, $value)
+    {
+        if (trim($value) != null) {
+            return $query->where('status', $value);
+        }
+    }
+    public function scopePriority($query, $value)
+    {
+        if (trim($value) != null) {
+            return $query->where('priority', $value);
+        }
+    }
 
     public function sumTotals()
     {
         return $this->total = $this->details->sum('total_purchase');
+    }
+
+    public function scopeDate($query, $from, $to)
+    {
+        if(trim($from) != "" && trim($to) != "")
+        {
+            return $query->whereBetween('created_at', [$from, $to]);
+        }
+    }
+
+    public function scopeTotal($query, $simbol, $field)
+    {
+        if(trim($simbol) != "" && trim($field) != "")
+        {
+            $query->where('total', $simbol, $field);
+        }
     }
 }

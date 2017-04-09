@@ -164,6 +164,7 @@ return [
         'sale_price'            => 'precion venta',
         'total_purchase'        => 'total compra',
         'product_id'            => 'producto',
+        'priority'              => 'prioridad',
     ],
 
 ];

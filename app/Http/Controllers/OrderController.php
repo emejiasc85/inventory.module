@@ -9,7 +9,13 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-    	$orders = Order::id($request->get('id'))->orderBy('id', 'DESC')->paginate();
+    	$orders = Order::id($request->get('id'))
+            ->date($request->get('from'), $request->get('to'))
+            ->status($request->get('status'))
+            ->priority($request->get('priority'))
+            ->total($request->get('simbol'), $request->get('total'))
+            ->orderBy('id', 'DESC')
+            ->paginate();
     	return view('orders.index', compact('orders'));
     }
 
