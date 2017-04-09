@@ -11,8 +11,7 @@ use EmejiasInventory\Entities\{
         ProductImage,
         Warehouse,
         OrderType,
-        OrderDetail,
-        Stock
+        OrderDetail
     };
 use EmejiasInventory\Entities\Order;
 use Illuminate\Support\Str;
@@ -148,29 +147,3 @@ $factory->define(OrderDetail::class, function (Faker\Generator $faker) {
         'lot'       => 5,
     ];
 });
-
-$factory->define(Stock::class, function (Faker\Generator $faker){
-    $detail     = factory(OrderDetail::class)->create();
-    $warehouse  = factory(Warehouse::class)->create(['id' => 1]);
-    return [
-        'order_detail_id' => $detail->id,
-        'stock'             => $detail->lot,
-        'warehouse_id'         => 1
-    ];
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

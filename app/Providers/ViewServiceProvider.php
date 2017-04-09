@@ -18,8 +18,7 @@ class ViewServiceProvider extends ServiceProvider
                 'products/create',
                 'products/edit',
                 'products/index',
-                'orders/details/create',
-                'stocks/index'
+                'orders/details/create'
             ],
             'EmejiasInventory\Http\ViewComposers\ProductsComposer'
         );

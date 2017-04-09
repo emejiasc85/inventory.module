@@ -8,7 +8,6 @@ use Tests\FeatureTestCase;
 
 class ListMakesTest extends FeatureTestCase
 {
-
     function test_a_user_can_see_makes_list()
     {
         //having

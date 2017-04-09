@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel"><i class="fa fa fa-shopping-cart"></i> Agregar Producto</h4>
             </div>
-            {!! Form::open(['route' => ['orders.details.store', $order], 'id' => 'AddProductForm', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => ['orders.details.store', $order], 'method' => 'POST']) !!}
             <div class="modal-body">
                 <p id="ProductName"></p>
                 {!! Field::text('lot', 5) !!}
@@ -15,7 +15,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="delete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="submit" id="AddProductButton" class="btn btn-success">Agregar</button>
+                <button type="submit" class="btn btn-success">Agregar</button>
             {!! Form::close() !!}
             </div>
         </div>

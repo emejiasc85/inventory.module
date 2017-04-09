@@ -8,7 +8,10 @@ use Styde\Html\Facades\Alert;
 
 class CreateOrderDetailsController extends Controller
 {
-
+	protected $rules  =[
+		'product_id' => 'required|exists:products,id',
+		'lot' => 'required|numeric',
+	];
    public function create(Request $request, Order $order)
    {
       $data = $request->all();
@@ -35,11 +38,7 @@ class CreateOrderDetailsController extends Controller
 
    public function store(Request $request, Order $order)
    {
-      $rules  =[
-        'product_id' => 'required|exists:products,id|unique:order_details,product_id,NULL,id,order_id,'.$order->id,
-        'lot' => 'required|numeric',
-      ];
-      $this->validate($request, $rules);
+      $this->validate($request, $this->rules);
       $data = array_add($request->all(), 'order_id', $order->id);
    		$new_detail = OrderDetail::create($data);
       $order->sumTotals();

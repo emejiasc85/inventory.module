@@ -13,17 +13,16 @@
         <div class="sidebar-menu">
             <ul class="nav nav-sidebar">
                 <li><a href="{{ route('orders.index') }}"><i class="fa fa-truck"></i><span class="text"> Pedidos</span></a></li>
-                <li><a href="{{ route('stocks.index') }}"><i class="fa fa-cubes"></i><span class="text"> Existencias</span></a></li>
+                <li><a href="{{ route('products.index') }}"><i class="fa fa-cubes"></i><span class="text"> Productos</span></a></li>
+                <li><a href="{{ route('warehouses.index') }}"><i class="fa fa-database"></i><span class="text"> Bodegas</span></a></li>
                 <li>
                     <a href="#"><i class="fa fa-book"></i><span class="text"> Catalagos</span> <span class="indicator"></span></a>
                     <ul>
-                        <li><a href="{{ route('products.index') }}"><i class="fa fa-barcode"></i><span class="text"> Productos</span></a></li>
                         <li><a href="{{ route('makes.index') }}"><i class="icon-badge"></i><span class="text"> Marcas</span></a></li>
                         <li><a href="{{ route('product.groups.index') }}"><i class="icon-grid"></i><span class="text"> Grupos</span></a></li>
                         <li><a href="{{ route('product.presentations.index') }}"><i class="icon-tag"></i><span class="text"> Presentaciones</span></a></li>
                         <li><a href="{{ route('unit.measures.index') }}"><i class="icon-chemistry"></i><span class="text"> Unidades</span></a></li>
                         <li><a href="{{ route('orders.type.index') }}"><i class="fa fa-tags"></i><span class="text"> Tipos de ordenes</span></a></li>
-                        <li><a href="{{ route('warehouses.index') }}"><i class="fa fa-database"></i><span class="text"> Bodegas</span></a></li>
                     </ul>
                 </li>
             </ul>

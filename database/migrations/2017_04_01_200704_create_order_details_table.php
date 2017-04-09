@@ -19,6 +19,7 @@ class CreateOrderDetailsTable extends Migration
             $table->float('purchase_price')->nullable();
             $table->float('sale_price')->nullable();
             $table->float('total_purchase')->nullable();
+            $table->float('sale')->nullable();
             $table->date('due_date')->nullable();
             $table->unsignedInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

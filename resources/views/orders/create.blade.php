@@ -14,7 +14,7 @@
                     <strong>Orden</strong>
                     <small>Nuevo</small>
                 </div>
-				{!! Form::open(['route' => ['orders.store'], 'method' => 'POST', 'class' => 'form-horizontal', 'id' =>'CreateOrderForm']) !!}
+				{!! Form::open(['route' => ['orders.store'], 'method' => 'POST', 'class' => 'form-horizontal']) !!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
@@ -24,11 +24,10 @@
                     <!--/.row-->
                 </div>
                 <div class="panel-footer">
-                    <button type="submit" id="Submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
                         Siguiente
                         <i class="fa fa-angle-double-right "></i>
                     </button>
-
                     <a href="{{ URL::previous() }}" class="btn btn-link text-danger">
                         <i class="fa fa-ban"></i>
                         Cancelar
@@ -39,17 +38,6 @@
 
         </div>
 	</div>
-@stop
-
-@section('scripts')
-<script>
-  $('#Submit').on('click', function (e) {
-        e.preventDefault();
-        $(this).attr('disabled', 'disabled');
-        $(this).text('Espere...')
-        $('#CreateOrderForm').submit();
-  })
-</script>
 @stop
 
 
