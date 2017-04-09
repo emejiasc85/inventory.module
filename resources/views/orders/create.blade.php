@@ -29,7 +29,7 @@
                         <i class="fa fa-angle-double-right "></i>
                     </button>
 
-                    <a href="{{ URL::previous() }}" class="btn btn-link text-danger">
+                    <a id="btn-cancel" href="{{ URL::previous() }}" class="btn btn-link text-danger">
                         <i class="fa fa-ban"></i>
                         Cancelar
                     </a>
@@ -45,6 +45,7 @@
 <script>
   $('#Submit').on('click', function (e) {
         e.preventDefault();
+        $('#btn-cancel').fadeOut(1);
         $(this).attr('disabled', 'disabled');
         $(this).text('Espere...')
         $('#CreateOrderForm').submit();
