@@ -46,7 +46,7 @@ class AuditController extends Controller {
         // dd($data);
         $new_audit = Audit::create($data);
         Alert::success('Pedido Creado')->details('Agrega los detalles');
-        return redirect()->route('audit.details.create', $new_audit);
+        return redirect()->route('audit.show', $new_audit);
     }
 
     /**
