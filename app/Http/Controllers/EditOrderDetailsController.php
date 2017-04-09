@@ -26,6 +26,7 @@ class EditOrderDetailsController extends Controller
             $detail = OrderDetail::findOrFail($input['id'][$key]);
             $detail->lot = $input['lot'][$key];
             $detail->purchase_price = $input['purchase_price'][$key];
+            $detail->due_date = $input['due_date'][$key];
             $detail->sale_price = $input['sale_price'][$key];
             $detail->save();
         }
