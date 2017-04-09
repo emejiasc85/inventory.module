@@ -14,12 +14,12 @@ class CreateAuditsTable extends Migration {
         Schema::create('audits', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('commerces_id');
+            $table->unsignedInteger('commerce_id');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-            $table->foreign('commerces_id')
+            $table->foreign('commerce_id')
                 ->references('id')
                 ->on('commerces')
                 ->onDelete('cascade');

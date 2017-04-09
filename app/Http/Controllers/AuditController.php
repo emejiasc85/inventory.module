@@ -3,7 +3,11 @@
 namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\Audit;
+use EmejiasInventory\Entities\Commerce;
+use EmejiasInventory\Entities\OrderType;
+use EmejiasInventory\Entities\User;
 use Illuminate\Http\Request;
+use Styde\Html\Facades\Alert;
 
 class AuditController extends Controller {
     /**
@@ -11,9 +15,10 @@ class AuditController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        return ("hola");
-        //
+    public function index(Request $request) {
+        $audits = Audit::id(request()->get('id'))->orderBy('id', 'DESC')->paginate();
+        return view('audit.index', compact('audits'));
+
     }
 
     /**
@@ -22,7 +27,10 @@ class AuditController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        $commerce = Commerce::first();
+        $users = User::pluck('name', 'id')->toArray();
+        $types = OrderType::pluck('name', 'id')->toArray();
+        return view('audit.create', compact('commerce', 'types', 'users'));
     }
 
     /**
@@ -32,7 +40,13 @@ class AuditController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        // dd(request()->all());
+        $this->validate($request, ['user_id' => 'required']);
+        $data = array_add($request->all(), 'user_id', auth()->user()->id);
+        // dd($data);
+        $new_audit = Audit::create($data);
+        Alert::success('Pedido Creado')->details('Agrega los detalles');
+        return redirect()->route('audit.details.create', $new_audit);
     }
 
     /**
@@ -42,6 +56,7 @@ class AuditController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Audit $audit) {
+        return view('audit.show', compact('audit'));
         //
     }
 
@@ -52,7 +67,10 @@ class AuditController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Audit $audit) {
-        //
+        $commerce = Commerce::first();
+        $users = User::pluck('name', 'id')->toArray();
+        $types = OrderType::pluck('name', 'id')->toArray();
+        return view('audit.edit', compact('commerce', 'types', 'users', 'audit'));
     }
 
     /**
@@ -63,7 +81,11 @@ class AuditController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Audit $audit) {
-        //
+        $this->validate($request, ['user_id' => 'required']);
+        $audit->fill($request->all());
+        $audit->save();
+        Alert::success('Pedido editada correctamente');
+        return redirect($audit->url);
     }
 
     /**

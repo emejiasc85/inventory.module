@@ -223,5 +223,5 @@ Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 
 //stoks
 Route::name('stocks.index')->get('existencias', 'StocksController@index');
 
-Route::resource('Audit', 'AuditController');
+Route::resource('audit', 'AuditController');
 Route::resource('auditDetail', 'AuditDetailController');
