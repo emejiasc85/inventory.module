@@ -1,8 +1,8 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-	 <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Ordenes</a></li>
-	 <li class="breadcrumb-item active">Nueva</li>
+	 <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Pedidos</a></li>
+	 <li class="breadcrumb-item active">Nuevo</li>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
                     <i class="fa fa-list-ol"></i>
-                    <strong>Orden</strong>
+                    <strong>Pedido</strong>
                     <small>Nuevo</small>
                 </div>
 				{!! Form::open(['route' => ['orders.store'], 'method' => 'POST', 'class' => 'form-horizontal']) !!}

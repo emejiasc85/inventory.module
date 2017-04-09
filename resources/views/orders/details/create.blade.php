@@ -1,8 +1,8 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-     <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Ordenes</a></li>
-	 <li class="breadcrumb-item"><a href="{{ $order->url }}">Orden #{{ $order->id }}</a></li>
+     <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Pedidos</a></li>
+	 <li class="breadcrumb-item"><a href="{{ $order->url }}">Pedido #{{ $order->id }}</a></li>
 	 <li class="breadcrumb-item active">Agregar Producto</li>
 @stop
 
@@ -12,7 +12,7 @@
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
                     <i class="fa fa-list-ol"></i>
-                    <strong>Orden</strong>
+                    <strong>Pedido #{{ $order->id }}</strong>
                     <small>Agregar Producto</small>
                 </div>
                 <div class="panel-body">
