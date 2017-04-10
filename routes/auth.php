@@ -226,6 +226,9 @@ Route::name('orders.details.update')->put('pedido-{order}/editar-detalle', 'Edit
 Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 'DeleteOrderDetailsController@destroy');
 //stoks
 Route::name('stocks.index')->get('existencias', 'StocksController@index');
-
+//audit
 Route::resource('audit', 'AuditController');
 Route::resource('auditDetail', 'AuditDetailController');
+//people
+Route::name('people.create')->get('agregar-personas', 'CreatePeopleController@create');
+Route::name('people.store')->post('agregar-persona', 'CreatePeopleController@store');
