@@ -230,5 +230,7 @@ Route::name('stocks.index')->get('existencias', 'StocksController@index');
 Route::resource('audit', 'AuditController');
 Route::resource('auditDetail', 'AuditDetailController');
 //people
+Route::name('people.index')->get('personas', 'PeopleController@index');
 Route::name('people.create')->get('agregar-personas', 'CreatePeopleController@create');
 Route::name('people.store')->post('agregar-persona', 'CreatePeopleController@store');
+

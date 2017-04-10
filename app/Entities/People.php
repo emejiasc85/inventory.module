@@ -2,9 +2,10 @@
 
 namespace EmejiasInventory\Entities;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
-class People extends Model
+
+class People extends Entity
 {
     protected $fillable = [
         'name',
@@ -13,5 +14,12 @@ class People extends Model
         'phone',
         'email',
         'type',
+        'people'
     ];
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
 }
