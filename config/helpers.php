@@ -12,5 +12,9 @@ return [
 		'Alta' => 'Alta',
 		'Media' => 'Media',
 		'Baja' => 'Baja'
+	],
+	'people_types' => [
+		'customer' => 'Cliente',
+		'provider' => 'Proveedor',
 	]
 ];

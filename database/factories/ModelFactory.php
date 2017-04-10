@@ -12,7 +12,8 @@ use EmejiasInventory\Entities\{
         Warehouse,
         OrderType,
         OrderDetail,
-        Stock
+        Stock,
+        People
     };
 use EmejiasInventory\Entities\Order;
 use Illuminate\Support\Str;
@@ -160,6 +161,15 @@ $factory->define(Stock::class, function (Faker\Generator $faker){
         'order_detail_id' => $detail->id,
         'stock'             => $detail->lot,
         'warehouse_id'         => 1
+    ];
+});
+$factory->define(People::class, function (Faker\Generator $faker){
+    return [
+        'name' => $faker->name,
+        'address' => $faker->address,
+        'nit' => $faker->unique()->randomNumber(),
+        'phone' => $faker->phoneNumber,
+        'email' => $faker->email,
     ];
 });
 

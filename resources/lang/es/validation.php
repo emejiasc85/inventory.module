@@ -166,6 +166,7 @@ return [
         'product_id'            => 'producto',
         'priority'              => 'prioridad',
         'commerce_id'           => 'comercio',
+        'type'                  => 'tipo'
     ],
 
 ];
