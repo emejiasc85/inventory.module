@@ -22,4 +22,9 @@ class People extends Entity
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    public function getEditUrlAttribute()
+    {
+        return route('people.edit', [$this, $this->slug]);
+    }
 }

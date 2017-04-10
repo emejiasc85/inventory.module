@@ -35,6 +35,7 @@
                             <th>Dirección</th>
                             <th>Correo</th>
                             <th>Telefono</th>
+                            <th></th>
                         </tr>
                         @foreach ($people as $person)
                         <tr>
@@ -43,7 +44,7 @@
                             <td>{{ $person->address}}</td>
                             <td>{{ $person->email}}</td>
                             <td>{{ $person->phone}}</td>
-                            <td><a href="" class="btn btn-success "> <i class="fa fa-pencil"></i>  Editar</a></td>
+                            <td><a href="{{ $person->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>  Editar</a></td>
                         </tr>
                         @endforeach
                     </table>

@@ -27,6 +27,6 @@ class CreatePeopleController extends Controller
         $this->validate($request, $this->rules);
         $new_people = People::create($request->all());
         Alert::success('Persona creada correctamente');
-        return redirect('/');
+        return redirect()->route('people.index');
     }
 }
