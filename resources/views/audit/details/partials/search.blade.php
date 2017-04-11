@@ -1,4 +1,4 @@
-{{ Form::open(['route' => ['orders.details.create', $order], 'method' => 'get']) }}
+{{ Form::open(['route' => ['audits.details.create', $audit], 'method' => 'get']) }}
   <div class="col-xs-12">
   <div class="controls">
       <div class="input-group">

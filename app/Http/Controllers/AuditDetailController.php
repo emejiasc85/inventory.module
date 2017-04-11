@@ -2,7 +2,9 @@
 
 namespace EmejiasInventory\Http\Controllers;
 
-use EmejiasInventory\Entities\auditDetail;
+use EmejiasInventory\Entities\Audit;
+use EmejiasInventory\Entities\AuditDetail;
+use EmejiasInventory\Entities\Product;
 use Illuminate\Http\Request;
 
 class AuditDetailController extends Controller {
@@ -21,8 +23,29 @@ class AuditDetailController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
-        //
+    public function create(Request $request, Audit $audit) {
+        // return ("hola");
+        $data = $request->all();
+        $data = array_where($data, function ($value, $key) {
+            return is_string($value);
+        });
+
+        if (empty($data)) {
+            $products = [];
+        } else {
+            $products = Product::name($request->get('name'))
+                ->id($request->get('id'))
+                ->make($request->get('make_id'))
+                ->group($request->get('product_group_id'))
+                ->presentation($request->get('product_presentation_id'))
+                ->unit($request->get('unit_measure_id'))
+                ->barcode($request->get('barcode'))
+                ->orderBy('id', 'DESC')
+                ->get();
+
+        }
+        // return compact('audit', 'products');
+        return view('audit.details.create', compact('audit', 'products'));
     }
 
     /**
@@ -31,8 +54,18 @@ class AuditDetailController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        //
+    public function store(Request $request, Audit $audit) {
+        return request()->all();
+        $rules = [
+            'lot' => 'required|numeric',
+        ];
+        $this->validate($request, $rules);
+        $data = array_add($request->all(), 'audit_id', $audit->id);
+        $new_detail = AuditDetail::create($data);
+        $audit->sumTotals();
+        $audit->save();
+        Alert::success('Producto Agregado correctamente');
+        return redirect($audit->url);
     }
 
     /**
@@ -41,7 +74,7 @@ class AuditDetailController extends Controller {
      * @param  \EmejiasInventory\Entities\auditDetail  $auditDetail
      * @return \Illuminate\Http\Response
      */
-    public function show(auditDetail $auditDetail) {
+    public function show(AuditDetail $auditDetail) {
         //
     }
 
@@ -51,7 +84,7 @@ class AuditDetailController extends Controller {
      * @param  \EmejiasInventory\Entities\auditDetail  $auditDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(auditDetail $auditDetail) {
+    public function edit(AuditDetail $auditDetail) {
         //
     }
 
@@ -62,7 +95,7 @@ class AuditDetailController extends Controller {
      * @param  \EmejiasInventory\Entities\auditDetail  $auditDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, auditDetail $auditDetail) {
+    public function update(Request $request, AuditDetail $auditDetail) {
         //
     }
 
@@ -72,7 +105,7 @@ class AuditDetailController extends Controller {
      * @param  \EmejiasInventory\Entities\auditDetail  $auditDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(auditDetail $auditDetail) {
+    public function destroy(AuditDetail $auditDetail) {
         //
     }
 }
