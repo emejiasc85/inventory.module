@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use EmejiasInventory\Entities\{Order,Product};
+use Illuminate\Support\Facades\Artisan;
 use Tests\FeatureTestCase;
 
 class CreateOrderDetailsTest extends FeatureTestCase
@@ -15,7 +16,8 @@ class CreateOrderDetailsTest extends FeatureTestCase
     public function test_a_user_can_create_orders_details()
     {
     	//having
-        $order = factory(Order::class)->create();
+        Artisan::call('db:seed', ['--class' => 'OrderTypeTableSeeder']);
+        $order = factory(Order::class)->create(['order_type_id' => 1]);
         $product = factory(Product::class)->create();
         $this->actingAs($this->defaultUser());
         $fields = [

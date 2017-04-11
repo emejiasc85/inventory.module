@@ -34,9 +34,9 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
+        'name'           => $faker->name,
+        'email'          => $faker->unique()->safeEmail,
+        'password'       => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
     ];
 });
@@ -45,15 +45,15 @@ $factory->define(Commerce::class, function (Faker\Generator $faker) {
 
     $name = $faker->company;
     return [
-        'name' => $name,
-    	'patent_name' => $name,
-    	'patent' => $faker->randomNumber,
-    	'address' => $faker->address,
-    	'phone' =>  $faker->e164PhoneNumber,
-    	'other_phone' => $faker->e164PhoneNumber,
-    	'nit' => $faker->randomNumber,
-    	'tax' => 3,
-    	'profit' => 10,
+        'name'        => $name,
+        'patent_name' => $name,
+        'patent'      => $faker->randomNumber,
+        'address'     => $faker->address,
+        'phone'       =>  $faker->e164PhoneNumber,
+        'other_phone' => $faker->e164PhoneNumber,
+        'nit'         => $faker->randomNumber,
+        'tax'         => 3,
+        'profit'      => 10,
     ];
 });
 
@@ -134,7 +134,7 @@ $factory->define(ProductImage::class, function (Faker\Generator $faker) {
 $factory->define(Order::class, function (Faker\Generator $faker) {
     return [
         'provider_id'   => function (){
-            return factory(User::class)->create()->id;
+            return factory(People::class)->create()->id;
         },
         'user_id'   => function (){
             return factory(User::class)->create()->id;
@@ -155,12 +155,13 @@ $factory->define(OrderDetail::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Stock::class, function (Faker\Generator $faker){
-    $detail     = factory(OrderDetail::class)->create();
     $warehouse  = factory(Warehouse::class)->create(['id' => 1]);
     return [
-        'order_detail_id' => $detail->id,
-        'stock'             => $detail->lot,
-        'warehouse_id'         => 1
+        'order_detail_id' => function (){
+            return factory(OrderDetail::class)->create()->id;
+        },
+        //'stock'           => $detail->lot,
+        'warehouse_id'    => 1
     ];
 });
 $factory->define(People::class, function (Faker\Generator $faker){

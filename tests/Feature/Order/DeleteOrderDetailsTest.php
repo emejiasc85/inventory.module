@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use EmejiasInventory\Entities\Order;
 use EmejiasInventory\Entities\OrderDetail;
+use Illuminate\Support\Facades\Artisan;
 use Tests\FeatureTestCase;
 
 class DeleteOrderDetailsTest extends FeatureTestCase
@@ -11,8 +12,9 @@ class DeleteOrderDetailsTest extends FeatureTestCase
     function test_user_can_delete_order_details()
     {
         //having
+        Artisan::call('db:seed', ['--class' => 'OrderTypeTableSeeder']);
         $this->actingAs($this->defaultUser());
-        $order = factory(Order::class)->create();
+        $order = factory(Order::class)->create(['order_type_id' => 1]);
         $detail = factory(OrderDetail::class)->create(['order_id' => $order->id]);
 
         //when

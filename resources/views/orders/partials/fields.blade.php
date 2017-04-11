@@ -21,7 +21,7 @@
             <span class="label label-danger">Alta</span>
         </label>
     </div>
-
 </div>
+{!! Field::hidden('order_type_id', 1) !!}
 {!! Field::hidden('commerce_id', $commerce->id) !!}
 

@@ -166,7 +166,11 @@ return [
         'product_id'            => 'producto',
         'priority'              => 'prioridad',
         'commerce_id'           => 'comercio',
-        'type'                  => 'tipo'
+        'type'                  => 'tipo',
+        'from_due'              => 'vence desde',
+        'to_due'                => 'vence hasta',
+        'simbol'                => 'selector',
+        'stock'                 => 'existencia'
     ],
 
 ];

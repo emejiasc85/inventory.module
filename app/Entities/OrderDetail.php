@@ -16,6 +16,8 @@ class OrderDetail extends Model
     	'total_purchase',
     ];
 
+    protected $dates = ['created_at', 'updated_at', 'due_date'];
+
     public function product()
     {
     	return $this->belongsTo(Product::class);

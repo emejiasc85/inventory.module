@@ -13,20 +13,19 @@ class Order extends Entity
     	'priority'
     ];
 
-    protected $dates = ['created_at', 'updated_at'];
     protected $date = ['delivery', 'created_at', 'updated_at'];
+
     public function type()
     {
         return $this->belongsTo(OrderType::class, 'order_type_id');
     }
-
     public function details()
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
     public function provider()
     {
-        return $this->belongsTo(User::class, 'provider_id');
+        return $this->belongsTo(People::class, 'provider_id');
     }
     public function getUrlAttribute()
     {

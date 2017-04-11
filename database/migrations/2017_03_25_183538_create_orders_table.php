@@ -34,10 +34,15 @@ class CreateOrdersTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
-                $table->unsignedInteger('provider_id');
+            $table->unsignedInteger('provider_id');
             $table->foreign('provider_id')
                 ->references('id')
-                ->on('users')
+                ->on('people')
+                ->onDelete('cascade');
+            $table->unsignedInteger('order_type_id');
+            $table->foreign('order_type_id')
+                ->references('id')
+                ->on('order_types')
                 ->onDelete('cascade');
             $table->softdeletes();
             $table->timestamps();
