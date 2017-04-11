@@ -33,26 +33,21 @@
                 <div class="col-sm-4">
                     {!! Field::select('unit_measure_id', $units) !!}
                 </div>
-                <div class="form-group col-lg-4">
-                    {!! Form::label('from_due', 'vence desde') !!}
-                    {!! Form::date('from_due', null,  ['class' => 'form-control ']) !!}
+                <div class="col-sm-4">
+                    {!! Field::date('from_due', null,  ['class' => 'form-control ']) !!}
                 </div>
-                <div class="form-group col-lg-4">
-                    {!! Form::label('to_due', 'vence hasta') !!}
-                    {!! Form::date('to_due', null,  ['class' => 'form-control ']) !!}
+                <div class="col-sm-4">
+                    {!! Field::date('to_due', null,  ['class' => 'form-control ']) !!}
                 </div>
                 <div class="col-xs-12">
-                <div class="row">
-                    <div class="form-group col-lg-1">
-                        {!! Form::label('simbol', 'Selector') !!}
-                        {!! Form::select('simbol', ['=' => '=', '<' => '<', '>' => '>'],null,  ['class' => 'form-control ']) !!}
+                    <div class="row">
+                        <div class="col-sm-1">
+                            {!! Field::select('simbol', ['=' => '=', '<' => '<', '>' => '>'],null,  ['class' => 'form-control ']) !!}
+                        </div>
+                        <div class="col-sm-3">
+                            {!! Field::text('stock', null,  ['class' => 'form-control ', 'placeholder' => '5']) !!}
+                        </div>
                     </div>
-                    <div class="form-group col-lg-1">
-                        {!! Form::label('stock', 'Existencia') !!}
-                        {!! Form::text('stock', null,  ['class' => 'form-control ', 'placeholder' => '5']) !!}
-                    </div>
-
-                </div>
                 </div>
             </div>
         </div>
