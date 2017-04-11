@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use EmejiasInventory\Entities\People;
 use EmejiasInventory\Entities\{Commerce,OrderType,User};
 use Tests\FeatureTestCase;
 
@@ -11,7 +12,7 @@ class CreateOrdersTest extends FeatureTestCase
     {
         //having
         $user 		= $this->defaultUser(['name' => 'Sonia Baldizon']);
-        $provider	= factory(User::class)->create(['name' => 'Lab. Prominente']);
+        $provider	= factory(People::class)->create(['name' => 'Lab. Prominente']);
         $comerce 	= factory(Commerce::class)->create(['name' => 'Centro Medico Maya']);
         $this->actingAs($user);
 

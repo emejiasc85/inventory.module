@@ -3,7 +3,7 @@
 namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\OrderDetail;
-use EmejiasInventory\Entities\{Commerce,Order, User, OrderType, Stock};
+use EmejiasInventory\Entities\{Commerce,Order, People, OrderType, Stock};
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
 
@@ -12,7 +12,7 @@ class EditOrderController extends Controller
     public function edit(Order $order)
     {
     	$commerce = Commerce::first();
-   		$providers = User::pluck('name', 'id')->toArray();
+   		$providers = People::pluck('name', 'id')->toArray();
    		$types = OrderType::pluck('name', 'id')->toArray();
    		return view('orders.edit', compact('commerce', 'types', 'providers', 'order'));
     }

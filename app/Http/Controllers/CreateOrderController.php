@@ -3,7 +3,7 @@
 namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\Order;
-use EmejiasInventory\Entities\{Commerce, OrderType, User};
+use EmejiasInventory\Entities\{Commerce, OrderType, User, People};
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
 
@@ -11,9 +11,9 @@ class CreateOrderController extends Controller
 {
    	public function create()
    	{
-   		$commerce = Commerce::first();
-   		$providers = User::pluck('name', 'id')->toArray();
-   		$types = OrderType::pluck('name', 'id')->toArray();
+         $commerce  = Commerce::first();
+         $providers = People::pluck('name', 'id')->toArray();
+         $types     = OrderType::pluck('name', 'id')->toArray();
    		return view('orders.create', compact('commerce', 'types', 'providers'));
    	}
 

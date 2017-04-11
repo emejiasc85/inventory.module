@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use EmejiasInventory\Entities\Commerce;
 use EmejiasInventory\Entities\Order;
 use EmejiasInventory\Entities\OrderType;
-use EmejiasInventory\Entities\User;
+use EmejiasInventory\Entities\People;
 use Tests\FeatureTestCase;
 
 class EditOrdersTest extends FeatureTestCase
@@ -14,9 +14,9 @@ class EditOrdersTest extends FeatureTestCase
     {
         //having
         $this->actingAs($this->defaultUser());
-        $order = factory(Order::class)->create();
-        $provider	= factory(User::class)->create(['name' => 'Lab. Prominente']);
-        $comerce 	= factory(Commerce::class)->create(['name' => 'Centro Medico Maya']);
+        $order    = factory(Order::class)->create();
+        $provider = factory(People::class)->create(['name' => 'Lab. Prominente']);
+        $comerce  = factory(Commerce::class)->create(['name' => 'Centro Medico Maya']);
 
         //when
         $this->visit($order->editUrl)
