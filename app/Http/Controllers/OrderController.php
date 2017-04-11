@@ -14,6 +14,7 @@ class OrderController extends Controller
             ->status($request->get('status'))
             ->priority($request->get('priority'))
             ->total($request->get('simbol'), $request->get('total'))
+            ->where('order_type_id', 1)
             ->orderBy('id', 'DESC')
             ->paginate();
     	return view('orders.index', compact('orders'));
