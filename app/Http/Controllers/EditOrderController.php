@@ -12,7 +12,7 @@ class EditOrderController extends Controller
     public function edit(Order $order)
     {
     	$commerce = Commerce::first();
-   		$providers = People::pluck('name', 'id')->toArray();
+   		$providers = People::where('type', 'provider')->pluck('name', 'id')->toArray();
    		$types = OrderType::pluck('name', 'id')->toArray();
    		return view('orders.edit', compact('commerce', 'types', 'providers', 'order'));
     }

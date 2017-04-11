@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use EmejiasInventory\Entities\People;
 use EmejiasInventory\Entities\{Commerce,OrderType,User};
+use Illuminate\Support\Facades\Artisan;
 use Tests\FeatureTestCase;
 
 class CreateOrdersTest extends FeatureTestCase
@@ -11,14 +12,15 @@ class CreateOrdersTest extends FeatureTestCase
     function test_a_user_can_create_a_order()
     {
         //having
+        Artisan::call('db:seed', ['--class' => 'OrderTypeTableSeeder']);
         $user 		= $this->defaultUser(['name' => 'Sonia Baldizon']);
-        $provider	= factory(People::class)->create(['name' => 'Lab. Prominente']);
+        $provider	= factory(People::class)->create(['name' => 'Lab. Prominente', 'type' => 'provider']);
         $comerce 	= factory(Commerce::class)->create(['name' => 'Centro Medico Maya']);
         $this->actingAs($user);
 
         $fields = [
         	'provider_id'	=> $provider->id,
-        	'priority'		=> 'Alta'
+        	'priority'		=> 'Alta',
        	];
         //having
         $this->visit(route('orders.create'))

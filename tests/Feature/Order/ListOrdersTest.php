@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use EmejiasInventory\Entities\Order;
+use Illuminate\Support\Facades\Artisan;
 use Tests\FeatureTestCase;
 
 
@@ -11,7 +12,9 @@ class ListOrdersTest extends FeatureTestCase
     function test_a_user_can_see_order_list()
     {
         //having
-        $order = factory(Order::class)->create();
+        Artisan::call('db:seed', ['--class' => 'OrderTypeTableSeeder']);
+
+        $order = factory(Order::class)->create(['order_type_id' => 1]);
 
         $this->actingAs($this->defaultUser())
         ->visit(route('orders.index'))
@@ -43,9 +46,10 @@ class ListOrdersTest extends FeatureTestCase
     function test_a_user_can_search_a_order()
     {
     	//having
-        $first_order = factory(Order::class)->create();
-        $orders      = factory(Order::class)->times(15)->create();
-        $last_order  = factory(Order::class)->create();
+        Artisan::call('db:seed', ['--class' => 'OrderTypeTableSeeder']);
+        $first_order = factory(Order::class)->create(['order_type_id' => 1]);
+        $orders      = factory(Order::class)->times(15)->create(['order_type_id' => 1]);
+        $last_order  = factory(Order::class)->create(['order_type_id' => 1]);
 
         $this->actingAs($this->defaultUser())
         ->visit(route('orders.index'))
