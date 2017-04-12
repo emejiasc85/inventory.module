@@ -7,6 +7,5 @@
         <li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
         <li class="visible-xs visible-sm"><a href="#" id="sidebar-menu"><i class="fa fa-bars"></i></a></li>
     </ul>
-    @include('layouts.partials.nav-form')
     @include('layouts.partials.nav-right')
 </div>
