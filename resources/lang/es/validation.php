@@ -170,7 +170,8 @@ return [
         'from_due'              => 'vence desde',
         'to_due'                => 'vence hasta',
         'simbol'                => 'selector',
-        'stock'                 => 'existencia'
+        'stock'                 => 'existencia',
+        'people_id'                => 'proveedor'
     ],
 
 ];

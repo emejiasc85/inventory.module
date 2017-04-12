@@ -231,8 +231,13 @@ Route::resource('audit', 'AuditController');
 Route::resource('auditDetail', 'AuditDetailController');
 //people
 Route::name('people.index')->get('personas', 'PeopleController@index');
+Route::name('people.auto.complete')->get('auto-complete/people', 'PeopleController@autoComplete');
 Route::name('people.create')->get('agregar-personas', 'CreatePeopleController@create');
 Route::name('people.store')->post('agregar-persona', 'CreatePeopleController@store');
 Route::name('people.edit')->get('editar-persona/{people}/{slug}', 'EditPeopleController@edit');
 Route::name('people.update')->put('editar-persona/{people}', 'EditPeopleController@update');
+//bills
+Route::name('bills.create')->get('facturar', 'CreateBillController@create');
+Route::name('bills.store')->post('facturar', 'CreateBillController@store');
+Route::name('bills.details')->get('factura/{order}/detalles', 'BillController@details');
 

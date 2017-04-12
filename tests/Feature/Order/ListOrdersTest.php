@@ -20,7 +20,7 @@ class ListOrdersTest extends FeatureTestCase
         ->visit(route('orders.index'))
         ->see('Ordenes')
         ->seeInElement('td', $order->id)
-        ->seeInElement('td', $order->provider->name)
+        ->seeInElement('td', $order->people->name)
         ->seeInElement('td', $order->priority);
     }
     /*

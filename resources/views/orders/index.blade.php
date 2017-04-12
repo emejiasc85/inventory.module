@@ -34,7 +34,7 @@
                   @foreach ($orders as $order)
                     <tr>
                       <td>{{ $order->id }}</td>
-                      <td>{{ $order->provider->name }}</td>
+                      <td>{{ $order->people->name }}</td>
                       <td><span {!! Html::classes(['label', 'label-danger' => $order->priority == 'Alta', 'label-warning' => $order->priority == 'Media', 'label-success' => $order->priority == 'Baja']) !!}>{{ $order->priority }}</span></td>
                       <td>{{ $order->created_at }}</td>
                       <td>

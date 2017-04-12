@@ -13,4 +13,12 @@ class PeopleController extends Controller
 
         return view('people.index', compact('people'));
     }
+
+    public function autoComplete(Request $request)
+    {
+        $term = $request->get('term');
+         return People::select('id', 'name', 'nit', 'address')
+            ->where('nit', 'LIKE', "%$term%")
+            ->get();
+    }
 }

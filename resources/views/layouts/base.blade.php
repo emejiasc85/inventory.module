@@ -19,6 +19,7 @@
         <!-- Custom styles for this template -->
         {!! Html::style('css/style.min.css') !!}
         {!! Html::style('css/add-ons.min.css') !!}
+        @yield('styles')
     </head>
 
     <!-- BODY options, add following classes to body to change options
