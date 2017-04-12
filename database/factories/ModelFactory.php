@@ -133,7 +133,7 @@ $factory->define(ProductImage::class, function (Faker\Generator $faker) {
 });
 $factory->define(Order::class, function (Faker\Generator $faker) {
     return [
-        'provider_id'   => function (){
+        'people_id'   => function (){
             return factory(People::class)->create()->id;
         },
         'user_id'   => function (){
