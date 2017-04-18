@@ -68,7 +68,7 @@ class CreateBillDetailsController extends Controller
         else{
             $out = 0;
             $inventory->stock = $inventory->stock - $lot;
-            if ($inventory->stock === 0) {
+            if ($inventory->stock == 0) {
               $inventory->status = false;
             }
         }
