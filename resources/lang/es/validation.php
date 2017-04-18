@@ -161,7 +161,7 @@ return [
         'status'                => 'Estado',
         'cost'                  => 'Costo Unitario',
         'purchase_price'        => 'Precio compra',
-        'sale_price'            => 'precion venta',
+        'sale_price'            => 'precio venta',
         'total_purchase'        => 'total compra',
         'product_id'            => 'producto',
         'priority'              => 'prioridad',

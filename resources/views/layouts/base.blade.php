@@ -99,7 +99,7 @@
         <!-- start: Content -->
         <div class="main">
             {!! Alert::render() !!}
-            <ol class="breadcrumb">
+            <ol class="breadcrumb hidden-print">
                 <li><a href="{{ url('/') }}">Inicio</a></li>
                 @yield('breadcrumb')
             </ol>

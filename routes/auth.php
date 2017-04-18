@@ -240,4 +240,5 @@ Route::name('people.update')->put('editar-persona/{people}', 'EditPeopleControll
 Route::name('bills.create')->get('facturar', 'CreateBillController@create');
 Route::name('bills.store')->post('facturar', 'CreateBillController@store');
 Route::name('bills.details')->get('factura/{order}/detalles', 'BillController@details');
+Route::name('bills.details.store')->post('factura/{order}/agregar-producto', 'CreateBillDetailsController@store');
 

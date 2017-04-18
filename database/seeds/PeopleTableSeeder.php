@@ -14,9 +14,9 @@ class PeopleTableSeeder extends Seeder
     {
         People::create([
             'id'    => 1,
-            'nit' => 'C/F',
-            'name' => 'C/F',
-            'address' => 'C/F',
+            'nit' => 'CF',
+            'name' => 'Consumidor Final',
+            'address' => 'Ciudad',
             'type' => 'customer'
         ]);
         People::create([

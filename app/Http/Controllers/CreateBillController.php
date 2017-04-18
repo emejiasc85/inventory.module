@@ -30,6 +30,6 @@ class CreateBillController extends Controller
          $bill->user_id = auth()->user()->id;
          $bill->save();
 
-         //return redirect()->route('bills.details', $bill);
+         return redirect()->route('bills.details', $bill);
     }
 }
