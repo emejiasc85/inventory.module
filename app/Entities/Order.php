@@ -14,7 +14,10 @@ class Order extends Entity
     ];
 
     protected $date = ['created_at', 'updated_at'];
-
+    public function bill()
+    {
+        return $this->hasOne(Bill::class);
+    }
     public function type()
     {
         return $this->belongsTo(OrderType::class, 'order_type_id');

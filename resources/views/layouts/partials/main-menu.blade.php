@@ -17,7 +17,13 @@
                 <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li>
                 <li><a href="{{ route('bills.create') }}"><i class="fa fa-shopping-cart"></i><span class="text"> Facturar</span></a></li>
                 <li><a href="{{ route('people.index') }}"><i class="fa fa-users"></i><span class="text"> Clientes</span></a></li>
-                <li><a href="{{ route('commerces.index') }}"><i class="fa fa-gear"></i><span class="text"> Configuraciones</span></a></li>
+                <li>
+                    <a href="#"><i class="fa fa-gears"></i><span class="text"> Configuraciones</span> <span class="indicator"></span></a>
+                    <ul>
+                        <li><a href="{{ route('commerces.index') }}"><i class="fa fa-home"></i><span class="text"> Comercios</span></a></li>
+                        <li><a href="{{ route('resolutions.index') }}"><i class="fa fa-list-ol"></i><span class="text"> Resoluciones</span></a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="#"><i class="fa fa-book"></i><span class="text"> Catalagos</span> <span class="indicator"></span></a>
                     <ul>

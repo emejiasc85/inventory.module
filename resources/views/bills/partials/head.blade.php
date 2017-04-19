@@ -1,6 +1,8 @@
  <div class="panel panel-default">
     <div class="panel-heading">
-        <a href="#"  class="btn btn-danger btn-xs pull-right" id="DestroyBill" style="margin-top: 10px">Cancelar</a>
+        @if ($order->status != 'Ingresado')
+            <a href="#"  class="btn btn-danger btn-xs pull-right" id="DestroyBill" style="margin-top: 10px">Cancelar</a>
+        @endif
     </div>
     <div class="panel-body">
         <address class="text-center">
@@ -8,16 +10,20 @@
             {{ $commerce->address }}<br>
             Nit {{ $commerce->nit }}<br>
             Tel. {{ $commerce->phone }}<br>
-            Res.No.2010-1-42-30823 del 29/11/2010<br>
-            Factura Serie BB De 1 A 500000<br>
+            @if ($order->bill)
+                Res. No. {{ $order->bill->resolution->resolution }} del {{ $order->bill->resolution->date->format('d-m-Y') }}<br>
+                Factura Serie {{ $order->bill->resolution->serie }} De {{ $order->bill->resolution->from }} al {{ $order->bill->resolution->to }}<br>
+            @endif
         </address>
         <hr>
-        <address class="text-center">
-            Factura <br>
-            Serie <strong> A</strong>
-            No. <strong id="bill_number"> 9</strong><br>
-            <strong> {{ $order->created_at }}</strong>
-        </address>
+            <address class="text-center">
+                Factura <br>
+                @if ($order->bill)
+                    Serie <strong> {{ $order->bill->resolution->serie }}</strong>
+                    No. <strong id="bill_number"> {{ $order->bill->bill }}</strong><br>
+                    <strong> {{ $order->created_at }}</strong>
+                @endif
+            </address>
         <address>
             <strong>Nombre:</strong> {{  $order->people->name }}<br>
             <strong>Dirección:</strong> {{ $order->people->address }}<br>
@@ -32,7 +38,9 @@
             @foreach ($order->details as $detail)
                 <tr>
                     <td class="col-xs-2">
-                        <a href="#" data-id="{{ $detail->id }}"  data-name="{{ $detail->product->name }}" class=" OrderDetailDelete"><i class="text-danger fa fa-minus-circle"></i></a>
+                        @if ($order->status != 'Ingresado')
+                            <a href="#" data-id="{{ $detail->id }}"  data-name="{{ $detail->product->name }}" class=" OrderDetailDelete"><i class="text-danger fa fa-minus-circle"></i></a>
+                        @endif
                         {{ $detail->lot }}
                     </td>
                     <td>{{ $detail->product->name }}</td>
@@ -48,6 +56,10 @@
 
     </div>
     <div class="panel-footer">
-        <a href="" class="btn btn-success btn-block" style="margin-top: 10px">Facturar</a>
+        @if ($order->details->count() > 0)
+            @if ($order->status != 'Ingresado')
+                <a href="#" id="Bill" class="btn btn-success btn-lg btn-block" style="margin-top: 10px">Facturar</a>
+            @endif
+        @endif
     </div>
 </div>

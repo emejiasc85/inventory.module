@@ -22,9 +22,7 @@ class ListCommercesTest extends FeatureTestCase
             'nit' => $nit,
         ]);
         //when
-        $this->visit('/')
-            ->seeLink('Configuraciones')
-            ->click('Configuraciones')
+        $this->visit(route('commerces.index'))
             ->seePageIs(route('commerces.index'))
             ->seeInElement('td', $name)
             ->seeInElement('td', $address)

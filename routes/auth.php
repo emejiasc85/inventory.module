@@ -243,6 +243,7 @@ Route::name('bills.details')->get('factura/{order}/detalles', 'BillController@de
 Route::name('bills.details.store')->post('factura/{order}/agregar-producto', 'CreateBillDetailsController@store');
 Route::name('bills.details.destroy')->delete('factura/{order}/eliminar-compra', 'DeleteBillDetailsController@destroy');
 Route::name('bills.destroy')->delete('factura/{order}/eliminar', 'DeleteBillController@destroy');
+Route::name('bills.confirm')->put('confirmar-factura/{order}', 'EditBillController@confirm');
 //resolutions
 Route::name('resolutions.index')->get('resoluciones', 'ResolutionController@index');
 Route::name('resolutions.create')->get('agregar-resoluciones', 'CreateResolutionController@create');

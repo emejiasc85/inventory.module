@@ -1,7 +1,7 @@
 
 <div class="navbar" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href=""><i class="icon-rocket"></i> <span>Inventario</span></a>
+        <a class="navbar-brand" href="{{ route('index') }}"><i class="icon-rocket"></i> <span>Inventario</span></a>
     </div>
     <ul class="nav navbar-nav navbar-actions navbar-left">
         <li class="visible-md visible-lg"><a href="#" id="main-menu-toggle"><i class="fa fa-bars"></i></a></li>
