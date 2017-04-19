@@ -247,4 +247,6 @@ Route::name('bills.destroy')->delete('factura/{order}/eliminar', 'DeleteBillCont
 Route::name('resolutions.index')->get('resoluciones', 'ResolutionController@index');
 Route::name('resolutions.create')->get('agregar-resoluciones', 'CreateResolutionController@create');
 Route::name('resolutions.store')->post('agregar-resolucion', 'CreateResolutionController@store');
+Route::name('resolutions.edit')->get('editar-resolucion/{resolution}', 'EditResolutionController@edit');
+Route::name('resolutions.update')->put('editar-resolucion/{resolution}', 'EditResolutionController@update');
 

@@ -21,4 +21,9 @@ class Resolution extends Model
      {
         return $this->belongsTo(Commerce::class);
      }
+
+     public function getEditUrlAttribute()
+     {
+        return route('resolutions.edit', $this);
+     }
 }
