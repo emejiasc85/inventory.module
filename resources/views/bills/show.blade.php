@@ -18,7 +18,8 @@
 @stop
 @section('modals')
     @include('orders.partials.changeStatus')
-    @include('bills.partials.modal-destroy')
+    @include('bills.partials.modal_detail_destroy')
+    @include('bills.partials.modal_bill_destroy')
     @include('bills.partials.add_product')
 @stop
 @section('scripts')
@@ -61,6 +62,12 @@
             input_value.val(value);
             ProductName.text(name);
             $('#confirmDelete').modal('toggle');
+        });
+
+        $('#DestroyBill').click( function (e) {
+            e.preventDefault();
+            var link        = $(this)
+            $('#confirmDeleteBill').modal('toggle');
         });
 
 

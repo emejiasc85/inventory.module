@@ -242,5 +242,6 @@ Route::name('bills.store')->post('facturar', 'CreateBillController@store');
 Route::name('bills.details')->get('factura/{order}/detalles', 'BillController@details');
 Route::name('bills.details.store')->post('factura/{order}/agregar-producto', 'CreateBillDetailsController@store');
 Route::name('bills.details.destroy')->delete('factura/{order}/eliminar-compra', 'DeleteBillDetailsController@destroy');
+Route::name('bills.destroy')->delete('factura/{order}/eliminar', 'DeleteBillController@destroy');
 
 

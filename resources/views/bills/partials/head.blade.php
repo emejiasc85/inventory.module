@@ -1,4 +1,7 @@
  <div class="panel panel-default">
+    <div class="panel-heading">
+        <a href="#"  class="btn btn-danger btn-xs pull-right" id="DestroyBill" style="margin-top: 10px">Cancelar</a>
+    </div>
     <div class="panel-body">
         <address class="text-center">
             <h2>{{ $commerce->name }}</h2>
@@ -42,5 +45,9 @@
                 <td class="text-right"><strong>{{ $order->total }}</strong></td>
             </tr>
         </table>
+
+    </div>
+    <div class="panel-footer">
+        <a href="" class="btn btn-success btn-block" style="margin-top: 10px">Facturar</a>
     </div>
 </div>

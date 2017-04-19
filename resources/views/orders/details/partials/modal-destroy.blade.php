@@ -8,7 +8,7 @@
 	      	</div>
 	    	<div class="modal-body">
 	    		<p id="ProductName"></p>
-		        <p>¿Esta seguro de eliminarlo de esta factura?</p>
+		        <p>¿Esta seguro de eliminarlo de esta orden?</p>
 	    	</div>
 	      	<div class="modal-footer">
 	        	{!! Form::open(['method' => 'DELETE', 'route' => ['orders.details.destroy', $order], 'id' => 'destroyValue']) !!}
