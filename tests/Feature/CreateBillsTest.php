@@ -11,6 +11,7 @@ class CreateBillsTest extends FeatureTestCase
     {
         //having
         $this->actingAs($this->defaultUser());
+        Artisan::call('db:seed', ['--class' => 'CommerceTableSeeder']);
         Artisan::call('db:seed', ['--class' => 'PeopleTableSeeder']);
         Artisan::call('db:seed', ['--class' => 'OrderTypeTableSeeder']);
         //when
