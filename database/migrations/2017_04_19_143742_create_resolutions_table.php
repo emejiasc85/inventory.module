@@ -17,7 +17,7 @@ class CreateResolutionsTable extends Migration
             $table->increments('id');
             $table->integer('from');
             $table->string('serie');
-            $table->string('resolution');
+            $table->string('resolution')->unique()->index();
             $table->integer('to');
             $table->date('date');
             $table->boolean('status')->default(true);

@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
     <li class="breadcrumb-item">Configuraciones</li>
-    <li class="breadcrumb-item"><a href="">Resoluciones</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('resolutions.index') }}">Resoluciones</a></li>
 	<li class="breadcrumb-item active">Nuevo</li>
 @stop
 

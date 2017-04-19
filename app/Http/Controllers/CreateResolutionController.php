@@ -29,5 +29,6 @@ class CreateResolutionController extends Controller
         $this->validate($request, $this->rules);
         $resolution = Resolution::create($request->all());
         Alert::success('Se ha agregado correctamente');
+        return redirect()->route('resolutions.index');
     }
 }

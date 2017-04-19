@@ -13,7 +13,8 @@ use EmejiasInventory\Entities\{
         OrderType,
         OrderDetail,
         Stock,
-        People
+        People,
+        Resolution
     };
 use EmejiasInventory\Entities\Order;
 use Illuminate\Support\Str;
@@ -171,6 +172,19 @@ $factory->define(People::class, function (Faker\Generator $faker){
         'nit' => $faker->unique()->randomNumber(),
         'phone' => $faker->phoneNumber,
         'email' => $faker->email,
+    ];
+});
+$factory->define(Resolution::class, function (Faker\Generator $faker){
+    return [
+        'resolution' => $faker->name ,
+        'serie' => $faker->randomLetter,
+        'from' => 1,
+        'to' => 1000,
+        'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'commerce_id' => function ()
+        {
+            return factory(Commerce::class)->create()->id;
+        }
     ];
 });
 

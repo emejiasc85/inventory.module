@@ -244,6 +244,7 @@ Route::name('bills.details.store')->post('factura/{order}/agregar-producto', 'Cr
 Route::name('bills.details.destroy')->delete('factura/{order}/eliminar-compra', 'DeleteBillDetailsController@destroy');
 Route::name('bills.destroy')->delete('factura/{order}/eliminar', 'DeleteBillController@destroy');
 //resolutions
+Route::name('resolutions.index')->get('resoluciones', 'ResolutionController@index');
 Route::name('resolutions.create')->get('agregar-resoluciones', 'CreateResolutionController@create');
 Route::name('resolutions.store')->post('agregar-resolucion', 'CreateResolutionController@store');
 
