@@ -17,8 +17,8 @@
 
 @stop
 @section('modals')
-    @include('orders.details.partials.modal-destroy')
     @include('orders.partials.changeStatus')
+    @include('bills.partials.modal-destroy')
     @include('bills.partials.add_product')
 @stop
 @section('scripts')

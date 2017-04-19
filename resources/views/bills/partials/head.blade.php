@@ -28,7 +28,10 @@
             </tr>
             @foreach ($order->details as $detail)
                 <tr>
-                    <td class="col-xs-2"><input type="text" class="form-control input-sm" value="{{ $detail->lot }}"></td>
+                    <td class="col-xs-2">
+                        <a href="#" data-id="{{ $detail->id }}"  data-name="{{ $detail->product->name }}" class=" OrderDetailDelete"><i class="text-danger fa fa-minus-circle"></i></a>
+                        {{ $detail->lot }}
+                    </td>
                     <td>{{ $detail->product->name }}</td>
                     <td class="text-right">{{ $detail->sale_price }}</td>
                     <td class="text-right">{{ $detail->total_purchase }}</td>
