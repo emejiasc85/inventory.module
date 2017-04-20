@@ -44,7 +44,7 @@ class AuditDetailController extends Controller {
                 ->get();
 
         }
-        // return compact('audit', 'products');
+        return compact('audit', 'products');
         return view('audit.details.create', compact('audit', 'products'));
     }
 
@@ -57,6 +57,7 @@ class AuditDetailController extends Controller {
     public function store(Request $request, Audit $audit) {
         return request()->all();
         $rules = [
+            'product_id' => 'required|exists:products,NULL,id,audit_id,' . $audit->id,
             'lot' => 'required|numeric',
         ];
         $this->validate($request, $rules);
