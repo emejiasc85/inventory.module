@@ -12,10 +12,11 @@
         -->
         <div class="sidebar-menu">
             <ul class="nav nav-sidebar">
-                <li><a href="{{ route('orders.index') }}"><i class="fa fa-truck"></i><span class="text"> Pedidos</span></a></li>
-                <li><a href="{{ route('stocks.index') }}"><i class="fa fa-cubes"></i><span class="text"> Existencias</span></a></li>
-                <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li>
                 <li><a href="{{ route('bills.create') }}"><i class="fa fa-shopping-cart"></i><span class="text"> Facturar</span></a></li>
+                <li><a href="{{ route('bills.index') }}"><i class="fa fa-archive"></i><span class="text"> Ventas</span></a></li>
+                <li><a href="{{ route('stocks.index') }}"><i class="fa fa-cubes"></i><span class="text"> Existencias</span></a></li>
+                <li><a href="{{ route('orders.index') }}"><i class="fa fa-truck"></i><span class="text"> Pedidos</span></a></li>
+                <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li>
                 <li><a href="{{ route('people.index') }}"><i class="fa fa-users"></i><span class="text"> Clientes</span></a></li>
                 <li>
                     <a href="#"><i class="fa fa-gears"></i><span class="text"> Configuraciones</span> <span class="indicator"></span></a>

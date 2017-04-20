@@ -237,6 +237,7 @@ Route::name('people.store')->post('agregar-persona', 'CreatePeopleController@sto
 Route::name('people.edit')->get('editar-persona/{people}/{slug}', 'EditPeopleController@edit');
 Route::name('people.update')->put('editar-persona/{people}', 'EditPeopleController@update');
 //bills
+Route::name('bills.index')->get('ventas', 'BillController@index');
 Route::name('bills.create')->get('facturar', 'CreateBillController@create');
 Route::name('bills.store')->post('facturar', 'CreateBillController@store');
 Route::name('bills.details')->get('factura/{order}/detalles', 'BillController@details');

@@ -30,9 +30,17 @@ class Order extends Entity
     {
         return $this->belongsTo(People::class);
     }
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
     public function getUrlAttribute()
     {
         return route('orders.show', $this);
+    }
+    public function getUrlBillAttribute()
+    {
+        return route('bills.details', $this);
     }
     public function getEditUrlAttribute()
     {
