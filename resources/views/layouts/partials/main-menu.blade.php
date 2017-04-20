@@ -23,6 +23,7 @@
                     <ul>
                         <li><a href="{{ route('commerces.index') }}"><i class="fa fa-home"></i><span class="text"> Comercios</span></a></li>
                         <li><a href="{{ route('resolutions.index') }}"><i class="fa fa-list-ol"></i><span class="text"> Resoluciones</span></a></li>
+                        <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i><span class="text"> Usuarios</span></a></li>
                     </ul>
                 </li>
                 <li>

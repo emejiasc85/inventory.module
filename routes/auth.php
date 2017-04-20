@@ -251,4 +251,8 @@ Route::name('resolutions.create')->get('agregar-resoluciones', 'CreateResolution
 Route::name('resolutions.store')->post('agregar-resolucion', 'CreateResolutionController@store');
 Route::name('resolutions.edit')->get('editar-resolucion/{resolution}', 'EditResolutionController@edit');
 Route::name('resolutions.update')->put('editar-resolucion/{resolution}', 'EditResolutionController@update');
+//users
+Route::name('users.index')->get('usuarios', 'UserController@index');
+Route::name('users.create')->get('agregar-usuarios', 'CreateUserController@create');
+Route::name('users.store')->post('agregar-usuarios', 'CreateUserController@store');
 

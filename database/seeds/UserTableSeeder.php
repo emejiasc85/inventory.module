@@ -13,10 +13,12 @@ class UserTableSeeder extends Seeder {
         factory(User::class)->create([
             'name' => 'Enrique Mejias',
             'email' => 'emejiasc85@gmail.com',
+            'role_id'  => 1
         ]);
         factory(User::class)->create([
             'name' => 'Antony',
             'email' => 'laga1254@gmail.com',
+            'role_id'  => 1
         ]);
     }
 }
