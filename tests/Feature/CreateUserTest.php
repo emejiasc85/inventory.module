@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use EmejiasInventory\Entities\Role;
+use EmejiasInventory\Entities\User;
 use Tests\FeatureTestCase;
 
 class CreateUserTest extends FeatureTestCase
@@ -48,7 +49,7 @@ class CreateUserTest extends FeatureTestCase
             'name'     => 'El campo nombre es obligatorio',
             'email'    => 'El campo correo electrónico es obligatorio',
             'password' => 'El campo contraseña es obligatorio',
-            'role_id'  => 'El campo rol de usuario es obligatorio',
+            'role_id'  => 'El campo rol es obligatorio',
         ]);
 
     }

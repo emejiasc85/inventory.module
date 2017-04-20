@@ -171,7 +171,8 @@ return [
         'to_due'                => 'vence hasta',
         'simbol'                => 'selector',
         'stock'                 => 'existencia',
-        'people_id'                => 'proveedor'
+        'people_id'             => 'proveedor',
+        'role_id'                => 'rol',
     ],
 
 ];
