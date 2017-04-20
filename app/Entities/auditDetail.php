@@ -1,10 +1,10 @@
 <?php
 
-namespace EmejiasInventory\Entities;
+namespace EmejiasInventory;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AuditDetail extends Model {
+class auditDetail extends Model {
     protected $fillable = [
         'audit_id',
         'product_id',

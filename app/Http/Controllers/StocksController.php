@@ -17,6 +17,7 @@ class StocksController extends Controller
             ->productId($request->get('id'))
             ->dueDate($request->get('from_due'), $request->get('to_due'))
             ->stock($request->get('simbol'), $request->get('stock'))
+            ->where('status', true)
             //->OrderBy('id', 'DESC')
             ->paginate();
         return view('stocks.index', compact('stocks'));

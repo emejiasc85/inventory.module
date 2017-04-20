@@ -18,7 +18,7 @@ class EditOrderController extends Controller
     }
     public function update(Request $request,Order $order)
     {
-        $this->validate($request, ['provider_id' => 'required']);
+        $this->validate($request, ['people_id' => 'required']);
         $order->fill($request->all());
         $order->save();
         Alert::success('Pedido editada correctamente');

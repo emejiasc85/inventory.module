@@ -17,7 +17,6 @@
                     <small>Agregar Producto</small>
                 </div>
                 <div class="panel-body">
-
                  @include('orders.details.partials.search')
                  <br>
                  @include('orders.details.partials.table')

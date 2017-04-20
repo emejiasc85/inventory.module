@@ -228,15 +228,27 @@ Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 
 Route::name('stocks.index')->get('existencias', 'StocksController@index');
 //audit
 Route::resource('audit', 'AuditController');
-//order details
-Route::name('audits.details.create')->get('audit/{audit}/agregar-detalle', 'AuditDetailController@create');
-Route::name('audits.details.store')->post('audit/{audit}/agregar-detalle', 'AuditDetailController@store');
-Route::name('audits.details.update')->put('audit-{audit}/editar-detalle', 'AuditDetailController@update');
-
 Route::resource('auditDetail', 'AuditDetailController');
 //people
 Route::name('people.index')->get('personas', 'PeopleController@index');
+Route::name('people.auto.complete')->get('auto-complete/people', 'PeopleController@autoComplete');
 Route::name('people.create')->get('agregar-personas', 'CreatePeopleController@create');
 Route::name('people.store')->post('agregar-persona', 'CreatePeopleController@store');
 Route::name('people.edit')->get('editar-persona/{people}/{slug}', 'EditPeopleController@edit');
 Route::name('people.update')->put('editar-persona/{people}', 'EditPeopleController@update');
+//bills
+Route::name('bills.index')->get('ventas', 'BillController@index');
+Route::name('bills.create')->get('facturar', 'CreateBillController@create');
+Route::name('bills.store')->post('facturar', 'CreateBillController@store');
+Route::name('bills.details')->get('factura/{order}/detalles', 'BillController@details');
+Route::name('bills.details.store')->post('factura/{order}/agregar-producto', 'CreateBillDetailsController@store');
+Route::name('bills.details.destroy')->delete('factura/{order}/eliminar-compra', 'DeleteBillDetailsController@destroy');
+Route::name('bills.destroy')->delete('factura/{order}/eliminar', 'DeleteBillController@destroy');
+Route::name('bills.confirm')->put('confirmar-factura/{order}', 'EditBillController@confirm');
+//resolutions
+Route::name('resolutions.index')->get('resoluciones', 'ResolutionController@index');
+Route::name('resolutions.create')->get('agregar-resoluciones', 'CreateResolutionController@create');
+Route::name('resolutions.store')->post('agregar-resolucion', 'CreateResolutionController@store');
+Route::name('resolutions.edit')->get('editar-resolucion/{resolution}', 'EditResolutionController@edit');
+Route::name('resolutions.update')->put('editar-resolucion/{resolution}', 'EditResolutionController@update');
+

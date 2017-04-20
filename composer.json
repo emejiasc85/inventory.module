@@ -24,7 +24,10 @@
         ],
         "psr-4": {
             "EmejiasInventory\\": "app/"
-        }
+        },
+        "files": [
+            "app/Core/Helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

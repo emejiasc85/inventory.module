@@ -30,6 +30,7 @@ class ProductTableSeeder extends Seeder
                 ]);
 
         Product::create([
+            'id' => 1,
             'name'          => 'Viagra',
             'description'   => 'Pastilla para mejorar el rendimiento masculino',
             'product_presentation_id' => $ProductPresentation->id,
@@ -43,6 +44,7 @@ class ProductTableSeeder extends Seeder
                 ]);
 
         Product::create([
+            'id' => 2,
             'name'          => 'Alkaselser',
             'description'   => 'Pastilla',
             'product_presentation_id' => $ProductPresentation->id,

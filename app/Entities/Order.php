@@ -4,17 +4,20 @@ namespace EmejiasInventory\Entities;
 class Order extends Entity
 {
     protected $fillable = [
-    	'delivery',
+    	//'delivery',
     	'status',
     	'user_id',
-    	'provider_id',
+    	'people_id',
     	'total',
     	'order_type_id',
     	'priority'
     ];
 
-    protected $date = ['delivery', 'created_at', 'updated_at'];
-
+    protected $date = ['created_at', 'updated_at'];
+    public function bill()
+    {
+        return $this->hasOne(Bill::class);
+    }
     public function type()
     {
         return $this->belongsTo(OrderType::class, 'order_type_id');
@@ -23,13 +26,21 @@ class Order extends Entity
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
-    public function provider()
+    public function people()
     {
-        return $this->belongsTo(People::class, 'provider_id');
+        return $this->belongsTo(People::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(user::class);
     }
     public function getUrlAttribute()
     {
         return route('orders.show', $this);
+    }
+    public function getUrlBillAttribute()
+    {
+        return route('bills.details', $this);
     }
     public function getEditUrlAttribute()
     {
@@ -74,4 +85,6 @@ class Order extends Entity
             $query->where('total', $simbol, $field);
         }
     }
+
+
 }

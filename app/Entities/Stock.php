@@ -9,7 +9,8 @@ class Stock extends Model
     protected $fillable = [
         'stock',
         'order_detail_id',
-        'warehouse_id'
+        'warehouse_id',
+        'status'
     ];
 
     public function warehouse()

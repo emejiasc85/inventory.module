@@ -19,7 +19,12 @@ class Product extends Entity
     	'minimum_stock',
     	'slug'
     ];
-
+    public function setNameAttribute($value)
+    {
+    	$this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+        $this->attributes['full_name'] = $value;
+    }
 
     public function make()
     {
@@ -29,6 +34,11 @@ class Product extends Entity
     public function group()
     {
         return $this->belongsTo(ProductGroup::class, 'product_group_id');
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name.' '.$this->presentation->name.' '.$this->make->name;
     }
     public function presentation()
     {
@@ -44,12 +54,6 @@ class Product extends Entity
         return $this->hasMany(ProductImage::class);
     }
 
-    public function setNameAttribute($value)
-    {
-    	$this->attributes['name'] = $value;
-        $this->attributes['slug'] = Str::slug($value);
-        $this->attributes['full_name'] = $value;
-    }
 
     public function getUrlAttribute()
     {

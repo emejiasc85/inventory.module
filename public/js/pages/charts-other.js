@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	/* ---------- Sparkline Charts ---------- */
 	//generate random number for charts
 	randNum = function(){
@@ -28,60 +28,10 @@ $(document).ready(function(){
 		});
 
 	}
-	
-	/* ---------- Init jQuery Knob - disbaled in IE8, IE7, IE6 ---------- */
-	if(jQuery.browser.version.substring(0, 2) == "8.") {
-		 
-		//disable jQuery Knob
-		
-	} else {
-		
-		$('.circleChart').each(function(){
 
-			var circleColor = $(this).parent().css('color');
 
-			$(this).knob({
-		        'min':0,
-		        'max':100,
-		        'readOnly': true,
-		        'width': 120,
-		        'height': 120,
-		        'fgColor': circleColor,
-		        'dynamicDraw': true,
-		        'thickness': 0.2,
-		        'tickColorizeValues': true,
-				'skin':'tron'
-		    });
 
-		});
-		
-	}
-	
-	/*------- Just Gage Init -------*/
-	g1=new JustGage({id:"g1",value:67,min:0,max:100,title:"Visitors",label:"per minute"});
-	g1a=new JustGage({id:"g1a",value:45,min:0,max:100,title:"Errors",label:"average"});
-	g2=new JustGage({id:"g2",value:15,min:0,max:100,title:"Timers",label:""});
-	g2a=new JustGage({id:"g2a",value:7,min:0,max:100,title:"Alerts",label:""});
-	g2b=new JustGage({id:"g2b",value:22,min:0,max:100,title:"Events",label:""});
-	
-	setInterval(function(){
-		g1.refresh(getRandomInt(50,100));
-		g1a.refresh(getRandomInt(50,100));
-		g2.refresh(getRandomInt(0,50));
-		g2a.refresh(getRandomInt(0,50));
-		g2b.refresh(getRandomInt(0,50))
-		},2000
-	);
-	
-	/*------- Easy Pie Chart Init -------*/
-	$('.percentage').easyPieChart();
-    $('.percentage-light').easyPieChart();
 
-    $('.updateEasyPieChart').on('click', function(e) {
-      e.preventDefault();
-      $('.percentage, .percentage-light').each(function() {
-        $(this).data('easyPieChart').update(Math.round(100*Math.random()));
-      });
-    });    
+
 
 });

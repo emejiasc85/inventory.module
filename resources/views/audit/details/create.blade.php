@@ -1,8 +1,8 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-     <li class="breadcrumb-item"><a href="{{ route('audit.index') }}">Pedidos</a></li>
-	 <li class="breadcrumb-item"><a href="{{ $audit->url }}">Pedido #{{ $audit->id }}</a></li>
+     <li class="breadcrumb-item"><a href="{{ route('orders.index') }}">Auditorias</a></li>
+	 <li class="breadcrumb-item"><a href="{{ $order->url }}">Auditoria #{{ $order->id }}</a></li>
 	 <li class="breadcrumb-item active">Agregar Producto</li>
 @stop
 
@@ -13,21 +13,21 @@
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
                     <i class="fa fa-list-ol"></i>
-                    <strong>Pedido #{{ $audit->id }}</strong>
+                    <strong>Auditoria #{{ $order->id }}</strong>
                     <small>Agregar Producto</small>
                 </div>
                 <div class="panel-body">
 
-                 @include('audit.details.partials.search')
+                 @include('orders.details.partials.search')
                  <br>
-                 @include('audit.details.partials.table')
+                 @include('orders.details.partials.table')
                 </div>
             </div>
         </div>
 	</div>
 @stop
 @section('modals')
-     @include('audit.details.partials.add_product')
+     @include('orders.details.partials.add_product')
 @stop
 @section('scripts')
   <script>

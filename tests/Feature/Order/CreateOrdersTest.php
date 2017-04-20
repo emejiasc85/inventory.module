@@ -19,8 +19,8 @@ class CreateOrdersTest extends FeatureTestCase
         $this->actingAs($user);
 
         $fields = [
-        	'provider_id'	=> $provider->id,
-        	'priority'		=> 'Alta',
+            'people_id' => $provider->id,
+            'priority'  => 'Alta',
        	];
         //having
         $this->visit(route('orders.create'))
@@ -48,7 +48,7 @@ class CreateOrdersTest extends FeatureTestCase
 
         //then
         $this->seeErrors([
-            'provider_id' => 'El campo proveedor es obligatorio.',
+            'people_id' => 'El campo proveedor es obligatorio.',
         ]);
     }
 }

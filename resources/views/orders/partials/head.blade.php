@@ -8,7 +8,7 @@
         </tr>
         <tr>
             <th class="text-left">Proveedor:</th>
-            <td class="text-right">{{ $order->provider->name }}</td>
+            <td class="text-right">{{ $order->people->name }}</td>
         </tr>
         <tr>
             <th class="text-left">Creado: </th>

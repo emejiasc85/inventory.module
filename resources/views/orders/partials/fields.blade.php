@@ -1,4 +1,4 @@
-{!! Field::select('provider_id', $providers, ['template' => 'templates.inline']) !!}
+{!! Field::select('people_id', $providers, ['template' => 'templates.inline']) !!}
 <div class="col-md-3">
 	<label>Prioridad</label>
 </div>

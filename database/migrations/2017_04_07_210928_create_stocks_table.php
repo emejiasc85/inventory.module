@@ -20,6 +20,7 @@ class CreateStocksTable extends Migration
             $table->unsignedInteger('order_detail_id');
             $table->foreign('order_detail_id')->references('id')->on('order_details');
             $table->float('stock');
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

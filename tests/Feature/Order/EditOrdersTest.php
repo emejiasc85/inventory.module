@@ -22,13 +22,13 @@ class EditOrdersTest extends FeatureTestCase
 
         //when
         $this->visit($order->editUrl)
-        	->select($provider->id, 'provider_id')
+        	->select($provider->id, 'people_id')
         	->select('Media', 'priority')
         	->press('Editar');
 
         //the
         $this->seeInDatabase('orders', [
-        	'provider_id' => $provider->id,
+        	'people_id' => $provider->id,
         	'priority' => 'Media'
         ]);
         $this->see('Pedido editada correctamente');

@@ -4,21 +4,23 @@ namespace EmejiasInventory\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class ViewServiceProvider extends ServiceProvider {
+class ViewServiceProvider extends ServiceProvider
+{
     /**
      * Bootstrap the application services.
      *
      * @return void
      */
-    public function boot() {
+    public function boot()
+    {
         view()->composer(
             [
                 'products/create',
                 'products/edit',
                 'products/index',
                 'orders/details/create',
-                'audit/details/create',
                 'stocks/index',
+                'bills/show'
             ],
             'EmejiasInventory\Http\ViewComposers\ProductsComposer'
         );
@@ -29,7 +31,8 @@ class ViewServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function register() {
+    public function register()
+    {
         //
     }
 }

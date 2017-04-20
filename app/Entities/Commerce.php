@@ -23,6 +23,11 @@ class Commerce extends Model
     ];
 
 
+    public function resolutions()
+    {
+        return $this->hasMany(Resolution::class);
+    }
+
     public function setNameAttribute($value)
     {
     	$this->attributes['name'] = $value;
