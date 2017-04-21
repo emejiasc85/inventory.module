@@ -5,6 +5,7 @@ namespace EmejiasInventory\Http\Controllers;
 use EmejiasInventory\Entities\Audit;
 use EmejiasInventory\Entities\auditDetail;
 use EmejiasInventory\Entities\Product;
+use EmejiasInventory\Entities\Stock;
 use Illuminate\Http\Request;
 
 class AuditDetailController extends Controller {
@@ -52,8 +53,37 @@ class AuditDetailController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        //
+    public function store(Request $request, Audit $audit) {
+        $rules = [
+            'product_id' => 'required|exists:products,id',
+        ];
+        $this->validate($request, $rules);
+       $stocks = Stock::select('stocks.id')->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+            ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
+            ->where('warehouse_id', 1)
+            ->order($request->get('order_id'))
+            ->product($request->get('name'))
+            ->productId($request->get('id'))
+            ->dueDate($request->get('from_due'), $request->get('to_due'))
+            ->stock($request->get('simbol'), $request->get('stock'))
+            ->where('status', true)
+            ->where('product_id', $request->input('product_id'))
+            //->OrderBy('id', 'DESC')
+           
+            ->paginate();
+//Stock::where('id',);
+
+foreach ($stocks as $key => $value) {
+    echo $value->id." ";
+}
+        $data = array_add($request->all(), 'audit_id', $audit->id);
+        $data = array_add($data, 'stock_id', $audit->id);
+        dd($data, $stocks);
+        $new_detail = auditDetail::create($data);
+        $audit->sumTotals();
+        $audit->save();
+        Alert::success('Producto Agregado correctamente');
+        return redirect($audit->url);
     }
 
     /**

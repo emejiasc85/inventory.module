@@ -15,8 +15,9 @@ class CreateAuditDetailsTable extends Migration {
             $table->increments('id');
             $table->unsignedInteger('audit_id');
             $table->unsignedInteger('product_id');
-            $table->integer('current_stock');
+            $table->unsignedInteger('stock_id');
             $table->integer('audited_stock');
+            $table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->foreign('audit_id')->references('id')->on('audits')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->enum('status', [

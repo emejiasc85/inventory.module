@@ -20,7 +20,7 @@ class Audit extends Model {
         }
     }
     public function details() {
-        return $this->hasMany(OrderDetail::class, 'order_id');
+        return $this->hasMany(auditDetail::class, 'audit_id');
     }
     public function commerces() {
         return $this->belongsTo(Commerce::class, 'commerce_id');
