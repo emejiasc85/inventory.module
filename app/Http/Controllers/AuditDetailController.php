@@ -2,7 +2,9 @@
 
 namespace EmejiasInventory\Http\Controllers;
 
+use EmejiasInventory\Entities\Audit;
 use EmejiasInventory\Entities\auditDetail;
+use EmejiasInventory\Entities\Product;
 use Illuminate\Http\Request;
 
 class AuditDetailController extends Controller {
@@ -21,10 +23,29 @@ class AuditDetailController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create(Request $request, Audit $audit) {
+        $data = $request->all();
+        $data = array_where($data, function ($value, $key) {
+            return is_string($value);
+        });
+
+        if (empty($data)) {
+            $products = [];
+        } else {
+            $products = Product::name($request->get('name'))
+                ->id($request->get('id'))
+                ->make($request->get('make_id'))
+                ->group($request->get('product_group_id'))
+                ->presentation($request->get('product_presentation_id'))
+                ->unit($request->get('unit_measure_id'))
+                ->barcode($request->get('barcode'))
+                ->orderBy('id', 'DESC')
+                ->get();
+
+        }
+        return view('audit.details.create', compact('audit', 'products'));
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *

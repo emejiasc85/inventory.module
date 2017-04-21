@@ -11,7 +11,7 @@
 		        <p>¿Esta seguro de eliminarlo de esta orden?</p>
 	    	</div>
 	      	<div class="modal-footer">
-	        	{!! Form::open(['method' => 'DELETE', 'route' => ['auditDetail.destroy', $audit], 'id' => 'destroyValue']) !!}
+	        	{!! Form::open(['method' => 'DELETE', 'route' => ['orders.details.destroy', $order], 'id' => 'destroyValue']) !!}
 					{!! Field::hidden('id', null, ['id' => 'value_id']) !!}
 	        		<button type="button" id="delete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 	        		<button type="submit" class="btn btn-danger">Eliminar</button>

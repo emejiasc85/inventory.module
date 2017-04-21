@@ -228,7 +228,12 @@ Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 
 Route::name('stocks.index')->get('existencias', 'StocksController@index');
 //audit
 Route::resource('audit', 'AuditController');
-Route::resource('auditDetail', 'AuditDetailController');
+//audit details
+Route::name('auditDetail.create')->get('audit/{audit}/agregar-detalle', 'AuditDetailController@create');
+Route::name('audits.details.store')->post('audit/{audit}/agregar-detalle', 'AuditDetailController@store');
+Route::name('auditDetail.update')->put('audit-{audit}/editar-detalle', 'AuditDetailController@update');
+Route::name('auditDetail.destroy')->put('audit-{audit}/destroy-detalle', 'AuditDetailController@destroy');
+
 //people
 Route::name('people.index')->get('personas', 'PeopleController@index');
 Route::name('people.auto.complete')->get('auto-complete/people', 'PeopleController@autoComplete');
@@ -251,4 +256,3 @@ Route::name('resolutions.create')->get('agregar-resoluciones', 'CreateResolution
 Route::name('resolutions.store')->post('agregar-resolucion', 'CreateResolutionController@store');
 Route::name('resolutions.edit')->get('editar-resolucion/{resolution}', 'EditResolutionController@edit');
 Route::name('resolutions.update')->put('editar-resolucion/{resolution}', 'EditResolutionController@update');
-
