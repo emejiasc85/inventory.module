@@ -255,4 +255,10 @@ Route::name('resolutions.update')->put('editar-resolucion/{resolution}', 'EditRe
 Route::name('users.index')->get('usuarios', 'UserController@index');
 Route::name('users.create')->get('agregar-usuarios', 'CreateUserController@create');
 Route::name('users.store')->post('agregar-usuarios', 'CreateUserController@store');
+Route::name('users.edit')->get('{user}-{slug}-editar', 'EditUserController@edit');
+Route::name('users.update')->put('{user}-editar', 'EditUserController@update');
+Route::name('users.password.edit')->get('{user}-{slug}-editar-clave', 'EditUserController@editPassword');
+Route::name('users.password.update')->put('{user}-editar-clave', 'EditUserController@updatePassword');
+Route::name('auth.password.edit')->get('editar-contrasena/{user}-{slug}', 'EditUserController@editAuthPassword');
+Route::name('auth.password.update')->put('editar-contrasena/{user}', 'EditUserController@updateAuthPassword');
 

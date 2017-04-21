@@ -58,11 +58,7 @@
                                 @endif
                             </div>
                             <button type="submit" class="btn btn-primary col-xs-12">Ingresar</button>
-                            <div class="row">
-                                <div class="col-xs-7">
-                                    <a class="pull-left" href="{{ route('password.request') }}">Recuperar Contraseña</a>
-                                </div><!--/col-->
-                            </div><!--/row-->
+
                         </fieldset>
                     {!! Form::close() !!}
                 </div>

@@ -179,6 +179,7 @@ return [
         EmejiasInventory\Providers\EventServiceProvider::class,
         EmejiasInventory\Providers\RouteServiceProvider::class,
         EmejiasInventory\Providers\ViewServiceProvider::class,
+        EmejiasInventory\Providers\ValidatorServiceProvider::class,
 
     ],
 

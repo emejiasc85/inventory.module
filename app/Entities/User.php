@@ -43,4 +43,17 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    public function getEditUrlAttribute()
+    {
+        return route('users.edit', [$this, $this->slug]);
+    }
+    public function getEditPasswordUrlAttribute()
+    {
+        return route('users.password.edit', [$this, $this->slug]);
+    }
+    public function geteditAuthPasswordAttribute()
+    {
+        return route('auth.password.edit', [$this, $this->slug]);
+    }
 }
