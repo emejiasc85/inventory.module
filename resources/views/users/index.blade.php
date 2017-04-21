@@ -34,6 +34,7 @@
                        <th>Nombre</th>
                        <th>Correo</th>
                        <th>Rol de Usuario</th>
+                       <td colspan="2"></td>
                    </tr>
                    @foreach ($users as $user)
                        <tr>
@@ -41,6 +42,7 @@
                            <td>{{ $user->email }}</td>
                            <td>{{ $user->role->name }}</td>
                            <td><a href="{{ $user->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>  Editar</a></td>
+                           <td><a href="{{ $user->editPasswordUrl }}" class="btn btn-warning"> <i class="fa fa-key"></i>  Contraseña</a></td>
                        </tr>
                    @endforeach
               </table>

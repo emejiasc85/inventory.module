@@ -15,6 +15,9 @@
                     <i class="fa fa-pencil"></i>
                     <strong>{{ $user->name }}</strong>
                     <small>Editar</small>
+                    <a href="{{ $user->editPasswordUrl }}" class="btn btn-default btn-sm  pull-right" style="margin-top: 5px">
+                        <span class=" text-success fa fa-key"></span> Editar Contraseña
+                    </a>
                 </div>
 				{!! Form::model($user, ['route' => ['users.update', $user], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
                 <div class="panel-body">
@@ -23,7 +26,6 @@
                             {!! Field::text('name', ['template' => 'templates.inline']) !!}
                             {!! Field::email('email', ['template' => 'templates.inline']) !!}
                             {!! Field::select('role_id', $roles, null, ['template' => 'templates.inline']) !!}
-                            <a href="{{ $user->editPasswordUrl }}" class="btn btn-link">Editar Contraseña</a>
                         </div>
                     </div>
                     <!--/.row-->
