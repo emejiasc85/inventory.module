@@ -9,6 +9,7 @@ class auditDetail extends Model {
         'audit_id',
         'product_id',
         'stock_id',
+        'current_stock',
         'audited_stock',
         'status',
     ];

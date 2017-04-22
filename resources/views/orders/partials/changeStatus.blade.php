@@ -11,11 +11,11 @@
 		        <p>¿Esta seguro?</p>
 	    	</div>
 	      	<div class="modal-footer">
-	        	{!! Form::open(['method' => 'put', 'route' => ['orders.updateStatus', $order]]) !!}
+	        	{!! Form::open(['method' => 'put', 'route' => ['orders.updateStatus', $order, 'id' =>'modalOrderForm'],'id' =>'modalOrderForm']) !!}
 					{!! Field::hidden('status', null, ['id' => 'value_status']) !!}
-	        		<button type="button" id="delete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	        		<button id="buttonStatus" type="submit" {!! Html::classes([
-                            'btn',
+	        		<button type="button" id="delete" class="delete btn btn-default" data-dismiss="modal">Cancelar</button>
+	        		<button id="buttonStatus" onclick="clikModal() " {!! Html::classes([
+                            'buttonStatus btn ',
                             'btn-primary' => $order->status == 'Creado',
                             'btn-success' => $order->status == 'Solicitado',
                             'btn-warning' => $order->status == 'Ingresado',
@@ -30,8 +30,19 @@
                         <i class="fa fa-angle-double-right"></i>
 
                     </button>
-				{!! Form::close() !!}
-	      	</div>
-    	</div>
-  	</div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+<script>
+function clikModal() {
+    $('.delete').fadeOut(1);
+    $('#buttonStatus').attr('disabled', 'disabled');
+    $('#buttonStatus').text('Espere...')
+    $('#modalOrderForm').submit();
+};                   
+
+
+
+</script>
 </div>
