@@ -1,6 +1,6 @@
 <?php
 
-namespace EmejiasInventory;
+namespace EmejiasInventory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,7 +8,7 @@ class auditDetail extends Model {
     protected $fillable = [
         'audit_id',
         'product_id',
-        'current_stock',
+        'stock_id',
         'audited_stock',
         'status',
     ];
@@ -18,6 +18,10 @@ class auditDetail extends Model {
     }
     public function audit() {
         return $this->belongsTo(Audit::class);
+    }
+    public function stock() {
+
+        return $this->belongsTo(Stock::class);
     }
 
 }

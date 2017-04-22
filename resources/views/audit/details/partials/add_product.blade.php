@@ -4,13 +4,12 @@
         <div class="modal-content">
             <div class="modal-header " style="border-top: 2px solid #4dbd74">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><i class="fa fa fa-shopping-cart"></i> Agregar Producto</h4>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa fa-archive"></i> Agregar Producto</h4>
             </div>
-            {!! Form::open(['route' => ['orders.details.store', $order], 'id' => 'AddProductForm', 'method' => 'POST']) !!}
+            {!! Form::open(['route' => ['audits.details.store', $audit], 'id' => 'AddProductForm', 'method' => 'POST']) !!}
             <div class="modal-body">
                 <p id="ProductName"></p>
-                {!! Field::text('lot', 5) !!}
-                {!! Field::text('purchase_price') !!}
+            ¿ Esta Seguro de Auditar Este Producto ?
                 {!! Field::hidden('product_id', null, ['id' => 'value_id']) !!}
             </div>
             <div class="modal-footer">
