@@ -6,6 +6,7 @@ use EmejiasInventory\Entities\Audit;
 use EmejiasInventory\Entities\auditDetail;
 use EmejiasInventory\Entities\Product;
 use EmejiasInventory\Entities\Stock;
+use Styde\Html\Facades\Alert;
 use Illuminate\Http\Request;
 
 class AuditDetailController extends Controller {
@@ -58,7 +59,7 @@ class AuditDetailController extends Controller {
             'product_id' => 'required|exists:products,id',
         ];
         $this->validate($request, $rules);
-       $stocks = Stock::select('stocks.id')->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+       $stocks = Stock::select(['stocks.id','stocks.stock'])->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
             ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
             ->where('warehouse_id', 1)
             ->order($request->get('order_id'))
@@ -72,16 +73,20 @@ class AuditDetailController extends Controller {
            
             ->paginate();
 //Stock::where('id',);
+$data=[];
+        // dd($data, $stocks);
 
 foreach ($stocks as $key => $value) {
-    echo $value->id." ";
-}
-        $data = array_add($request->all(), 'audit_id', $audit->id);
-        $data = array_add($data, 'stock_id', $audit->id);
-        dd($data, $stocks);
+// dd($value->stock);
+    $data=[];
+    $data = array_add($data, 'audit_id', $audit->id);
+    $data = array_add($data, 'product_id',  $request->input('product_id'));
+    $data = array_add($data, 'stock_id', $value->id);
+    $data = array_add($data, 'current_stock', $value->stock);
+    $data = array_add($data, 'audited_stock', 0);
         $new_detail = auditDetail::create($data);
-        $audit->sumTotals();
-        $audit->save();
+}
+ 
         Alert::success('Producto Agregado correctamente');
         return redirect($audit->url);
     }
