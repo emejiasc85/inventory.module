@@ -49,8 +49,10 @@
         $(this).attr('disabled', 'disabled');
         $(this).text('Espere...')
         $('#CreateOrderForm').submit();
-  })
+  });
+ 
 </script>
+
 @stop
 
 
