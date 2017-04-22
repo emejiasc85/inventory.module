@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'slug'
+        'name', 'email', 'password', 'role_id', 'slug', 'username'
     ];
 
     /**
@@ -62,4 +62,24 @@ class User extends Authenticatable
             return $query->where('name', 'LIKE', "%$value%");
         }
     }
+
+    public function isAdmin()
+    {
+        return $this->role_id == 1;
+    }
+
+    public function isAudit()
+    {
+        return $this->role_id == 2;
+    }
+    public function isSeller()
+    {
+        return $this->role_id == 3;
+    }
+
+    public function isAuthor(Order $order)
+    {
+        return $this->id == $order->user_id;
+    }
 }
+

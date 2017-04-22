@@ -33,16 +33,16 @@
                     </div>
                     {!! Form::open(['route' => 'login']) !!}
                         <fieldset>
-                            <div class="form-group first  {{ $errors->has('email') ? ' has-error has-feedback' : '' }}">
+                            <div class="form-group first  {{ $errors->has('login') ? ' has-error has-feedback' : '' }}">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="mail" name="email" class="form-control input-lg" id="username" placeholder="E-mail"/>
-                                    @if ($errors->has('email'))
+                                    <input type="text" name="login" class="form-control input-lg" id="username" placeholder="Usuario o E-mail"/>
+                                    @if ($errors->has('login'))
                                         <span class="glyphicon glyphicon-remove form-control-feedback"></span>
                                     @endif
                                 </div>
-                                @if ($errors->has('email'))
-                                    <span class="help-block "><strong>{{ $errors->first('email') }}</strong></span>
+                                @if ($errors->has('login'))
+                                    <span class="help-block "><strong>{{ $errors->first('login') }}</strong></span>
                                 @endif
                             </div>
                             <div class="form-group last {{ $errors->has('password') ? ' has-error has-feedback' : '' }}">

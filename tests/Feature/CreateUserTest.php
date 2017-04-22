@@ -14,6 +14,7 @@ class CreateUserTest extends FeatureTestCase
         $role = factory(Role::class)->create(['id' => 1, 'name' => 'Administrador']);
         $fields = [
             'name'                  => 'Enrique Mejias',
+            'username'              => 'emejias',
             'email'                 => 'emejias@gmail.com',
             'password'              => 'secret',
             'password_confirmation' => 'secret',

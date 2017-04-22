@@ -10,6 +10,7 @@ class CreateUserController extends Controller
 {
     protected $rules = [
         'name'     => 'required',
+        'username' => 'required|unique:users,username',
         'email'    => 'email|required|unique:users,email',
         'password' => 'required|confirmed',
         'role_id'  => 'required|exists:roles,id'
