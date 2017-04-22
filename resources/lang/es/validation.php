@@ -85,6 +85,7 @@ return [
     'unique'               => ':attribute ya ha sido registrado.',
     'uploaded'             => 'Subir :attribute ha fallado.',
     'url'                  => 'El formato :attribute es inválido.',
+    'current_password'     => 'El campo :attribute es invalido ',
 
     /*
     |--------------------------------------------------------------------------
@@ -171,7 +172,9 @@ return [
         'to_due'                => 'vence hasta',
         'simbol'                => 'selector',
         'stock'                 => 'existencia',
-        'people_id'                => 'proveedor'
+        'people_id'             => 'proveedor',
+        'role_id'                => 'rol',
+        'current_password'      => 'Contraseña actual',
     ],
 
 ];

@@ -14,7 +14,8 @@ use EmejiasInventory\Entities\{
         OrderDetail,
         Stock,
         People,
-        Resolution
+        Resolution,
+        Role
     };
 use EmejiasInventory\Entities\Order;
 use Illuminate\Support\Str;
@@ -37,8 +38,12 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'name'           => $faker->name,
         'email'          => $faker->unique()->safeEmail,
-        'password'       => $password ?: $password = bcrypt('secret'),
+        'password'       => $password ?: $password = 'secret',
         'remember_token' => str_random(10),
+        'role_id'        => function ()
+        {
+            return factory(Role::class)->create()->id;
+        }
     ];
 });
 
@@ -187,7 +192,11 @@ $factory->define(Resolution::class, function (Faker\Generator $faker){
         }
     ];
 });
-
+$factory->define(Role::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
 
 
 

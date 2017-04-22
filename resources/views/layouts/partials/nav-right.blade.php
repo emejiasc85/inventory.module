@@ -11,6 +11,9 @@
                 <strong>Cuenta</strong>
             </li>
             <li>
+                <a href="{{ Auth::user()->editAuthPassword }}"><i class="fa fa-key"></i>Cambiar Contraseña</a>
+            </li>
+            <li>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
