@@ -15,11 +15,10 @@
                      <th>
                      </th>
                      <th>Producto</th>
-                     <th>Cant</th>
-                     <th>Precio Compra</th>
-                     <th>Precio Venta</th>
+                     <th>Cant Almacenada</th>
+                     <th>Cant Auditada</th>
                      <th>Vencimiento</th>
-                     <th class="text-right">Costo Total</th>
+                     <th class="text-right">Estado</th>
                  </tr>
             </thead>
             <tbody>
@@ -39,11 +38,16 @@
                         <td>{{ $detail->due_date }}</td>
                         <td class="text-right">Q. {{ $detail->total_purchase}}</td>
                     @else
-                        <td class="col-xs-1"><input type="text" name="lot[]" class="form-control input-sm" value="{{ $detail->lot }} "></td>
-                        <td class="col-xs-1"><input type="text" name="purchase_price[]" class="form-control input-sm" value="{{ $detail->purchase_price }}"></td>
-                        <td class="col-xs-1"><input type="text" name="sale_price[]" class="form-control input-sm" value="{{ $detail->sale_price }}"></td>
-                        <td class="col-xs-1"><input type="date" name="due_date[]" class="form-control input-sm" value="{{ $detail->due_date }}"></td>
-                        <td class="text-right"><strong>Q. {{ $detail->total_purchase }}</strong></td>
+                        <td class="col-xs-1"><input type="text" disabled="" name="current_stock[]" class="form-control input-sm" value="{{ $detail->current_stock }} "></td>
+                        <td class="col-xs-1"><input type="text" name="audited_stock[]" class="form-control input-sm" value="{{ $detail->audited_stock }}"></td>
+                        <td class="col-xs-1"><input type="date" disabled name="due_date[]" class="form-control input-sm" value="{{/*dd($detail->stock()->detail()->due_date)*/$detail->due_date }}"></td>
+                        <td class="text-right "><strong> 
+                            @if($detail->status=="ok")
+                                <i class="text-success fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                            @else($detail->status=="ok")
+                                <i class="text-danger fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                            @endif
+                        </strong></td>
                     @endif
                 </tr>
             @endforeach
