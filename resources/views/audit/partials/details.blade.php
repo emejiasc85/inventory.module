@@ -31,30 +31,30 @@
                         @endif
                     </td>
                     <td>{{ $detail->product->name}}</td>
-                     @if ($audit->status == 'Ingresado' || $audit->status == 'Cancelado')
-                        <td>{{ $detail->lot }}</td>
-                        <td>Q. {{ $detail->purchase_price }}</td>
-                        <td>Q. {{ $detail->sale_price }}</td>
+                     @if ($audit->status == 'Finalizado' || $audit->status == 'Cancelado')
+                        <td>{{ $detail->current_stock }}</td>
+                        <td>{{ $detail->audited_stock }}</td>
+                        <td>{{$detail->stock->detail->due_date }}</td>
                         <td>{{ $detail->due_date }}</td>
-                        <td class="text-right">Q. {{ $detail->total_purchase}}</td>
-                    @else
+                        @else
                         <td class="col-xs-1"><input type="text" disabled="" name="current_stock[]" class="form-control input-sm" value="{{ $detail->current_stock }} "></td>
                         <td class="col-xs-1"><input type="text" name="audited_stock[]" class="form-control input-sm" value="{{ $detail->audited_stock }}"></td>
-                        <td class="col-xs-1"><input type="date" disabled name="due_date[]" class="form-control input-sm" value="{{/*dd($detail->stock()->detail()->due_date)*/$detail->due_date }}"></td>
-                        <td class="text-right "><strong> 
-                            @if($detail->status=="ok")
-                                <i class="text-success fa fa-check-circle fa-2x" aria-hidden="true"></i>
-                            @else($detail->status=="ok")
-                                <i class="text-danger fa fa-times-circle fa-2x" aria-hidden="true"></i>
-                            @endif
-                        </strong></td>
+                        <td class="col-xs-1"><input type="date" disabled name="due_date[]" class="form-control input-sm" value="{{$detail->stock->detail->due_date }}"></td>
                     @endif
+                    <td class="text-right "><strong>
+                        @if($detail->status=="ok")
+                            <i class="text-success fa fa-check-circle fa-2x" aria-hidden="true"></i>
+                        @else($detail->status=="ok")
+                            <i class="text-danger fa fa-times-circle fa-2x" aria-hidden="true"></i>
+                        @endif
+                    </strong></td>
                 </tr>
             @endforeach
             </tbody>
      </table>
      <div class="row">
          <div class="col-lg-4 col-lg-offset-8 col-sm-5 col-sm-offset-4 recap">
+         {{--
             <table class="table table-clear">
                 <tbody>
                     <tr>
@@ -63,6 +63,7 @@
                     </tr>
                 </tbody>
             </table>
+        --}}
             @if ($audit->status == 'Creado' || $audit->status == 'Solicitado')
                 @if ($audit->details->count()>0)
                     <button type="submit" class="btn btn-default btn-block"><i class="fa fa-save"></i> Guardar</button>

@@ -175,6 +175,7 @@ return [
         'people_id'             => 'proveedor',
         'role_id'                => 'rol',
         'current_password'      => 'Contraseña actual',
+        'user_id'               => 'usuario'
     ],
 
 ];
