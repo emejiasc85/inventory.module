@@ -7,6 +7,7 @@ use EmejiasInventory\Entities\auditDetail;
 use EmejiasInventory\Entities\Product;
 use EmejiasInventory\Entities\Stock;
 use Styde\Html\Facades\Alert;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 
 class AuditDetailController extends Controller {
@@ -119,7 +120,28 @@ foreach ($stocks as $key => $value) {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, auditDetail $auditDetail) {
-        //
+/*         $rules = [
+        'id'             => 'required|exists:order_details,id',
+        'lot'            => 'required|numeric',
+        'purchase_price' => 'numeric|nullable',
+        'due_date'       => 'date|nullable'
+    ];*/
+         //$this->validate($request, $this->rules);
+        $input = Input::all();
+        $condition = $input['id'];
+        $allOrders=array(); // make an array, for storing all detail order in it
+        foreach ($condition as $key => $condition) {
+            $detail = auditDetail::findOrFail($input['id'][$key]);
+            $detail->audited_stock = $input['audited_stock'][$key];
+            if ($detail->audited_stock==$detail->current_stock) {
+                $detail->status = "ok";
+            }else{
+                $detail->status = "bad";
+            }
+            $detail->save();
+        }
+        Alert::success('Detalles de pedido editados correctamente');
+        return redirect()->back();
     }
 
     /**
@@ -128,7 +150,10 @@ foreach ($stocks as $key => $value) {
      * @param  \EmejiasInventory\Entities\auditDetail  $auditDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(auditDetail $auditDetail) {
-        //
+    public function destroy(Request $request, Audit $audit) {
+
+        auditDetail::destroy($request->get('id'));
+        Alert::success('Se ha eliminado el detalle');
+        return redirect()->back();
     }
 }

@@ -11,20 +11,20 @@
 		        <p>¿Esta seguro?</p>
 	    	</div>
 	      	<div class="modal-footer">
-	        	{!! Form::open(['method' => 'put', 'route' => ['orders.updateStatus', $audit]]) !!}
-					{!! Field::hidden('status', null, ['id' => 'value_status']) !!}
+	        	{!! Form::open(['method' => 'put', 'route' => ['audit.update', $audit]]) !!}
+					{!! Field::hidden('status', "null", ['id' => 'value_status']) !!}
 	        		<button type="button" id="delete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 	        		<button id="buttonStatus" type="submit" {!! Html::classes([
                             'btn',
                             'btn-primary' => $audit->status == 'Creado',
-                            'btn-success' => $audit->status == 'Solicitado',
-                            'btn-warning' => $audit->status == 'Ingresado',
+                            'btn-default' => $audit->status == 'Finalizado',
+                            'btn-warning' => $audit->status == 'Finalizado',
                         ]) !!}>
                         @if ($audit->status == 'Creado')
-                            Solicitar
-                        @elseif ($audit->status == 'Solicitado')
-                            Ingresar
-                        @elseif ($audit->status == 'Ingresado')
+                            Finalizar
+                        @elseif ($audit->status == 'Finalizado')
+                            Reabrir
+                        @elseif ($audit->status == 'Finalizado')
                             Revertir
                         @endif
                         <i class="fa fa-angle-double-right"></i>

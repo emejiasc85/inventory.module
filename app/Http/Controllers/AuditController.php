@@ -81,7 +81,8 @@ class AuditController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Audit $audit) {
-        $this->validate($request, ['user_id' => 'required']);
+        // dd($request->all());
+        // $this->validate($request, ['user_id' => 'required']);
         $audit->fill($request->all());
         $audit->save();
         Alert::success('Pedido editada correctamente');

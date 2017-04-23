@@ -232,7 +232,7 @@ Route::resource('audit', 'AuditController');
 Route::name('auditDetail.create')->get('audit/{audit}/agregar-detalle', 'AuditDetailController@create');
 Route::name('audits.details.store')->post('audit/{audit}/agregar-detalle', 'AuditDetailController@store');
 Route::name('auditDetail.update')->put('audit-{audit}/editar-detalle', 'AuditDetailController@update');
-Route::name('auditDetail.destroy')->put('audit-{audit}/destroy-detalle', 'AuditDetailController@destroy');
+Route::name('auditDetail.destroy')->delete('audit-{audit}/destroy-detalle', 'AuditDetailController@destroy');
 
 //people
 Route::name('people.index')->get('personas', 'PeopleController@index');
