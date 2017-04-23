@@ -22,13 +22,13 @@
                         <a href="#" id="auditStatus" data-status="{{ $audit->status }}" {!! Html::classes([
                             'btn btn-block',
                             'btn-primary' => $audit->status == 'Creado',
-                            'btn-success' => $audit->status == 'Finalizado',
+                            'btn-default' => $audit->status == 'Finalizado',
                             'btn-default' => $audit->status == 'Finalizado',
                         ]) !!}>
                             @if ($audit->status == 'Creado')
-                                Solicitar Auditoria
+                                Finalizar Auditoria
                             @elseif ($audit->status == 'Finalizado')
-                                Ingresar Auditoria
+                                Reabrir Auditoria
                             @elseif ($audit->status == 'Finalizado')
                                 Revertir Auditoria
                             @endif
@@ -71,7 +71,7 @@
                 input_value.val('Finalizado');
             }
             else if(status=='Finalizado'){
-                input_value.val('Finalizado');
+                input_value.val('Creado');
             }
             else if(status=='Finalizado'){
                 input_value.val('Revertir');
