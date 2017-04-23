@@ -267,5 +267,7 @@ Route::name('users.password.edit')->get('{user}-{slug}-editar-clave', 'EditUserC
 Route::name('users.password.update')->put('{user}-editar-clave', 'EditUserController@updatePassword');
 Route::name('auth.password.edit')->get('editar-contrasena/{user}-{slug}', 'EditUserController@editAuthPassword');
 Route::name('auth.password.update')->put('editar-contrasena/{user}', 'EditUserController@updateAuthPassword');
+//reports
+Route::name('reports.sellers')->get('reportes/vendedores', 'ReportsController@sellers');
 
 

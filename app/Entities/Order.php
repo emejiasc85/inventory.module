@@ -86,5 +86,20 @@ class Order extends Entity
         }
     }
 
+    public function scopeSales($query, $simbol, $field)
+    {
+        if(trim($simbol) != "" && trim($field) != "")
+        {
+            $query->where('totals', $simbol, $field);
+        }
+    }
+
+    public function scopeUserName($query, $value)
+    {
+        if (trim($value) != null) {
+            return $query->where('users.name', 'LIKE', "%$value%");
+        }
+    }
+
 
 }
