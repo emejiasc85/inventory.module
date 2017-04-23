@@ -149,7 +149,7 @@ return [
         'patent'                => 'patente',
         'other_phone'           => 'otro teléfono',
         'tax'                   => 'Impuestos',
-        'profit'                => 'Ganacia',
+        'profit'                => 'Ganancia',
         'barcode'               => 'Cod. Barras',
         'minimum_stock'         => 'stock Minimo',
         'product_presentation_id' => 'presentación',
@@ -175,7 +175,10 @@ return [
         'people_id'             => 'proveedor',
         'role_id'                => 'rol',
         'current_password'      => 'Contraseña actual',
-        'user_id'               => 'usuario'
+        'user_id'               => 'usuario',
+        'resolution'            => 'resolución',
+        'from'                  => 'desde',
+        'to'                    => 'hasta'
     ],
 
 ];
