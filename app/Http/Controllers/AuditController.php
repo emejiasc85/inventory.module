@@ -45,7 +45,7 @@ class AuditController extends Controller {
         $data = array_add($request->all(), 'user_id', auth()->user()->id);
         // dd($data);
         $new_audit = Audit::create($data);
-        Alert::success('Pedido Creado')->details('Agrega los detalles');
+        Alert::success('Auditoria Creada')->details('Agrega los detalles');
         return redirect()->route('audit.show', $new_audit);
     }
 
@@ -85,7 +85,7 @@ class AuditController extends Controller {
         // $this->validate($request, ['user_id' => 'required']);
         $audit->fill($request->all());
         $audit->save();
-        Alert::success('Pedido editada correctamente');
+        Alert::success('Auditoria editada correctamente');
         return redirect($audit->url);
     }
 

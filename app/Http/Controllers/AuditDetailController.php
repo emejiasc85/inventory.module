@@ -140,7 +140,7 @@ foreach ($stocks as $key => $value) {
             }
             $detail->save();
         }
-        Alert::success('Detalles de pedido editados correctamente');
+        Alert::success('Detalles de Auditoria editados correctamente');
         return redirect()->back();
     }
 
