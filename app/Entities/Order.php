@@ -13,7 +13,7 @@ class Order extends Entity
     	'priority'
     ];
 
-    //protected $date = ['created_at', 'updated_at'];
+    protected $date = ['created_at', 'updated_at'];
     public function bill()
     {
         return $this->hasOne(Bill::class);
@@ -75,7 +75,7 @@ class Order extends Entity
 
         if(trim($from) != "" && trim($to) != "")
         {
-            $query->whereBetween('created_at', [$from, $to]);
+            $query->whereBetween('orders.created_at', [$from, $to]);
             return $query;
         }
     }

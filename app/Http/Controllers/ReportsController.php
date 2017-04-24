@@ -16,11 +16,10 @@ class ReportsController extends Controller
             ->leftJoin('users', 'users.id', '=', 'orders.user_id')
             ->where('order_type_id', 2)
             ->date($request->from, $request->to)
-            //->whereRaw('sum(orders.total) > 51')
             //->sales($request->get('simbol'), $request->get('sales'))
             ->userName($request->name)
             ->groupBy('users.name')
-            ->orderBy('totals', 'DESC')
+            ->orderBy('totals', ($request->order == null ? 'DESC': $request->order))
             ->paginate();
         return view('reports.sellers', compact('sellers', 'users'));
     }
@@ -31,8 +30,10 @@ class ReportsController extends Controller
             ->leftJoin('products', 'products.id', '=', 'order_details.product_id')
             ->leftJoin('orders', 'orders.id', '=', 'order_details.order_id')
             ->whereRaw('orders.order_type_id =2')
+            ->productName($request->name)
             ->date($request->from, $request->to)
             ->groupBy('products.id', 'products.name')
+            ->orderBy('cant', ($request->order == null ? 'DESC': $request->order))
             ->paginate();
         return view('reports.products', compact('products'));
     }

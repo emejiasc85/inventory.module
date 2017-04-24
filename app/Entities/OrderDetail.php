@@ -38,7 +38,13 @@ class OrderDetail extends Model
     {
         if(trim($from) != "" && trim($to) != "")
         {
-            return $query->whereRaw('orders.created_at', [$from, $to]);
+            return $query->whereBetween('order_details.created_at', [$from, $to]);
+        }
+    }
+    public function scopeProductName($query, $value)
+    {
+        if (trim($value) != null) {
+            return $query->where('products.name', 'LIKE', "%$value%");
         }
     }
 

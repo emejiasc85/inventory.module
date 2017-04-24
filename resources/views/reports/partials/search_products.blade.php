@@ -21,9 +21,12 @@
                 <div class="col-sm-3">
                     {!! Field::date('to', null,  ['class' => 'form-control ']) !!}
                 </div>
+                <div class="col-sm-3">
+                    {!! Field::select('order', ['ASC' => 'ASC', 'DESC' => 'DESC'], 'DESC',  ['class' => 'form-control ']) !!}
+                </div>
                 {{--
                 <div class="col-sm-1">
-                    {!! Field::select('simbol', ['=' => '=', '<' => '<', '>' => '>'],null,  ['class' => 'form-control ']) !!}
+                    {!! Field::select('simbol', ['=' => '=', '<' => '<', '>' => '>'],'=',  ['class' => 'form-control ']) !!}
                 </div>
                 <div class="col-sm-3">
                     {!! Field::text('sales', null,  ['class' => 'form-control ']) !!}
