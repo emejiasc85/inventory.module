@@ -31,7 +31,7 @@
                         <a href="#" data-id="{{ $detail->id }}"  data-name="{{ $detail->product->name }}" class="btn btn-danger btn-xs OrderDetailDelete"><i class="fa fa-minus-circle"></i></a>
                         @endif
                     </td>
-                    <td>{{ $detail->product->name}}</td>
+                    <td><a href="{{ $detail->product->url }}">{{ $detail->product->name}}</a></td>
                      @if ($order->status == 'Ingresado' || $order->status == 'Cancelado')
                         <td>{{ $detail->lot }}</td>
                         <td>Q. {{ $detail->purchase_price }}</td>

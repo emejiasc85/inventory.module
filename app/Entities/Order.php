@@ -72,9 +72,11 @@ class Order extends Entity
 
     public function scopeDate($query, $from, $to)
     {
+
         if(trim($from) != "" && trim($to) != "")
         {
-            return $query->whereBetween('created_at', [$from, $to]);
+            $query->whereBetween('orders.created_at', [$from, $to]);
+            return $query;
         }
     }
 
@@ -83,6 +85,21 @@ class Order extends Entity
         if(trim($simbol) != "" && trim($field) != "")
         {
             $query->where('total', $simbol, $field);
+        }
+    }
+
+    public function scopeSales($query, $simbol, $field)
+    {
+        if(trim($simbol) != "" && trim($field) != "")
+        {
+            $query->where('totals', $simbol, $field);
+        }
+    }
+
+    public function scopeUserName($query, $value)
+    {
+        if (trim($value) != null) {
+            return $query->where('users.name', 'LIKE', "%$value%");
         }
     }
 

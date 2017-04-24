@@ -33,6 +33,7 @@
                    <tr>
                        <th>Nombre</th>
                        <th>Correo</th>
+                       <th>Usuario</th>
                        <th>Rol de Usuario</th>
                        <td colspan="2"></td>
                    </tr>
@@ -40,6 +41,7 @@
                        <tr>
                            <td>{{ $user->name }}</td>
                            <td>{{ $user->email }}</td>
+                           <td>{{ $user->username }}</td>
                            <td>{{ $user->role->name }}</td>
                            <td><a href="{{ $user->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>  Editar</a></td>
                            <td><a href="{{ $user->editPasswordUrl }}" class="btn btn-warning"> <i class="fa fa-key"></i>  Contraseña</a></td>

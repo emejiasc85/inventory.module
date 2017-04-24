@@ -14,7 +14,7 @@ class CreateBillDetailsController extends Controller
         $rules  =[
             'product_id' => 'required|exists:products,id|unique:order_details,product_id,NULL,id,order_id,'.$order->id,
             'lot'        => 'required|numeric',
-            'sale_price' => 'required'
+            'sale_price' => 'required|numeric'
         ];
 
         $this->validate($request, $rules);

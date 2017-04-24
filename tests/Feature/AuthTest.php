@@ -21,7 +21,7 @@ class AuthTest extends FeatureTestCase
 
         //when
         $this->visit('/login')
-        	->type($user->email, 'email')
+        	->type($user->email, 'login')
         	->type('secret', 'password')
         	->press('Ingresar');
 

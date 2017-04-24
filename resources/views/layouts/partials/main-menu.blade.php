@@ -19,6 +19,16 @@
                 <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li>
                 <li><a href="{{ route('people.index') }}"><i class="fa fa-users"></i><span class="text"> Clientes</span></a></li>
                 <li>
+                    <a href="#"><i class="fa fa-filter"></i><span class="text"> Reportes</span> <span class="indicator"></span></a>
+                    <ul>
+                        <li><a href="{{ route('reports.sellers') }}"><i class="fa fa-users"></i><span class="text">Top Vendedores</span></a></li>
+                        <li><a href="{{ route('reports.products') }}"><i class="fa fa-cubes"></i><span class="text">Top Productos</span></a></li>
+                        {{--
+                            <li><a href="{{ route('reports.customers') }}"><i class="fa fa-users"></i><span class="text">Top Clientes</span></a></li>
+                         --}}
+                    </ul>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-gears"></i><span class="text"> Configuraciones</span> <span class="indicator"></span></a>
                     <ul>
                         <li><a href="{{ route('commerces.index') }}"><i class="fa fa-home"></i><span class="text"> Comercios</span></a></li>

@@ -13,10 +13,10 @@
         @foreach ($stocks as $stock)
             <tr>
                 <td>{{ $stock->detail->product->id }}</td>
-                <td>{{ $stock->detail->product->name }}</td>
+                <td><a href="{{ $stock->detail->product->url }}">{{ $stock->detail->product->name }}</a></td>
                 <td>{{ $stock->detail->sale_price}}</td>
                 <td>{{ $stock->stock}} </td>
-                <td>{{ ($stock->detail->due_date ? $stock->detail->due_date->format('d/m/Y'):'N/A')}}</td>
+                <td>{{ ($stock->detail->due_date ? $stock->detail->due_date:'N/A')}}</td>
                 <td><a href="{{  $stock->detail->order->url }}">#{{ $stock->detail->order->id }}</a> </td>
             </tr>
         @endforeach

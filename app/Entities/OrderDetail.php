@@ -16,7 +16,7 @@ class OrderDetail extends Model
     	'total_purchase',
     ];
 
-    protected $dates = ['created_at', 'updated_at', 'due_date'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function product()
     {
@@ -32,6 +32,20 @@ class OrderDetail extends Model
     {
         $this->attributes['purchase_price'] = $value;
         $this->attributes['total_purchase'] = $this->attributes['lot'] * $this->attributes['purchase_price'];
+    }
+
+    public function scopeDate($query, $from, $to)
+    {
+        if(trim($from) != "" && trim($to) != "")
+        {
+            return $query->whereBetween('order_details.created_at', [$from, $to]);
+        }
+    }
+    public function scopeProductName($query, $value)
+    {
+        if (trim($value) != null) {
+            return $query->where('products.name', 'LIKE', "%$value%");
+        }
     }
 
 }

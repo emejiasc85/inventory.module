@@ -16,5 +16,13 @@ class RoleTableSeeder extends Seeder
             'id' => 1,
             'name' => 'Administrador'
         ]);
+        Role::create([
+            'id' => 2,
+            'name' => 'Gerencia'
+        ]);
+        Role::create([
+            'id' => 3,
+            'name' => 'operador'
+        ]);
     }
 }
