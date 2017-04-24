@@ -35,6 +35,19 @@ class AuditDetailController extends Controller {
         if (empty($data)) {
             $products = [];
         } else {
+            $products= Stock::select(['products.*'])->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+            ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
+            ->where('warehouse_id', 1)
+            ->order($request->get('order_id'))
+            ->product($request->get('name'))
+            ->productId($request->get('id'))
+            ->dueDate($request->get('from_due'), $request->get('to_due'))
+            ->stock($request->get('simbol'), $request->get('stock'))
+            ->where('status', true)
+            //->groupBy('id', 'DESC')
+           
+            ->paginate();
+            // dd($products);
             $products = Product::name($request->get('name'))
                 ->id($request->get('id'))
                 ->make($request->get('make_id'))
@@ -76,7 +89,12 @@ class AuditDetailController extends Controller {
 //Stock::where('id',);
 $data=[];
         // dd($data, $stocks);
-
+if(count($audit->details->where('product_id', $request->input('product_id')))>0 )
+{
+       Alert::danger('Alerta')->details('El Producto ya existe en la Auditoria');
+        return redirect($audit->url);
+}
+// dd("no entro");
 foreach ($stocks as $key => $value) {
 // dd($value->stock);
     $data=[];

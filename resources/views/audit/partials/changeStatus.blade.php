@@ -11,10 +11,10 @@
 		        <p>¿Esta seguro?</p>
 	    	</div>
 	      	<div class="modal-footer">
-	        	{!! Form::open(['method' => 'put', 'route' => ['audit.update', $audit]]) !!}
+	        	{!! Form::open(['method' => 'put', 'route' => ['audit.update', $audit], 'id' =>'modalAuditForm']) !!}
 					{!! Field::hidden('status', "null", ['id' => 'value_status']) !!}
-	        		<button type="button" id="delete" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	        		<button id="buttonStatus" type="submit" {!! Html::classes([
+	        		<button type="button" id="delete" class="btn btn-default delete" data-dismiss="modal">Cancelar</button>
+	        		<button id="buttonStatus" type="submit" onclick="clikModal()" {!! Html::classes([
                             'btn',
                             'btn-primary' => $audit->status == 'Creado',
                             'btn-default' => $audit->status == 'Finalizado',
@@ -34,4 +34,15 @@
 	      	</div>
     	</div>
   	</div>
+    <script>
+function clikModal() {
+    $('.delete').fadeOut(1);
+    $('#buttonStatus').attr('disabled', 'disabled');
+    $('#buttonStatus').text('Espere...')
+    $('#modalAuditForm').submit();
+};                   
+
+
+
+</script>
 </div>
