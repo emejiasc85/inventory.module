@@ -34,4 +34,12 @@ class OrderDetail extends Model
         $this->attributes['total_purchase'] = $this->attributes['lot'] * $this->attributes['purchase_price'];
     }
 
+    public function scopeDate($query, $from, $to)
+    {
+        if(trim($from) != "" && trim($to) != "")
+        {
+            return $query->whereRaw('orders.created_at', [$from, $to]);
+        }
+    }
+
 }

@@ -179,7 +179,8 @@ return [
         'resolution'              => 'resolución',
         'from'                    => 'desde',
         'to'                      => 'hasta',
-        'sales'                   => 'ventas'
+        'sales'                   => 'ventas',
+        'bill_number'             => 'Número de Factura',
     ],
 
 ];

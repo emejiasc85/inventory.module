@@ -22,8 +22,8 @@
                     <a href="#"><i class="fa fa-filter"></i><span class="text"> Reportes</span> <span class="indicator"></span></a>
                     <ul>
                         <li><a href="{{ route('reports.sellers') }}"><i class="fa fa-users"></i><span class="text">Top Vendedores</span></a></li>
+                        <li><a href="{{ route('reports.products') }}"><i class="fa fa-cubes"></i><span class="text">Top Productos</span></a></li>
                         {{--
-                            <li><a href="{{ route('reports.products') }}"><i class="fa fa-users"></i><span class="text">Top Productos</span></a></li>
                             <li><a href="{{ route('reports.customers') }}"><i class="fa fa-users"></i><span class="text">Top Clientes</span></a></li>
                          --}}
                     </ul>

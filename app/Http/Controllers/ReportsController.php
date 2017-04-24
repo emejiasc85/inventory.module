@@ -3,6 +3,7 @@
 namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\Order;
+use EmejiasInventory\Entities\OrderDetail;
 use EmejiasInventory\Entities\User;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,18 @@ class ReportsController extends Controller
             ->groupBy('users.name')
             ->orderBy('totals', 'DESC')
             ->paginate();
-
         return view('reports.sellers', compact('sellers', 'users'));
+    }
+
+    public function products(Request $request)
+    {
+        $products = OrderDetail::selectRaw('products.id, products.name, sum(order_details.lot) as cant')
+            ->leftJoin('products', 'products.id', '=', 'order_details.product_id')
+            ->leftJoin('orders', 'orders.id', '=', 'order_details.order_id')
+            ->whereRaw('orders.order_type_id =2')
+            ->date($request->from, $request->to)
+            ->groupBy('products.id', 'products.name')
+            ->paginate();
+        return view('reports.products', compact('products'));
     }
 }

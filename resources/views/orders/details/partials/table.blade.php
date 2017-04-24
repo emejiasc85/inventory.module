@@ -14,7 +14,7 @@
 
         @foreach ($products as $product)
              <tr>
-                 <td>{{ $product->name }}</td>
+                 <td><a href="{{ $product->url }}">{{ $product->name }}</a></td>
                  <td>{{ $product->description }}</td>
                  <td>{{ $product->group->name }}</td>
                  <td>{{ $product->presentation->name }}</td>
