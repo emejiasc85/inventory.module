@@ -16,8 +16,8 @@
                 </div>
 				<div class="panel-body">
                 @include('orders.partials.head')
-                    @if ($order->status == 'Cancelado')
-                    <h2 class="text-muted">Pedido Cancelada</h2>
+                    @if ($order->status == 'Ingresado' && !auth()->user()->isAdmin())
+                    <h2 class="text-muted">Pedido Ingresado</h2>
                     @else
                         @if ($order->details->count()>0)
                         <a href="#" id="OrderStatus" data-status="{{ $order->status }}" {!! Html::classes([
