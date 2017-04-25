@@ -7,6 +7,7 @@
 
 @section('content')
 	<div class="row">
+        @include('partials.errors')
 		<div class="col-xs-12 col-sm-3">
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">

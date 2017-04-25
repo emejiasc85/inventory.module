@@ -55,20 +55,20 @@ $('#AddProductButton').on('click', function (e) {
     }
 });
 
-/*
+
 $('.OrderDetailDelete').click( function (e) {
-e.preventDefault();
-var link        = $(this)
-var value       = link.data('id');
-var name        = link.data('name');
-var input_value = $('#value_id');
-var ProductName = $('#ProductName');
-input_value.val(value);
-ProductName.text(name);
-$('#confirmDelete').modal('toggle');
+    e.preventDefault();
+    var link        = $(this)
+    var value       = link.data('id');
+    var name        = link.data('name');
+    var input_value = $('#value_id');
+    var ProductName = $('#ProductName');
+    input_value.val(value);
+    ProductName.text(name);
+    $('#confirmDelete').modal('toggle');
 });
 
-*/
+
 
 $('#DestroyBill').click( function (e) {
     e.preventDefault();

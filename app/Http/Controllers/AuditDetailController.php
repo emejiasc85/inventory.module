@@ -3,12 +3,13 @@
 namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\Audit;
-use EmejiasInventory\Entities\auditDetail;
 use EmejiasInventory\Entities\Product;
 use EmejiasInventory\Entities\Stock;
-use Styde\Html\Facades\Alert;
-use Illuminate\Support\Facades\Input;
+use EmejiasInventory\Entities\auditDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
+use Styde\Html\Facades\Alert;
 
 class AuditDetailController extends Controller {
     /**
@@ -45,7 +46,7 @@ class AuditDetailController extends Controller {
             ->stock($request->get('simbol'), $request->get('stock'))
             ->where('status', true)
             //->groupBy('id', 'DESC')
-           
+
             ->paginate();
             // dd($products);
             $products = Product::name($request->get('name'))
@@ -84,7 +85,7 @@ class AuditDetailController extends Controller {
             ->where('status', true)
             ->where('product_id', $request->input('product_id'))
             //->OrderBy('id', 'DESC')
-           
+
             ->paginate();
 //Stock::where('id',);
 $data=[];
@@ -105,7 +106,7 @@ foreach ($stocks as $key => $value) {
     $data = array_add($data, 'audited_stock', 0);
         $new_detail = auditDetail::create($data);
 }
- 
+
         Alert::success('Producto Agregado correctamente');
         return redirect($audit->url);
     }
@@ -138,18 +139,25 @@ foreach ($stocks as $key => $value) {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, auditDetail $auditDetail) {
-/*         $rules = [
-        'id'             => 'required|exists:order_details,id',
-        'lot'            => 'required|numeric',
-        'purchase_price' => 'numeric|nullable',
-        'due_date'       => 'date|nullable'
-    ];*/
-         //$this->validate($request, $this->rules);
+        $rules = [
+            'id'            => 'required|exists:order_details,id',
+            'audited_stock' => 'required|numeric|integer|min:0',
+        ];
         $input = Input::all();
         $condition = $input['id'];
         $allOrders=array(); // make an array, for storing all detail order in it
         foreach ($condition as $key => $condition) {
+            $validation=[
+                'id'            =>$input['id'][$key],
+                'audited_stock' =>$input['audited_stock'][$key],
+            ];
             $detail = auditDetail::findOrFail($input['id'][$key]);
+            $validator = Validator::make($validation, $rules);
+            if ($validator->fails())
+            {
+                $validator->errors()->add('', 'Se Encuentra en el producto '.$detail->product->name);
+                return redirect()->back()->withErrors($validator);
+            }
             $detail->audited_stock = $input['audited_stock'][$key];
             if ($detail->audited_stock==$detail->current_stock) {
                 $detail->status = "ok";
