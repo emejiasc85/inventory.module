@@ -17,7 +17,7 @@ class PeopleTableSeeder extends Seeder
             'nit' => 'CF',
             'name' => 'Consumidor Final',
             'address' => 'Ciudad',
-            'type' => 'customer'
+            'type' => 'provider'
         ]);
         People::create([
             'id'    => 2,
