@@ -12,7 +12,7 @@
                 <div class="panel-heading">
                     <strong>Productos</strong>
                     <small>Listado</small>
-                    <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm pull-right" style="margin-top: 5px"><span class="fa fa-plus"></span> Nuevo</a>
+                    <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm pull-right" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar producto</a>
                 </div>
                 <div class="panel-body">
                       <div class="col-xs-12">

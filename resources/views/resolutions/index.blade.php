@@ -12,7 +12,7 @@
                 <i-fa class="fa-grid"></i-fa>
                 <strong>Resoluciones</strong>
                 <small>Listado</small>
-                <a href="{{ route('resolutions.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
+                <a href="{{ route('resolutions.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar resolición</a>
             </div>
             <div class="panel-body">
                 <div class="table-resposive">

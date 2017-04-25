@@ -13,7 +13,7 @@
             <i class="fa fa-tag"></i>
             <strong>Presentaciones de Productos</strong>
             <small>Listado</small>
-            <a href="{{ route('product.presentations.create') }}" style="margin-top: 5px" class="btn btn-primary pull-right btn-sm"><span class="fa fa-plus"></span></a>
+            <a href="{{ route('product.presentations.create') }}" style="margin-top: 5px" class="btn btn-primary pull-right btn-sm"><span class="fa fa-plus"></span> Agregar presentaciones</a>
         </div>
         <div class="panel-body">
           {{ Form::open(['product.presentations.index', 'method' => 'get']) }}

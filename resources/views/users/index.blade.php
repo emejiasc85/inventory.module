@@ -13,7 +13,7 @@
             <i-fa class="fa-grid"></i-fa>
             <strong>Usuarios</strong>
             <small>Listado</small>
-            <a href="{{ route('users.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
+            <a href="{{ route('users.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar usuario</a>
         </div>
         <div class="panel-body">
             {{ Form::open(['users.index', 'method' => 'get']) }}

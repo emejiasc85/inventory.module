@@ -12,7 +12,7 @@
                 <i-fa class="fa-grid"></i-fa>
                 <strong>Personas</strong>
                 <small>Listado</small>
-                <a href="{{ route('people.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
+                <a href="{{ route('people.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar Persona</a>
             </div>
             <div class="panel-body">
                 {{ Form::open(['people.index', 'method' => 'get']) }}
