@@ -1,6 +1,6 @@
  <div class="panel panel-default">
     <div class="panel-heading">
-        @if ($order->status != 'Ingresado')
+        @if ($order->status != 'Ingresado' || auth()->user()->isAdmin())
             <a href="#"  class="btn btn-danger btn-xs pull-right" id="DestroyBill" style="margin-top: 10px">Cancelar</a>
         @endif
     </div>
