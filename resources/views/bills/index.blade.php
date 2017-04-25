@@ -122,7 +122,7 @@
                 title: {
                     display: true,
                     text: 'Ventas diarias',
-                    position: 'top',
+                    position: 'bottom',
                 },
                 scales: {
                     xAxes: [{
