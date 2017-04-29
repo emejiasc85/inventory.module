@@ -1,4 +1,4 @@
-<div id="field_{{ $id }}"{!! Html::classes(['form-group row', 'has-danger' => $hasErrors]) !!}>
+<div id="field_{{ $id }}"{!! Html::classes(['form-group row', 'has-error has-feedback' => $hasErrors]) !!}>
     <label for="{{ $id }}" class="col-md-3 form-control-label" for="hf-email">
     	{{ $label }}
     </label>
