@@ -103,5 +103,24 @@ class Order extends Entity
         }
     }
 
+    public function canRevert()
+    {
+        if($this->status == 'Ingresado'){
+            foreach ($this->details as $detail) {
+                $stock = Stock::where('order_detail_id', $detail->id)->first();
+                $history = StockHistory::where('stock_id', $stock->id)->get();
+                if(sizeof($history) != 0){
+                    return false;
+                }
+            }
+        }
+
+        foreach ($this->details as $detail) {
+           Stock::where('order_detail_id', $detail->id)->delete();
+        }
+
+        return true;
+    }
+
 
 }

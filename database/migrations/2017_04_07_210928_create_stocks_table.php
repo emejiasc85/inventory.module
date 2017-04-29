@@ -18,7 +18,7 @@ class CreateStocksTable extends Migration
             $table->unsignedInteger('warehouse_id');
             $table->foreign('warehouse_id')->references('id')->on('warehouses');
             $table->unsignedInteger('order_detail_id');
-            $table->foreign('order_detail_id')->references('id')->on('order_details');
+            $table->foreign('order_detail_id')->references('id')->on('order_details')->onDelete('cascade');
             $table->float('stock');
             $table->boolean('status')->default(true);
             $table->timestamps();

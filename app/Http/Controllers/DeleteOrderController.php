@@ -15,19 +15,17 @@ class DeleteOrderController extends Controller
     {
         DB::beginTransaction();
         $order = Order::findOrFail($request->order_id);
-        if($order->status == 'Ingresado'){
-            foreach ($order->details as $detail) {
-                $stock = Stock::where('order_detail_id', $detail->id)->first();
-                $history = StockHistory::where('stock_id', $stock->id)->get();
-                if(sizeof($history) != 0){
-                    DB::rollback();
-                    Alert::danger('¡Lo sentimos!')->details('El pedido que intentas eliminar cuenta con productos facturados');
-                    return redirect()->back();
-                }
-            }
+        if(!$order->canRevert()){
+            DB::rollback();
+            Alert::danger('¡Lo sentimos!')->details('El pedido que intentas eliminar cuenta con productos facturados');
+            return redirect()->back();
         }
-        $destroy = Order::destroy($request->order_id);
-        if(!$destroy){
+
+        foreach ($order->details as $detail) {
+           Stock::where('order_detail_id', $detail->id)->delete();
+        }
+        $order->delete();
+        if(!$order){
             DB::rollback();
             Alert::danger('Upps!! a ocurrido un error...')->details('Intente nuevamente, si persiste el problema comuniquese con soporte al 54606633');
             return redirect()->back();
