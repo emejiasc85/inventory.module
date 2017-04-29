@@ -16,7 +16,7 @@ class EditProductGroupController extends Controller
 
     public function update(Request $request, ProductGroup $group)
     {
-    	$this->validate($request, ['name' => 'required']);
+    	$this->validate($request, ['name' => 'required|unique:product_groups,name,'.$group->id]);
 
     	$group->fill($request->all());
     	$group->save();

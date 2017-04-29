@@ -32,6 +32,7 @@
             <table class="table table-striped">
               <thead>
                 <tr>
+                  <th>ID</th>
                   <th>Comercio</th>
                   <th>Bodega</th>
                   <th>Descripción</th>
@@ -41,6 +42,7 @@
               <tbody>
                 @foreach ($warehouses as $warehouse)
                   <tr>
+                    <td>{{ $warehouse->id }}</td>
                     <td>{{ $warehouse->commerce->name }}</td>
                     <td>{{ $warehouse->name }}</td>
                     <td>{{ $warehouse->description }}</td>

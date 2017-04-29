@@ -15,7 +15,7 @@ class EditUnitMeasuresController extends Controller
 
     public function update(Request $request,  UnitMeasure $unit)
     {
-    	$this->validate($request, ['name' => 'required']);
+    	$this->validate($request, ['name' => 'required|unique:unit_measures,name,'.$unit->id]);
 
     	$unit->fill($request->all());
 

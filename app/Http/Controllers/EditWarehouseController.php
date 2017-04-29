@@ -15,7 +15,7 @@ class EditWarehouseController extends Controller
 
     public function update(Request $request, Warehouse $warehouse)
     {
-    	$this->validate($request, ['name' => 'required']);
+    	$this->validate($request, ['name' => 'required|unique:warehouses,name,'.$warehouse->id]);
 
     	$warehouse->fill($request->all());
     	$warehouse->save();

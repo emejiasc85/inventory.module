@@ -16,8 +16,7 @@ class CreateProductPresentationsController extends Controller
 
     public function store(Request $request)
     {
-    	$this->validate($request, ['name' => 'required']);
-
+    	$this->validate($request, ['name' => 'required|unique:product_presentations,name']);
     	$new = ProductPresentation::create($request->all());
     	Alert::success('Presentación agregada correctamente');
     	return redirect()->route('product.presentations.index');

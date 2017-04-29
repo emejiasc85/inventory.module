@@ -17,7 +17,7 @@ class EditProductPresentationsController extends Controller
     public function update(Request $request, ProductPresentation $presentation)
     {
 
-    	$this->validate($request, ['name' => 'required']);
+    	$this->validate($request, ['name' => 'required|unique:product_presentations,name,'.$presentation->id]);
 
     	$presentation->fill($request->all());
     	$presentation->save();
