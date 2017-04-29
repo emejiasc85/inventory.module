@@ -11,7 +11,7 @@ use Styde\Html\Facades\Alert;
 
 class DeleteBillController extends Controller
 {
-     public function destroy(Request $request, Order $order)
+    public function destroy(Request $request, Order $order)
     {
         DB::beginTransaction();
         $history = StockHistory::where('order_id', $order->id)->get();
