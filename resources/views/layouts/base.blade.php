@@ -21,6 +21,13 @@
         {!! Html::style('css/add-ons.min.css') !!}
         @yield('styles')
     </head>
+    <style>
+        .btn-print{
+            position: fixed;
+            bottom  : 160px;
+            right   : 291px;
+        }
+    </style>
 
     <!-- BODY options, add following classes to body to change options
 
