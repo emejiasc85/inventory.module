@@ -21,9 +21,6 @@ class DeleteOrderController extends Controller
             return redirect()->back();
         }
 
-        foreach ($order->details as $detail) {
-           Stock::where('order_detail_id', $detail->id)->delete();
-        }
         $order->delete();
         if(!$order){
             DB::rollback();

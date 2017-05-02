@@ -85,9 +85,6 @@ class EditOrderController extends Controller
         $order->status = 'Solicitado';
         $order->save();
 
-        foreach ($order->details as $detail) {
-           Stock::where('order_detail_id', $detail->id)->delete();
-        }
         Alert::warning('Pedido Revertido');
         return redirect()->back();
 

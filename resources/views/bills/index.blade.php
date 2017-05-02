@@ -20,8 +20,8 @@
         </div><!--/.smallstat-->
     </div><!--/.col-->
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
-        <div class="smallstat">
-            <canvas id="myChart" height="100"></canvas>
+        <div class="smallstat" style="padding: 0">
+            <canvas id="myChart" height="88"></canvas>
         </div><!--/.smallstat-->
     </div><!--/.col-->
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
@@ -116,13 +116,16 @@
             ]
             },
             options: {
+                responsive:true,
+                height:88,
+
                 legend: {
                     display: false
                 },
                 title: {
                     display: true,
                     text: 'Ventas diarias',
-                    position: 'bottom',
+                    position: 'top',
                 },
                 scales: {
                     xAxes: [{
