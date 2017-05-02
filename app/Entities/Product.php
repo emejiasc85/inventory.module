@@ -21,7 +21,7 @@ class Product extends Entity
     ];
     public function setNameAttribute($value)
     {
-    	$this->attributes['name'] = $value;
+        $this->attributes['name'] = title_case($value);
         $this->attributes['slug'] = Str::slug($value);
         $this->attributes['full_name'] = $value;
     }
