@@ -2,7 +2,7 @@
 
 return [
 	'order_status' => [
-		'Creada' => 'Creado',
+		'Creado' => 'Creado',
 		'Solicitado' => 'Solicitado',
 		//'Confirmado' => 'Confirmado',
 		'Ingresado' => 'Ingresado',
