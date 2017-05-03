@@ -2,7 +2,7 @@
     <div style="position: fixed;
     z-index: 7;
     top: 51px;
-    right: 2%;" class="alert alert-block alert-{{ $msg['type'] }}">
+    right: 36%;" class="alert alert-block alert-{{ $msg['type'] }} fade in">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p>
             <strong>{{ $msg['message'] }}</strong>

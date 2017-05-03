@@ -2826,11 +2826,11 @@ div[data-role="editor-toolbar"] {
 .alert {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  border-radius: 2px;
-  border-color: transparent !important;
+
 }
 .alert-success {
-  background: #cfedda;
+  //background: #cfedda;
+  background: rgba(207, 237, 218, 0.7);
   border-color: #4dbd74;
   color: #2c7847;
 }
@@ -2838,7 +2838,8 @@ div[data-role="editor-toolbar"] {
   border-top-color: #72cb91;
 }
 .alert-info {
-  background: #ccebf4;
+  //background: #ccebf4;
+  background: rgba(204, 235, 244, 0.7)
   border-color: #63c2de;
   color: #196176;
 }
@@ -2846,7 +2847,8 @@ div[data-role="editor-toolbar"] {
   border-top-color: #8dd2e7;
 }
 .alert-warning {
-  background: #ffeb92;
+  //background: #ffeb92;
+  background: rgba(255, 235, 146, 0.7);
   border-color: #f8cb00;
   color: #796300;
 }
@@ -2854,7 +2856,8 @@ div[data-role="editor-toolbar"] {
   border-top-color: #ffe25f;
 }
 .alert-danger {
-  background: #fee5e5;
+  //background: #fee5e5;
+  background: rgba(254, 229, 229, 0.7);
   border-color: #f86c6b;
   color: #c10a09;
 }
@@ -4248,5 +4251,5 @@ body.login {
   }
 }
 @media (min-width: 1200px) {
-  
+
 }

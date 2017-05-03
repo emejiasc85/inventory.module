@@ -3,13 +3,11 @@
 <div class="sidebar">
 
     <div class="sidebar-collapse">
-        <!--
-        <div class="sidebar-header">
+        <div class="sidebar-header" style="display: none" >
             <img src="">
             <h2>John Doe</h2>
             <h3>john@doe.com <a href="page-blank.html#"><i class="fa fa-chevron-down"></i></a></h3>
         </div>
-        -->
         <div class="sidebar-menu">
             <ul class="nav nav-sidebar">
                 <li><a href="{{ route('bills.create') }}"><i class="fa fa-shopping-cart"></i><span class="text"> Facturar</span></a></li>
@@ -56,7 +54,7 @@
         </div>
     </div>
 
-    <div class="sidebar-footer">
+    <div class="sidebar-footer" style="display: none">
     	<!--
         <ul class="sidebar-actions">
             <li class="action">
