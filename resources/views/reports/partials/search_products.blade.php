@@ -1,5 +1,5 @@
 <div class="col-xs-12">
-{{ Form::open(['route' => ['reports.products'], 'method' => 'get']) }}
+{{ Form::model(Request::all(),['route' => ['reports.products'], 'method' => 'get']) }}
     <div class="controls">
         <div class="input-group">
             <input id="name" name="name" size="16" class="form-control" type="text">

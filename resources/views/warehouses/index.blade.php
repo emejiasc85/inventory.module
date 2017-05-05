@@ -16,7 +16,7 @@
                 <a href="{{ route('warehouses.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
             </div>
             <div class="panel-body">
-                {{ Form::open(['warehouses.index', 'method' => 'get']) }}
+                {{ Form::model(Request::all(),['warehouses.index', 'method' => 'get']) }}
                 <div class="form-group">
                     <div class="">
                         <div class="input-group">

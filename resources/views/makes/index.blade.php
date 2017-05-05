@@ -16,7 +16,7 @@
                 <a href="{{ route('makes.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar marca</a>
             </div>
             <div class="panel-body">
-                {{ Form::open(['makes.index', 'method' => 'get']) }}
+                {{ Form::model(Request::all(),['makes.index', 'method' => 'get']) }}
                 <div class="form-group">
                     <div class="">
                         <div class="input-group">

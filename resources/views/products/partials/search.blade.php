@@ -1,4 +1,4 @@
-{{ Form::open(['products.index', 'method' => 'get']) }}
+{{ Form::model(Request::all(),['products.index', 'method' => 'get']) }}
 <div class="col-xs-10 col-md-11">
   <div class="controls">
       <div class="input-group">

@@ -15,7 +15,7 @@
                 <a href="{{ route('people.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar Persona</a>
             </div>
             <div class="panel-body">
-                {{ Form::open(['people.index', 'method' => 'get']) }}
+                {{ Form::model(Request::all(),['people.index', 'method' => 'get']) }}
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">

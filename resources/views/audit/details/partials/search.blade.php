@@ -1,4 +1,4 @@
-{{ Form::open(['route' => ['auditDetail.create', $audit], 'method' => 'get']) }}
+{{ Form::model(Request::all(), ['route' => ['auditDetail.create', $audit], 'method' => 'get']) }}
   <div class="col-xs-12">
   <div class="controls">
       <div class="input-group">

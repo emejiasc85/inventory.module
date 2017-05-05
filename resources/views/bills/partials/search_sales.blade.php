@@ -13,7 +13,7 @@
                 </span>
             </div>
         </div>
-        <div class="collapse in" id="collapseExample">
+        <div class="collapse" id="collapseExample">
             <div class="well">
                 <div class="row ">
                     <div class="col-sm-2">

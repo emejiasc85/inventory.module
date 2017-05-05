@@ -16,7 +16,7 @@
                 <a href="{{ route('product.groups.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar grupo de productos</a>
             </div>
             <div class="panel-body">
-                {{ Form::open(['product.groups.index', 'method' => 'get']) }}
+                {{ Form::model(Request::all(),['product.groups.index', 'method' => 'get']) }}
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">

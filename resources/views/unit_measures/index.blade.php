@@ -16,7 +16,7 @@
                 <a href="{{ route('unit.measures.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span></a>
             </div>
             <div class="panel-body">
-                {{ Form::open(['unit.measures.index', 'method' => 'get']) }}
+                {{ Form::model(Request::all(),['unit.measures.index', 'method' => 'get']) }}
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">

@@ -16,7 +16,7 @@
                 <a href="{{ route('product.presentations.create') }}" style="margin-top: 5px" class="btn btn-primary pull-right btn-sm"><span class="fa fa-plus"></span> Agregar presentaciones</a>
             </div>
             <div class="panel-body">
-                {{ Form::open(['product.presentations.index', 'method' => 'get']) }}
+                {{ Form::model(Request::all(),['product.presentations.index', 'method' => 'get']) }}
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">
