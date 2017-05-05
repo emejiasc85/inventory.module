@@ -4,9 +4,6 @@
 
     <div class="sidebar-collapse">
         <div class="sidebar-header" style="display: none" >
-            <img src="">
-            <h2>John Doe</h2>
-            <h3>john@doe.com <a href="page-blank.html#"><i class="fa fa-chevron-down"></i></a></h3>
         </div>
         <div class="sidebar-menu">
             <ul class="nav nav-sidebar">

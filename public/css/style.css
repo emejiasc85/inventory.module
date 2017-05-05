@@ -553,7 +553,7 @@ blockquote.pull-right {
 }
 .sidebar .sidebar-header {
   padding: 20px;
-  height: 100px;
+  height: 1px;
   position: relative;
   background: #1f2028;
 }
@@ -685,7 +685,7 @@ blockquote.pull-right {
   width: 250px;
   padding: 10px 20px 10px 20px;
   background: #2a2c36;
-  height: 89px;
+  height: 1px;
   border-top: 1px solid transparent;
   overflow: visible;
 }
