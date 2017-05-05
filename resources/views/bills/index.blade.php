@@ -41,6 +41,7 @@
                 <small>Listado</small>
             </div>
             <div class="panel-body">
+                @include('bills.partials.search_sales')
                 <div class="table-resposive">
                     <table class="table col-sm-12">
                         <tr>

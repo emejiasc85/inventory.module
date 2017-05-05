@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class BillController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $diary_sales = Order::select(DB::raw('DATE(created_at) as date, sum(total) as total'))
             ->where('order_type_id', 2)
@@ -20,7 +20,14 @@ class BillController extends Controller
             ->get();
         $sales_day = Order::where('order_type_id', 2)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
         $sales_month = Order::where('order_type_id', 2)->whereMonth('created_at', '=', Carbon::today()->format('m'))->get();
-        $bills = Order::where('order_type_id', 2)->orderBy('created_at', 'DESC')->paginate();
+
+        $bills = Order::select('orders.*')->where('order_type_id', 2)
+            ->peopleName($request->people_name)
+            ->id($request->bill_id)
+            ->date($request->from, $request->to)
+            ->orderBy('created_at', 'DESC')
+            ->paginate();
+
         return view('bills.index', compact('bills', 'sales_day', 'sales_month', 'diary_sales'));
     }
     public function details(Request $request, Order $order)
