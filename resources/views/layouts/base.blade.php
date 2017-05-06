@@ -27,6 +27,11 @@
             bottom  : 160px;
             right   : 291px;
         }
+                .jqstooltip {
+          -webkit-box-sizing: content-box;
+          -moz-box-sizing: content-box;
+          box-sizing: content-box;
+        }
     </style>
 
     <!-- BODY options, add following classes to body to change options
