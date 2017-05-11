@@ -181,7 +181,8 @@ return [
         'to'                      => 'hasta',
         'sales'                   => 'ventas',
         'bill_number'             => 'Número de Factura',
-        'order'                   => 'orden'
+        'order'                   => 'orden',
+        'bill_id'                 => 'referencia no.'
     ],
 
 ];

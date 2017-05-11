@@ -39,9 +39,9 @@
                         <td>{{ $detail->due_date }}</td>
                         <td class="text-right">Q. {{ $detail->total_purchase}}</td>
                     @else
-                        <td class="col-xs-1"><input type="text" name="lot[]" class="form-control input-sm" value="{{ $detail->lot }} "></td>
-                        <td class="col-xs-1"><input type="text" name="purchase_price[]" class="form-control input-sm" value="{{ $detail->purchase_price }}"></td>
-                        <td class="col-xs-1"><input type="text" name="sale_price[]" class="form-control input-sm" value="{{ $detail->sale_price }}"></td>
+                        <td class="col-xs-1"><input type="text" name="lot[]" min="0" step="1" required class="form-control input-sm" value="{{ $detail->lot }} "></td>
+                        <td class="col-xs-1"><input type="text" name="purchase_price[]" min="0" required  step="1" class="form-control input-sm" value="{{ $detail->purchase_price }}"></td>
+                        <td class="col-xs-1"><input type="text" name="sale_price[]" min="0" step="1" required  class="form-control input-sm" value="{{ $detail->sale_price }}"></td>
                         <td class="col-xs-1"><input type="date" name="due_date[]" class="form-control input-sm" value="{{ $detail->due_date }}"></td>
                         <td class="text-right"><strong>Q. {{ $detail->total_purchase }}</strong></td>
                     @endif

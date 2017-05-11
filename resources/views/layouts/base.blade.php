@@ -17,10 +17,22 @@
         <!-- page css files -->
         {!! Html::style('css/font-awesome.min.css') !!}
         <!-- Custom styles for this template -->
-        {!! Html::style('css/style.min.css') !!}
-        {!! Html::style('css/add-ons.min.css') !!}
+        {!! Html::style('css/style.css') !!}
+        {!! Html::style('css/add-ons.css') !!}
         @yield('styles')
     </head>
+    <style>
+        .btn-print{
+            position: fixed;
+            bottom  : 160px;
+            right   : 291px;
+        }
+                .jqstooltip {
+          -webkit-box-sizing: content-box;
+          -moz-box-sizing: content-box;
+          box-sizing: content-box;
+        }
+    </style>
 
     <!-- BODY options, add following classes to body to change options
 
@@ -32,7 +44,7 @@
         6. 'static-header'        - Static Header
     -->
 
-    <body >
+    <body class="">
 
         <!-- start: Layout Settings / remove this div from your project
         <div id="theme-settings" class="hidden-sm hidden-xs">
@@ -98,7 +110,7 @@
 
         <!-- start: Content -->
         <div class="main">
-            {!! Alert::render() !!}
+            {!! Alert::render('templates.alert') !!}
             <ol class="breadcrumb hidden-print">
                 <li><a href="{{ url('/') }}">Inicio</a></li>
                 @yield('breadcrumb')
@@ -151,7 +163,7 @@
             /****
             * remove alerts
             */
-             $(document).ready(function() {
+            $(document).ready(function() {
                 $(".alert").fadeTo(7000, 0, function(){
                     $(this).alert('close')
                 });

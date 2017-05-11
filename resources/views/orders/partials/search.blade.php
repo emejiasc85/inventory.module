@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-    {{ Form::open(['route' => ['orders.index'], 'method' => 'get']) }}
+    {{ Form::model(Request::all(),['route' => ['orders.index'], 'method' => 'get']) }}
         <div class="controls">
             <div class="input-group">
                 <input id="name" name="id" size="16" class="form-control" type="text">

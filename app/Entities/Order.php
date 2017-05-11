@@ -102,6 +102,33 @@ class Order extends Entity
             return $query->where('users.name', 'LIKE', "%$value%");
         }
     }
+    public function scopePeopleName($query, $value)
+    {
+        if (trim($value) != null) {
+            $query->leftJoin('people', 'people.id', '=', 'orders.people_id' )
+                ->where('people.name', 'LIKE', "%$value%");
+            return $query;
+        }
+    }
+
+    public function canRevert()
+    {
+        if($this->status == 'Ingresado'){
+            foreach ($this->details as $detail) {
+                $stock = Stock::where('order_detail_id', $detail->id)->first();
+                $history = StockHistory::where('stock_id', $stock->id)->get();
+                if(sizeof($history) != 0){
+                    return false;
+                }
+            }
+        }
+
+        foreach ($this->details as $detail) {
+           Stock::where('order_detail_id', $detail->id)->delete();
+        }
+
+        return true;
+    }
 
 
 }

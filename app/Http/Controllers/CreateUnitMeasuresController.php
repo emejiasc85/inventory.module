@@ -16,7 +16,7 @@ class CreateUnitMeasuresController extends Controller
     public function store(Request $request)
     {
 
-    	$this->validate($request, ['name' => 'required']);
+    	$this->validate($request, ['name' => 'required|unique:unit_measures,name']);
     	$make = UnitMeasure::create($request->all());
 
     	Alert::success('Unidad agregada correctamente');

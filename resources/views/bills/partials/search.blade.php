@@ -1,4 +1,4 @@
-{{ Form::open(['route' => ['bills.details', $order], 'method' => 'get']) }}
+{{ Form::model(Request::all(),['route' => ['bills.details', $order], 'method' => 'get']) }}
     <div class="col-sm-4">
         <input type="text" name="barcode" class="form-control" placeholder="Cod. Barras">
     </div>

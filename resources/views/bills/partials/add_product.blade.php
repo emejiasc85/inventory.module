@@ -9,7 +9,7 @@
             </div>
             {!! Form::open(['route' => ['bills.details.store', $order], 'id' => 'AddProductForm', 'method' => 'POST']) !!}
             <div class="modal-body">
-                {!! Field::text('lot') !!}
+                {!! Field::number('lot', 1, ['min' => 0, 'step' => 1, 'required']) !!}
                 {!! Field::text('sale_price') !!}
                 {!! Field::hidden('product_id', null, ['id' => 'product_id']) !!}
             </div>

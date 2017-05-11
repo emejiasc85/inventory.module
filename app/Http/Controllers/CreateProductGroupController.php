@@ -17,7 +17,7 @@ class CreateProductGroupController extends Controller
 	public function store(Request $request)
 	{
 
-		$this->validate($request, ['name' => 'required']);
+		$this->validate($request, ['name' => 'required|unique:product_groups,name']);
 	 	$new = ProductGroup::create($request->all());
 	 	Alert::success('Grupo agregado correctamente');
     	return redirect()->route('product.groups.index');

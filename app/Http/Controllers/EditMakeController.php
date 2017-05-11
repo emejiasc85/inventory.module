@@ -8,6 +8,13 @@ use Styde\Html\Facades\Alert;
 
 class EditMakeController extends Controller
 {
+    public function rules($id)
+    {
+        return [
+            'name' => 'required|unique:makes,name,'.$id,
+            'logo' => 'image'
+        ];
+    }
     public function edit(Make $make, $slug)
     {
     	return view('makes.edit', compact('make'));
@@ -15,7 +22,7 @@ class EditMakeController extends Controller
 
     public function update(Request $request,  Make $make)
     {
-    	$this->validate($request, ['name' => 'required', 'logo' => 'image']);
+    	$this->validate($request, $this->rules($make->id));
 
     	$make->fill($request->all());
     	if ($request->hasFile('logo'))

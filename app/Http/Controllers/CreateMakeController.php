@@ -8,6 +8,10 @@ use Styde\Html\Facades\Alert;
 
 class CreateMakeController extends Controller
 {
+    protected $rules = [
+        'name' => 'required|unique:makes,name',
+        'logo' => 'image'
+    ];
     public function create()
     {
     	return view('makes.create');
@@ -16,7 +20,7 @@ class CreateMakeController extends Controller
     public function store(Request $request)
     {
 
-    	$this->validate($request, ['name' => 'required', 'logo' => 'image']);
+    	$this->validate($request, $this->rules);
     	$make = Make::create($request->all());
     	if ($request->hasFile('logo'))
         {

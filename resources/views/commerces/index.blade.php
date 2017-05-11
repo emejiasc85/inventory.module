@@ -13,7 +13,7 @@
                 <i class="icon-badge"></i>
                 <strong>Comerciones</strong>
                 <small>Listado</small>
-                <a href="{{ route('commerces.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span>Agregar Comercio</a>
+                <a href="{{ route('commerces.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar Comercio</a>
             </div>
             <div class="panel-body">
                 <div class="table-responsive">

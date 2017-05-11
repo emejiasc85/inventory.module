@@ -13,8 +13,8 @@ class CreateBillDetailsController extends Controller
     {
         $rules  =[
             'product_id' => 'required|exists:products,id|unique:order_details,product_id,NULL,id,order_id,'.$order->id,
-            'lot'        => 'required|numeric',
-            'sale_price' => 'required|numeric'
+            'lot'        => 'required|numeric|integer|min:1',
+            'sale_price' => 'required|numeric|min:0'
         ];
 
         $this->validate($request, $rules);

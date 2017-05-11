@@ -52,6 +52,11 @@
                                         <a href="{{ $order->editUrl }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> Editar</a>
                                         @endif
                                     </td>
+                                    <td>
+                                        @if ($order->status != 'Ingresado' || auth()->user()->isAdmin())
+                                            <a href="#" data-id="{{ $order->id }}"  class="btn btn-danger btn-sm destroyOrder" >Eliminar</a>
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -66,6 +71,23 @@
         </div>
     </div>
 </div>
+@stop
+@section('modals')
+    @include('orders.partials.modal_order_destroy')
+@stop
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('.destroyOrder').click( function (e) {
+            e.preventDefault();
+            var link  = $(this);
+            var value = link.data('id');
+            var input = $('#order_id');
+            input.val(value);
+            $('#confirmDeleteOrder').modal('toggle');
+        });
+    });
+</script>
 @stop
 
 

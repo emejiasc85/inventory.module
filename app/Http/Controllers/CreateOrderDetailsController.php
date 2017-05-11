@@ -36,8 +36,9 @@ class CreateOrderDetailsController extends Controller
    public function store(Request $request, Order $order)
    {
       $rules  =[
-        'product_id' => 'required|exists:products,id|unique:order_details,product_id,NULL,id,order_id,'.$order->id,
-        'lot' => 'required|numeric',
+        'product_id'     => 'required|exists:products,id|unique:order_details,product_id,NULL,id,order_id,'.$order->id,
+        'lot'            => 'required|numeric|integer|min:1',
+        'purchase_price' => 'nullable|numeric|min:1'
       ];
       $this->validate($request, $rules);
       $data = array_add($request->all(), 'order_id', $order->id);

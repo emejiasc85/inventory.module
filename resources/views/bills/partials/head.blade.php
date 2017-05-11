@@ -1,7 +1,11 @@
  <div class="panel panel-default">
     <div class="panel-heading">
-        @if ($order->status != 'Ingresado')
-            <a href="#"  class="btn btn-danger btn-xs pull-right" id="DestroyBill" style="margin-top: 10px">Cancelar</a>
+
+        @if ($order->status != 'Ingresado' || auth()->user()->isAdmin())
+            <a href="#" title="Cancelar"  class="btn btn-danger btn-sm pull-right hidden-print" id="DestroyBill" style="margin-top: 2px"><span class="fa fa-2x fa-trash-o"></span></a>
+        @endif
+        @if ($order->status == 'Ingresado')
+            <a href="#" class="btn btn-primary hidden-print btn-lg btn-print" title="Imprimir" onclick="window.print()"><span class="fa fa-2x fa-print"></span></a>
         @endif
     </div>
     <div class="panel-body">
@@ -25,6 +29,7 @@
                 @endif
             </address>
         <address>
+            <strong>Referencia No.</strong> {{  $order->id }}<br>
             <strong>Nombre:</strong> {{  $order->people->name }}<br>
             <strong>Dirección:</strong> {{ $order->people->address }}<br>
             <strong>Nit:</strong> {{ $order->people->nit }}<br>

@@ -218,6 +218,7 @@ Route::name('orders.store')->post('agregar-orden', 'CreateOrderController@store'
 Route::name('orders.edit')->get('editar-orden/{order}', 'EditOrderController@edit');
 Route::name('orders.update')->put('editar-orden/{order}', 'EditOrderController@update');
 Route::name('orders.updateStatus')->put('editar-status-orden/{order}', 'EditOrderController@updateStatus');
+Route::name('orders.destroy')->delete('eliminar-orden', 'DeleteOrderController@destroy');
 //order details
 Route::name('orders.details.create')->get('orden/{order}/agregar-detalle', 'CreateOrderDetailsController@create');
 Route::name('orders.details.store')->post('orden/{order}/agregar-detalle', 'CreateOrderDetailsController@store');
@@ -261,10 +262,11 @@ Route::name('resolutions.update')->put('editar-resolucion/{resolution}', 'EditRe
 Route::name('users.index')->get('usuarios', 'UserController@index');
 Route::name('users.create')->get('agregar-usuarios', 'CreateUserController@create');
 Route::name('users.store')->post('agregar-usuarios', 'CreateUserController@store');
-Route::name('users.edit')->get('{user}-{slug}-editar', 'EditUserController@edit');
-Route::name('users.update')->put('{user}-editar', 'EditUserController@update');
-Route::name('users.password.edit')->get('{user}-{slug}-editar-clave', 'EditUserController@editPassword');
-Route::name('users.password.update')->put('{user}-editar-clave', 'EditUserController@updatePassword');
+Route::name('users.edit')->get('editar-usuario/{user}-{slug}', 'EditUserController@edit');
+Route::name('users.update')->put('editar-usuario/{user}', 'EditUserController@update');
+
+Route::name('users.password.edit')->get('{user}-{slug}/editar-clave', 'EditUserController@editPassword');
+Route::name('users.password.update')->put('{user}/editar-clave', 'EditUserController@updatePassword');
 Route::name('auth.password.edit')->get('editar-contrasena/{user}-{slug}', 'EditUserController@editAuthPassword');
 Route::name('auth.password.update')->put('editar-contrasena/{user}', 'EditUserController@updateAuthPassword');
 //reports

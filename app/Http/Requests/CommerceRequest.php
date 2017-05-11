@@ -28,7 +28,7 @@ class CommerceRequest extends FormRequest
             'address'   => 'required',
             'phone'     => 'required|digits_between:8,11',
             'other_phone' => 'nullable|digits_between:8,11',
-            'nit'       => 'nullable|digits_between:8,8',
+            'nit'       => 'nullable|digits_between:7,8',
             'logo'      => 'nullable|image',
             'tax'       => 'nullable|numeric',
             'profit'    => 'nullable|numeric'

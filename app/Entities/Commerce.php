@@ -30,7 +30,7 @@ class Commerce extends Model
 
     public function setNameAttribute($value)
     {
-    	$this->attributes['name'] = $value;
+        $this->attributes['name'] = title_case($value);
         $this->attributes['slug'] = Str::slug($value);
     }
 

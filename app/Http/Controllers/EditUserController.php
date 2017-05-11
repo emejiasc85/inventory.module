@@ -10,8 +10,9 @@ use Styde\Html\Facades\Alert;
 class EditUserController extends Controller
 {
     protected $rules = [
-        'name' => 'required',
-        'email' => 'required'
+        'name'     => 'required',
+        'username' => 'required',
+        'email'    => 'required'
     ];
 
     function __construct()
