@@ -272,5 +272,8 @@ Route::name('auth.password.update')->put('editar-contrasena/{user}', 'EditUserCo
 //reports
 Route::name('reports.sellers')->get('reportes/vendedores', 'ReportsController@sellers');
 Route::name('reports.products')->get('reportes/productos', 'ReportsController@products');
+//barcode
+Route::name('barcode.products')->get('barcode/productos/{product}', 'ProductController@barcode');
+
 
 
