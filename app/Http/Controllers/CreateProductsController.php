@@ -22,7 +22,16 @@ class CreateProductsController extends Controller
 
     public function store(ProductRequest $request)
     {
-    	$new = Product::create($request->all());
+        $name=$request->input('name');
+        $val1=substr($name, 0, 1);
+        $val2=substr($name,1, 1);
+        $val3=substr($name, 2, 2);
+        $salida=ord($val1).ord($val2).ord($val3);
+        $new = Product::create($request->all());
+        if (!($request->has('barcode'))) {
+            $new->barcode=$salida.$new->id;
+                                  $new->save();
+        }
     	Alert::success('Producto creado correctamente');
     	return redirect()->route('products.index');
     }

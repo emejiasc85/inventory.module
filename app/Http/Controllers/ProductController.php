@@ -14,14 +14,18 @@ class ProductController extends Controller
     }
     public function index(Request $request)
     {
-    	$products = Product::name($request->get('name'))
+        $products = Product::name($request->get('name'))
             ->make($request->get('make_id'))
-    		->group($request->get('product_group_id'))
-    		->presentation($request->get('product_presentation_id'))
-    		->unit($request->get('unit_measure_id'))
-    		->barcode($request->get('barcode'))
-    		->orderBy('id', 'DESC')
-    		->paginate();
-    	return view('products.index', compact('products'));
+            ->group($request->get('product_group_id'))
+            ->presentation($request->get('product_presentation_id'))
+            ->unit($request->get('unit_measure_id'))
+            ->barcode($request->get('barcode'))
+            ->orderBy('id', 'DESC')
+            ->paginate();
+        return view('products.index', compact('products'));
+    }
+        public function barcode(Product $product)
+    {
+        return view('products.partials.printbc', compact('product'));
     }
 }

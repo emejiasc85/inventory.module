@@ -1,6 +1,13 @@
 @extends('layouts.base')
 
 @section('content')
+<style>
+.smallstat:hover {
+-webkit-box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
+-moz-box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
+box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
+}
+</style>
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
         <a  href="{{ route('bills.create') }}">
             <div class="smallstat">
