@@ -108,7 +108,9 @@
         </div>
     </div>
 </div>
-@stop @section('scripts') {!! Html::script('js/jquery-barcode.min.js') !!}
+@stop
+@section('scripts')
+{!! Html::script('js/jquery-barcode.min.js') !!}
 <script>
 $("#bcTarget").barcode("{{ $product->barcode }}", "codabar");
 $('.destroy-value').click(function(e) {
