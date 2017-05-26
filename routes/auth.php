@@ -258,6 +258,13 @@ Route::name('resolutions.store')->post('agregar-resolucion', 'CreateResolutionCo
 Route::name('resolutions.edit')->get('editar-resolucion/{resolution}', 'EditResolutionController@edit');
 Route::name('resolutions.update')->put('editar-resolucion/{resolution}', 'EditResolutionController@update');
 
+//quotes
+Route::name('quotes.index')->get('cotizaciones', 'QuotationController@index');
+Route::name('quotes.create')->get('agregar-cotizacion', 'CreateQuotationController@create');
+Route::name('quotes.store')->post('agregar-cotizacion', 'CreateQuotationController@store');
+Route::name('quotes.edit')->get('editar-cotizacion/{quotation}', 'EditQuotationController@edit');
+Route::name('quotes.update')->put('editar-cotizacion/{quotation}', 'EditQuotationController@update');
+
 //users
 Route::name('users.index')->get('usuarios', 'UserController@index');
 Route::name('users.create')->get('agregar-usuarios', 'CreateUserController@create');
