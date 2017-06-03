@@ -95,6 +95,7 @@ class Product extends Entity
     public function scopeMake($query, $value)
     {
         $list = Make::pluck('name', 'id')->toArray();
+
         if($value != '' && isset($list[$value]))
         {
             $query->where('make_id', $value);

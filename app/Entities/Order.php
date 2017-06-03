@@ -42,6 +42,11 @@ class Order extends Entity
     {
         return route('bills.details', $this);
     }
+
+    public function getUrlQuotationAttribute()
+    {
+        return route('quotes.details', $this);
+    }
     public function getEditUrlAttribute()
     {
     	return route('orders.edit', $this);

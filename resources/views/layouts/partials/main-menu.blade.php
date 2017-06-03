@@ -12,7 +12,7 @@
                 <li><a href="{{ route('stocks.index') }}"><i class="fa fa-cubes"></i><span class="text"> Existencias</span></a></li>
                 <li><a href="{{ route('orders.index') }}"><i class="fa fa-truck"></i><span class="text"> Pedidos</span></a></li>
                 <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li>
-                <li><a href="{{ route('quotes.index') }}"><i class="fa fa-calendar-check-o"></i><span class="text"> Cotización  </span></a></li>
+                <li><a href="{{ route('quotes.index') }}"><i class="fa fa-calendar"></i><span class="text"> Cotizaciones  </span></a></li>
                 <li><a href="{{ route('people.index') }}"><i class="fa fa-users"></i><span class="text"> Personas</span></a></li>
                 <li>
                     <a href="#"><i class="fa fa-filter"></i><span class="text"> Reportes</span> <span class="indicator"></span></a>

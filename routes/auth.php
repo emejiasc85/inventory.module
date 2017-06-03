@@ -264,6 +264,11 @@ Route::name('quotes.create')->get('agregar-cotizacion', 'CreateQuotationControll
 Route::name('quotes.store')->post('agregar-cotizacion', 'CreateQuotationController@store');
 Route::name('quotes.edit')->get('editar-cotizacion/{quotation}', 'EditQuotationController@edit');
 Route::name('quotes.update')->put('editar-cotizacion/{quotation}', 'EditQuotationController@update');
+Route::name('quotes.details')->get('cotizacion/{order}/detalles', 'QuotationController@details');
+Route::name('quotes.details.store')->post('cotizacion/{order}/agregar-producto', 'CreateQuotationDetailsController@store');
+Route::name('quotes.details.destroy')->delete('cotizacion/{order}/eliminar-producto', 'DeleteQuotationDetailsController@destroy');
+Route::name('quotes.destroy')->delete('cotizacion/{order}/eliminar', 'DeleteQuotationController@destroy');
+Route::name('quotes.confirm')->put('confirmar-cotizacion/{order}', 'EditQuotationController@confirm');
 
 //users
 Route::name('users.index')->get('usuarios', 'UserController@index');
