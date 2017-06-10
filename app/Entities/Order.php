@@ -4,7 +4,6 @@ namespace EmejiasInventory\Entities;
 class Order extends Entity
 {
     protected $fillable = [
-    	//'delivery',
     	'status',
     	'user_id',
     	'people_id',
@@ -17,6 +16,11 @@ class Order extends Entity
     public function bill()
     {
         return $this->hasOne(Bill::class);
+    }
+
+    public function quotation()
+    {
+        return $this->hasOne(Quotation::class);
     }
     public function type()
     {

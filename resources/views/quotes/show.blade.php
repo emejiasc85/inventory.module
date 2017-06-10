@@ -1,7 +1,8 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="">Cotización</a></li>
+<li class="breadcrumb-item"><a href="{{ route('quotes.index') }}">Cotizaciones</a></li>
+<li class="breadcrumb-item">Cotización #{{ $order->quotation->id }}</li>
 @stop
 
 @section('content')
@@ -13,18 +14,26 @@
         </div>
     @endif
     <div {!! Html::classes(['col-sm-5', 'col-sm-offset-3' => $order->status == 'Ingresado' ]) !!}>
+        @include('quotes.partials.head')
     </div><!--/col-->
 </div><!--/row-->
 
 @stop
 @section('modals')
-    @include('bills.partials.modal_confirm_bill')
-    @include('bills.partials.modal_detail_destroy')
-    @include('bills.partials.modal_bill_destroy')
-    @include('bills.partials.add_product')
+    @include('quotes.partials.modal_confirm')
+    @include('quotes.partials.modal_revert')
+    @include('quotes.partials.modal_detail_destroy')
+    @include('quotes.partials.modal_quotation_destroy')
+    @include('quotes.partials.add_product')
 @stop
 @section('scripts')
 <script>
+
+@if ($order->status == 'Ingresado')
+    $(document).ready(function() {
+        window.print()
+    });
+@endif
 //on click show modal with hidden form to update status
 $('.add-product').click( function (e) {
     e.preventDefault();
@@ -66,13 +75,19 @@ $('.OrderDetailDelete').click( function (e) {
     $('#confirmDelete').modal('toggle');
 });
 
-$('#DestroyBill').click( function (e) {
+$('#DestroyOrder').click( function (e) {
     e.preventDefault();
     var link        = $(this)
     $('#confirmDeleteBill').modal('toggle');
 });
 
-$('#Bill').click( function (e) {
+$('#RevertOrder').click( function (e) {
+    e.preventDefault();
+    var link        = $(this)
+    $('#ConfirmRevertOrder').modal('toggle');
+});
+
+$('#Order').click( function (e) {
     e.preventDefault();
     $('#ConfirmBill').modal('toggle');
 });

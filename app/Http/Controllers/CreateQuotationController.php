@@ -2,8 +2,7 @@
 
 namespace EmejiasInventory\Http\Controllers;
 
-use EmejiasInventory\Entities\Order;
-use EmejiasInventory\Entities\{Commerce,People};
+use EmejiasInventory\Entities\{Commerce,People,Order,Quotation};
 use Illuminate\Http\Request;
 
 class CreateQuotationController extends Controller
@@ -25,12 +24,14 @@ class CreateQuotationController extends Controller
             'address' => $request->get('address'),
         ]);
 
-         $bill = new Order();
-         $bill->order_type_id = 4;
-         $bill->people_id = $customer->id;
-         $bill->user_id = auth()->user()->id;
-         $bill->save();
+         $order = new Order();
+         $order->order_type_id = 4;
+         $order->people_id = $customer->id;
+         $order->user_id = auth()->user()->id;
+         $order->save();
 
-         //return redirect()->route('quotes.details', $bill);
+         Quotation::create(['order_id' => $order->id]);
+
+         return redirect()->route('quotes.details', $order);
     }
 }

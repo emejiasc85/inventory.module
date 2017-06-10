@@ -24,16 +24,7 @@
                          --}}
                     </ul>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-gears"></i><span class="text"> Configuraciones</span> <span class="indicator"></span></a>
-                    <ul>
-                        {{--
-                            <li><a href="{{ route('commerces.index') }}"><i class="fa fa-home"></i><span class="text"> Comercios</span></a></li>
-                         --}}
-                        <li><a href="{{ route('resolutions.index') }}"><i class="fa fa-list-ol"></i><span class="text"> Resoluciones</span></a></li>
-                        <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i><span class="text"> Usuarios</span></a></li>
-                    </ul>
-                </li>
+
                 <li>
                     <a href="#"><i class="fa fa-book"></i><span class="text"> Catalagos</span> <span class="indicator"></span></a>
                     <ul>
@@ -46,6 +37,14 @@
                             <li><a href="{{ route('orders.type.index') }}"><i class="fa fa-tags"></i><span class="text"> Tipos de ordenes</span></a></li>
                             <li><a href="{{ route('warehouses.index') }}"><i class="fa fa-database"></i><span class="text"> Bodegas</span></a></li>
                         --}}
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-gears"></i><span class="text"> Configuraciones</span> <span class="indicator"></span></a>
+                    <ul>
+                        <li><a href="{{ route('commerces.edit', [1, 'comercio']) }}"><i class="fa fa-home"></i><span class="text"> Comercio</span></a></li>
+                        <li><a href="{{ route('resolutions.index') }}"><i class="fa fa-list-ol"></i><span class="text"> Resoluciones</span></a></li>
+                        <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i><span class="text"> Usuarios</span></a></li>
                     </ul>
                 </li>
             </ul>

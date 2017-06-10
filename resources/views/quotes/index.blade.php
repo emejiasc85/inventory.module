@@ -11,6 +11,7 @@
                 <i-fa class="fa-grid"></i-fa>
                 <strong>Cotizaciones</strong>
                 <small>Listado</small>
+                <a href="{{ route('quotes.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar Cotización</a>
             </div>
             <div class="panel-body">
                 @include('bills.partials.search_sales')
@@ -22,6 +23,7 @@
                             <th>Productos</th>
                             <th>Total</th>
                             <th>Vendedor</th>
+                            <th>Estado</th>
                             <td></td>
                         </tr>
                         @foreach ($quotes as $quotation)
@@ -31,6 +33,14 @@
                             <td>{{ $quotation->details->sum('lot') }}</td>
                             <td>Q. {{ $quotation->total }}</td>
                             <td>{{ $quotation->user->name }}</td>
+                            <td>
+                                <span {!! Html::classes([
+                                    'label', 'label-info' => $quotation->status == 'Creado',
+                                    'label-primary' => $quotation->status == 'Solicitado',
+                                    'label-success' => $quotation->status == 'Ingresado',
+                                    'label-default' => $quotation->status == 'Cancelado'
+                                    ]) !!}>{{ $quotation->status }}</span>
+                            </td>
                             <td><a href="{{ $quotation->urlQuotation }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
                         </tr>
                         @endforeach

@@ -23,7 +23,27 @@ class EditBillController extends Controller
         }
         $order->status = 'Ingresado';
         $order->save();
-        Alert::success('Compra finalizada');
+        if ($order->order_type_id == 4) {
+            $message = 'Cotización Finalizada';
+        }
+        elseif ($order->order_type_id == 2) {
+            $message = 'Compra Finalizada';
+        }
+        //Alert::success($message);
+        return redirect()->back();
+    }
+
+    public function revert(Request $request, Order $order)
+    {
+        $order->status = 'Creado';
+        $order->save();
+        if ($order->order_type_id == 4) {
+            $message = 'Cotización Revertida';
+        }
+        elseif ($order->order_type_id == 2) {
+            $message = 'Compra Revertida';
+        }
+        Alert::success($message);
         return redirect()->back();
     }
 }

@@ -1,14 +1,17 @@
 {{ Form::model(Request::all(),['route' => ['quotes.details', $order], 'method' => 'get']) }}
-    <div class="col-sm-4">
-        <input type="text" name="barcode" class="form-control" placeholder="Cod. Barras">
-    </div>
-    <div class="col-sm-2">
-        <input type="text" name="id" class="form-control" placeholder="ID">
-    </div>
-    <div class="col-sm-5">
-        <input type="text" name="name" class="form-control" placeholder="Nombre">
-    </div>
-    <div class="col-sm-1">
-        <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
-    </div>
+    <div class="row">
+      <div class="col-xs-3">
+        <input type="text" class="form-control" name="barcode" placeholder="Cod. Barras">
+      </div>
+      <div class="col-xs-2">
+        <input type="text" class="form-control" name="id" placeholder="ID">
+      </div>
+      <div class="col-xs-5">
+        <input type="text" class="form-control" name="name" placeholder="Nombre">
+      </div>
+      <div class="col-xs-1">
+          <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+      </div>
+</div>
+
 {{ Form::close() }}

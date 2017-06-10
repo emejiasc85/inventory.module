@@ -269,6 +269,7 @@ Route::name('quotes.details.store')->post('cotizacion/{order}/agregar-producto',
 Route::name('quotes.details.destroy')->delete('cotizacion/{order}/eliminar-producto', 'DeleteQuotationDetailsController@destroy');
 Route::name('quotes.destroy')->delete('cotizacion/{order}/eliminar', 'DeleteQuotationController@destroy');
 Route::name('quotes.confirm')->put('confirmar-cotizacion/{order}', 'EditQuotationController@confirm');
+Route::name('quotes.revert')->put('revertir-cotizacion/{order}', 'EditBillController@revert');
 
 //users
 Route::name('users.index')->get('usuarios', 'UserController@index');

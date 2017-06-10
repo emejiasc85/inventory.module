@@ -23,9 +23,17 @@
 @include('bills.partials.modal_detail_destroy')
 @include('bills.partials.modal_bill_destroy')
 @include('bills.partials.add_product')
+@include('bills.partials.modal_revert')
+
 @stop
 @section('scripts')
 <script>
+
+@if ($order->status == 'Ingresado')
+    $(document).ready(function() {
+        window.print()
+    });
+@endif
 //on click show modal with hidden form to update status
 $('.add-product').click( function (e) {
     e.preventDefault();
@@ -74,6 +82,12 @@ $('#DestroyBill').click( function (e) {
     e.preventDefault();
     var link        = $(this)
     $('#confirmDeleteBill').modal('toggle');
+});
+
+$('#RevertBill').click( function (e) {
+    e.preventDefault();
+    var link        = $(this)
+    $('#ConfirmRevertBill').modal('toggle');
 });
 
 $('#Bill').click( function (e) {
