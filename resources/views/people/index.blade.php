@@ -12,7 +12,7 @@
                 <i-fa class="fa-grid"></i-fa>
                 <strong>Personas</strong>
                 <small>Listado</small>
-                <a href="{{ route('people.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar Persona</a>
+                <a href="{{ route('people.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Persona</a>
             </div>
             <div class="panel-body">
                 {{ Form::model(Request::all(),['people.index', 'method' => 'get']) }}
@@ -34,7 +34,7 @@
                             <th>Nombre</th>
                             <th>Dirección</th>
                             <th>Correo</th>
-                            <th>Telefono</th>
+                            <th>Teléfono</th>
                             <th></th>
                         </tr>
                         @foreach ($people as $person)
@@ -44,7 +44,7 @@
                             <td>{{ $person->address}}</td>
                             <td>{{ $person->email}}</td>
                             <td>{{ $person->phone}}</td>
-                            <td><a href="{{ $person->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>  Editar</a></td>
+                            <td><a href="{{ $person->profileUrl }}" class="btn btn-info "> <i class="fa fa-eye"></i>  Perfil</a></td>
                         </tr>
                         @endforeach
                     </table>

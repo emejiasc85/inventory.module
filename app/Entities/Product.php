@@ -92,9 +92,10 @@ class Product extends Entity
             $query->where('unit_measure_id', $value);
         }
     }
-    public function scopeMake($query, $value)
+    public function scopeMakes($query, $value)
     {
         $list = Make::pluck('name', 'id')->toArray();
+
         if($value != '' && isset($list[$value]))
         {
             $query->where('make_id', $value);

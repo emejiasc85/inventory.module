@@ -4,7 +4,6 @@ namespace EmejiasInventory\Entities;
 class Order extends Entity
 {
     protected $fillable = [
-    	//'delivery',
     	'status',
     	'user_id',
     	'people_id',
@@ -17,6 +16,11 @@ class Order extends Entity
     public function bill()
     {
         return $this->hasOne(Bill::class);
+    }
+
+    public function quotation()
+    {
+        return $this->hasOne(Quotation::class);
     }
     public function type()
     {
@@ -41,6 +45,11 @@ class Order extends Entity
     public function getUrlBillAttribute()
     {
         return route('bills.details', $this);
+    }
+
+    public function getUrlQuotationAttribute()
+    {
+        return route('quotes.details', $this);
     }
     public function getEditUrlAttribute()
     {
@@ -107,6 +116,15 @@ class Order extends Entity
         if (trim($value) != null) {
             $query->leftJoin('people', 'people.id', '=', 'orders.people_id' )
                 ->where('people.name', 'LIKE', "%$value%");
+            return $query;
+        }
+    }
+
+    public function scopePeopleId($query, $value)
+    {
+        if (trim($value) != null) {
+            $query->leftJoin('people', 'people.id', '=', 'orders.people_id' )
+                ->where('people.id', $value);
             return $query;
         }
     }

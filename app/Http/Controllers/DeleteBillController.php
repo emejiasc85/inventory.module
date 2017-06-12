@@ -38,6 +38,6 @@ class DeleteBillController extends Controller
         DB::commit();
 
         Alert::success('Se ha eliminado la factura');
-        return redirect('/');
+        return redirect()->route('bills.index');
     }
 }

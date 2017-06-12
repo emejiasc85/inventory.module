@@ -5,8 +5,9 @@
             <a href="#" title="Cancelar"  class="btn btn-danger btn-sm pull-right hidden-print" id="DestroyBill" style="margin-top: 2px"><span class="fa fa-2x fa-trash-o"></span></a>
         @endif
         @if ($order->status == 'Ingresado')
-            <a href="#" class="btn btn-primary hidden-print btn-lg btn-print" title="Imprimir" onclick="window.print()"><span class="fa fa-2x fa-print"></span></a>
+            <a href="#" title="Revertir Cotización"  class="btn btn-link btn-sm pull-right hidden-print" id="RevertBill" style="margin-top: 2px"><span class="fa fa-2x fa-undo text-success"></span></a>
         @endif
+
     </div>
     <div class="panel-body">
         <address class="text-center">
@@ -21,15 +22,18 @@
         </address>
         <hr>
             <address class="text-center">
-                Factura <br>
                 @if ($order->bill)
+                    Factura <br>
                     Serie <strong> {{ $order->bill->resolution->serie }}</strong>
                     No. <strong id="bill_number"> {{ $order->bill->bill }}</strong><br>
+                    <strong> {{ $order->created_at }}</strong>
+                @else
+                    Recibo
+                    No. <strong id="bill_number"> {{ $order->id }}</strong><br>
                     <strong> {{ $order->created_at }}</strong>
                 @endif
             </address>
         <address>
-            <strong>Referencia No.</strong> {{  $order->id }}<br>
             <strong>Nombre:</strong> {{  $order->people->name }}<br>
             <strong>Dirección:</strong> {{ $order->people->address }}<br>
             <strong>Nit:</strong> {{ $order->people->nit }}<br>
@@ -46,6 +50,7 @@
                         @if ($order->status != 'Ingresado')
                             <a href="#" data-id="{{ $detail->id }}"  data-name="{{ $detail->product->name }}" class=" OrderDetailDelete"><i class="text-danger fa fa-minus-circle"></i></a>
                         @endif
+
                         {{ $detail->lot }}
                     </td>
                     <td>{{ $detail->product->name }}</td>
@@ -58,12 +63,15 @@
                 <td class="text-right"><strong>{{ $order->total }}</strong></td>
             </tr>
         </table>
-
+        <span><small>Usuario: {{ $order->user->name }}</small> </span>
     </div>
     <div class="panel-footer">
         @if ($order->details->count() > 0)
             @if ($order->status != 'Ingresado')
                 <a href="#" id="Bill" class="btn btn-success btn-lg btn-block" style="margin-top: 10px">Facturar</a>
+            @endif
+            @if ($order->status == 'Ingresado')
+                <a href="#" class="btn btn-primary hidden-print btn-lg btn-block " title="Imprimir" onclick="window.print()"><span class="fa  fa-print"></span> Imprimir</a>
             @endif
         @endif
     </div>
