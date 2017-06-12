@@ -244,6 +244,9 @@ Route::name('people.store')->post('agregar-persona', 'CreatePeopleController@sto
 Route::name('people.edit')->get('editar-persona/{people}/{slug}', 'EditPeopleController@edit');
 Route::name('people.edit.colors')->get('editar-persona-colores/{people}/{slug}', 'EditPeopleController@editColors');
 Route::name('people.update.colors')->put('editar-persona/colores/{people}', 'EditPeopleController@updateColors');
+
+Route::name('people.edit.tags')->get('editar-persona-tags/{people}/{slug}', 'EditPeopleController@editTags');
+Route::name('people.update.tags')->put('editar-persona/tags/{people}', 'EditPeopleController@updateTags');
 Route::name('people.update')->put('editar-persona/{people}', 'EditPeopleController@update');
 Route::name('people.avatar')->get('people/{people}/avatar',  'PeopleController@avatar');
 

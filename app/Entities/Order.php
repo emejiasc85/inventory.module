@@ -120,6 +120,15 @@ class Order extends Entity
         }
     }
 
+    public function scopePeopleId($query, $value)
+    {
+        if (trim($value) != null) {
+            $query->leftJoin('people', 'people.id', '=', 'orders.people_id' )
+                ->where('people.id', $value);
+            return $query;
+        }
+    }
+
     public function canRevert()
     {
         if($this->status == 'Ingresado'){

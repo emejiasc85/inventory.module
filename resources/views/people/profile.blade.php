@@ -38,15 +38,21 @@
 
                 <div class="row text-center">
                     <div class="col-xs-4">
-                        <div><strong>00</strong></div>
+                        <div><strong>{{ $bills->count() }}</strong></div>
                         <div><small>Compras</small></div>
                     </div><!--/.col-->
                     <div class="col-xs-4">
-                        <div><strong>00</strong></div>
+                        @php
+                            $lot = 0;
+                            foreach ($bills as $bill) {
+                                $lot = $lot + $bill->details->sum('lot');
+                            }
+                        @endphp
+                        <div><strong>{{ $lot }}</strong></div>
                         <div><small>Productos</small></div>
                     </div><!--/.col-->
                     <div class="col-xs-4">
-                        <div><strong>Q. </strong></div>
+                        <div><strong>Q. {{ $bills->sum('total') }}</strong></div>
                         <div><small>Total</small></div>
                     </div><!--/.col-->
                 </div><!--/.row-->
@@ -139,17 +145,14 @@
                             <div class="col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" data-original-title="">
-                                        <h2><span style="font-size: 1.5em" class="fa fa-gift text-success"></span><span class="break"></span> Intereses</h2>
+                                        <h2><span style="font-size: 1.5em" class="fa fa-gift text-success"></span><span class="break"></span> Intereses Según compras</h2>
                                     </div>
                                     <div class="panel-body">
                                         <ul>
-                                          <li>Collares</li>
-                                          <li>Pulseras</li>
-                                          <li>Aretes</li>
-                                          <li>LLaveros</li>
-                                          <li>Bandanas</li>
-                                          <li>Cintas Bebé</li>
-                                          <li>Diademas</li>
+                                            @foreach ($groups as $group)
+                                            <li>{{ $group->name }}</li>
+                                            @endforeach
+
                                         </ul>
                                     </div>
                                 </div>
@@ -158,7 +161,7 @@
                             <div class="col-md-6">
                                 <div class="panel panel-default">
                                     <div class="panel-heading" data-original-title="">
-                                        <h2><span style="font-size: 1.5em" class="fa fa-sun-o text-warning"></span><span class="break"></span> Colores</h2>
+                                        <h2><span style="font-size: 1.5em" class="fa fa-sun-o text-warning"></span><span class="break"></span> Colores Preferidos</h2>
                                     </div>
                                     <div class="panel-footer">
                                         @foreach ($people->colors as $color)
@@ -168,17 +171,18 @@
                                         <a href="{{ route('people.edit.colors', [$people, $people->slug]) }}" class="btn btn-link"><span class="fa fa-pencil text-success"></span></a>
                                     </div>
                                 </div>
-
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><span style="font-size: 1.5em" class="fa fa-question"></span> Otros</div>
                                     <div class="panel-body">
-                                        <span class="label label-default">Captus</span>
-                                        <span class="label label-default">Suculentas</span>
-                                        <a href="" class="btn btn-link"><span class="fa fa-pencil text-success"></span></a>
+                                        @foreach ($people->tags as $tag)
+                                        <span style="font-size: 1em" class="label label-default">{{ $tag->name }}</span>
+                                        @endforeach
+
+                                        <a href="{{ route('people.edit.tags', [$people, $people->slug]) }}" class="btn btn-link"><span class="fa fa-pencil text-success"></span></a>
 
                                     </div>
                                 </div>
-
+                                <!--
                                 <div class="panel panel-default">
                                     <div class="panel-heading"><span style="font-size: 1.5em" class="fa fa-magic"></span> Temas</div>
                                     <div class="panel-body">
@@ -187,6 +191,7 @@
                                         <a href="" class="btn btn-link"><span class="fa fa-pencil text-success"></span></a>
                                     </div>
                                 </div>
+                                -->
                             </div><!--/.col-->
                         </div><!--/.row-->
                     </div>

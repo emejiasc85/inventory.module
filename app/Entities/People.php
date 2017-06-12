@@ -35,6 +35,10 @@ class People extends Entity
     {
         return $this->belongsToMany(Color::class);
     }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
     public function getEditUrlAttribute()
     {
         return route('people.edit', [$this, $this->slug]);
@@ -48,5 +52,10 @@ class People extends Entity
     public function getAvatarFileAttribute()
     {
        return storage_path('app/'.$this->avatar);
+    }
+
+    public function getTagsIdAttribute()
+    {
+        return $this->tags()->pluck('tag_id')->toArray();
     }
 }
