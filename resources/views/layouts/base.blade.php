@@ -45,7 +45,7 @@
         6. 'static-header'        - Static Header
     -->
 
-    <body class="">
+    <body class="sidebar-hidden">
 
         <!-- start: Layout Settings / remove this div from your project
         <div id="theme-settings" class="hidden-sm hidden-xs">
