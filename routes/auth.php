@@ -237,15 +237,21 @@ Route::name('auditDetail.destroy')->delete('audit-{audit}/destroy-detalle', 'Aud
 
 //people
 Route::name('people.index')->get('personas', 'PeopleController@index');
+Route::name('people.profile')->get('cliente/{people}-{slug}/perfil', 'PeopleController@profile');
 Route::name('people.auto.complete')->get('auto-complete/people', 'PeopleController@autoComplete');
 Route::name('people.create')->get('agregar-personas', 'CreatePeopleController@create');
 Route::name('people.store')->post('agregar-persona', 'CreatePeopleController@store');
 Route::name('people.edit')->get('editar-persona/{people}/{slug}', 'EditPeopleController@edit');
+Route::name('people.edit.colors')->get('editar-persona-colores/{people}/{slug}', 'EditPeopleController@editColors');
+Route::name('people.update.colors')->put('editar-persona/colores/{people}', 'EditPeopleController@updateColors');
 Route::name('people.update')->put('editar-persona/{people}', 'EditPeopleController@update');
+Route::name('people.avatar')->get('people/{people}/avatar',  'PeopleController@avatar');
+
 //bills
 Route::name('bills.index')->get('ventas', 'BillController@index');
 Route::name('bills.create')->get('facturar', 'CreateBillController@create');
 Route::name('bills.store')->post('facturar', 'CreateBillController@store');
+Route::name('bills.store_by_profile')->get('facturar-desde-perfil/{people}', 'CreateBillController@storeByProfile');
 Route::name('bills.details')->get('factura/{order}/detalles', 'BillController@details');
 Route::name('bills.details.store')->post('factura/{order}/agregar-producto', 'CreateBillDetailsController@store');
 Route::name('bills.details.destroy')->delete('factura/{order}/eliminar-compra', 'DeleteBillDetailsController@destroy');

@@ -15,11 +15,16 @@
                     <strong>{{ $people->name }}</strong>
                     <small>Editar</small>
                 </div>
-				{!! Form::model($people, ['route' => ['people.update', $people], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+				{!! Form::model($people, ['route' => ['people.update', $people], 'method' => 'PUT', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
 							@include('people.partials.fields')
+                            @if ($people->avatar)
+                                <img src="{{ route('people.avatar', $people) }}" class="img-rounded" width="100" id="blah">
+                            @else
+                                <img src="{{ asset('img/picture.svg') }}" class="img-rounded" width="100" id="blah">
+                            @endif
                         </div>
                     </div>
                     <!--/.row-->

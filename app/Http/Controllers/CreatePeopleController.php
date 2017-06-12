@@ -10,12 +10,19 @@ class CreatePeopleController extends Controller
 {
 
     protected $rules = [
-        'name'    => 'required',
-        'nit'     => 'required|unique:people,nit',
-        'email'   => 'nullable|unique:people,nit',
-        'address' => 'required',
-        'phone'   => 'nullable',
-        'type'    => 'required',
+        'name'        => 'required',
+        'nit'         => 'required|unique:people,nit',
+        'email'       => 'nullable|unique:people,nit',
+        'address'     => 'required',
+        'phone'       => 'nullable',
+        'type'        => 'required',
+        'birthday'    => 'nullable|date',
+        'gender'      => 'nullable',
+        'facebook'    => 'nullable',
+        'instagram'   => 'nullable',
+        'website'     => 'nullable|url',
+        'other_phone' => 'nullable',
+        'avatar'      => 'nullable',
     ];
     public function create()
     {
@@ -25,8 +32,12 @@ class CreatePeopleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, $this->rules);
-        $new_people = People::create($request->all());
+        if ($request->hasFile('file'))
+        {
+            $request->request->add(['avatar' => $request->file('file')->store('people/photos')]);
+        }
+        $people = People::create($request->all());
         Alert::success('Persona creada correctamente');
-        return redirect()->route('people.index');
+        return redirect($people->profileUrl);
     }
 }

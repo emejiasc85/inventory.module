@@ -4,6 +4,8 @@ namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\People;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 class PeopleController extends Controller
 {
@@ -20,5 +22,22 @@ class PeopleController extends Controller
          return People::select('id', 'name', 'nit', 'address')
             ->where('nit', 'LIKE', "%$term%")
             ->get();
+    }
+
+    public function profile(People $people, $slug)
+    {
+        return view('people.profile', compact('people'));
+    }
+
+    public function avatar(People $people)
+    {
+        $header = [
+            'Content-lenght'  => File::size($people->avatarFile),
+            'Content-type'    => File::mimeType($people->avatarFile)
+          ];
+        return response()->download(
+            $people->avatarFile,
+            null, $header, ResponseHeaderBag::DISPOSITION_INLINE
+        );
     }
 }

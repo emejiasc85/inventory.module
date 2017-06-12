@@ -182,7 +182,9 @@ return [
         'sales'                   => 'ventas',
         'bill_number'             => 'Número de Factura',
         'order'                   => 'orden',
-        'bill_id'                 => 'referencia no.'
+        'bill_id'                 => 'referencia no.',
+        'gender'                  => 'Genero',
+        'birthday'                => 'Cumpleaños',
     ],
 
 ];
