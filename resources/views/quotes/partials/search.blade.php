@@ -1,7 +1,7 @@
 {{ Form::model(Request::all(),['route' => ['quotes.details', $order], 'method' => 'get']) }}
     <div class="row">
       <div class="col-xs-3">
-        <input type="text" class="form-control" name="barcode" placeholder="Cod. Barras">
+        <input type="text" class="form-control" id="barcode" name="barcode" placeholder="Cod. Barras">
       </div>
       <div class="col-xs-2">
         <input type="text" class="form-control" name="id" placeholder="ID">

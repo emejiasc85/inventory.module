@@ -43,10 +43,9 @@ class BillController extends Controller
             $products = Stock::selectRaw(' products.full_name, products.id as id , sum(stock) as stock, (sum(order_details.sale_price) / count(stock)) as sale_price')
                 ->leftJoin('order_details', 'order_details.id', '=', 'stocks.order_detail_id' )
                 ->leftJoin('products', 'products.id', '=', 'order_details.product_id' )
-                ->where('products.name','LIKE', "%$request->name%")
+                ->productBarcode($request->barcode)
+                ->product($request->name)
                 ->where('status', true)
-                //->orWhere('products.id', $request->id)
-                //->orWhere('products.barcode', $request->barcode)
                 ->groupBy('products.full_name', 'products.id')
                 ->get();
         }
