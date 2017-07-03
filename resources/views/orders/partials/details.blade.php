@@ -53,7 +53,7 @@
             </tbody>
      </table>
      <div class="row">
-         <div class="col-lg-4 col-lg-offset-8 col-sm-5 col-sm-offset-4 recap">
+         <div class="col-lg-4 col-lg-offset-8 col-sm-5 col-sm-offset-7 recap">
             <table class="table table-clear table-striped">
                 <tbody>
                     <tr>
