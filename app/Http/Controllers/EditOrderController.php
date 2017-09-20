@@ -30,7 +30,7 @@ class EditOrderController extends Controller
         $status = $request->get('status');
         if ($status === 'Revertir') {
             $this->reverse($order);
-            //return redirect()->back();
+            return redirect()->back();
         }
         if ($status == 'Solicitado' && count($order->details)==0) {
             Alert::warning('Alerta')->details('Debes ingresar al Menos un producto');
@@ -80,14 +80,12 @@ class EditOrderController extends Controller
     {
         if(!$order->canRevert()){
             Alert::danger('¡Lo sentimos!')->details('El pedido que intentas revertir cuenta con productos facturados');
-            return redirect()->back();
         }
-        $order->status = 'Solicitado';
-        $order->save();
-
-        Alert::warning('Pedido Revertido');
-        return redirect()->back();
-
+        else{
+            $order->status = 'Solicitado';
+            $order->save();
+            Alert::warning('Pedido Revertido');
+        }
 
     }
 }

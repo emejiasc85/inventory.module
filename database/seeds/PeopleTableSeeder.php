@@ -17,13 +17,6 @@ class PeopleTableSeeder extends Seeder
             'nit' => 'CF',
             'name' => 'Consumidor Final',
             'address' => 'Ciudad',
-            'type' => 'provider'
-        ]);
-        People::create([
-            'id'    => 2,
-            'nit' => '61580635',
-            'name' => 'Enrique Mejias',
-            'address' => 'San benito',
             'type' => 'customer'
         ]);
     }

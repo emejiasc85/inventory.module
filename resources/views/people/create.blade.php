@@ -14,7 +14,7 @@
                     <strong>Personas</strong>
                     <small>Nuevo</small>
                 </div>
-				{!! Form::open(['route' => ['people.store'], 'method' => 'POST', 'class' => 'form-horizontal']) !!}
+				{!! Form::open(['route' => ['people.store'], 'method' => 'POST', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">

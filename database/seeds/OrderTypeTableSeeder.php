@@ -24,5 +24,9 @@ class OrderTypeTableSeeder extends Seeder
             'id' => 3,
             'name' => 'Movimientos'
         ]);
+        OrderType::create([
+            'id' => 4,
+            'name' => 'Cotizaciones'
+        ]);
     }
 }

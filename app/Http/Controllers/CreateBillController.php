@@ -32,4 +32,15 @@ class CreateBillController extends Controller
 
          return redirect()->route('bills.details', $bill);
     }
+
+    public function storeByProfile(People $people)
+    {
+        $bill = new Order();
+        $bill->order_type_id = 2;
+        $bill->people_id = $people->id;
+        $bill->user_id = auth()->user()->id;
+        $bill->save();
+
+        return redirect()->route('bills.details', $bill);
+    }
 }

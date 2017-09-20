@@ -12,13 +12,13 @@ class CommerceTableSeeder extends Seeder
      */
     public function run()
     {
-    	$name = 'Centro Medico Maya';
+    	$name = 'Generico';
         Commerce::create([
             'id' => 1,
         	'name' => $name,
 	    	'patent_name' => $name,
-	    	'address' => 'Santa Elena',
-	    	'phone' =>  '79261212',
+	    	'address' => 'N/A',
+	    	'phone' =>  'N/A',
 	    	'tax' => 3,
 	    	'profit' => 10,
         ]);

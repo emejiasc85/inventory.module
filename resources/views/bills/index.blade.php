@@ -21,9 +21,7 @@
     </div><!--/.col-->
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
         <div class="smallstat" style="padding: 0">
-            <div id="sparkline">
-
-            </div>
+            <div id="sparkline"></div>
         </div><!--/.smallstat-->
     </div><!--/.col-->
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
