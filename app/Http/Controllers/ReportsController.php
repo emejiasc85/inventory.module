@@ -2,8 +2,10 @@
 
 namespace EmejiasInventory\Http\Controllers;
 
+use Carbon\Carbon;
 use EmejiasInventory\Entities\Order;
 use EmejiasInventory\Entities\OrderDetail;
+use EmejiasInventory\Entities\Stock;
 use EmejiasInventory\Entities\User;
 use Illuminate\Http\Request;
 
@@ -36,5 +38,30 @@ class ReportsController extends Controller
             ->orderBy('cant', ($request->order == null ? 'DESC': $request->order))
             ->paginate();
         return view('reports.products', compact('products'));
+    }
+
+    public function dueDate(Request $request)
+    {
+
+        $stocks = Stock::leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+            ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
+            ->where('warehouse_id', 1)
+            ->where('due_date', '!=', null)
+            ->order($request->get('order_id'))
+            ->product($request->get('name'))
+            ->productId($request->get('id'))
+            ->dueDate(Carbon::now(), Carbon::now()->addMonths(8))
+            ->stock($request->get('simbol'), $request->get('stock'))
+            ->where('status', true)
+            ->OrderBy('due_date', 'ASC')
+            ->get();
+
+
+        return view('stocks.due_date', compact('stocks'));
+    }
+
+    public function minStock(Request $request)
+    {
+
     }
 }

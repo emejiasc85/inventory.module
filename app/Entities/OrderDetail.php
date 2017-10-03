@@ -2,6 +2,7 @@
 
 namespace EmejiasInventory\Entities;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderDetail extends Model
@@ -26,6 +27,19 @@ class OrderDetail extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function getDueMonthAttribute()
+    {
+        Carbon::setLocale('es');
+        $now = Carbon::now();
+        $due = Carbon::parse($this->due_date);
+        if (trim($this->due_date) != '' )
+        {
+            return $now->diffForHumans($due, true);
+        }
+
+        return null;
     }
 
     public function setPurchasePriceAttribute($value)
