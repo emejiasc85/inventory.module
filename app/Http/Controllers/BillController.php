@@ -40,13 +40,14 @@ class BillController extends Controller
         if (empty($data)) {
             $products = [];
         }else{
-            $products = Stock::selectRaw(' products.full_name, products.id as id , sum(stock) as stock, (sum(order_details.sale_price) / count(stock)) as sale_price')
+            $products = Stock::selectRaw(" CONCAT(products.full_name,' (', makes.name,')') as full_name, products.id as id , sum(stock) as stock, (sum(order_details.sale_price) / count(stock)) as sale_price")
                 ->leftJoin('order_details', 'order_details.id', '=', 'stocks.order_detail_id' )
                 ->leftJoin('products', 'products.id', '=', 'order_details.product_id' )
+                ->leftJoin('makes', 'makes.id', '=', 'products.make_id' )
                 ->productBarcode($request->barcode)
                 ->product($request->name)
                 ->where('status', true)
-                ->groupBy('products.full_name', 'products.id')
+                ->groupBy('products.full_name', 'products.id', 'makes.name')
                 ->get();
         }
         $commerce = Commerce::first();

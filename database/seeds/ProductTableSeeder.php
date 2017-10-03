@@ -17,24 +17,24 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         $ProductPresentation=  ProductPresentation::create([
-                    'name' => 'Cambiar'
+                    'name' => 'Unidad'
                 ]);
         $ProductGroup = ProductGroup::create([
-                    'name' => 'Cambiar'
+                    'name' => 'Medicina'
                 ]);
         $UnitMeasure =UnitMeasure::create([
-                    'name' => 'Cambiar'
+                    'name' => 'Unidad'
                 ]);
         $Make = Make::create([
-                    'name' => 'Cambiar'
+                    'name' => 'Durex'
                 ]);
 
-        for ($i=1; $i < 184; $i++) {
+        for ($i=1; $i <= 1; $i++) {
 
             Product::create([
                 'id'                      => $i,
-                'name'                    => 'Cambiar',
-                'description'             => 'cambiar',
+                'name'                    => 'Condon',
+                'description'             => 'Condon',
                 'product_presentation_id' => $ProductPresentation->id,
                 'product_group_id'        => $ProductGroup->id,
                 'unit_measure_id'         => $UnitMeasure->id,

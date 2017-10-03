@@ -1,7 +1,9 @@
 <table class="table table-striped">
     <thead>
     <tr>
+         <th>ID</th>
          <th>Producto</th>
+         <th>Marca</th>
          <th>Descripción</th>
          <th>Grupo</th>
          <th>Presentación</th>
@@ -14,7 +16,9 @@
 
         @foreach ($products as $product)
              <tr>
+                 <td>{{ $product->id }}</td>
                  <td><a href="{{ $product->url }}">{{ $product->name }}</a></td>
+                 <td>{{ $product->make->name }}</td>
                  <td>{{ $product->description }}</td>
                  <td>{{ $product->group->name }}</td>
                  <td>{{ $product->presentation->name }}</td>
