@@ -62,6 +62,24 @@ class ReportsController extends Controller
 
     public function minStock(Request $request)
     {
+        $stocks = Stock::leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+            ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
+            ->where('warehouse_id', 1)
 
+            ->order($request->get('order_id'))
+            ->product($request->get('name'))
+            ->productId($request->get('id'))
+            ->stock('<=', 5)
+            ->where('status', true)
+            ->OrderBy('due_date', 'ASC')
+            ->get();
+
+        return view('stocks.min_stock', compact('stocks'));
+    }
+
+    public function resumen(Request $request)
+    {
+        $orders = Order::where('status', 'Ingresado')->where('order_type_id', 1)->orWhere('order_type_id', 2)->paginate();
+        return view('reports.resumen', compact('orders'));
     }
 }

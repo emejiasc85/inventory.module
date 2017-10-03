@@ -296,6 +296,7 @@ Route::name('reports.sellers')->get('reportes/vendedores', 'ReportsController@se
 Route::name('reports.products')->get('reportes/productos', 'ReportsController@products');
 Route::name('reports.due_dates')->get('reportes/productos/proximos-a-vencer', 'ReportsController@dueDate');
 Route::name('reports.min_stock')->get('reportes/productos/en-stock-minimo', 'ReportsController@minStock');
+Route::name('reports.resumen')->get('reportes/ventas/resumen', 'ReportsController@resumen');
 //barcode
 Route::name('barcode.products')->get('barcode/productos/{product}', 'ProductController@barcode');
 
