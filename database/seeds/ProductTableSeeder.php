@@ -17,7 +17,7 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         $ProductPresentation=  ProductPresentation::create([
-                    'name' => 'Pastilla'
+                    'name' => 'Unidad'
                 ]);
         $ProductGroup = ProductGroup::create([
                     'name' => 'Medicina'
@@ -26,32 +26,23 @@ class ProductTableSeeder extends Seeder
                     'name' => 'Unidad'
                 ]);
         $Make = Make::create([
-                    'name' => 'PFIZER'
+                    'name' => 'Durex'
                 ]);
 
-        Product::create([
-            'id' => 1,
-            'name'          => 'Viagra',
-            'description'   => 'Pastilla para mejorar el rendimiento masculino',
-            'product_presentation_id' => $ProductPresentation->id,
-            'product_group_id'  => $ProductGroup->id,
-            'unit_measure_id'   => $UnitMeasure->id,
-            'make_id'   => $Make->id,
-            'minimum_stock'     => 5,
-        ]);
-        $Make2 = Make::create([
-                    'name' => 'BAYER'
-                ]);
+        for ($i=1; $i <= 1; $i++) {
 
-        Product::create([
-            'id' => 2,
-            'name'          => 'Alkaselser',
-            'description'   => 'Pastilla',
-            'product_presentation_id' => $ProductPresentation->id,
-            'product_group_id'  => $ProductGroup->id,
-            'unit_measure_id'   => $UnitMeasure->id,
-            'make_id'   => $Make2->id,
-            'minimum_stock'     => 5,
-        ]);
+            Product::create([
+                'id'                      => $i,
+                'name'                    => 'Condon',
+                'description'             => 'Condon',
+                'product_presentation_id' => $ProductPresentation->id,
+                'product_group_id'        => $ProductGroup->id,
+                'unit_measure_id'         => $UnitMeasure->id,
+                'make_id'                 => $Make->id,
+                'minimum_stock'           => 5,
+            ]);
+
+        }
+
     }
 }

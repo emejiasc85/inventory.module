@@ -43,14 +43,14 @@
 
 @section('scripts')
 <script>
-  $('#Submit').on('click', function (e) {
+    $('#Submit').on('click', function (e) {
         e.preventDefault();
         $('#btn-cancel').fadeOut(1);
         $(this).attr('disabled', 'disabled');
         $(this).text('Espere...')
         $('#CreateOrderForm').submit();
-  });
- 
+    });
+
 </script>
 
 @stop

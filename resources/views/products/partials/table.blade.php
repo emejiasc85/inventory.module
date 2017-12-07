@@ -4,6 +4,7 @@
          <th>ID</th>
          <th>barcode</th>
          <th>Producto</th>
+         <th>Marca</th>
          <th>Descripción</th>
          <th>Grupo</th>
          <th>Presentación</th>
@@ -20,6 +21,7 @@
                  <td>{{ $product->id }}</td>
                  <td>{{ $product->barcode }}</td>
                  <td><a href="{{ $product->url }}">{{ $product->name }}</a></td>
+                 <td>{{ $product->make->name }}</td>
                  <td>{{ $product->description }}</td>
                  <td>{{ $product->group->name }}</td>
                  <td>{{ $product->presentation->name }}</td>

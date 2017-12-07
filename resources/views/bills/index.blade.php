@@ -50,6 +50,7 @@
                             <th>Productos</th>
                             <th>Total</th>
                             <th>Vendedor</th>
+                            <th>Estado</th>
                             <td></td>
                         </tr>
                         @foreach ($bills as $bill)
@@ -59,6 +60,15 @@
                             <td>{{ $bill->details->sum('lot') }}</td>
                             <td>Q. {{ $bill->total }}</td>
                             <td>{{ $bill->user->name }}</td>
+                            <td>
+                                @if ($bill->status == 'Ingresado')
+                                    <span class="label label-success">Facturado</span>
+                                @elseif($bill->status == 'Creado')
+                                    <span class="label label-warning">No Facturado</span>
+                                @endif
+
+                            </td>
+                            <td></td>
                             <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
                         </tr>
                         @endforeach

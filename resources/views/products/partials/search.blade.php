@@ -22,16 +22,16 @@
         {!! Field::text('id') !!}
       </div>
       <div class="col-sm-4">
-        {!! Field::select('make_id', $makes) !!}
+        {!! Field::select('make_id', $makes, null, ['style' => 'width:100% !important']) !!}
       </div>
       <div class="col-sm-4">
-        {!! Field::select('product_presentation_id', $presentations) !!}
+        {!! Field::select('product_presentation_id', $presentations, null, ['style' => 'width:100% !important']) !!}
       </div>
       <div class="col-sm-4">
-        {!! Field::select('product_group_id', $groups) !!}
+        {!! Field::select('product_group_id', $groups, null, ['style' => 'width:100% !important']) !!}
       </div>
       <div class="col-sm-4">
-        {!! Field::select('unit_measure_id', $units) !!}
+        {!! Field::select('unit_measure_id', $units, null, ['style' => 'width:100% !important']) !!}
       </div>
   </div>
 </div>

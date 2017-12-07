@@ -28,7 +28,9 @@
 @stop
 @section('scripts')
 <script>
-
+$(document).ready(function() {
+   $("#barcode").focus();
+});
 @if ($order->status == 'Ingresado')
     $(document).ready(function() {
         window.print()
@@ -112,6 +114,8 @@ $('#OrderStatus').click(function (e) {
     }
     $('#changeStatus').modal('toggle');
 });
+
+
 </script>
 
 @stop

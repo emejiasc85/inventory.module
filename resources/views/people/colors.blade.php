@@ -1,5 +1,7 @@
 @extends('layouts.base')
-
+@section('styles')
+    {!! Html::style('icheck/all.css') !!}
+@endsection
 @section('breadcrumb')
      <li class="breadcrumb-item active"><a href="{{ route('people.index') }}">Personas</a></li>
      <li class="breadcrumb-item active"><a href="{{ $people->profileUrl }}">{{ $people->name }}</a></li>
@@ -17,19 +19,26 @@
                 </div>
                 {!! Form::model($people, ['route' => ['people.update.colors', $people], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
                 <div class="panel-body">
-                    <div class="row well">
-                        <div class="col-sm-12">
-                                @foreach ($colors as $color)
-                                    {{-- expr --}}
-                                    <div class="col-sm-3">
-                                      <div class="checkbox">
-                                        <label>
-                                          <input type="checkbox" value="{{ $color->id }}" {{ ($people->colors->where('id', $color->id)->count() >= 1)? 'checked':'' }} name="color[]"> <span class="fa fa-circle" style="color: {{ $color->color }} ; font-size: 1.5em"></span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                @endforeach
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            @foreach ($colors->chunk(5) as $items)
+                                <tr>
+                                    @foreach ($items as $color)
+                                        <td style="background-color: {{ $color->color }}">
+                                            <div class="">
+                                            <label class="text-center">
+                                              <input
+                                                style="width: 30px; height: 30px; margin: 0;"
+                                                type="checkbox"
+                                                value="{{ $color->id }}" {{ ($people->colors->where('id', $color->id)->count() >= 1)? 'checked':'' }}
+                                                name="color[]">
+                                            </label>
+                                          </div>
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        </table>
                     </div>
                     <!--/.row-->
                 </div>
@@ -49,5 +58,18 @@
         </div>
     </div>
 @stop
+
+@section('scripts')
+    {!! Html::script('icheck/icheck.js') !!}
+
+<script>
+$(document).ready(function(){
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_flat',
+    radioClass: 'iradio_flat'
+  });
+});
+</script>
+@endsection
 
 

@@ -19,7 +19,8 @@
                      <th>Precio Compra</th>
                      <th>Precio Venta</th>
                      <th>Vencimiento</th>
-                     <th class="text-right">Costo Total</th>
+                     <th class="text-right">Total Compra</th>
+                     <th class="text-right">Total Venta</th>
                  </tr>
             </thead>
             <tbody>
@@ -31,30 +32,50 @@
                         <a href="#" data-id="{{ $detail->id }}"  data-name="{{ $detail->product->name }}" class="btn btn-danger btn-xs OrderDetailDelete"><i class="fa fa-minus-circle"></i></a>
                         @endif
                     </td>
-                    <td><a href="{{ $detail->product->url }}">{{ $detail->product->name}}</a></td>
+                    <td><a href="{{ $detail->product->url }}">{{ $detail->product->name}} ({{ $detail->product->make->name}})</a></td>
                      @if ($order->status == 'Ingresado' || $order->status == 'Cancelado')
                         <td>{{ $detail->lot }}</td>
                         <td>Q. {{ $detail->purchase_price }}</td>
                         <td>Q. {{ $detail->sale_price }}</td>
                         <td>{{ $detail->due_date }}</td>
                         <td class="text-right">Q. {{ $detail->total_purchase}}</td>
+                        <td class="text-right">Q. {{ $detail->lot * $detail->sale_price}}</td>
                     @else
                         <td class="col-xs-1"><input type="text" name="lot[]" min="0" step="1" required class="form-control input-sm" value="{{ $detail->lot }} "></td>
                         <td class="col-xs-1"><input type="text" name="purchase_price[]" min="0" required  step="1" class="form-control input-sm" value="{{ $detail->purchase_price }}"></td>
                         <td class="col-xs-1"><input type="text" name="sale_price[]" min="0" step="1" required  class="form-control input-sm" value="{{ $detail->sale_price }}"></td>
                         <td class="col-xs-1"><input type="date" name="due_date[]" class="form-control input-sm" value="{{ $detail->due_date }}"></td>
                         <td class="text-right"><strong>Q. {{ $detail->total_purchase }}</strong></td>
+                        <td class="text-right"><strong>Q. {{ $detail->lot * $detail->sale_price}}</strong></td>
                     @endif
                 </tr>
             @endforeach
             </tbody>
      </table>
      <div class="row">
-         <div class="col-lg-4 col-lg-offset-8 col-sm-5 col-sm-offset-4 recap">
-            <table class="table table-clear">
+         <div class="col-lg-4 col-lg-offset-8 col-sm-5 col-sm-offset-7 recap">
+            <table class="table table-clear table-striped">
                 <tbody>
                     <tr>
-                        <td class="left"><strong>Costo Total</strong></td>
+                        <td class="right">Total Compra</td>
+                        <td class="right"><strong>Q. {{ $order->total }}</strong></td>
+                    </tr>
+
+                    @php
+                        $sale = 0;
+                    @endphp
+                    @foreach ($order->details as $element)
+                        @php
+                            $var = $element->lot * $element->sale_price;
+                            $sale = $sale + $var;
+                        @endphp
+                    @endforeach
+                    <tr >
+                        <td class="right">Total Venta</td>
+                        <td class="right"><strong>Q. {{ $sale }}</strong></td>
+                    </tr>
+                    <tr style="border-top: 1.5px solid black !important">
+                        <td class="right"><strong>Ganancia</strong></td>
                         <td class="right"><strong>Q. {{ $order->total }}</strong></td>
                     </tr>
                 </tbody>

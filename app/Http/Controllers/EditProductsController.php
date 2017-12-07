@@ -11,7 +11,7 @@ class EditProductsController extends Controller
     public function rules($id)
     {
         return [
-            'name'                      => 'required|unique:products,name,'.$id,
+            'name'                      => 'required',
             'description'               => 'required',
             'minimum_stock'             => 'numeric',
             'product_presentation_id'   => 'required|exists:product_presentations,id',

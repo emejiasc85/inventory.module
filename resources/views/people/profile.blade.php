@@ -26,12 +26,16 @@
 
                 <hr>
                 <div class="row">
-                    <div class="col-xs-6">
-                        <a href="https://web.facebook.com/{{ $people->facebook }}" target="_black" style="margin-bottom: 4px" class="btn btn-sm btn-facebook btn-block" ><span>Facebook</span></a>
-                    </div>
-                    <div class="col-xs-6">
-                        <a href="https://www.instagram.com/{{ $people->instagram }}" target="_black" style="margin-bottom: 4px" class="btn btn-sm btn-instagram btn-block"><span>Instagram</span></a>
-                    </div>
+                    @if ($people->facebook != null)
+                        <div class="col-xs-6">
+                            <a href="https://web.facebook.com/{{ $people->facebook }}" target="_black" style="margin-bottom: 4px" class="btn btn-sm btn-facebook btn-block" ><span>Facebook</span></a>
+                        </div>
+                    @endif
+                    @if ($people->instagram)
+                        <div class="col-xs-6">
+                            <a href="https://www.instagram.com/{{ $people->instagram }}" target="_black" style="margin-bottom: 4px" class="btn btn-sm btn-instagram btn-block"><span>Instagram</span></a>
+                        </div>
+                    @endif
                 </div>
                 <hr>
 
@@ -74,7 +78,7 @@
                     <li>
                         <div><i class="fa fa-briefcase"></i> Sexo</div>
                         @if ($people->gender == 'i')
-                            n/d
+                            n/a
                         @elseif ($people->gender == 'f')
                             Femenino
                         @elseif ($people->gender == 'm')
@@ -86,7 +90,7 @@
                         @if ($people->birthday)
                             {{ $people->birthday->format('d/m/y') }}
                         @else
-                            n/d
+                            n/a
                         @endif
                     </li>
                 </ul>
@@ -165,7 +169,7 @@
                                     </div>
                                     <div class="panel-footer">
                                         @foreach ($people->colors as $color)
-                                            <span class="fa fa-circle" style="color: {{ $color->color }}; font-size: 1.5em"></span>
+                                            <span class="fa fa-square" style="color: {{ $color->color }}; font-size: 2em"></span>
                                         @endforeach
 
                                         <a href="{{ route('people.edit.colors', [$people, $people->slug]) }}" class="btn btn-link"><span class="fa fa-pencil text-success"></span></a>

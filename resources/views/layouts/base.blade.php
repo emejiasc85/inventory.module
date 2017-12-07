@@ -19,16 +19,18 @@
         <!-- Custom styles for this template -->
         {!! Html::style('css/style.css') !!}
         {!! Html::style('css/add-ons.css') !!}
-        {!! Html::style('plugins/select2/css/select2.min.css') !!}
+        {!! Html::style('plugins/select2/css/select2.css') !!}
         @yield('styles')
     </head>
     <style>
+
+
         .btn-print{
             position: fixed;
             bottom  : 160px;
             right   : 291px;
         }
-                .jqstooltip {
+        .jqstooltip {
           -webkit-box-sizing: content-box;
           -moz-box-sizing: content-box;
           box-sizing: content-box;
@@ -170,7 +172,11 @@
                     $(this).alert('close')
                 });
             }, 4000);
+
+            $('select').select2();
+
         </script>
+
         @yield('scripts')
 
     </body>

@@ -45,7 +45,7 @@ class LoginController extends Controller
         return $request->only($field, 'password');
     }
 
-    /** 这个是声明账户登录的name值 */
+
     public function username()
     {
         return 'login';

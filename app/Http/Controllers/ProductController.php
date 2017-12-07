@@ -25,4 +25,9 @@ class ProductController extends Controller
     		->paginate();
     	return view('products.index', compact('products'));
     }
+
+    public function barcode(Product $product)
+    {
+        return view('products.partials.printbc', compact('product'));
+    }
 }

@@ -53,7 +53,7 @@
 
                         {{ $detail->lot }}
                     </td>
-                    <td>{{ $detail->product->name }}</td>
+                    <td>{{ $detail->product->name }} ({{ $detail->product->make->name }})</td>
                     <td class="text-right">{{ $detail->sale_price }}</td>
                     <td class="text-right">{{ $detail->total_purchase }}</td>
                 </tr>

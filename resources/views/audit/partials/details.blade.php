@@ -30,7 +30,7 @@
                         <a href="#" data-id="{{ $detail->id }}"  data-name="{{ $detail->product->name }}" class="btn btn-danger btn-xs OrderDetailDelete"><i class="fa fa-minus-circle"></i></a>
                         @endif
                     </td>
-                    <td><a href="{{ $detail->product->url }}">{{ $detail->product->name}}</a></td>
+                    <td><a href="{{ $detail->product->url }}">{{ $detail->product->name}} ({{ $detail->product->make->name}})</a></td>
                      @if ($audit->status == 'Finalizado' || $audit->status == 'Cancelado')
                         <td>{{ $detail->current_stock }}</td>
                         <td>{{ $detail->audited_stock }}</td>
