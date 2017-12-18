@@ -5,6 +5,13 @@
 @section('content')
 <div class="row">
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+        <div class="smallstat">
+            <i class="fa fa-calendar info"></i>
+            <span class="value text-info">Q. {{ $sales_month->sum('total') }}</span>
+            <a href="{{ route('cash.registers.edit')}}" class="title">Cerrar Caja</a>
+        </div><!--/.smallstat-->
+    </div><!--/.col-->
+    <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
         <a  href="{{ route('bills.create') }}">
             <div class="smallstat">
                 <i class="fa fa-shopping-cart primary"></i>
@@ -26,13 +33,7 @@
             <span class="title">Creditos</span>
         </div><!--/.smallstat-->
     </div><!--/.col-->
-    <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
-        <div class="smallstat">
-            <i class="fa fa-calendar info"></i>
-            <span class="value text-info">Q. {{ $sales_month->sum('total') }}</span>
-            <span class="title">Caja</span>
-        </div><!--/.smallstat-->
-    </div><!--/.col-->
+    
 </div>
 <div class="row">
     <div class="col-sm-12">

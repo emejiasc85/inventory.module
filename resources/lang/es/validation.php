@@ -191,6 +191,7 @@ return [
         'file'                    => 'archivo',
         'website'                 => 'sitio web',
         'amount' => 'monto',
+        'initial_cash' => 'Saldo inicial',
     ],
 
 ];

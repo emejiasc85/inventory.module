@@ -302,6 +302,11 @@ Route::name('barcode.products')->get('barcode/productos/{product}', 'ProductCont
 //payments
 Route::name('payments.store')->post('agregar-pago', 'PaymentController@store');
 Route::name('payments.destroy')->delete('elimianr-pago', 'PaymentController@destroy');
+//registers
+Route::name('cash.registers.create')->get('aperturar-caja', 'CashRegisterController@create');
+Route::name('cash.registers.store')->post('aperturar-caja', 'CashRegisterController@store');
+Route::name('cash.registers.edit')->get('cerrar-caja', 'CashRegisterController@edit');
+Route::name('cash.registers.update')->put('cerrar-caja/register', 'CashRegisterController@update');
 
 
 

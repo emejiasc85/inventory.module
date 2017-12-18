@@ -1,6 +1,7 @@
 <?php
 namespace EmejiasInventory\Entities;
 
+
 class Order extends Entity
 {
     protected $fillable = [
@@ -10,7 +11,8 @@ class Order extends Entity
     	'total',
     	'order_type_id',
         'priority',
-        'credit'
+        'credit',
+        'cash_register_id'
     ];
 
     protected $date = ['created_at', 'updated_at'];
@@ -18,6 +20,10 @@ class Order extends Entity
     public function bill()
     {
         return $this->hasOne(Bill::class);
+    }
+    public function cash_register()
+    {
+        return $this->belongsTo(CashRegister::class);
     }
     public function payments()
     {

@@ -30,7 +30,7 @@
                 </tr>
                 @foreach($order->payments as $payment)
                 <tr>
-                    <td></td>
+                    <td>{{ $payment->baucher}}</td>
                     <td>{{ $payment->created_at->format('d-m-Y')}}</td>
                     <td>{{ $payment->amount}}</td>
                     <td><a href=""  data-id="{{$payment->id}}" class="btn btn-sm btn-danger destroy_payment"><i class="fa fa-trash"></i></a></td>

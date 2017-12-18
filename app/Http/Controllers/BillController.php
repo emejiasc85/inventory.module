@@ -7,22 +7,34 @@ use EmejiasInventory\Entities\Bill;
 use EmejiasInventory\Entities\{Order,Commerce,Stock};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use EmejiasInventory\Entities\CashRegister;
+use Styde\Html\Facades\Alert;
 
 class BillController extends Controller
 {
 
     public function index(Request $request)
     {
+        $register = CashRegister::orderBy('id', 'DESC')->first();
+
+        if(!$register){
+            Alert::warning('Debe aperturar una caja antes de realizar ventas');
+
+            return redirect()->route('cash.registers.create');
+        }
+        
         $diary_sales = Order::select(DB::raw('DATE(created_at) as date, sum(total) as total'))
             ->where('order_type_id', 2)
+            ->where('cash_register_id', $register->id)
             ->whereMonth('created_at', '=', Carbon::today()->format('m'))
             ->groupBy('date')
             ->get();
-        $sales_day = Order::where('order_type_id', 2)->where('credit', false)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
-        $credits_day = Order::where('order_type_id', 2)->where('credit', true)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
-        $sales_month = Order::where('order_type_id', 2)->whereMonth('created_at', '=', Carbon::today()->format('m'))->get();
+        $sales_day = Order::where('order_type_id', 2) ->where('cash_register_id', $register->id)->where('credit', false)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        $credits_day = Order::where('order_type_id', 2)->where('cash_register_id', $register->id)->where('credit', true)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        $sales_month = Order::where('order_type_id', 2) ->where('cash_register_id', $register->id)->whereMonth('created_at', '=', Carbon::today()->format('m'))->get();
 
         $bills = Order::select('orders.*')->where('order_type_id', 2)
+            ->where('cash_register_id', $register->id)
             ->peopleName($request->people_name)
             ->id($request->bill_id)
             ->date($request->from, $request->to)

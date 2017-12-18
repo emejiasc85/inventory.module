@@ -1,0 +1,1 @@
+{!! Field::text('initial_cash', 0,  ['template' => 'templates.inline']) !!}

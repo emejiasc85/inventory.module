@@ -5,6 +5,7 @@ namespace EmejiasInventory\Http\Controllers;
 use Illuminate\Http\Request;
 use EmejiasInventory\Entities\{Payment, Order};
 use Styde\Html\Facades\Alert;
+use EmejiasInventory\Entities\CashRegister;
 
 class PaymentController extends Controller
 {
@@ -35,10 +36,11 @@ class PaymentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        $register = CashRegister::orderBy('id', 'DESC')->first()->id;
         $order = Order::findOrFail($request->order_id);
-
         $this->validate($request, ['amount' => 'required|numeric' ]);
+        $request->request->add(['cash_register_id'=> $register]);
         $new = Payment::create($request->all());
         $payments = $order->payments->sum('amount');
         
