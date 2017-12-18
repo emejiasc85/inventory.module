@@ -21,6 +21,9 @@ class EditBillController extends Controller
                 $bill->save();
             }
         }
+        if($request->credit){
+            $order->credit = true;
+        }
         $order->status = 'Ingresado';
         $order->save();
         if ($order->order_type_id == 4) {

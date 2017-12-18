@@ -139,7 +139,8 @@
                 <ul class="nav nav-tabs pull-left" id="tabs">
                     <li><a href="#activity">Intereses</a></li>
                     <li><a href="#contact">Contacto</a></li>
-                    <!--<li><a href="#sales">Compras</a></li>-->
+                    <li><a href="#sales">Compras</a></li>
+                    <li><a href="#credits">Creditos</a></li>
                 </ul>
             </div>
             <div class="panel-body">
@@ -233,6 +234,48 @@
                                 </div>
                             </div><!--/.col-->
                         </div><!--/.row-->
+                    </div>
+                    <div class="tab-pane" id="sales">
+                        <table class="table col-sm-12">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Productos</th>
+                                <th>Total</th>
+                                <th>Vendedor</th>
+                                <td></td>
+                            </tr>
+                            @foreach ($people->purchases as $bill)
+                            <tr>
+                                <td>{{ $bill->created_at->format('d-m-Y') }}</td>
+                                <td>{{ $bill->details->sum('lot') }}</td>
+                                <td>Q. {{ $bill->total }}</td>
+                                <td>{{ $bill->user->name }}</td>
+                                <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
+                            </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="credits">
+                      <table class="table col-sm-12">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Productos</th>
+                                <th>Abonos</th>
+                                <th>Total</th>
+                                <th>Vendedor</th>
+                                <td></td>
+                            </tr>
+                            @foreach ($people->credits as $bill)
+                            <tr>
+                                <td>{{ $bill->created_at->format('d-m-Y') }}</td>
+                                <td>{{ $bill->details->sum('lot') }}</td>
+                                <td>Q. {{ $bill->payments->sum('amount') }}</td>
+                                <td>Q. {{ $bill->total }}</td>
+                                <td>{{ $bill->user->name }}</td>
+                                <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
+                            </tr>
+                            @endforeach
+                        </table>
                     </div>
                 </div>
             </div>

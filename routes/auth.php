@@ -299,6 +299,10 @@ Route::name('reports.min_stock')->get('reportes/productos/en-stock-minimo', 'Rep
 Route::name('reports.resumen')->get('reportes/ventas/resumen', 'ReportsController@resumen');
 //barcode
 Route::name('barcode.products')->get('barcode/productos/{product}', 'ProductController@barcode');
+//payments
+Route::name('payments.store')->post('agregar-pago', 'PaymentController@store');
+Route::name('payments.destroy')->delete('elimianr-pago', 'PaymentController@destroy');
+
 
 
 

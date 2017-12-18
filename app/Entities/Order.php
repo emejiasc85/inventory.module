@@ -9,13 +9,19 @@ class Order extends Entity
     	'people_id',
     	'total',
     	'order_type_id',
-    	'priority'
+        'priority',
+        'credit'
     ];
 
     protected $date = ['created_at', 'updated_at'];
+    
     public function bill()
     {
         return $this->hasOne(Bill::class);
+    }
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 
     public function quotation()

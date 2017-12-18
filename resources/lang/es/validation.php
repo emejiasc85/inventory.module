@@ -187,8 +187,10 @@ return [
         'birthday'                => 'Cumpleaños',
         'partner'                 => 'socio',
         'max_credit'              => 'crédito máximo',
+        'credit'                  => 'crédito',
         'file'                    => 'archivo',
         'website'                 => 'sitio web',
+        'amount' => 'monto',
     ],
 
 ];

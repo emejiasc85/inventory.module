@@ -68,10 +68,10 @@ class People extends Entity
 
     public function getPurchasesAttribute()
     {
-        return $this->orders->where('order_type_id', 2)->sum('total');
+        return $this->orders->where('order_type_id', 2)->where('credit', false);
     }
     public function getCreditsAttribute()
     {
-        return $this->orders->where('order_type_id', 6)->sum('total');
+        return $this->orders->where('order_type_id', 2)->where('credit', true);
     }
 }

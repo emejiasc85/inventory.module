@@ -12,7 +12,49 @@
             @include('bills.partials.details')
         </div>
     @endif
-    <div {!! Html::classes(['col-sm-5', 'col-sm-offset-3' => $order->status == 'Ingresado' ]) !!}>
+    @if($order->credit)
+    <div class="col-sm-7">
+        <div class="panel panel-default ">
+            <div class="panel-body">
+            <div class="panel-heading">
+            Pagos
+            <a href="#" id="add_payment" class="btn btn-sm btn-primary pull-right"><span class="fa fa-plus"></span> Agregar</a>
+            </div>
+            <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <td>Baucher</td>
+                    <td>Fecha</td>
+                    <td>Monto</td>
+                    <td>Opciones</td>
+                </tr>
+                @foreach($order->payments as $payment)
+                <tr>
+                    <td></td>
+                    <td>{{ $payment->created_at->format('d-m-Y')}}</td>
+                    <td>{{ $payment->amount}}</td>
+                    <td><a href=""  data-id="{{$payment->id}}" class="btn btn-sm btn-danger destroy_payment"><i class="fa fa-trash"></i></a></td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td></td>                    
+                    <td></td>
+                    <td><strong>Total</strong></td>
+                    <td>{{ $order->payments->sum('amount')}}</td>
+                </tr>
+                <tr>
+                    <td></td>                   
+                    <td></td>
+                    <td><strong>Total Factura</strong></td>
+                    <td>{{ $order->total}}</td>
+                </tr>
+            </table>
+            </div>    
+            </div>
+        </div>
+    </div>
+    @endif
+    <div {!! Html::classes(['col-sm-5', 'col-sm-offset-3' => $order->status == 'Ingresado && !$order->credit' ]) !!}>
         @include('bills.partials.head')
     </div><!--/col-->
 </div><!--/row-->
@@ -20,6 +62,8 @@
 @stop
 @section('modals')
 @include('bills.partials.modal_confirm_bill')
+@include('bills.partials.modal_add_payment')
+@include('bills.partials.modal_destroy_payment')
 @include('bills.partials.modal_detail_destroy')
 @include('bills.partials.modal_bill_destroy')
 @include('bills.partials.add_product')
@@ -31,7 +75,7 @@
 $(document).ready(function() {
    $("#barcode").focus();
 });
-@if ($order->status == 'Ingresado')
+@if ($order->status == 'Ingresado' && !$order->credit)
     $(document).ready(function() {
         window.print()
     });
@@ -78,6 +122,15 @@ $('.OrderDetailDelete').click( function (e) {
     $('#confirmDelete').modal('toggle');
 });
 
+$('.destroy_payment').click( function (e) {
+    e.preventDefault();
+    var link        = $(this)
+    var value       = link.data('id');
+    var input_value = $('#payment');
+    input_value.val(value);
+    $('#destroyPayment').modal('toggle');
+});
+
 
 
 $('#DestroyBill').click( function (e) {
@@ -95,6 +148,10 @@ $('#RevertBill').click( function (e) {
 $('#Bill').click( function (e) {
     e.preventDefault();
     $('#ConfirmBill').modal('toggle');
+});
+$('#add_payment').click( function (e) {
+    e.preventDefault();
+    $('#addPayment').modal('toggle');
 });
 
 

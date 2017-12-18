@@ -16,19 +16,21 @@
         <div class="smallstat">
             <i class="fa fa-calendar-o success"></i>
             <span class="value text-success">Q. {{ $sales_day->sum('total') }}</span>
-            <span class="title">Ventas {{ Carbon\Carbon::now()->format('d-m-Y') }}</span>
-        </div><!--/.smallstat-->
-    </div><!--/.col-->
-    <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
-        <div class="smallstat" style="padding: 0">
-            <div id="sparkline"></div>
+            <span class="title">Ventas</span>
         </div><!--/.smallstat-->
     </div><!--/.col-->
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
         <div class="smallstat">
-            <i class="fa fa-calendar warning"></i>
-            <span class="value text-warning">Q. {{ $sales_month->sum('total') }}</span>
-            <span class="title">Ventas del Mes</span>
+            <i class="fa fa-calendar-o warning"></i>
+            <span class="value text-warning">Q. {{ $credits_day->sum('total') }}</span>
+            <span class="title">Creditos</span>
+        </div><!--/.smallstat-->
+    </div><!--/.col-->
+    <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+        <div class="smallstat">
+            <i class="fa fa-calendar info"></i>
+            <span class="value text-info">Q. {{ $sales_month->sum('total') }}</span>
+            <span class="title">Caja</span>
         </div><!--/.smallstat-->
     </div><!--/.col-->
 </div>
@@ -50,6 +52,7 @@
                             <th>Productos</th>
                             <th>Total</th>
                             <th>Vendedor</th>
+                            <th>Crédito</th>
                             <th>Estado</th>
                             <td></td>
                         </tr>
@@ -61,14 +64,17 @@
                             <td>Q. {{ $bill->total }}</td>
                             <td>{{ $bill->user->name }}</td>
                             <td>
+                                @if ($bill->credit)
+                                    <span class="fa fa-check text-success"></span>
+                                @endif
+                            </td>
+                            <td>
                                 @if ($bill->status == 'Ingresado')
                                     <span class="label label-success">Facturado</span>
                                 @elseif($bill->status == 'Creado')
                                     <span class="label label-warning">No Facturado</span>
                                 @endif
-
                             </td>
-                            <td></td>
                             <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
                         </tr>
                         @endforeach

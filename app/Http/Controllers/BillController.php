@@ -18,7 +18,8 @@ class BillController extends Controller
             ->whereMonth('created_at', '=', Carbon::today()->format('m'))
             ->groupBy('date')
             ->get();
-        $sales_day = Order::where('order_type_id', 2)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        $sales_day = Order::where('order_type_id', 2)->where('credit', false)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+        $credits_day = Order::where('order_type_id', 2)->where('credit', true)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
         $sales_month = Order::where('order_type_id', 2)->whereMonth('created_at', '=', Carbon::today()->format('m'))->get();
 
         $bills = Order::select('orders.*')->where('order_type_id', 2)
@@ -28,7 +29,7 @@ class BillController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate();
 
-        return view('bills.index', compact('bills', 'sales_day', 'sales_month', 'diary_sales'));
+        return view('bills.index', compact('bills', 'sales_day', 'sales_month', 'diary_sales', 'credits_day'));
     }
     public function details(Request $request, Order $order)
     {
