@@ -15,12 +15,14 @@ class EditPeopleTest extends FeatureTestCase
         $people = factory(People::class)->create();
 
         $fields = [
-         'nit'     => '6158063-5',
-            'name'    => 'Enrique Mejias',
-            'address' => 'San benito',
-            'phone'   => '54606633',
-            'email'   => 'emejiasc85@gmail.com',
-            'type'    => 'provider'
+            'nit'        => '6158063-5',
+            'name'       => 'Enrique Mejias',
+            'address'    => 'San benito',
+            'phone'      => '54606633',
+            'email'      => 'emejiasc85@gmail.com',
+            'type'       => 'provider',
+            'partner'    => true,
+            'max_credit' => 5000
         ];
         //when
         $this->visit($people->editUrl)

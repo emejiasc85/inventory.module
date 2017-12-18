@@ -12,12 +12,14 @@ class ListPeopleTest extends FeatureTestCase
         //having
         $this->actingAs($this->defaultUser());
         $people = factory(People::class)->create([
-            'nit'     => '6158063-5',
-            'name'    => 'Enrique Mejias',
-            'address' => 'San benito',
-            'phone'   => '54606633',
-            'email'   => 'emejiasc85@gmail.com',
-            'type'    => 'provider'
+            'nit'        => '6158063-5',
+            'name'       => 'Enrique Mejias',
+            'address'    => 'San benito',
+            'phone'      => '54606633',
+            'email'      => 'emejiasc85@gmail.com',
+            'type'       => 'provider',
+            'partner'    => true,
+            'max_credit' => 5000,
         ]);
         //when
         $this->visit(route('people.index'));
@@ -27,7 +29,9 @@ class ListPeopleTest extends FeatureTestCase
             ->seeInElement('td', $people->nit)
             ->seeInElement('td', $people->address)
             ->seeInElement('td', $people->email)
-            ->seeInElement('td', $people->phone);
+            ->seeInElement('td', $people->phone)
+            ->seeInElement('td', 'Proveedor')
+            ->seeInElement('td', 5000);
     }
 
     function test_a_user_can_paginate_people()

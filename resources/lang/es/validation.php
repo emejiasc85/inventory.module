@@ -185,6 +185,10 @@ return [
         'bill_id'                 => 'referencia no.',
         'gender'                  => 'Genero',
         'birthday'                => 'Cumpleaños',
+        'partner'                 => 'socio',
+        'max_credit'              => 'crédito máximo',
+        'file'                    => 'archivo',
+        'website'                 => 'sitio web',
     ],
 
 ];

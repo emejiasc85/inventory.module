@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-<li class="breadcrumb-item"><a href="{{ route('product.groups.index') }}">Personas</a></li>
+<li class="breadcrumb-item"><a href="{{ route('people.index') }}">Personas</a></li>
 @stop
 
 @section('content')
@@ -28,26 +28,7 @@
                 </div>
                 {{ Form::close() }}
                 <div class="table-resposive">
-                    <table class="table col-sm-12">
-                        <tr>
-                            <th>Nit</th>
-                            <th>Nombre</th>
-                            <th>Dirección</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th></th>
-                        </tr>
-                        @foreach ($people as $person)
-                        <tr>
-                            <td>{{ $person->nit }}</td>
-                            <td>{{ $person->name}}</td>
-                            <td>{{ $person->address}}</td>
-                            <td>{{ $person->email}}</td>
-                            <td>{{ $person->phone}}</td>
-                            <td><a href="{{ $person->profileUrl }}" class="btn btn-info "> <i class="fa fa-eye"></i>  Perfil</a></td>
-                        </tr>
-                        @endforeach
-                    </table>
+                    @include('people.partials.table')
                 </div>
             </div>
             <div class="panel-footer">

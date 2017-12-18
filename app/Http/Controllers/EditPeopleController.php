@@ -20,23 +20,6 @@ class EditPeopleController extends Controller
 
     public function update(Request $request, People $people)
     {
-        $rules = [
-            'name'        => 'required',
-            'nit'         => 'required|unique:people,nit,'.$people->id,
-            'email'       => 'nullable|unique:people,email,'.$people->id,
-            'address'     => 'required',
-            'phone'       => 'nullable',
-            'type'        => 'required',
-            'birthday'    => 'nullable|date',
-            'gender'      => 'nullable',
-            'facebook'    => 'nullable',
-            'instagram'   => 'nullable',
-            'website'     => 'nullable|url',
-            'other_phone' => 'nullable',
-            'avatar'      => 'nullable',
-        ];
-
-        $this->validate($request, $rules);
         if ($request->hasFile('file'))
         {
             $request->request->add(['avatar' => $request->file('file')->store('people/photos')]);
