@@ -4,6 +4,8 @@ namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\CashRegisterDeposit;
 use Illuminate\Http\Request;
+use EmejiasInventory\Entities\CashRegister;
+use Styde\Html\Facades\Alert;
 
 class CashRegisterDepositController extends Controller
 {
@@ -22,10 +24,6 @@ class CashRegisterDepositController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -33,9 +31,13 @@ class CashRegisterDepositController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CashRegister $register)
     {
-        //
+        $this->validate($request, ['bank' => 'nullable', 'account' => 'nullable', 'amount' => 'required|numeric|min:0', 'baucher' => 'required', 'date' => 'required|date']);
+        $request->request->add(['cash_register_id' => $register->id]);
+        $deposit = CashRegisterDeposit::create($request->all());
+        Alert::success('Deposito Agregado');
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +80,11 @@ class CashRegisterDepositController extends Controller
      * @param  \EmejiasInventory\Entities\CashRegisterDeposit  $cashRegisterDeposit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CashRegisterDeposit $cashRegisterDeposit)
+    public function destroy(Request $request)
     {
-        //
+        $deposit = CashRegisterDeposit::findOrFail($request->deposit_id);
+        $deposit->delete();
+        Alert::success('Deposito eliminado');
+        return redirect()->back();
     }
 }

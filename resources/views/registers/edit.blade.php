@@ -10,27 +10,33 @@
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
             <div class="row">
                 <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <div class="smallstat">
-                        <span class="value text-success">Q. {{ $register->sales->sum('total')}}</span>
-                        <span class="title">Ventas</span>
-                    </div><!--/.smallstat-->
+                    <a href="{{ route('cash.registers.bills', $register)}}">
+                        <div class="smallstat">
+                            <span class="value text-success">Q. {{ $register->sales->sum('total')}}</span>
+                            <span class="title">Ventas</span>
+                        </div><!--/.smallstat-->
+                    </a>
                 </div><!--/.col-->                        
                 <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <div class="smallstat">
-                        <span class="value text-primary">Q. {{ $register->payments->sum('amount')}}</span>
-                        <span class="title">Abonos a Creditos</span>
-                    </div><!--/.smallstat-->
+                    <a href="{{ route('cash.registers.payments', $register)}}">
+                        <div class="smallstat">
+                            <span class="value text-primary">Q. {{ $register->payments->sum('amount')}}</span>
+                            <span class="title">Abonos a Creditos</span>
+                        </div><!--/.smallstat-->
+                    </a>
                 </div><!--/.col-->                        
                 <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
+                    <a href="{{ route('cash.registers.credits', $register)}}">
                     <div class="smallstat">
                         <span class="value text-muted">Q. {{ $register->credits->sum('total')}}</span>
                         <span class="title">Creditos</span>
                     </div><!--/.smallstat-->
+                    </a>
                 </div><!--/.col-->                        
                 <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
                     <div class="smallstat">
                         <span class="value text-muted">Q. {{ $register->initial_cash}}</span>
-                        <p class="title">Saldo Inicial <a href="#" data-toggle="modal" data-target="#editInitialCash">Editar</a></p>
+                        <p class="title">Saldo Inicial  @if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash">Editar</a>@endif</p>
                         
                     </div><!--/.smallstat-->
                 </div><!--/.col-->     
@@ -46,7 +52,7 @@
 
                 @endif                   
                 <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <a  href="{{ route('bills.create') }}">
+                    <a  href="#" data-toggle="modal" data-target="#addDeposit">
                         <div class="smallstat">
                             <i class="fa fa-inbox info"></i>
                             <span class="value text-primary">Agregar Deposito</span>
@@ -57,12 +63,13 @@
             <div class="panel panel-default" style="border-top: 2px solid #4dbd74">
                 <div class="panel-heading">
                     <strong>Depositos</strong>
-                    <a href="" class="pull-right">Imprimir Reporte</a>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <tr>
                             <th>Fecha</th>
+                            <th>Banco</th>
+                            <th>Cuenta</th>
                             <th>No. Documento</th>
                             <th>Monto</th>
                             <th>Acciones</th>
@@ -74,7 +81,7 @@
                                 <td>{{ $deposit->account}}</td>
                                 <td>{{ $deposit->baucher}}</td>
                                 <td>{{ $deposit->amount}}</td>
-                                <td><a href="" class="btn btn-sm btn-link"><i class="fa fa-trash text-danger"></i></a></td>
+                                <td><a href="#" data-id="{{$deposit->id}}" class="btn btn-link btn-destroy-deposit"><i class="fa fa-trash text-danger"></i></a></td>
                             </tr>
                         @endforeach
                     </table>
@@ -125,6 +132,65 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="addDeposit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-default" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Depositos a caja</h4>
+      </div>
+        {!! Form::open(['route' => ['cash.registers.deposits.create', $register ], 'method' => 'POST', 'class' => 'form-horizontal']) !!}
+      <div class="modal-body">
+            {!! Field::date('date')!!}    
+            {!! Field::text('bank')!!}    
+            {!! Field::text('account')!!}    
+            {!! Field::text('baucher')!!}    
+            {!! Field::text('amount')!!}    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Agregar Deposito</button>
+      </div>
+	    {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="DeleteDeposit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog  modal-sm modal-danger" role="document">
+    <div class="modal-content modal-danger">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Eliminar Depositos a caja</h4>
+      </div>
+        {!! Form::open(['route' => ['cash.registers.deposits.destroy'], 'method' => 'delete', 'class' => 'form-horizontal']) !!}
+      <div class="modal-body">
+            <h2>¿Estas seguro de eliminar este deposito?</h2>
+            {!! Field::hidden('deposit_id', null, ['id' =>'deposit_id'])!!}    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-danger">Eliminar Deposito</button>
+      </div>
+	    {!! Form::close() !!}
+    </div>
+  </div>
+</div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+
+            $('.btn-destroy-deposit').click( function (e) {
+                e.preventDefault();
+                var link        = $(this)
+                var value       = link.data('id');
+                var input_value = $('#deposit_id');
+                input_value.val(value);
+                $('#DeleteDeposit').modal('toggle');
+            });
+        });
+    
+    </script>
 @endsection
 
 

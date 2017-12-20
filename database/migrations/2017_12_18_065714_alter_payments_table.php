@@ -26,5 +26,8 @@ class AlterPaymentsTable extends Migration
      */
     public function down()
     {
+        Schema::table('payments', function (Blueprint $table) {
+            //$table->dropForeign('cash_register_id');
+        });
     }
 }

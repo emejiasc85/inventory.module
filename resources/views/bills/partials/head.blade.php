@@ -1,6 +1,11 @@
  <div class="panel panel-default">
     <div class="panel-heading">
-
+        Credito: 
+        @if($order->people->restCredit == 0)
+        <span class="text-danger">Q. {{ $order->people->restCredit}}</span>
+        @else    
+        <span class="text-success">Q. {{ $order->people->restCredit}}</span>
+        @endif
         @if ($order->status != 'Ingresado' || auth()->user()->isAdmin())
             <a href="#" title="Cancelar"  class="btn btn-danger btn-sm pull-right hidden-print" id="DestroyBill" style="margin-top: 2px"><span class="fa fa-2x fa-trash-o"></span></a>
         @endif

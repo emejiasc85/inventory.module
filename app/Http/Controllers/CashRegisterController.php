@@ -5,6 +5,7 @@ namespace EmejiasInventory\Http\Controllers;
 use Illuminate\Http\Request;
 use EmejiasInventory\Entities\CashRegister;
 use Styde\Html\Facades\Alert;
+use EmejiasInventory\Entities\CashRegisterDeposit;
 
 class CashRegisterController extends Controller
 {
@@ -109,5 +110,18 @@ class CashRegisterController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function bills(CashRegister $register)
+    {
+        return view('registers.bills', compact('register'));
+    }
+    public function credits(CashRegister $register)
+    {
+        return view('registers.credits', compact('register'));
+    }
+    public function payments(CashRegister $register)
+    {
+        return view('registers.payments', compact('register'));
     }
 }

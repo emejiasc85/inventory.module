@@ -9,6 +9,14 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
 }
 </style>
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
+        <a  href="{{ route('bills.index') }}">
+            <div class="smallstat">
+                <i class="fa fa-inbox success"></i>
+                <span class="value text-success">Caja</span>
+            </div><!--/.smallstat-->
+        </a>
+    </div><!--/.col-->
+    <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
         <a  href="{{ route('bills.create') }}">
             <div class="smallstat">
                 <i class="fa fa-shopping-cart primary"></i>
@@ -29,14 +37,6 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
             <div class="smallstat">
                 <i class="fa fa-cubes info"></i>
                 <span class="value text-info">Existencias</span>
-            </div><!--/.smallstat-->
-        </a>
-    </div><!--/.col-->
-    <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-        <a  href="{{ route('bills.index') }}">
-            <div class="smallstat">
-                <i class="fa fa-inbox success"></i>
-                <span class="value text-success">Ventas</span>
             </div><!--/.smallstat-->
         </a>
     </div><!--/.col-->

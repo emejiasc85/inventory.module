@@ -74,4 +74,41 @@ class People extends Entity
     {
         return $this->orders->where('order_type_id', 2)->where('credit', true);
     }
+    
+    public function getCurrentCreditAttribute()
+    {
+        $credits = $this->orders->where('order_type_id', 2)->where('credit', true);
+
+        if ($credits->count() > 0) {
+            $payments = 0;
+
+            foreach ($credits as $credit) {
+                $payments = $payments + $credit->payments->sum('amount');
+            }
+
+            return $credits->sum('total') - $payments;
+        }
+
+        return 0;
+
+    }
+    public function getRestCreditAttribute()
+    {
+        $credits = $this->orders->where('order_type_id', 2)->where('credit', true);
+
+        if ($credits->count() > 0) {
+            $payments = 0;
+
+            foreach ($credits as $credit) {
+                $payments = $payments + $credit->payments->sum('amount');
+            }
+
+            $credit = $credits->sum('total') - $payments;
+
+            return $this->max_credit - $credit ;
+        }
+
+        return 0;
+
+    }
 }

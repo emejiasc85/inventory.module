@@ -12,6 +12,11 @@ class EditBillController extends Controller
 {
     public function confirm(Request $request, Order $order)
     {
+        if ($request->credit && $order->total > $order->people->restCredit) {
+            Alert::danger('El consumo de productos excede el credito restante del cliente');
+            return redirect()->back();
+        }
+        
         if(trim($request->bill_number) != null){
             if (Resolution::where('status', true)->first()) {
                 $bill = new Bill();
@@ -23,6 +28,7 @@ class EditBillController extends Controller
         }
         if($request->credit){
             $order->credit = true;
+
         }
         $order->status = 'Ingresado';
         $order->save();

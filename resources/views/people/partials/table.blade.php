@@ -26,7 +26,7 @@
         @endif
         </td>
         <td>{{ $person->purchases->sum('total')}}</td>
-        <td>{{ $person->credits->sum('total') }}</td>
+        <td>{{ $person->currentCredit}}</td>
         <td>{{ $person->max_credit }}</td>
         <td><a href="{{ $person->profileUrl }}" class="btn btn-info "> <i class="fa fa-eye"></i>  Perfil</a></td>
     </tr>

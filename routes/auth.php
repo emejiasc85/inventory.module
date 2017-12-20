@@ -303,12 +303,18 @@ Route::name('barcode.products')->get('barcode/productos/{product}', 'ProductCont
 Route::name('payments.store')->post('agregar-pago', 'PaymentController@store');
 Route::name('payments.destroy')->delete('elimianr-pago', 'PaymentController@destroy');
 //registers
+Route::name('cash.registers.payments')->get('caja/{register}/pagos', 'CashRegisterController@payments');
+Route::name('cash.registers.bills')->get('caja/{register}/facturas', 'CashRegisterController@bills');
+Route::name('cash.registers.credits')->get('caja/{register}/creditos', 'CashRegisterController@credits');
 Route::name('cash.registers.create')->get('aperturar-caja', 'CashRegisterController@create');
 Route::name('cash.registers.store')->post('aperturar-caja', 'CashRegisterController@store');
 Route::name('cash.registers.edit')->get('caja/{register}', 'CashRegisterController@edit');
 Route::name('cash.registers.close')->put('cerrar-caja/{register}', 'CashRegisterController@close');
 Route::name('cash.registers.update')->put('editar-caja/{register}', 'CashRegisterController@update');
-
+//deposits
+Route::name('cash.registers.deposits.create')->get('deposito-a-caja/{register}', 'CashRegisterDepositController@create');
+Route::name('cash.registers.deposits.store')->post('deposito-a-caja/{register}', 'CashRegisterDepositController@store');
+Route::name('cash.registers.deposits.destroy')->delete('deposito-a-caja-eliminar', 'CashRegisterDepositController@destroy');
 
 
 

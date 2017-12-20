@@ -192,6 +192,8 @@ return [
         'website'                 => 'sitio web',
         'amount' => 'monto',
         'initial_cash' => 'Saldo inicial',
+        'bank' => 'banco',
+        'account' => 'cuenta',
     ],
 
 ];

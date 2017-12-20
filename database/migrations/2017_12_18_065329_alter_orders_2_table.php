@@ -26,6 +26,8 @@ class AlterOrders2Table extends Migration
      */
     public function down()
     {
-    
+        Schema::table('orders', function (Blueprint $table) {
+            //$table->dropForeign('cash_register_id');
+        });
     }
 }

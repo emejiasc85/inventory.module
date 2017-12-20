@@ -261,6 +261,7 @@
                                 <th>Fecha</th>
                                 <th>Productos</th>
                                 <th>Abonos</th>
+                                <th>Resta</th>
                                 <th>Total</th>
                                 <th>Vendedor</th>
                                 <td></td>
@@ -270,6 +271,7 @@
                                 <td>{{ $bill->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $bill->details->sum('lot') }}</td>
                                 <td>Q. {{ $bill->payments->sum('amount') }}</td>
+                                <td>Q. {{ $bill->total  - $bill->payments->sum('amount') }}</td>
                                 <td>Q. {{ $bill->total }}</td>
                                 <td>{{ $bill->user->name }}</td>
                                 <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
