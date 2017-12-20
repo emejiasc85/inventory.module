@@ -76,7 +76,7 @@
                     </tr>
                     <tr style="border-top: 1.5px solid black !important">
                         <td class="right"><strong>Ganancia</strong></td>
-                        <td class="right"><strong>Q. {{ $order->total }}</strong></td>
+                        <td class="right"><strong>Q. {{ $sale - $order->total }}</strong></td>
                     </tr>
                 </tbody>
             </table>

@@ -22,6 +22,9 @@
                         <div class="col-sm-12">
                             @include('bills.partials.fields')
                         </div>
+                        <div class="col-xs-12">
+                            <p id="error" class="text-danger hidden ">NIT/DPI no encontrado, Agrega Nombre y Dirección</p>
+                        </div>
                     </div>
                     <!--/.row-->
                 </div>
@@ -57,8 +60,25 @@
 
     <script>
         $(document).ready(function () {
+
+            $("#nit").change(function(event){
+                var nit = $(this).val();
+                var url =  '/auto-complete/people/'+nit;
+                $.getJSON(url, null, function (result) {
+                    if(!result.success){
+                        $("#error").removeClass('hidden');
+                    }
+                    else{
+                        $("#error").addClass('hidden');
+                        $("#name").val(result.people.name);
+                        $("#address").val(result.people.address);
+                        
+                    }
+                });
+            });
+            /*
+            
             $("#nit").easyAutocomplete({
-              url: "/auto-complete/people",
               getValue: "nit",
               template :{
                 type:"description",
@@ -92,6 +112,7 @@
                 $('#name').val('');
                 $('#address').val('');
             });
+            */
         });
     </script>
 @stop

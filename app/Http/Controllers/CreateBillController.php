@@ -11,18 +11,25 @@ class CreateBillController extends Controller
 {
     public function create()
     {
-        $register = CashRegister::orderBy('id', 'DESC')->first();
-        if(!$register){
+        $open_register= CashRegister::where('status', false)->orderBy('id', 'DESC')->get();
+        
+        if($open_register->count() == 0){
             Alert::warning('Debe aperturar una caja antes de realizar ventas');
+    
             return redirect()->route('cash.registers.create');
-        }
+
+        }  
+        
+        $register = $open_register->first();
         $commerce  = Commerce::first();
         return view('bills.create', compact('commerce'));
     }
 
     public function store(Request $request)
     {
-        $register = CashRegister::orderBy('id', 'DESC')->first()->id;
+        $open_register= CashRegister::where('status', false)->orderBy('id', 'DESC')->get();
+        
+        $register = $open_register->first()->id;         
 
         $this->validate($request, ['nit' => 'required', 'name' => 'required', 'address' => 'required']);
 

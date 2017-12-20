@@ -15,7 +15,7 @@ class AlterPaymentsTable extends Migration
     {
         Schema::table('payments', function (Blueprint $table) {
             $table->unsignedInteger('cash_register_id')->nullable();
-            $table->foreign('cash_register_id')->references('id')->on('cash_registers');
+            $table->foreign('cash_register_id')->references('id')->on('cash_registers')->onDelete('cascade');
         });
     }
 
@@ -26,8 +26,5 @@ class AlterPaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::table('payments', function (Blueprint $table) {
-            //
-        });
     }
 }

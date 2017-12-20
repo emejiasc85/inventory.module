@@ -18,12 +18,22 @@ class PeopleController extends Controller
         return view('people.index', compact('people'));
     }
 
-    public function autoComplete(Request $request)
+    public function autoComplete($people)
     {
-        $term = $request->get('term');
-         return People::select('id', 'name', 'nit', 'address')
-            ->where('nit', 'LIKE', "%$term%")
+        $search =  People::select('id', 'name', 'nit', 'address')
+            ->where('nit',  $people)
             ->get();
+        if ($search->first()) 
+        {
+            return response()->json([
+                'success' => true,
+                'people' => $search->first()
+            ]);
+        }
+        return response()->json([
+            'success' => false,
+        ]);
+
     }
 
     public function profile(People $people, $slug)

@@ -26,8 +26,5 @@ class AlterPeople2Table extends Migration
      */
     public function down()
     {
-        Schema::table('people', function (Blueprint $table) {
-            //
-        });
     }
 }

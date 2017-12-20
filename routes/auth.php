@@ -238,7 +238,7 @@ Route::name('auditDetail.destroy')->delete('audit-{audit}/destroy-detalle', 'Aud
 //people
 Route::name('people.index')->get('personas', 'PeopleController@index');
 Route::name('people.profile')->get('cliente/{people}-{slug}/perfil', 'PeopleController@profile');
-Route::name('people.auto.complete')->get('auto-complete/people', 'PeopleController@autoComplete');
+Route::name('people.auto.complete')->get('auto-complete/people/{people}', 'PeopleController@autoComplete');
 Route::name('people.create')->get('agregar-personas', 'CreatePeopleController@create');
 Route::name('people.store')->post('agregar-persona', 'CreatePeopleController@store');
 Route::name('people.edit')->get('editar-persona/{people}/{slug}', 'EditPeopleController@edit');
@@ -305,8 +305,9 @@ Route::name('payments.destroy')->delete('elimianr-pago', 'PaymentController@dest
 //registers
 Route::name('cash.registers.create')->get('aperturar-caja', 'CashRegisterController@create');
 Route::name('cash.registers.store')->post('aperturar-caja', 'CashRegisterController@store');
-Route::name('cash.registers.edit')->get('cerrar-caja', 'CashRegisterController@edit');
-Route::name('cash.registers.update')->put('cerrar-caja/register', 'CashRegisterController@update');
+Route::name('cash.registers.edit')->get('caja/{register}', 'CashRegisterController@edit');
+Route::name('cash.registers.close')->put('cerrar-caja/{register}', 'CashRegisterController@close');
+Route::name('cash.registers.update')->put('editar-caja/{register}', 'CashRegisterController@update');
 
 
 

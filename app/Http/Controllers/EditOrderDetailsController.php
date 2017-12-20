@@ -14,7 +14,7 @@ class EditOrderDetailsController extends Controller
     protected $rules = [
         'id'             => 'required|exists:order_details,id',
         'lot'            => 'required|numeric|integer|min:1',
-        'purchase_price' => 'numeric|nullable|min:1',
+        'purchase_price' => 'numeric|nullable|min:0',
         'sale_price'     => 'numeric|nullable|min:1',
         'due_date'       => 'date|nullable'
     ];

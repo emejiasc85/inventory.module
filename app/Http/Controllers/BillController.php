@@ -15,13 +15,19 @@ class BillController extends Controller
 
     public function index(Request $request)
     {
-        $register = CashRegister::orderBy('id', 'DESC')->first();
 
-        if(!$register){
+
+        $open_register= CashRegister::where('status', false)->orderBy('id', 'DESC')->get();
+        
+        if($open_register->count() == 0){
             Alert::warning('Debe aperturar una caja antes de realizar ventas');
-
+    
             return redirect()->route('cash.registers.create');
-        }
+
+        }  
+        $register = $open_register->first();
+
+    
         
         $diary_sales = Order::select(DB::raw('DATE(created_at) as date, sum(total) as total'))
             ->where('order_type_id', 2)
@@ -41,7 +47,7 @@ class BillController extends Controller
             ->orderBy('created_at', 'DESC')
             ->paginate();
 
-        return view('bills.index', compact('bills', 'sales_day', 'sales_month', 'diary_sales', 'credits_day'));
+        return view('bills.index', compact('bills', 'sales_day', 'sales_month', 'diary_sales', 'credits_day', 'register'));
     }
     public function details(Request $request, Order $order)
     {

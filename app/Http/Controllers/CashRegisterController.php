@@ -36,6 +36,15 @@ class CashRegisterController extends Controller
      */
     public function store(Request $request)
     {
+
+        $open_register = CashRegister::where('status', false)->get();
+        
+        if($open_register->count() > 0){
+            Alert::warning('No puede aperturar mas de una caja a la vez');
+            return redirect('/');
+        }  
+
+
         $this->validate($request, ['initial_cash' => 'nullable|numeric']);
         $open = new CashRegister();
         $open->initial_cash = $request->initial_cash;
@@ -61,9 +70,8 @@ class CashRegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(CashRegister $register)
     {
-        $register = CashRegister::orderBy('id', 'DESC')->first();
         return view('registers.edit', compact('register'));
     }
 
@@ -78,11 +86,18 @@ class CashRegisterController extends Controller
     {
         $this->validate($request, ['amount' => 'nullable|numeric']);
         $register->fill($request->all());
+        $register->user_id = auth()->user()->id;
+        $register->save();
+        Alert::success('Saldo inicial editado');
+        return redirect()->back();
+    }
+    public function close(Request $request, CashRegister $register)
+    {
         $register->status = true;
         $register->user_id = auth()->user()->id;
         $register->save();
         Alert::success('Caja Cerrada');
-        return redirect('/');
+        return redirect()->back();
     }
 
     /**

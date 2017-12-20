@@ -37,10 +37,12 @@ class EditOrderController extends Controller
             return redirect()->back();
 
         }
+        /*
         if ($status == 'Ingresado' && $order->details->where('total_purchase', 0)->count() > 0) {
-            Alert::warning('Alerta')->details('Se debe de agregar precios de compra a todos los productos');
-            return redirect()->back();
+            Alert::warning('Alerta')->details('Se agregron productos sin precio de compra');
+            //return redirect()->back();
         }
+        */
         if ($status == 'Ingresado' && $order->details->where('sale_price', 0)->count() > 0) {
             Alert::warning('Alerta')->details('Se debe de agregar precios de venta a todos los productos');
             return redirect()->back();

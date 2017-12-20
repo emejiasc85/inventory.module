@@ -18,4 +18,18 @@ class CashRegister extends Model
     {
         return $this->hasMany(Payment::class);
     }
+
+    public function getSalesAttribute()
+    {
+        return $this->orders->where('order_type_id', 2)->where('credit', false);
+    }
+    public function getCreditsAttribute()
+    {
+        return $this->orders->where('order_type_id', 2)->where('credit', true);
+    }
+
+    public function deposits()
+    {
+        return $this->hasMany(CashRegisterDeposit::class);
+    }
 }

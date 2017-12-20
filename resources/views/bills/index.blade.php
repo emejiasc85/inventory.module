@@ -4,14 +4,7 @@
 @stop
 @section('content')
 <div class="row">
-    <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
-        <div class="smallstat">
-            <i class="fa fa-calendar info"></i>
-            <span class="value text-info">Q. {{ $sales_month->sum('total') }}</span>
-            <a href="{{ route('cash.registers.edit')}}" class="title">Cerrar Caja</a>
-        </div><!--/.smallstat-->
-    </div><!--/.col-->
-    <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xxs-12">
         <a  href="{{ route('bills.create') }}">
             <div class="smallstat">
                 <i class="fa fa-shopping-cart primary"></i>
@@ -19,18 +12,30 @@
             </div><!--/.smallstat-->
         </a>
     </div><!--/.col-->
-    <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+    
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <div class="smallstat">
-            <i class="fa fa-calendar-o success"></i>
-            <span class="value text-success">Q. {{ $sales_day->sum('total') }}</span>
+            <span class="value text-muted">Q. {{ $register->sales->sum('total') }}</span>
             <span class="title">Ventas</span>
         </div><!--/.smallstat-->
     </div><!--/.col-->
-    <div class="col-lg-3 col-sm-6 col-xs-6 col-xxs-12">
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <div class="smallstat">
-            <i class="fa fa-calendar-o warning"></i>
-            <span class="value text-warning">Q. {{ $credits_day->sum('total') }}</span>
+            <span class="value text-muted">Q. {{ $register->payments->sum('amount') }}</span>
+            <span class="title">Abono a credito</span>
+        </div><!--/.smallstat-->
+    </div><!--/.col-->
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+        <div class="smallstat">
+            <span class="value text-muted">Q. {{ $register->credits->sum('total') }}</span>
             <span class="title">Creditos</span>
+        </div><!--/.smallstat-->
+    </div><!--/.col-->
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+        <div class="smallstat">
+            <i class="fa fa-money info text-muted hidden-xs"></i>
+            <span class="value text-success">Q. {{ $register->sales->sum('total') + $register->payments->sum('amount') }}</span>
+            <a href="{{ route('cash.registers.edit', $register)}}" class="title">Caja</a>
         </div><!--/.smallstat-->
     </div><!--/.col-->
     

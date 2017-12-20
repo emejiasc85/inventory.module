@@ -25,8 +25,8 @@
             <i class="fa fa-check text-success"></i>
         @endif
         </td>
-        <td>{{ $person->purchases}}</td>
-        <td>{{ $person->credits }}</td>
+        <td>{{ $person->purchases->sum('total')}}</td>
+        <td>{{ $person->credits->sum('total') }}</td>
         <td>{{ $person->max_credit }}</td>
         <td><a href="{{ $person->profileUrl }}" class="btn btn-info "> <i class="fa fa-eye"></i>  Perfil</a></td>
     </tr>

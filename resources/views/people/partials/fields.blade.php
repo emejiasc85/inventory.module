@@ -1,8 +1,7 @@
 {!! Field::select('type', config('helpers.people_types'),['template' => 'templates.inline']) !!}
-
 <fieldset>
     <legend>Datos de facturación</legend>
-    {!! Field::number('nit', ['template' => 'templates.inline']) !!}
+    {!! Field::text('nit', ['template' => 'templates.inline']) !!}
     {!! Field::text('name', ['template' => 'templates.inline']) !!}
     {!! Field::textarea('address', ['template' => 'templates.inline', 'rows' => 2]) !!}
     {!! Field::checkbox('partner', null, ['template' => 'templates.inline']) !!}
