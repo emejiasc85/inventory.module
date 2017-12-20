@@ -4,6 +4,7 @@ namespace EmejiasInventory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class CashRegister extends Model
 {
@@ -42,4 +43,34 @@ class CashRegister extends Model
     {
         return route('cash.registers.edit', $this->id);
     }
+
+    public function scopeDate($query, $from, $to)
+    {
+
+        if(trim($from) != "" && trim($to) != "")
+        {
+            $from = Carbon::parse($from)->startOfDay();  //2016-09-29 00:00:00.000000
+            $to = Carbon::parse($to)->endOfDay(); //2016-09-29 23:59:59.000000
+            $query->whereBetween('created_at', [$from, $to]);
+        }
+    }
+    
+    public function scopeId($query, $id)
+    {
+
+        if(trim($id) != '')
+        {
+            $query->where('id', $id);
+        }
+    }
+    public function scopeUser($query, $id)
+    {
+
+        if(trim($id) != '')
+        {
+            $query->where('user_id', $id);
+        }
+    }
+
+
 }

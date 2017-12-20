@@ -53,6 +53,7 @@
                 <div class="table-resposive">
                     <table class="table col-sm-12">
                         <tr>
+                            <th>Referencia</th>
                             <th>Fecha</th>
                             <th>Cliente</th>
                             <th>Productos</th>
@@ -64,6 +65,7 @@
                         </tr>
                         @foreach ($bills as $bill)
                         <tr>
+                            <td>{{ $bill->id }}</td>
                             <td>{{ $bill->created_at->format('d-m-Y') }}</td>
                             <td>{{ $bill->people->name }}</td>
                             <td>{{ $bill->details->sum('lot') }}</td>
@@ -94,135 +96,5 @@
     </div>
 </div>
 
-<table class="hidden">
-    @foreach ($diary_sales as $diary)
-    <tr>
-        <td class="label">{{ $diary->date }}</td>
-        <td class="data">{{ $diary->total }}</td>
-    </tr>
-    @endforeach
-</table>
-
 @stop
-@section('scripts')
-    {!! Html::script('plugins/sparkline/jquery.sparkline.js') !!}
-
-    <script>
-        function generateDataFromTable()
-        {
-            var elementos = $('.data');
-            var size = elementos.size();
-            var data = [];
-
-            $.each( elementos, function(i, val){
-                data.push( $(val).html() );
-            });
-            return data;
-        }
-        var sparklineLogin = function () {
-            $("#sparkline").sparkline(generateDataFromTable(), {
-                type: 'line',
-                width: '100%',
-                height: '80',
-                lineColor: '#00bf00',
-                lineWidth: 2,
-                fillColor: '#aaffd4',
-                minSpotColor: '#ff0000',
-                maxSpotColor: '#0000ff',
-                spotRadius: 2.5,
-                drawNormalOnTop: true,
-
-            });
-        };
-
-        var sparkResize;
-
-        $(window).resize(function(e) {
-            clearTimeout(sparkResize);
-            sparkResize = setTimeout(sparklineLogin, 500);
-        });
-        sparklineLogin();
-        /*
-
-                var ctx = document.getElementById("myChart");
-
-                var myChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: generateLabelsFromTable(),
-                        datasets: [
-                        {
-                            label: "Total Venta",
-                            fill: true,
-                            lineTension: 0.1,
-                            backgroundColor: "rgba(75,192,192,0.4)",
-                            borderColor: "rgba(75,192,192,1)",
-                            borderCapStyle: 'butt',
-                            borderDash: [],
-                            borderDashOffset: 0.0,
-                            borderJoinStyle: 'miter',
-                            pointBorderColor: "rgba(75,192,192,1)",
-                            pointBackgroundColor: "#fff",
-                            pointBorderWidth: 1,
-                            pointHoverRadius: 5,
-                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                            pointHoverBorderColor: "rgba(220,220,220,1)",
-                            pointHoverBorderWidth: 2,
-                            pointRadius: 1,
-                            pointHitRadius: 10,
-                            data: generateDataFromTable(),
-                            spanGaps: false,
-                        }
-                    ]
-                    },
-                    options: {
-                        responsive:true,
-                        height:'80',
-                        width:'100%',
-
-                        legend: {
-                            display: false
-                        },
-                        title: {
-                            display: true,
-                            text: 'Ventas diarias',
-                            position: 'top',
-                        },
-                        scales: {
-                            xAxes: [{
-                                display: false
-                            }],
-                            yAxes: [{
-                                display: false
-                            }],
-                        }
-                    }
-                });
-                function generateLabelsFromTable()
-                {
-                    var elementos = $('.label');
-                    var size = elementos.size();
-                    var data = [];
-
-                    $.each( elementos, function(i, val){
-                        data.push( $(val).html() );
-                    });
-                    return data;
-                }
-                function generateDataFromTable()
-                {
-                    var elementos = $('.data');
-                    var size = elementos.size();
-                    var data = [];
-
-                    $.each( elementos, function(i, val){
-                        data.push( $(val).html() );
-                    });
-                    return data;
-                }
-
-         */
-    </script>
-@stop
-
 

@@ -23,31 +23,19 @@ class BillController extends Controller
             Alert::warning('Debe aperturar una caja antes de realizar ventas');
     
             return redirect()->route('cash.registers.create');
-
         }  
-        $register = $open_register->first();
-
-    
-        
-        $diary_sales = Order::select(DB::raw('DATE(created_at) as date, sum(total) as total'))
-            ->where('order_type_id', 2)
-            ->where('cash_register_id', $register->id)
-            ->whereMonth('created_at', '=', Carbon::today()->format('m'))
-            ->groupBy('date')
-            ->get();
-        $sales_day = Order::where('order_type_id', 2) ->where('cash_register_id', $register->id)->where('credit', false)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
-        $credits_day = Order::where('order_type_id', 2)->where('cash_register_id', $register->id)->where('credit', true)->whereDate('created_at', '=', Carbon::today()->toDateString())->get();
-        $sales_month = Order::where('order_type_id', 2) ->where('cash_register_id', $register->id)->whereMonth('created_at', '=', Carbon::today()->format('m'))->get();
+        $register = $open_register->first();            
 
         $bills = Order::select('orders.*')->where('order_type_id', 2)
             ->where('cash_register_id', $register->id)
             ->peopleName($request->people_name)
             ->id($request->bill_id)
             ->date($request->from, $request->to)
+            ->credit($request->credit)
             ->orderBy('created_at', 'DESC')
             ->paginate();
 
-        return view('bills.index', compact('bills', 'sales_day', 'sales_month', 'diary_sales', 'credits_day', 'register'));
+        return view('bills.index', compact('bills', 'register'));
     }
     public function details(Request $request, Order $order)
     {

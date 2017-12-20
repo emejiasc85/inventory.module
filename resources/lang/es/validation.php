@@ -194,6 +194,8 @@ return [
         'initial_cash' => 'Saldo inicial',
         'bank' => 'banco',
         'account' => 'cuenta',
+        'cash_register_id' => 'ID caja'
     ],
+
 
 ];

@@ -1,6 +1,9 @@
 <?php
 namespace EmejiasInventory\Entities;
 
+use Carbon\Carbon;
+
+
 
 class Order extends Entity
 {
@@ -96,11 +99,17 @@ class Order extends Entity
 
         if(trim($from) != "" && trim($to) != "")
         {
+            $from = Carbon::parse($from)->startOfDay();  //2016-09-29 00:00:00.000000
+            $to = Carbon::parse($to)->endOfDay(); //2016-09-29 23:59:59.000000
             $query->whereBetween('orders.created_at', [$from, $to]);
-            return $query;
         }
     }
-
+    public function scopeCredit($query, $credit)
+    {
+        if ($credit) {
+            $query->where('orders.credit', true);
+        }
+    }
     public function scopeTotal($query, $simbol, $field)
     {
         if(trim($simbol) != "" && trim($field) != "")

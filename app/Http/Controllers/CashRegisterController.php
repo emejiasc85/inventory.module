@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use EmejiasInventory\Entities\CashRegister;
 use Styde\Html\Facades\Alert;
 use EmejiasInventory\Entities\CashRegisterDeposit;
+use EmejiasInventory\Entities\User;
 
 class CashRegisterController extends Controller
 {
@@ -16,8 +17,13 @@ class CashRegisterController extends Controller
      */
     public function index(Request $request)
     {
-        $registers = CashRegister::paginate();
-        return view('registers.index', compact('registers'));
+        $users = User::pluck('name', 'id')->toArray();
+        $registers = CashRegister::
+        id($request->cash_register_id)
+        ->user($request->user_id)
+        ->date($request->from, $request->to)
+        ->paginate();
+        return view('registers.index', compact('registers', 'users'));
     }
 
     /**

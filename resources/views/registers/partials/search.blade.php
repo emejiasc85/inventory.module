@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-    {{ Form::model(Request::all(), ['route' => ['bills.index'], 'method' => 'get']) }}
+    {{ Form::model(Request::all(), ['route' => ['cash.registers.index'], 'method' => 'get']) }}
         <div class="controls">
             <div class="input-group">
                 <input id="name" name="people_name" size="16" class="form-control" type="text" placeholder="Cliente">
@@ -17,7 +17,8 @@
             <div class="well">
                 <div class="row ">
                     <div class="col-sm-2">
-                        {!! Field::number('bill_id') !!}
+                    
+                        {!! Field::number('cash_register_id') !!}
                     </div>
                     <div class="form-group col-lg-3">
                         {!! Form::label('from', 'Desde') !!}
@@ -27,11 +28,10 @@
                         {!! Form::label('to', 'Hasta') !!}
                         {!! Form::date('to', null,  ['class' => 'form-control ']) !!}
                     </div>
-                                        
-                    
                     <div class="form-group col-lg-3">
-                        {!! Field::checkbox('credit', false,  ['class' => 'form-control ']) !!}
+                        {!! Field::select('user_id', $users,  null, ['class' => 'form-control ']) !!}
                     </div>
+                    
                 </div>
             </div>
         </div>

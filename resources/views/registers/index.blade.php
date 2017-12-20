@@ -9,11 +9,12 @@
     <div class="col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="icon-badge"></i>
                 <strong>Ventas</strong>
                 <small>Listado</small>
             </div>
             <div class="panel-body">
+                @include('registers.partials.search')
+
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
