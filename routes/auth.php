@@ -303,6 +303,7 @@ Route::name('barcode.products')->get('barcode/productos/{product}', 'ProductCont
 Route::name('payments.store')->post('agregar-pago', 'PaymentController@store');
 Route::name('payments.destroy')->delete('elimianr-pago', 'PaymentController@destroy');
 //registers
+Route::name('cash.registers.index')->get('cajas-aperturadas', 'CashRegisterController@index');
 Route::name('cash.registers.payments')->get('caja/{register}/pagos', 'CashRegisterController@payments');
 Route::name('cash.registers.bills')->get('caja/{register}/facturas', 'CashRegisterController@bills');
 Route::name('cash.registers.credits')->get('caja/{register}/creditos', 'CashRegisterController@credits');

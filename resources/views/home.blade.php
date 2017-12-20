@@ -25,6 +25,14 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
         </a>
     </div><!--/.col-->
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
+        <a  href="{{ route('cash.registers.index') }}">
+            <div class="smallstat">
+                <i class="fa fa-bar-chart-o primary"></i>
+                <span class="value text-primary">Ventas</span>
+            </div><!--/.smallstat-->
+        </a>
+    </div><!--/.col-->
+    <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
         <a  href="{{ route('quotes.create') }}">
             <div class="smallstat">
                 <i class="fa fa-calendar primary" style="background-color: #008B8B"></i>
