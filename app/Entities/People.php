@@ -107,8 +107,6 @@ class People extends Entity
 
             return $this->max_credit - $credit ;
         }
-
-        return 0;
-
+        return $this->max_credit;
     }
 }
