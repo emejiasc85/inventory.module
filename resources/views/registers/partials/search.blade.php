@@ -10,6 +10,10 @@
                         <i class="fa fa-filter">
                         </i>
                     </a>
+                    <a class="btn btn-default"  href="{{ route('cash.registers.download', Request::all())}}" >
+                        <i class="fa fa-download">
+                        </i>
+                    </a>
                 </span>
             </div>
         </div>
