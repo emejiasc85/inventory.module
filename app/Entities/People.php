@@ -109,4 +109,31 @@ class People extends Entity
         }
         return $this->max_credit;
     }
+
+    public function scopeId($query, $value)
+    {
+        if (trim($value) != "") {
+            return $query->where('id', $value);
+        }
+    }
+    
+    public function scopeNit($query, $value)
+    {
+        if (trim($value) != "") {
+            return $query->where('nit', $value);
+        }
+    }
+    public function scopePartner($query, $value)
+    {
+        if (trim($value) != "") {
+            return $query->where('partner', $value);
+        }
+    }
+    
+    public function scopeCredit($query, $value)
+    {
+        if (trim($value) != "") {
+            return $query->where('partner', $value);
+        }
+    }
 }
