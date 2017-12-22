@@ -15,7 +15,7 @@ class EditOrderDetailsController extends Controller
         'id'             => 'required|exists:order_details,id',
         'lot'            => 'required|numeric|integer|min:1',
         'purchase_price' => 'numeric|nullable|min:0',
-        'sale_price'     => 'numeric|nullable|min:1',
+        'sale_price'     => 'numeric|nullable|min:0',
         'due_date'       => 'date|nullable'
     ];
     public function update(Request $request, Order $order)
