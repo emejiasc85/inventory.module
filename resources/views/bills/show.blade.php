@@ -1,6 +1,7 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
+<li class="breadcrumb-item"><a href="{{ route('bills.index') }}">Caja</a></li>
 <li class="breadcrumb-item"><a href="">Factura</a></li>
 @stop
 
@@ -75,11 +76,14 @@
 $(document).ready(function() {
    $("#barcode").focus();
 });
+
+{{-- 
 @if ($order->status == 'Ingresado' && !$order->credit)
     $(document).ready(function() {
         window.print()
     });
 @endif
+--}}
 //on click show modal with hidden form to update status
 $('.add-product').click( function (e) {
     e.preventDefault();
