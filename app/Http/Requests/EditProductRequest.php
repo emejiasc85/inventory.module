@@ -1,0 +1,38 @@
+<?php
+
+namespace EmejiasInventory\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class ProductRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        $product  = $this->route()->parameter('product')->id;
+        return [
+            'name'                      => 'required',
+            'description'               => 'required',
+            'minimum_stock'             => 'numeric',
+            'product_presentation_id'   => 'required|exists:product_presentations,id',
+            'product_group_id'          => 'required|exists:product_groups,id',
+            'unit_measure_id'           => 'required|exists:unit_measures,id',
+            'make_id'                   => 'required|exists:makes,id',
+            'barcode'                   => 'nullable|unique:products,barcode,'.$product 
+        ];
+    }
+}
