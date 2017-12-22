@@ -33,7 +33,7 @@ class CashRegisterDepositController extends Controller
      */
     public function store(Request $request, CashRegister $register)
     {
-        $this->validate($request, ['bank' => 'nullable', 'account' => 'nullable', 'amount' => 'required|numeric|min:0', 'baucher' => 'required', 'date' => 'required|date']);
+        $this->validate($request, ['bank' => 'required', 'account' => 'required', 'amount' => 'required|numeric|min:0', 'baucher' => 'required', 'date' => 'required|date']);
         $request->request->add(['cash_register_id' => $register->id]);
         $deposit = CashRegisterDeposit::create($request->all());
         Alert::success('Deposito Agregado');
