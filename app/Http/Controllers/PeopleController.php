@@ -8,14 +8,39 @@ use EmejiasInventory\Entities\ProductGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PeopleController extends Controller
 {
     public function index(Request $request)
     {
-        $people = People::name($request->get('name'))->orderBy('id', 'DESC')->paginate();
+        $people = People::name($request->name)
+            ->id($request->id)
+            ->nit($request->nit)
+            ->partner($request->partner)
+            ->orderBy('id', 'DESC')
+            ->paginate();
 
         return view('people.index', compact('people'));
+    }
+
+
+    public function download(Request $request)
+    {
+        
+        $people = People::name($request->name)
+            ->id($request->id)
+            ->nit($request->nit)
+            ->partner($request->partner)
+            ->orderBy('id', 'DESC')
+            ->get();
+            
+        Excel::create('Personas', function($excel) use($people) {
+            $excel->sheet('Personas', function($sheet) use($people) {
+                $sheet->loadView('people.partials.table', compact('people'));
+            });
+    
+        })->export('xls');
     }
 
     public function autoComplete($people)
@@ -57,6 +82,9 @@ class PeopleController extends Controller
 
         return view('people.profile', compact('people', 'bills', 'groups'));
     }
+
+
+   
 
     public function avatar(People $people)
     {
