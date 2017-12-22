@@ -39,7 +39,6 @@
                         Cancelar
                     </a>
                     <a href="#" id="EditPeople" class="btn btn-default pull-right hidden"><i class="fa fa-pencil"></i> Editar</a>
-
                 </div>
                 {!! Form::close() !!}
             </div>
