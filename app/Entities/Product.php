@@ -73,7 +73,7 @@ class Product extends Entity
         $list = ProductGroup::pluck('name', 'id')->toArray();
         if($value != '' && isset($list[$value]))
         {
-            $query->where('product_group_id', $value);
+            return $query->where('product_group_id', $value);
         }
     }
     public function scopePresentation($query, $value)
@@ -81,7 +81,7 @@ class Product extends Entity
         $list = ProductPresentation::pluck('name', 'id')->toArray();
         if($value != '' && isset($list[$value]))
         {
-            $query->where('product_presentation_id', $value);
+             return $query->where('product_presentation_id', $value);
         }
     }
     public function scopeUnit($query, $value)
@@ -89,7 +89,7 @@ class Product extends Entity
         $list = UnitMeasure::pluck('name', 'id')->toArray();
         if($value != '' && isset($list[$value]))
         {
-            $query->where('unit_measure_id', $value);
+            return $query->where('unit_measure_id', $value);
         }
     }
     public function scopeMakes($query, $value)
@@ -98,7 +98,7 @@ class Product extends Entity
 
         if($value != '' && isset($list[$value]))
         {
-            $query->where('make_id', $value);
+            return $query->where('make_id', $value);
         }
     }
 
@@ -106,13 +106,13 @@ class Product extends Entity
     public function scopeBarcode($query, $value)
     {
         if (trim($value) != '') {
-            $query->where('barcode', $value);
+            return $query->where('barcode', $value);
         }
     }
     public function scopeId($query, $value)
     {
         if (trim($value) != '') {
-            $query->where('id', $value);
+            return $query->where('id', $value);
         }
     }
 }
