@@ -15,18 +15,7 @@
                 <a href="{{ route('people.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Persona</a>
             </div>
             <div class="panel-body">
-                {{ Form::model(Request::all(),['people.index', 'method' => 'get']) }}
-                <div class="form-group row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Buscar">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-info"><i class="fa fa-search"></i>Buscar</button>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                {{ Form::close() }}
+                @include('people.partials.search')
                 <div class="table-resposive">
                     @include('people.partials.table')
                 </div>
