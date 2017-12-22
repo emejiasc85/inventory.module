@@ -238,6 +238,7 @@ Route::name('auditDetail.destroy')->delete('audit-{audit}/destroy-detalle', 'Aud
 
 //people
 Route::name('people.index')->get('personas', 'PeopleController@index');
+Route::name('people.download')->get('personas/descargar-listado', 'PeopleController@download');
 Route::name('people.profile')->get('cliente/{people}-{slug}/perfil', 'PeopleController@profile');
 Route::name('people.auto.complete')->get('auto-complete/people/{people}', 'PeopleController@autoComplete');
 Route::name('people.create')->get('agregar-personas', 'CreatePeopleController@create');
