@@ -8,7 +8,7 @@
                 <a class="btn btn-default" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                     <i class="fa fa-filter"></i>
                 </a>
-                <a href="{{ route('stocks.download')}}" class="btn btn-default">
+                <a href="{{ route('stocks.download', Request::all())}}" class="btn btn-default">
                     <i class="fa fa-download"></i>
                 </a>
             </span>
