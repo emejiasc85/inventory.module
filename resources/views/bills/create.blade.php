@@ -21,9 +21,9 @@
                     <div class="row">
                         <div class="col-sm-12">
                             @include('bills.partials.fields')
-                        </div>
-                        <div class="col-xs-12">
-                            <p id="error" class="text-danger hidden ">NIT/DPI no encontrado, Agrega Nombre y Dirección</p>
+                            <div class="col-xs-12">
+                                <p id="error" class="text-danger hidden ">NIT/DPI no encontrado, Agrega Nombre y Dirección</p>
+                            </div>
                         </div>
                     </div>
                     <!--/.row-->
@@ -38,6 +38,8 @@
                         <i class="fa fa-ban"></i>
                         Cancelar
                     </a>
+                    <a href="#" id="EditPeople" class="btn btn-default pull-right hidden"><i class="fa fa-pencil"></i> Editar</a>
+
                 </div>
                 {!! Form::close() !!}
             </div>
@@ -60,21 +62,37 @@
 
     <script>
         $(document).ready(function () {
-
+            $("#nit").val('');        
+            $("#field_address").val('');
+            $("#field_address").val('');
             $("#nit").change(function(event){
                 var nit = $(this).val();
                 var url =  '/auto-complete/people/'+nit;
                 $.getJSON(url, null, function (result) {
-                    if(!result.success){
-                        $("#error").removeClass('hidden');
+                    if(result.success){
+                        $("#EditPeople").removeClass('hidden');
+                        $("#field_name").attr('disabled', 'disabled')
+                        $("#field_address").attr('disabled', 'disabled')
+                        $("#error").addClass('hidden');
+                        $("#field_name").val(result.people.name);
+                        $("#field_address").val(result.people.address);
                     }
                     else{
-                        $("#error").addClass('hidden');
-                        $("#name").val(result.people.name);
-                        $("#address").val(result.people.address);
+                        $("#error").removeClass('hidden');
+                        $("#field_name").removeAttr('disabled');        
+                        $("#field_address").removeAttr('disabled');
+                        $("#field_name").val('');        
+                        $("#field_address").val('');
                         
                     }
                 });
+            });
+
+            $("#EditPeople").click(function(event){
+                event.preventDefault();
+                $("#field_name").removeAttr('disabled');        
+                $("#field_address").removeAttr('disabled');
+                $(this).addClass('hidden');
             });
             /*
             
