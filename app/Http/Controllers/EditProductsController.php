@@ -16,7 +16,6 @@ class EditProductsController extends Controller
 
     public function update(EditProductRequest $request, Product $product)
     {
-        $this->validate($request, $this->rules($product->id));
     	$product->fill($request->all());
     	$product->save();
 
