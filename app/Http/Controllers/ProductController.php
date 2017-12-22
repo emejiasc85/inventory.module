@@ -15,7 +15,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {
 
-    	$products = Product::name($request->get('name'))
+        $products = Product::name($request->get('name'))
+            ->id($request->id)
             ->makes($request->get('make_id'))
     		->group($request->get('product_group_id'))
     		->presentation($request->get('product_presentation_id'))
