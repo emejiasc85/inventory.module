@@ -6,8 +6,10 @@
             <span class="input-group-btn">
                 <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> Buscar</button>
                 <a class="btn btn-default" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    <i class="fa fa-filter">
-                    </i>
+                    <i class="fa fa-filter"></i>
+                </a>
+                <a href="{{ route('stocks.download')}}" class="btn btn-default">
+                    <i class="fa fa-download"></i>
                 </a>
             </span>
         </div>
