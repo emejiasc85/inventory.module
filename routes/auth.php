@@ -227,6 +227,7 @@ Route::name('orders.details.update')->put('pedido-{order}/editar-detalle', 'Edit
 Route::name('orders.details.destroy')->delete('orden/{order}/eliminar-detalle', 'DeleteOrderDetailsController@destroy');
 //stoks
 Route::name('stocks.index')->get('existencias', 'StocksController@index');
+Route::name('stocks.download')->get('existencias/descargar-listado', 'StocksController@download');
 //audit
 Route::resource('audit', 'AuditController');
 //audit details
