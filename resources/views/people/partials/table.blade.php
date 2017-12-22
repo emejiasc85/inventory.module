@@ -1,5 +1,6 @@
 <table class="table col-sm-12">
     <tr>
+        <th>ID</th>
         <th>Nit</th>
         <th>Nombre</th>
         <th>Dirección</th>
@@ -14,6 +15,7 @@
     </tr>
     @foreach ($people as $person)
     <tr>
+        <td>{{ $person->id }}</td>
         <td>{{ $person->nit }}</td>
         <td>{{ $person->name}}</td>
         <td>{{ $person->address}}</td>
