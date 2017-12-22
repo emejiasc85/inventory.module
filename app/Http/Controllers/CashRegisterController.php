@@ -7,6 +7,7 @@ use EmejiasInventory\Entities\CashRegister;
 use Styde\Html\Facades\Alert;
 use EmejiasInventory\Entities\CashRegisterDeposit;
 use EmejiasInventory\Entities\User;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CashRegisterController extends Controller
 {
@@ -24,6 +25,23 @@ class CashRegisterController extends Controller
         ->date($request->from, $request->to)
         ->paginate();
         return view('registers.index', compact('registers', 'users'));
+    }
+    
+    public function download(Request $request)
+    {
+        $registers = CashRegister::
+        id($request->cash_register_id)
+        ->user($request->user_id)
+        ->date($request->from, $request->to)
+        ->get();
+
+        Excel::create('Ventas', function($excel) use($registers) {
+            $excel->sheet('Ventas', function($sheet) use($registers) {
+                $sheet->loadView('registers.partials.table', compact('registers'));
+            });
+    
+        })->export('xls');
+        return view('registers.partials.table', compact('registers'));
     }
 
     /**
