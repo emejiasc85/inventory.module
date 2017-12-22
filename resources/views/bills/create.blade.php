@@ -3,8 +3,8 @@
     {!! Html::style('css/easy-autocomplete.css') !!}
 @stop
 @section('breadcrumb')
-     <li class="breadcrumb-item"><a href="">Facturas</a></li>
-     <li class="breadcrumb-item active">Nueva</li>
+     <li class="breadcrumb-item"><a href="{{ route('bills.index') }}">Caja</a></li>
+     <li class="breadcrumb-item active">Factura</li>
 @stop
 
 @section('content')
@@ -62,7 +62,7 @@
     <script>
         $(document).ready(function () {
             $("#nit").val('');        
-            $("#field_address").val('');
+            $("#field_name").val('');
             $("#field_address").val('');
             $("#nit").change(function(event){
                 var nit = $(this).val();
@@ -70,16 +70,16 @@
                 $.getJSON(url, null, function (result) {
                     if(result.success){
                         $("#EditPeople").removeClass('hidden');
-                        $("#field_name").attr('disabled', 'disabled')
-                        $("#field_address").attr('disabled', 'disabled')
+                        $("#field_name").attr('readonly', 'readonly')
+                        $("#field_address").attr('readonly', 'readonly')
                         $("#error").addClass('hidden');
                         $("#field_name").val(result.people.name);
                         $("#field_address").val(result.people.address);
                     }
                     else{
                         $("#error").removeClass('hidden');
-                        $("#field_name").removeAttr('disabled');        
-                        $("#field_address").removeAttr('disabled');
+                        $("#field_name").removeAttr('readonly');        
+                        $("#field_address").removeAttr('readonly');
                         $("#field_name").val('');        
                         $("#field_address").val('');
                         
@@ -89,8 +89,8 @@
 
             $("#EditPeople").click(function(event){
                 event.preventDefault();
-                $("#field_name").removeAttr('disabled');        
-                $("#field_address").removeAttr('disabled');
+                $("#field_name").removeAttr('readonly');        
+                $("#field_address").removeAttr('readonly');
                 $(this).addClass('hidden');
             });
             /*
