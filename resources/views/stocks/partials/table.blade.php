@@ -4,22 +4,22 @@
             <th>ID</th>
             <th>Producto</th>
             <th>Marca</th>
-            <th>Precio</th>
-            <th>Existencia</th>
-            <th>Vence</th>
-            <th>Pedido</th>
+            <th>Grupo</th>
+            <th>Presentación</th>
+            <th class="text-right">Existencia</th>
+            <th class="text-right">Precio Venta</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($stocks as $stock)
             <tr>
-                <td>{{ $stock->detail->product->id }}</td>
-                <td><a href="{{ $stock->detail->product->url }}">{{ $stock->detail->product->name }}</a></td>
-                <td>{{ $stock->detail->product->make->name}}</td>
-                <td>{{ $stock->detail->sale_price}}</td>
-                <td>{{ $stock->stock}} </td>
-                <td>{{ ($stock->detail->due_date ? $stock->detail->due_date:'N/A')}}</td>
-                <td><a href="{{  $stock->detail->order->url }}">#{{ $stock->detail->order->id }}</a> </td>
+                <td>{{ $stock->id }}</td>
+                <td><a target="_blank" href="{{ route('products.show', [$stock->id, $stock->slug]) }}">{{ $stock->name }}</a></td>
+                <td>{{ $stock->make}}</td>
+                <td>{{ $stock->product_group}}</td>
+                <td>{{ $stock->presentation}}</td>
+                <td class="text-right">{{ $stock->stock}}</td>
+                <td class="text-right">{{ $stock->price}}</td>
             </tr>
         @endforeach
     </tbody>
