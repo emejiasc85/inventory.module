@@ -17,7 +17,8 @@ class Product extends Entity
     	'unit_measure_id',
         'make_id',
     	'minimum_stock',
-    	'slug'
+        'slug',
+        'price'
     ];
     public function setNameAttribute($value)
     {
