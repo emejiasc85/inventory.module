@@ -1,7 +1,6 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th></th>
          <th>Producto</th>
          <th>Existencia</th>
          <th>P/U</th>
