@@ -60,6 +60,28 @@ class Stock extends Model
             $query->where('products.id', $field);
         }
     }
+    public function scopePresentationId($query, $field)
+    {
+        if(trim($field) != "")
+        {
+            $query->where('product_presentations.id', $field);
+        }
+    }
+    public function scopeMakeId($query, $field)
+    {
+        if(trim($field) != "")
+        {
+            $query->where('makes.id', $field);
+        }
+    }
+    public function scopeGroupId($query, $field)
+    {
+        if(trim($field) != "")
+        {
+            $query->where('product_groups.id', $field);
+        }
+    }
+   
     public function scopeOrder($query, $field)
     {
         if(trim($field) != "")
