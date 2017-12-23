@@ -320,5 +320,8 @@ Route::name('cash.registers.deposits.create')->get('deposito-a-caja/{register}',
 Route::name('cash.registers.deposits.store')->post('deposito-a-caja/{register}', 'CashRegisterDepositController@store');
 Route::name('cash.registers.deposits.destroy')->delete('deposito-a-caja-eliminar', 'CashRegisterDepositController@destroy');
 
+//temporal
+Route::name('prices')->get('actualizar-precios', 'EditProductsController@UpdatePrices');
+
 
 

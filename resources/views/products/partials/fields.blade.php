@@ -6,4 +6,4 @@
 {!! Field::select('product_presentation_id', $presentations, ['template' => 'templates.inline', 'required']) !!}
 {!! Field::select('product_group_id', $groups, ['template' => 'templates.inline', 'required']) !!}
 {!! Field::select('unit_measure_id', $units, ['template' => 'templates.inline', 'required']) !!}
-{!! Field::text('price','0.00', ['template' => 'templates.inline']) !!}
+{!! Field::text('price',null, ['template' => 'templates.inline', 'placeholder' => '0.00']) !!}
