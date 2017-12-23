@@ -37,7 +37,7 @@ class QuotationController extends Controller
             $products = [];
         }else{
 
-                $products = Stock::selectRaw("CONCAT(products.full_name,' (', makes.name,')') as full_name, products.id as id , sum(stock) as stock, (sum(order_details.sale_price) / count(stock)) as sale_price")
+                $products = Stock::selectRaw("CONCAT(products.full_name,' (', makes.name,')') as full_name, products.id as id , sum(stock) as stock, products.price,  products.slug")
                 ->leftJoin('order_details', 'order_details.id', '=', 'stocks.order_detail_id' )
                 ->leftJoin('products', 'products.id', '=', 'order_details.product_id' )
                  ->leftJoin('makes', 'makes.id', '=', 'products.make_id' )
@@ -45,7 +45,7 @@ class QuotationController extends Controller
 
                 ->product($request->name)
                 ->where('status', true)
-                ->groupBy('products.full_name', 'products.id', 'makes.name')
+                ->groupBy('products.full_name', 'products.id', 'makes.name', 'products.price', 'products.slug')
                 ->get();
         }
         $commerce = Commerce::first();
