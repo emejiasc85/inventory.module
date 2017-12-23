@@ -190,11 +190,12 @@ return [
         'credit'                  => 'crédito',
         'file'                    => 'archivo',
         'website'                 => 'sitio web',
-        'amount' => 'monto',
-        'initial_cash' => 'Saldo inicial',
-        'bank' => 'banco',
-        'account' => 'cuenta',
-        'cash_register_id' => 'ID caja'
+        'amount'                  => 'monto',
+        'initial_cash'            => 'Saldo inicial',
+        'bank'                    => 'banco',
+        'account'                 => 'cuenta',
+        'cash_register_id'        => 'ID caja',
+        'price'                   => 'precio venta'
     ],
 
 
