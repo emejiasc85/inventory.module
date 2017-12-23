@@ -48,7 +48,7 @@
 @stop
 
 @section('scripts')
-    {!! Html::script('js/easy-autocomplete.js') !!}
+
     <script>
         $(document).ready(function () {
 
@@ -96,43 +96,7 @@
                 $("#address").removeAttr('readonly');
                 $(this).addClass('hidden');
             });
-            /*
-            
-            $("#nit").easyAutocomplete({
-              getValue: "nit",
-              template :{
-                type:"description",
-                fields:{
-                    description:"name"
-                }
-              },
-              list: {
-                match: {
-                  enabled: true
-                },
-                onSelectItemEvent: function() {
-                    var selectedItemValue = $("#nit").getSelectedItemData();
-                    $("#name").val(selectedItemValue.name).trigger("change");
-                    $("#address").val(selectedItemValue.address).trigger("change");
-                }
-              },
-              theme: "bootstrap",
-              ajaxSettings: {
-                dataType: "json",
-                method: "GET",
-                data: {
-                  //dataType: "json"
-                }
-              },
-              preparePostData: function(data) {
-                data.term = $("#nit").val();
-                return data;
-              },
-              requestDelay: 300}).change(function () {
-                $('#name').val('');
-                $('#address').val('');
-            });
-            */
+           
         });
     </script>
 @stop
