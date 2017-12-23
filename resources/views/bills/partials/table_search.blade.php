@@ -11,14 +11,11 @@
     <tbody>
         @foreach ($products as $product)
              <tr>
-                 <td>
-                    <img height ="40"  src="{{ asset('img/picture.png') }}" alt="...">
-                 </td>
-                 <td>{{ $product->full_name }}</td>
+                 <td><a target="_blank" href="{{ route('products.show', [$product->id, $product->slug])}}">{{ $product->full_name }}</a></td>
                  <td>{{ $product->stock }}</td>
-                 <td>{{ $product->sale_price }}</td>
+                 <td>{{ $product->price }}</td>
                  <td>
-                    <a href="#" title="agregar" data-id="{{ $product->id }}" data-name="{{ $product->full_name }}" data-price="{{ $product->sale_price }}"  class="btn btn-default  add-product"> <i class="text-success fa fa-shopping-cart"></i></a>
+                    <a href="#" title="agregar" data-id="{{ $product->id }}" data-name="{{ $product->full_name }}" data-price="{{ $product->price }}"  class="btn btn-default  add-product"> <i class="text-success fa fa-shopping-cart"></i></a>
                 </td>
              </tr>
          @endforeach
