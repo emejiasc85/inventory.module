@@ -23,6 +23,7 @@ class StocksController extends Controller
             ->product($request->name)
             ->presentationId($request->product_presentation_id)
             ->groupId($request->product_group_id)
+            ->makeId($request->make_id)
             ->dueDate($request->from_due, $request->to_due)
             ->stock($request->simbol, $request->stock)
             ->where('status', true)
