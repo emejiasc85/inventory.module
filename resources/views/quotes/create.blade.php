@@ -20,7 +20,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            @include('quotes.partials.fields')
+                            @include('bills.partials.fields')
                         </div>
                     </div>
                     <!--/.row-->
@@ -44,56 +44,56 @@
 @stop
 
 @section('scripts')
-    {!! Html::script('js/easy-autocomplete.js') !!}
-    <script>
-      $('#Submit').on('click', function (e) {
-            e.preventDefault();
-            $('#btn-cancel').fadeOut(1);
-            $(this).attr('disabled', 'disabled');
-            $(this).text('Espere...')
-            $('#CreateOrderForm').submit();
-      })
-    </script>
+<script>
+    $(document).ready(function () {
 
-    <script>
-        $(document).ready(function () {
-            $("#nit").easyAutocomplete({
-              url: "/auto-complete/people",
-              getValue: "nit",
-              template :{
-                type:"description",
-                fields:{
-                    description:"name"
+
+        $('#Submit').on('click', function (e) {
+                e.preventDefault();
+                $('#btn-cancel').fadeOut(1);
+                $(this).attr('disabled', 'disabled');
+                $(this).text('Espere...')
+                $('#CreateOrderForm').submit();
+        })
+    
+
+        if( $("#name").val() != '' && $("#address").val() != '' ){
+
+        }
+
+
+        $("#nit").change(function(event){
+            var nit = $(this).val();
+            var url =  '/auto-complete/people/'+nit;
+            $.getJSON(url, null, function (result) {
+                if(result.success){
+                    $("#EditPeople").removeClass('hidden');
+                    $("#name").attr('readonly', 'readonly')
+                    $("#address").attr('readonly', 'readonly')
+                    $("#error").addClass('hidden');
+                    $("#name").val(result.people.name);
+                    $("#address").val(result.people.address);
                 }
-              },
-              list: {
-                match: {
-                  enabled: true
-                },
-                onSelectItemEvent: function() {
-                    var selectedItemValue = $("#nit").getSelectedItemData();
-                    $("#name").val(selectedItemValue.name).trigger("change");
-                    $("#address").val(selectedItemValue.address).trigger("change");
+                else{
+                    $("#error").removeClass('hidden');
+                    $("#name").removeAttr('readonly');        
+                    $("#address").removeAttr('readonly');
+                    $("#name").val('');        
+                    $("#address").val('');
+                    
                 }
-              },
-              theme: "bootstrap",
-              ajaxSettings: {
-                dataType: "json",
-                method: "GET",
-                data: {
-                  //dataType: "json"
-                }
-              },
-              preparePostData: function(data) {
-                data.term = $("#nit").val();
-                return data;
-              },
-              requestDelay: 300}).change(function () {
-                $('#name').val('');
-                $('#address').val('');
             });
         });
-    </script>
+
+        $("#EditPeople").click(function(event){
+            event.preventDefault();
+            $("#name").removeAttr('readonly');        
+            $("#address").removeAttr('readonly');
+            $(this).addClass('hidden');
+        });
+       
+    });
+</script>
 @stop
 
 
