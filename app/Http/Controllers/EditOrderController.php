@@ -58,16 +58,22 @@ class EditOrderController extends Controller
         $this->validate($request, ['status' => 'required']);
         $order->status = $request->get('status');
         $order->save();
-
+        $details = [];
         if ($status == 'Ingresado') {
             foreach ($order->details as $detail) {
+                if($detail->sale_price > $detail->product->price){
+                    $product = $detail->product;
+                    $product->price = $detail->sale_price; 
+                    $product->save();
+                    array_push($details, 'Precio de '.$detail->product->fullName.' Mejorado');
+                }
                 Stock::create([
                     'stock'     => $detail->lot,
                     'warehouse_id' => 1,
                     'order_detail_id' => $detail->id
                 ]);
             }
-            Alert::success('El Pedido fue ingresado al inventario correctamente');
+            Alert::success('El Pedido fue ingresado al inventario correctamente')->items($details);
             return redirect($order->url);
         }
         else{
