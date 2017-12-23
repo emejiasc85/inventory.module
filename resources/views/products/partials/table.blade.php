@@ -10,12 +10,12 @@
          <th>Presentación</th>
          <th>Unid. Medida</th>
          <th>Minimo</th>
+         <th>Precio Venta</th>
          <th colspan="2">Acciones</th>
      </tr>
 
     </thead>
     <tbody>
-
         @foreach ($products as $product)
              <tr>
                  <td>{{ $product->id }}</td>
@@ -27,6 +27,7 @@
                  <td>{{ $product->presentation->name }}</td>
                  <td>{{ $product->unit->name }}</td>
                  <td>{{ $product->minimum_stock }}</td>
+                 <td>{{ $product->price }}</td>
                  <td>
                     <a href="{{ $product->url }}" class="btn btn-info "> <i class="fa fa-eye"></i> Detalle</a>
                 </td>
