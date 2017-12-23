@@ -43,6 +43,12 @@
                     </li>
                     <li>
                         <p>
+                            <span class="fa fa-money"></span>
+                            <strong>Precio Venta:</strong> Q. {{ $product->price }}
+                        </p>
+                    </li>
+                    <li>
+                        <p>
                             <span class="fa fa-barcode"></span>
                             <strong>barcode:</strong> {{ $product->barcode }}
                             <div class="row">
