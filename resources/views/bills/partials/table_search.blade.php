@@ -1,6 +1,7 @@
 <table class="table table-striped">
     <thead>
     <tr>
+        <th></th>
          <th>Producto</th>
          <th>Existencia</th>
          <th>P/U</th>
@@ -10,6 +11,9 @@
     <tbody>
         @foreach ($products as $product)
              <tr>
+                 <td>
+                    <img height ="40"  src="{{ asset('img/picture.png') }}" alt="...">
+                 </td>
                  <td>{{ $product->full_name }}</td>
                  <td>{{ $product->stock }}</td>
                  <td>{{ $product->sale_price }}</td>
