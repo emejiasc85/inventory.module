@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($registers->sortByDesc('id') as $register)
+        @foreach ($registers as $register)
         <tr>
             <td>{{ $register->id }}</td>
             <td>{{ $register->created_at }}</td>
