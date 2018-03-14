@@ -19,6 +19,7 @@ class ViewServiceProvider extends ServiceProvider {
                 'orders/details/create',
                 'audit/details/create',
                 'stocks/index',
+                'stocks/byOrder',
                 'bills/show',
             ],
             'EmejiasInventory\Http\ViewComposers\ProductsComposer'
