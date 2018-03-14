@@ -15,7 +15,7 @@
                     <small>Listado</small>
                 </div>
                 <div class="pull-right">
-                    <a href="{{ route('stocks.byOrder', Request::all()) }}" class="btn btn-primary btn-sm"><i class="fa fa-truck"></i>Agrupar Por Pedido</a>
+                    <a href="{{ route('stocks.byOrder', Request::all()) }}" class="btn btn-primary btn-sm"><i class="fa fa-truck"></i>Existencias por pedido</a>
                     <a href="{{ route('stocks.download', Request::all()) }}" title="Descargar a excel" class="btn btn-default btn-sm"><i class="fa fa-download"></i></a>
                     
                 </div>

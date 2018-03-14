@@ -11,7 +11,7 @@
             <div class="panel-heading">
                 <div class="pull-left">
                     <i class="fa fa-truck"></i>
-                    <strong>Agrupado por pedido</strong>
+                    <strong>Existencias por pedido</strong>
                     <small>Listado</small>
                 </div>
                 <div class="pull-right">
