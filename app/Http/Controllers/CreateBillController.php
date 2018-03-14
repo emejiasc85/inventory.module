@@ -27,9 +27,9 @@ class CreateBillController extends Controller
 
     public function store(Request $request)
     {
-        $open_register= CashRegister::where('status', false)->orderBy('id', 'DESC')->get();
+        //$open_register= CashRegister::where('status', false)->orderBy('id', 'DESC')->get();
         
-        $register = $open_register->first()->id;         
+        //$register = $open_register->first()->id;         
 
         $this->validate($request, ['nit' => 'required', 'name' => 'required', 'address' => 'required']);
 
@@ -41,7 +41,7 @@ class CreateBillController extends Controller
         ]);
 
          $bill = new Order();
-         $bill->cash_register_id = $register;
+         //$bill->cash_register_id = $register;
          $bill->order_type_id = 2;
          $bill->people_id = $customer->id;
          $bill->user_id = auth()->user()->id;

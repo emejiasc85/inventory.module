@@ -35,7 +35,6 @@ class Order extends Entity
 		}
     }
 	
-	
     public function cash_register()
     {
         return $this->belongsTo(CashRegister::class);

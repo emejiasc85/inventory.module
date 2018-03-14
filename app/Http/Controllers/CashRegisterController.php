@@ -19,10 +19,12 @@ class CashRegisterController extends Controller
     public function index(Request $request)
     {
         $users = User::pluck('name', 'id')->toArray();
+        
         $registers = CashRegister::
         id($request->cash_register_id)
         ->user($request->user_id)
         ->date($request->from, $request->to)
+        ->orderBy('id', 'ASC')
         ->paginate();
         return view('registers.index', compact('registers', 'users'));
     }
