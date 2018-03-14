@@ -24,16 +24,17 @@ class Order extends Entity
     {
         return $this->hasOne(Bill::class);
     }
-
-    public function setOrderTypeIdAttribute($value)
+	
+	public function setOrderTypeIdAttribute($value)
     {
         $this->attributes['order_type_id'] = $value;
-        
-        if($value== 2){
-            $open_register= CashRegister::where('status', false)->orderBy('id', 'DESC')->get()->first()->id;
-            $this->attributes['cash_register_id'] = $open_register;
-        }
+		
+		if($value == 2){
+			$register = CashRegister::where('status', false)->orderBy('id', 'desc')->get()->first()->id;
+			$this->attributes['cash_register_id'] = $register;
+		}
     }
+	
     public function cash_register()
     {
         return $this->belongsTo(CashRegister::class);
