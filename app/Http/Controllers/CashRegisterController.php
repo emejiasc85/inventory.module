@@ -5,9 +5,10 @@ namespace EmejiasInventory\Http\Controllers;
 use Illuminate\Http\Request;
 use EmejiasInventory\Entities\CashRegister;
 use Styde\Html\Facades\Alert;
-use EmejiasInventory\Entities\CashRegisterDeposit;
+use EmejiasInventory\Entities\{CashRegisterDeposit,Order};
 use EmejiasInventory\Entities\User;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class CashRegisterController extends Controller
 {
@@ -150,5 +151,41 @@ class CashRegisterController extends Controller
     public function payments(CashRegister $register)
     {
         return view('registers.payments', compact('register'));
+    }
+
+
+    public function SalesToCashRegister()
+    {
+        DB::transaction(function ()
+        {
+            dd(Order::query()
+            ->whereBetween('created_at', [$register->created_at, $register->updated_at])
+            ->where('order_type_id', 2)
+            ->where('cash_register_id', null)
+            ->get());
+            $registers = CashRegister::all();
+
+            foreach($registers as $register){
+                
+                $orders = Order::query()
+                    ->whereBetween('created_at', [$register->created_at, $register->updated_at])
+                    ->where('order_type_id', 2)
+                    ->where('cash_register_id', null)
+                    ->get();
+
+                if ($orders->count()>0) 
+                {
+                    foreach($orders as $order)
+                    {
+                        $order->cash_register_id = $register->id;
+                        $order->save();
+                    }
+                }
+            }
+
+            Alert::success('Se agregaron las ventas faltantes a las cajas correspondientes');
+            
+        });
+        return redirect()->route('index');
     }
 }
