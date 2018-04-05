@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-<li class="breadcrumb-item">Reporte de ventas</li>
+<li class="breadcrumb-item">Reporte</li>
 @stop
 
 @section('content')
@@ -11,12 +11,12 @@
             <div class="panel-heading">
                 <div class="pull-left">
                     <i class="fa fa-cubes"></i>
-                    <strong>Top Productos</strong>
+                    <strong>Top Productos por fechas</strong>
                     <small>Listado</small>
                 </div>
                 <div class="pull-right">
-                    <a href="{{ route('reports.products.group.byDate', Request::all())}}" class="btn btn-default">Agrupar por fecha</a>
-                    <a href="{{ route('reports.products.download', Request::all() )}}" class="btn btn-default"><i class="fa fa-download"></i></a>
+                    <a href="{{ route('reports.products', Request::all() ) }}" class="btn btn-default">Agrupar por producto</a>
+                    <a href="{{ route('reports.products.group.byDate.download', Request::all()) }}" class="btn btn-default"><i class="fa fa-download"></i></a>
                 </div>
             </div>
             <div class="panel-body">
@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="table-responsive">
-                            @include('reports.partials.table')
+                            @include('reports.partials.table_by_date')
                         </div>
                     </div>
                 </div>
