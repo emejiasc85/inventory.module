@@ -3,6 +3,7 @@
 namespace EmejiasInventory\Entities;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 
 class People extends Entity
@@ -68,11 +69,11 @@ class People extends Entity
 
     public function getPurchasesAttribute()
     {
-        return $this->orders->where('order_type_id', 2)->where('credit', false);
+        return $this->orders->where('order_type_id', 2)->where('status', 'Ingresado')->where('credit', false);
     }
     public function getCreditsAttribute()
     {
-        return $this->orders->where('order_type_id', 2)->where('credit', true);
+        return $this->orders->where('order_type_id', 2)->where('status', 'Ingresado')->where('credit', true);
     }
     
     public function getCurrentCreditAttribute()
@@ -136,4 +137,33 @@ class People extends Entity
             return $query->where('partner', $value);
         }
     }
+
+    public function scopeTopCustomers($query, $request)
+    {
+        $query->select(
+            'people.*',
+            DB::raw("(SELECT SUM(orders.total) FROM orders
+                WHERE orders.people_id = people.id
+                AND orders.order_type_id = 2
+                AND orders.status = 'Ingresado'
+                GROUP BY orders.people_id) as total"),
+            DB::raw("(SELECT SUM(orders.total) FROM orders
+                WHERE orders.people_id = people.id
+                AND orders.order_type_id = 2
+                AND orders.status = 'Ingresado'
+                AND orders.credit = 1
+                GROUP BY orders.people_id) as credit"),
+            DB::raw("(SELECT SUM(payments.amount) FROM payments
+                LEFT JOIN orders ON payments.order_id = orders.id
+                WHERE orders.people_id = people.id
+                AND orders.order_type_id = 2
+                AND orders.status = 'Ingresado'
+                AND orders.credit = 1
+                GROUP BY payments.order_id) as payments")
+        )
+        ->orderBy('total', 'DESC');
+        return $query;
+    }
+
+    
 }
