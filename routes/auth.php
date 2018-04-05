@@ -297,10 +297,15 @@ Route::name('auth.password.edit')->get('editar-contrasena/{user}-{slug}', 'EditU
 Route::name('auth.password.update')->put('editar-contrasena/{user}', 'EditUserController@updateAuthPassword');
 //reports
 Route::name('reports.sellers')->get('reportes/vendedores', 'ReportsController@sellers');
+Route::name('reports.products.group.byDate')->get('reportes/productos/agrupar/por-fecha', 'ReportsController@productsGroupByDate');
+Route::name('reports.products.group.byDate.download')->get('reportes/productos/agrupar/por-fecha/descargar', 'ReportsController@productsGroupByDateDownload');
 Route::name('reports.products')->get('reportes/productos', 'ReportsController@products');
+Route::name('reports.products.download')->get('reportes/productos/descargar', 'ReportsController@productsDownload');
 Route::name('reports.due_dates')->get('reportes/productos/proximos-a-vencer', 'ReportsController@dueDate');
 Route::name('reports.min_stock')->get('reportes/productos/en-stock-minimo', 'ReportsController@minStock');
 Route::name('reports.resumen')->get('reportes/ventas/resumen', 'ReportsController@resumen');
+Route::name('reports.customers')->get('reportes/clientes/top-clientes', 'ReportsController@topCustomers');
+Route::name('reports.customers.download')->get('reportes/clientes/top-clientes/descargar', 'ReportsController@topCustomersDownload');
 //barcode
 Route::name('barcode.products')->get('barcode/productos/{product}', 'ProductController@barcode');
 //payments
@@ -324,6 +329,7 @@ Route::name('cash.registers.deposits.destroy')->delete('deposito-a-caja-eliminar
 
 //temporal
 Route::name('prices')->get('actualizar-precios', 'EditProductsController@UpdatePrices');
+Route::name('sales-to-cash-registers')->get('ingresar-ventas-en-cajas', 'CashRegisterController@SalesToCashRegister');
 
 
 
