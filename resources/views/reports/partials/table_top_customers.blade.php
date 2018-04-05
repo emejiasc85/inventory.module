@@ -3,7 +3,6 @@
         <th>ID</th>
         <th>Nit</th>
         <th>Nombre</th>
-        
         <th>Tipo</th>
         <th class="text-center">Socio</th>
         <th class="text-right">Consumo</th>
@@ -20,8 +19,8 @@
             <i class="fa fa-check text-success"></i>
         @endif
         </td>
-        <td class="text-right">{{ $person->total}}</td>
-        <td class="text-right">{{ $person->payments}}</td>
+        <td class="text-right">{{ $person->total - $person->credit}}</td>
+        <td class="text-right">{{ $person->credit}}</td>
     </tr>
     @endforeach
 </table>

@@ -141,26 +141,23 @@ class People extends Entity
     public function scopeTopCustomers($query, $request)
     {
         $query->select(
-            'people.*',
-            DB::raw("(SELECT SUM(orders.total) FROM orders
+            'people.id', 'people.name', 'people.nit', 'people.type', 'people.partner',
+            DB::raw('SUM(payments.amount) as payments'),
+            DB::raw("((SELECT SUM(orders.total) FROM orders
                 WHERE orders.people_id = people.id
                 AND orders.order_type_id = 2
                 AND orders.status = 'Ingresado'
-                GROUP BY orders.people_id) as total"),
-            DB::raw("(SELECT SUM(orders.total) FROM orders
-                WHERE orders.people_id = people.id
-                AND orders.order_type_id = 2
-                AND orders.status = 'Ingresado'
-                AND orders.credit = 1
-                GROUP BY orders.people_id) as credit"),
-            DB::raw("(SELECT SUM(payments.amount) FROM payments
-                LEFT JOIN orders ON payments.order_id = orders.id
+                GROUP BY orders.people_id)) as total"),
+            DB::raw("((SELECT SUM(orders.total) FROM orders
                 WHERE orders.people_id = people.id
                 AND orders.order_type_id = 2
                 AND orders.status = 'Ingresado'
                 AND orders.credit = 1
-                GROUP BY payments.order_id) as payments")
+                GROUP BY orders.people_id) - SUM(payments.amount)) as credit")
         )
+        ->leftJoin('orders', 'orders.people_id', '=', 'people.id' )
+        ->leftJoin('payments', 'payments.order_id', '=', 'orders.id' )
+        ->groupBy('people.id', 'people.name', 'people.nit', 'people.type', 'people.partner')
         ->orderBy('total', 'DESC');
         return $query;
     }
