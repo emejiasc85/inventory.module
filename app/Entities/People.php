@@ -162,5 +162,4 @@ class People extends Entity
         return $query;
     }
 
-    
 }

@@ -114,7 +114,7 @@ class ReportsController extends Controller
     
     public function topCustomersDownload(Request $request)
     {
-        $people = Order::topCustomers($request)->get();
+        $people = People::topCustomers($request)->get();
         Excel::create('Top clientes ', function($excel) use($people) {
             $excel->sheet('clientes', function($sheet) use($people) {
                 $sheet->loadView('reports.partials.table_top_customers', compact('people'));

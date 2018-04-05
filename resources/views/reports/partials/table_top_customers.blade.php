@@ -16,7 +16,7 @@
         <td>{{ ($person->type =='provider')  ? 'Proveedor':'Cliente'}}</td>
         <td class="text-center">
         @if($person->partner)
-            <i class="fa fa-check text-success"></i>
+            <i class="fa fa-check text-success">Si</i>
         @endif
         </td>
         <td class="text-right">{{ $person->total - $person->credit}}</td>
