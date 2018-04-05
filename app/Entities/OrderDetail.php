@@ -4,9 +4,11 @@ namespace EmejiasInventory\Entities;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use EmejiasInventory\Traits\OrderDetailTrait;
 
 class OrderDetail extends Model
 {
+    use  OrderDetailTrait;
     protected $fillable= [
     	'lot',
     	'order_id',
