@@ -8,6 +8,8 @@ use EmejiasInventory\Entities\OrderDetail;
 use EmejiasInventory\Entities\Stock;
 use EmejiasInventory\Entities\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use EmejiasInventory\Entities\People;
 
 class ReportsController extends Controller
 {
@@ -28,16 +30,37 @@ class ReportsController extends Controller
 
     public function products(Request $request)
     {
-        $products = OrderDetail::selectRaw('products.id, products.name, sum(order_details.lot) as cant')
-            ->leftJoin('products', 'products.id', '=', 'order_details.product_id')
-            ->leftJoin('orders', 'orders.id', '=', 'order_details.order_id')
-            ->whereRaw('orders.order_type_id =2')
-            ->productName($request->name)
-            ->date($request->from, $request->to)
-            ->groupBy('products.id', 'products.name')
-            ->orderBy('cant', ($request->order == null ? 'DESC': $request->order))
-            ->paginate();
+        $products = OrderDetail::topProducts($request)->paginate();
         return view('reports.products', compact('products'));
+    }
+   
+    public function productsDownload(Request $request)
+    {
+        $products = OrderDetail::topProducts($request)->get();
+
+        Excel::create('Top productos ', function($excel) use($products) {
+            $excel->sheet('Productos', function($sheet) use($products) {
+                $sheet->loadView('reports.partials.table', compact('products'));
+            });
+        })->export('xls');
+    }
+    
+    public function productsGroupByDate(Request $request)
+    {
+        $products = OrderDetail::topProductsByDate($request)->paginate();
+
+        return view('reports.products_by_date', compact('products'));
+    }
+
+    public function productsGroupByDateDownload(Request $request)
+    {
+        $products = OrderDetail::topProductsByDate($request)->get();
+
+        Excel::create('Top productos por fecha ', function($excel) use($products) {
+            $excel->sheet('productos', function($sheet) use($products) {
+                $sheet->loadView('reports.partials.table_by_date', compact('products'));
+            });
+        })->export('xls');
     }
 
     public function dueDate(Request $request)
@@ -81,5 +104,23 @@ class ReportsController extends Controller
     {
         $orders = Order::where('status', 'Ingresado')->where('order_type_id', 1)->orWhere('order_type_id', 2)->paginate();
         return view('reports.resumen', compact('orders'));
+    }
+
+    public function topCustomers(Request $request)
+    {
+        $people = People::topCustomers($request)->paginate();
+        return view('reports.top_customers', compact('people'));
+    }
+    
+    public function topCustomersDownload(Request $request)
+    {
+        $people = Order::topCustomers($request)->get();
+        Excel::create('Top clientes ', function($excel) use($people) {
+            $excel->sheet('clientes', function($sheet) use($people) {
+                $sheet->loadView('reports.partials.table_top_customers', compact('people'));
+            });
+        })->export('xls');
+
+        
     }
 }
