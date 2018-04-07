@@ -159,7 +159,6 @@ class CashRegisterController extends Controller
         DB::transaction(function ()
         {
             dd(Order::query()
-            ->whereBetween('created_at', [$register->created_at, $register->updated_at])
             ->where('order_type_id', 2)
             ->where('cash_register_id', null)
             ->get());
