@@ -30,7 +30,7 @@ class CreateProductsController extends Controller
         $new = Product::create($request->all());
         if (!($request->has('barcode'))) {
             $new->barcode=$salida.$new->id;
-                                  $new->save();
+            $new->save();
         }
     	Alert::success('Producto creado correctamente');
     	return redirect()->route('products.index');
