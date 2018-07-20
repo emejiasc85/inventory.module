@@ -9,6 +9,7 @@ use EmejiasInventory\Entities\{CashRegisterDeposit,Order};
 use EmejiasInventory\Entities\User;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class CashRegisterController extends Controller
 {
@@ -122,7 +123,9 @@ class CashRegisterController extends Controller
     }
     public function close(Request $request, CashRegister $register)
     {
+        
         $register->status = true;
+        $register->closing_date = Carbon::now();
         $register->user_id = auth()->user()->id;
         $register->save();
         Alert::success('Caja Cerrada');

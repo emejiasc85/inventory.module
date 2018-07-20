@@ -20,7 +20,7 @@
 
             <td>
             @if($register->status)
-                {{ $register->updated_at }}
+                {{ $register->closing_date }}
             @endif
             </td>
             <td>{{ $register->sales->sum('total')}}</td>

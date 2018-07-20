@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class CashRegister extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['initial_cash', 'user_id', 'status', 'baucher', 'amount'];
+    protected $fillable = ['initial_cash', 'user_id', 'status', 'baucher', 'amount', 'closing_date'];
 
 
     public function user()
