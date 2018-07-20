@@ -16,25 +16,17 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        $ProductPresentation=  ProductPresentation::create([
-                    'name' => 'Unidad'
-                ]);
-        $ProductGroup = ProductGroup::create([
-                    'name' => 'Medicina'
-                ]);
-        $UnitMeasure =UnitMeasure::create([
-                    'name' => 'Unidad'
-                ]);
-        $Make = Make::create([
-                    'name' => 'Durex'
-                ]);
+        $ProductPresentation = ProductPresentation::create(['name' => 'Unidad']);
+        $ProductGroup        = ProductGroup::create(['name'        => 'Medicina']);
+        $UnitMeasure         = UnitMeasure::create(['name'         => 'Unidad']);
+        $Make                = Make::create(['name'                => 'Bayer']);
 
-        for ($i=1; $i <= 1; $i++) {
-
+        for ($i=1; $i <= 1; $i++) 
+        {
             Product::create([
                 'id'                      => $i,
-                'name'                    => 'Condon',
-                'description'             => 'Condon',
+                'name'                    => 'Aspirina',
+                'description'             => 'Aspirina',
                 'product_presentation_id' => $ProductPresentation->id,
                 'product_group_id'        => $ProductGroup->id,
                 'unit_measure_id'         => $UnitMeasure->id,
