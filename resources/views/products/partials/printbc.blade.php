@@ -13,7 +13,10 @@
         <tr>
             @for ($j = 0; $j < $ancho; $j++)
             <td style="background-color: white" class="text-center">
+                <br>
+                <br>
                 <p>{{ $product->name }}</p>
+                <p><strong> Q. {{ $product->price }} </strong></p>
                 <p style="background-color: #ccc">ID: {{ $product->id }}</p>
                 <p class="text-center">
                     <div class="bcTarget text-center">

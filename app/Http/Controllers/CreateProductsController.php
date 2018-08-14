@@ -28,7 +28,7 @@ class CreateProductsController extends Controller
         $val3=substr($name, 2, 2);
         $salida=ord($val1).ord($val2).ord($val3);
         $new = Product::create($request->all());
-        if (!($request->has('barcode'))) {
+        if ($request->barcode == '') {
             $new->barcode=$salida.$new->id;
             $new->save();
         }
