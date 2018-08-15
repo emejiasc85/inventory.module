@@ -4,6 +4,7 @@ namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\Product;
 use Illuminate\Http\Request;
+use EmejiasInventory\Entities\Commerce;
 
 class ProductController extends Controller
 {
@@ -28,6 +29,7 @@ class ProductController extends Controller
 
     public function barcode(Product $product)
     {
-        return view('products.partials.printbc', compact('product'));
+        $commerce = Commerce::first();
+        return view('products.partials.printbc', compact('product', 'commerce'));
     }
 }
