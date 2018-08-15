@@ -17,11 +17,11 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         $ProductPresentation = ProductPresentation::create(['name' => 'Unidad']);
-        $ProductGroup        = ProductGroup::create(['name'        => 'Medicina']);
+        $ProductGroup        = ProductGroup::create(['name'        => 'Vestidos']);
         $UnitMeasure         = UnitMeasure::create(['name'         => 'Unidad']);
-        $Make                = Make::create(['name'                => 'Bayer']);
+        //$Make                = Make::create(['name'                => 'Bayer']);
 
-        for ($i=1; $i <= 1; $i++) 
+        /* for ($i=1; $i <= 1; $i++)
         {
             Product::create([
                 'id'                      => $i,
@@ -34,7 +34,7 @@ class ProductTableSeeder extends Seeder
                 'minimum_stock'           => 5,
             ]);
 
-        }
+        } */
 
     }
 }
