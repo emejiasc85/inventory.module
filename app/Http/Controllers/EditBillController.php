@@ -19,11 +19,26 @@ class EditBillController extends Controller
 
         if(trim($request->bill_number) != null){
             if (Resolution::where('status', true)->first()) {
-                $bill = new Bill();
-                $bill->order_id = $order->id;
-                $bill->resolution_id = Resolution::where('status', true)->first()->id;
-                $bill->bill = $request->bill_number;
-                $bill->save();
+
+                $resolution = Resolution::where('status', true)->first();
+                $request->validate([
+                    'bill_number' => 'nullable|integer|unique:bills,bill|max:'.$resolution->to
+                ]);
+
+                if ($order->bill) {
+                    $bill = Bill::findOrFail($order->bill->id);
+                    $bill->resolution_id = $resolution->id;
+                    $bill->bill = $request->bill_number;
+                    $bill->save();
+                }
+                else {
+                    $bill = new Bill();
+                    $bill->order_id = $order->id;
+                    $bill->resolution_id = $resolution->id;
+                    $bill->bill = $request->bill_number;
+                    $bill->save();
+                }
+
             }
         }
 
@@ -32,7 +47,7 @@ class EditBillController extends Controller
             $order->payment_method_id = $request->payment_method_id;
 
             if($request->payment_method_id == 4){
-                $order->voucher = $request->voucher;
+                $order->credit = true;
             }
 
             if($request->payment_method_id == 2 || $request->payment_method_id == 3){

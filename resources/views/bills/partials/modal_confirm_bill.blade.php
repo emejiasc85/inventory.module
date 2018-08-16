@@ -8,20 +8,20 @@
                     <i class="fa fa fa-shopping-cart"></i> Confirmar <strong id="addProductName"></strong>
                 </h4>
             </div>
-            {!! Form::open(['route' => ['bills.confirm', $order], 'id' => 'BillFormConfirm', 'method' => 'PUT']) !!}
+            {!! Form::model($order, ['route' => ['bills.confirm', $order], 'id' => 'BillFormConfirm', 'method' => 'PUT']) !!}
             <div class="modal-body">
-                {!! Field::text('bill_number') !!}
+                {!! Field::text('bill_number', $order->bill ? $order->bill->bill:null ) !!}
                 <label class="radio-inline hideVoucher" title="Efectivo">
-                    <input checked="checked" type="radio" name="payment_method_id" value="1"> <i class="fa fa-money"></i> Efectivo
+                <input   {{ ($order->payment_method_id == 1 || $order->payment_method_id == null ) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="1"> <i class="fa fa-money"></i> Efectivo
                 </label>
                 <label class="radio-inline showVoucher" title="Tarjeta" >
-                    <input type="radio" name="payment_method_id" value="2"> <i class="fa fa-credit-card"></i> Tarjeta
+                    <input {{ ($order->payment_method_id == 2) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="2"> <i class="fa fa-credit-card"></i> Tarjeta
                 </label>
                 <label class="radio-inline showVoucher" title="Cheque" >
-                    <input type="radio" name="payment_method_id" value="3"> <i class="fa fa-bank" ></i> Cheque
+                    <input {{ ($order->payment_method_id == 3) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="3"> <i class="fa fa-bank" ></i> Cheque
                 </label>
                 <label class="radio-inline hideVoucher" title="Cheque">
-                    <input type="radio" name="payment_method_id" value="4"> <i class="fa fa-inbox"></i> Credito
+                    <input {{ ($order->payment_method_id == 4) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="4"> <i class="fa fa-inbox"></i> Credito
                 </label>
                 <br>
                 <br>

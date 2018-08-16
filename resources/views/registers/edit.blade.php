@@ -1,107 +1,187 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-     <li class="breadcrumb-item"><a href="{{ route('makes.index') }}">Caja</a></li>
+     <li class="breadcrumb-item"><a href="{{ route('bills.index') }}">Caja</a></li>
 	 <li class="breadcrumb-item active">Cerrar</li>
 @stop
 
 @section('content')
-	<div class="row">
-		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <a href="{{ route('cash.registers.bills', $register)}}">
-                        <div class="smallstat">
-                            <span class="value text-success">Q. {{ number_format($register->sales->sum('total'),2)}}</span>
-                            <span class="title">Ventas</span>
-                        </div><!--/.smallstat-->
+    <div class="col-xs-12>
+        <div class="row">
+                <div class="invoice">
+                        <div class="row header visible-print-block">
+                            <div class="col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        @if ($commerce->logo_path)
+                                            <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded pull-right" width="75">
+                                        @endif
+                                        <p><strong>{{$commerce->name}}</strong></p>
+                                        <p>{{$commerce->patent_name}}</p>
+                                        <p>{{$commerce->address}}</p>
+                                        <p>{{$commerce->phone}}</p>
+                                    </div>
+                                </div>
+                            </div><!--/col-->
+                        </div>
+                        <div class="row header">
+                            <div class="col-xs-1">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        ID
+                                    </div>
+                                    <div class="panel-body">
+                                        <p><strong>#{{$register->id}}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Fecha de Apertura
+                                    </div>
+                                    <div class="panel-body">
+                                        <p><strong>{{$register->created_at}}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Fecha de Cierre
+                                    </div>
+                                    <div class="panel-body">
+                                        @if(!$register->status)
+                                            <a  href="#" data-toggle="modal" data-target="#closeRegister">
+                                                <i class="fa fa-ban primary"></i>
+                                                <span class="value text-primary"><strong>Cerrar Caja</span>
+                                            </a>
+                                        @else
+                                            <p><strong>{{$register->closing_date}}</strong></p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Usuario apertura
+                                    </div>
+                                    <div class="panel-body">
+                                        <p><strong>{{$register->user->name}}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table class="table table-striped table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th class="center">#</th>
+                                            <th>Movimiento</th>
+                                            <th>Opcion</th>
+                                            <th class="center">Ventas</th>
+                                            <th class="right">Productos</th>
+                                            <th class="right">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="center">1</td>
+                                            <td class="left">Pagos en Efectivo</td>
+                                            <td class="left"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 1])}}">Detalles </a></td>
+                                            <td class="center">{{ $register->sales->where('payment_method_id', 1)->count() }}</td>
+                                            <td class="right">{{ array_sum(data_get($register->sales->where('payment_method_id', 1), '*.details.*.lot'))  }}</td>
+                                            <td class="right">{{ number_format($register->sales->where('payment_method_id', 1)->sum('total'),2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">2</td>
+                                            <td class="left">Pagos con tarjeta</td>
+                                            <td class="left"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 2])}}">Detalles </a></td>
+                                            <td class="center">{{ $register->sales->where('payment_method_id', 2)->count() }}</td>
+                                            <td class="right">{{ array_sum(data_get($register->sales->where('payment_method_id', 2), '*.details.*.lot'))  }}</td>
+                                            <td class="right">{{ number_format($register->sales->where('payment_method_id', 2)->sum('total'),2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">3</td>
+                                            <td class="left">Pagos con cheques</td>
+                                            <td class="left"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 3])}}">Detalles </a></td>
+                                            <td class="center">{{ $register->sales->where('payment_method_id', 3)->count() }}</td>
+                                            <td class="right">{{ array_sum(data_get($register->sales->where('payment_method_id', 3), '*.details.*.lot'))  }}</td>
+                                            <td class="right">{{ number_format($register->sales->where('payment_method_id', 3)->sum('total'),2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">4</td>
+                                            <td class="left">Creditos</td>
+                                            <td class="left"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 4])}}">Detalles </a></td>
+                                            <td class="center">{{  $register->sales->where('payment_method_id', 4)->count() }}</td>
+                                            <td class="right">{{ array_sum(data_get($register->sales->where('payment_method_id', 4), '*.details.*.lot'))  }}</td>
+                                            <td class="right">{{ number_format($register->sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">5</td>
+                                            <td class="left">Abonos a creditos</td>
+                                            <td class="left"><a href="{{ route('cash.registers.payments', $register)}}">Detalles </a></td>
+                                            <td class="center">N/A</td>
+                                            <td class="right">N/A</td>
+                                            <td class="right">{{ number_format($register->payments->sum('amount'),2) }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <div class="row">
+
+                                    <div class="col-lg-4 col-sm-5 notice">
+                                        {{-- <div class="well">
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                        </div> --}}
+                                    </div><!--/col-->
+
+                                    <div class="col-lg-4 col-lg-offset-4 col-sm-5 col-sm-offset-2 recap">
+                                        <table class="table table-clear">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="left"><strong>Subtotal</strong></td>
+                                                    <td class="right">Q.{{number_format($register->sales->sum('total'),2)}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left"><strong>Saldo Inicial @if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash"><i class="fa fa-pencil"></i></a>@endif </strong></td>
+                                                    <td class="right">Q.{{ $register->initial_cash }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left"><strong>Creditos <i class="text-danger">(-)</i></strong></td>
+                                                    <td class="right text-danger">Q.{{ number_format($register->sales->where('payment_method_id', 4)->sum('total'),2)}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left"><strong>Total</strong></td>
+                                                    <td class="right"><strong>Q.{{ number_format($register->sales->sum('total') + $register->payments->sum('amount') - $register->sales->where('payment_method_id', 4)->sum('total'),2 )}}</strong></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <a href="#" class="hidden-print btn btn-info" onclick="javascript:window.print();"><i class="  fa fa-print"></i> Imprimir</a>
+                                        <a href="{{ route('cash.registers.bills', $register)}} " class="hidden-print btn btn-success"> Detalles</a>
+                                    </div><!--/col-->
+
+                                </div><!--/row-->
+                            </div>
+                        </div>
+
+                    </div>
+        </div>
+
+        <div class="panel panel-default " style="border-top: 2px solid #4dbd74">
+            <div class="panel-heading">
+                    <strong>Depositos de caja</strong>
+                    <a  href="#" data-toggle="modal" style="margin-top: 5px" data-target="#addDeposit" class="hidden-print pull-right btn btn-primary btn-sm">
+                        <i class="fa fa-plus"></i>
+                        <span>Agregar Deposito</span>
                     </a>
-                </div><!--/.col-->
-
-                <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <a  href="#" data-toggle="modal" data-target="#addDeposit">
-                        <div class="smallstat">
-                            <i class="fa fa-inbox info"></i>
-                            <span class="value text-primary">Agregar Deposito</span>
-                        </div><!--/.smallstat-->
-                    </a>
-                </div><!--/.col-->
-                @if(!$register->status)
-                    <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                        <a  href="#" data-toggle="modal" data-target="#closeRegister">
-                            <div class="smallstat">
-                                <i class="fa fa-ban primary"></i>
-                                <span class="value text-primary">Cerrar Caja</span>
-                            </div><!--/.smallstat-->
-                        </a>
-                    </div><!--/.col-->
-
-                @endif
             </div>
-            <div class="panel panel-default" style="border-top: 2px solid #4dbd74">
-                <div class="panel-heading">
-                </div>
-                <div class="panel-body">
-                            <table class="table">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Apertura</th>
-                                    <th>Cierre</th>
-                                    <th>Usuario</th>
-                                </tr>
-                                <tr>
-                                    <td>#{{$register->id}}</td>
-                                    <td>{{$register->created_at}}</td>
-                                    <td>{{$register->closing_date}}</td>
-                                    <td>{{$register->user->name}}</td>
-                                </tr>
-                            </table>
-                            <strong>Resumen</strong>
-                    <table class="table table-striped table-condended">
-                        <tr>
-                            <th>Saldo Inicial</th>
-                            <th>{{ $register->initial_cash }}</th>
-                            <th>@if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash">Editar</a>@endif</th>
-                        </tr>
-                        <tr>
-                            <th>Pagos en Efectivo</th>
-                            <th>{{ number_format($register->sales->where('payment_method_id', 1)->sum('total'),2) }}</th>
-                            <th><a href="{{ route('cash.registers.bills', $register)}}">Detalles </a></th>
-                        </tr>
-                        <tr>
-                            <th>Pagos con tarjeta</th>
-                            <th>{{ number_format($register->sales->where('payment_method_id', 2)->sum('total'),2) }}</th>
-                            <th> <a href="{{ route('cash.registers.bills', $register)}}">Detalles </a></th>
-                        </tr>
-                        <tr>
-                            <th>Pagos con cheque</th>
-                            <th>{{ number_format($register->sales->where('payment_method_id', 3)->sum('total'),2) }}</th>
-                            <th> <a href="{{ route('cash.registers.bills', $register)}}">Detalles </a> </th>
-                        </tr>
-                        <tr>
-                            <th>Credito</th>
-                            <th>{{ number_format($register->sales->where('payment_method_id', 4)->sum('total'),2) }}</th>
-                            <th><a href="{{ route('cash.registers.credits', $register)}}">Detalles</a></th>
-                        </tr>
-                        <tr>
-                            <th>Abonos a credito</th>
-                            <th>{{ number_format($register->payments->sum('amount'),2) }}</th>
-                            <th><a href="{{ route('cash.registers.payments', $register)}}">Detalles</a></th>
-                        </tr>
-                        <tr class="active">
-                            <th>Total</th>
-                            <th>{{ number_format($register->sales->sum('total') + $register->payments->sum('amount'),2 ) }}</th>
-                            <th></th>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="panel panel-default" style="border-top: 2px solid #4dbd74">
-                <div class="panel-heading">
-                    <strong>Depositos</strong>
-
-                </div>
-                <div class="panel-body">
+            <div class="panel-body">
+                <div class="table-responsive">
                     <table class="table table-striped">
                         <tr>
                             <th>Fecha</th>
@@ -124,9 +204,9 @@
                     </table>
                 </div>
             </div>
-
         </div>
-	</div>
+
+    </div>
 @stop
 @section('modals')
 <!-- Modal -->

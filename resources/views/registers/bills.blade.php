@@ -12,32 +12,40 @@
         </div><!--/.smallstat-->
     </div><!--/.col-->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+        <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 1])}}">
         <div class="smallstat">
             <i class="fa fa-money success text-muted hidden-xs"></i>
             <span class="value text-muted">Q. {{ $register->sales->where('payment_method_id', 1)->sum('total') }}</span>
             <span class="title">Efectivo</span>
         </div><!--/.smallstat-->
+        </a>
     </div><!--/.col-->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+        <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 2])}}">
         <div class="smallstat">
             <i class="fa fa-credit-card info text-muted hidden-xs"></i>
             <span class="value text-muted">Q. {{ $register->sales->where('payment_method_id', 2)->sum('total') }}</span>
             <span class="title">Tarjeta</span>
         </div><!--/.smallstat-->
+        </a>
     </div><!--/.col-->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+        <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 3])}}">
         <div class="smallstat">
             <i class="fa fa-bank info text-muted hidden-xs"></i>
             <span class="value text-muted">Q. {{ $register->sales->where('payment_method_id', 3)->sum('total') }}</span>
             <span class="title">Cheques</span>
         </div><!--/.smallstat-->
+        </a>
     </div><!--/.col-->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+        <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 4])}}">
         <div class="smallstat">
             <i class="fa fa-inbox warning text-muted hidden-xs"></i>
             <span class="value text-muted">Q. {{ $register->sales->where('payment_method_id', 4)->sum('total') }}</span>
             <span class="title">Creditos</span>
         </div><!--/.smallstat-->
+        </a>
     </div><!--/.col-->
 </div>
 <div class="row">
@@ -62,7 +70,14 @@
                             <th>Estado</th>
                             <td class="hidden-print"></td>
                         </tr>
-                        @foreach ($register->sales as $bill)
+                        @php
+                            $sales = $register->sales;
+                            if(request()->has('payment_method_id')){
+                                $sales = $register->sales->where('payment_method_id', request()->payment_method_id);
+                            }
+                        @endphp
+
+                        @foreach ($sales as $bill)
                         <tr>
                             <td>{{ $bill->created_at->format('d-m-Y') }}</td>
                             <td>{{ $bill->people->name }}</td>

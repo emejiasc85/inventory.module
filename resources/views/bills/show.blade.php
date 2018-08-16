@@ -24,7 +24,7 @@
             <div class="panel-body">
             <table class="table table-striped">
                 <tr>
-                    <td>Baucher</td>
+                    <td>Doc.</td>
                     <td>Fecha</td>
                     <td>Monto</td>
                     <td>Opciones</td>

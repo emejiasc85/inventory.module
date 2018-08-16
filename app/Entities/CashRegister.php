@@ -27,7 +27,7 @@ class CashRegister extends Model
 
     public function getSalesAttribute()
     {
-        return $this->orders->where('order_type_id', 2)->where('credit', false);
+        return $this->orders->where('order_type_id', 2);
     }
     public function getCreditsAttribute()
     {
@@ -54,7 +54,7 @@ class CashRegister extends Model
             $query->whereBetween('created_at', [$from, $to]);
         }
     }
-    
+
     public function scopeId($query, $id)
     {
 

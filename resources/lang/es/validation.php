@@ -197,7 +197,8 @@ return [
         'cash_register_id'        => 'ID caja',
         'price'                   => 'precio venta',
         'payment_method_id'       => 'Metódo de pago',
-        'voucher'                 => 'Documento'
+        'voucher'                 => 'No. Documento',
+        'baucher'                 => 'No. Documento'
     ],
 
 

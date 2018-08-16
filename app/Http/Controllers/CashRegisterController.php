@@ -10,6 +10,7 @@ use EmejiasInventory\Entities\User;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use EmejiasInventory\Entities\Commerce;
 
 class CashRegisterController extends Controller
 {
@@ -21,7 +22,7 @@ class CashRegisterController extends Controller
     public function index(Request $request)
     {
         $users = User::pluck('name', 'id')->toArray();
-        
+
         $registers = CashRegister::
         id($request->cash_register_id)
         ->user($request->user_id)
@@ -30,7 +31,7 @@ class CashRegisterController extends Controller
         ->paginate();
         return view('registers.index', compact('registers', 'users'));
     }
-    
+
     public function download(Request $request)
     {
         $registers = CashRegister::
@@ -43,7 +44,7 @@ class CashRegisterController extends Controller
             $excel->sheet('Ventas', function($sheet) use($registers) {
                 $sheet->loadView('registers.partials.table', compact('registers'));
             });
-    
+
         })->export('xls');
         return view('registers.partials.table', compact('registers'));
     }
@@ -68,11 +69,11 @@ class CashRegisterController extends Controller
     {
 
         $open_register = CashRegister::where('status', false)->get();
-        
+
         if($open_register->count() > 0){
             Alert::warning('No puede aperturar mas de una caja a la vez');
             return redirect('/');
-        }  
+        }
 
 
         $this->validate($request, ['initial_cash' => 'nullable|numeric']);
@@ -102,7 +103,8 @@ class CashRegisterController extends Controller
      */
     public function edit(CashRegister $register)
     {
-        return view('registers.edit', compact('register'));
+        $commerce = Commerce::first();
+        return view('registers.edit', compact('register', 'commerce'));
     }
 
     /**
@@ -123,7 +125,7 @@ class CashRegisterController extends Controller
     }
     public function close(Request $request, CashRegister $register)
     {
-        
+
         $register->status = true;
         $register->closing_date = Carbon::now();
         $register->user_id = auth()->user()->id;
@@ -143,7 +145,7 @@ class CashRegisterController extends Controller
         //
     }
 
-    public function bills(CashRegister $register)
+    public function bills(Request $request, CashRegister $register)
     {
         return view('registers.bills', compact('register'));
     }
@@ -168,14 +170,14 @@ class CashRegisterController extends Controller
             $registers = CashRegister::all();
 
             foreach($registers as $register){
-                
+
                 $orders = Order::query()
                     ->whereBetween('created_at', [$register->created_at, $register->updated_at])
                     ->where('order_type_id', 2)
                     ->where('cash_register_id', null)
                     ->get();
 
-                if ($orders->count()>0) 
+                if ($orders->count()>0)
                 {
                     foreach($orders as $order)
                     {
@@ -186,7 +188,7 @@ class CashRegisterController extends Controller
             }
 
             Alert::success('Se agregaron las ventas faltantes a las cajas correspondientes');
-            
+
         });
         return redirect()->route('index');
     }
