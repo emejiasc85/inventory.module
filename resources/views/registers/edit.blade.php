@@ -6,7 +6,7 @@
 @stop
 
 @section('content')
-    <div class="col-xs-12>
+    <div class="col-xs-12">
         <div class="row">
                 <div class="invoice">
                         <div class="row header visible-print-block">

@@ -5,8 +5,8 @@
 @stop
 
 @section('content')
-    <div class="col-xs-12>
-        <div class="row">
+    <div class="col-xs-12">
+        <div class="row" >
                 <div class="invoice">
                         <div class="row header visible-print-block">
                             <div class="col-xs-12">
@@ -142,5 +142,79 @@
                     </div>
         </div>
 
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+<table id="datatable" class="hidden">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Ventas</th>
+      <th>Productos</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+        <tbody>
+        <tr>
+        <th>Efectivo</th>
+        <td class="center">{{ $sales->where('payment_method_id', 1)->count() }}</td>
+        <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 1), '*.details.*.lot'))  }}</td>
+        <td class="right">{{ number_format($sales->where('payment_method_id', 1)->sum('total'),2) }}</td>
+        </tr>
+        <tr>
+        <th>Tarjeta</th>
+        <td class="center">{{ $sales->where('payment_method_id', 2)->count() }}</td>
+        <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 2), '*.details.*.lot'))  }}</td>
+        <td class="right">{{ number_format($sales->where('payment_method_id', 2)->sum('total'),2) }}</td>
+        </tr>
+        <tr>
+        <th>Cheque</th>
+        <td class="center">{{ $sales->where('payment_method_id', 3)->count() }}</td>
+        <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 3), '*.details.*.lot'))  }}</td>
+        <td class="right">{{ number_format($sales->where('payment_method_id', 3)->sum('total'),2) }}</td>
+        </tr>
+        <tr>
+        <th>Credito</th>
+        <td class="center">{{ $sales->where('payment_method_id', 4)->count() }}</td>
+        <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 4), '*.details.*.lot'))  }}</td>
+        <td class="right">{{ number_format($sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
+        </tr>
+        </tbody>
+</table>
+
     </div>
 @stop
+
+@section('scripts')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<script>
+
+    Highcharts.chart('container', {
+        data: {
+            table: 'datatable'
+        },
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: ''
+        },
+        yAxis: {
+            allowDecimals: false,
+            title: {
+            text: 'Quetzales'
+            }
+        },
+        tooltip: {
+            formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.point.y + ' ' + this.point.name.toLowerCase();
+            }
+        }
+    });
+</script>
+
+@endsection
