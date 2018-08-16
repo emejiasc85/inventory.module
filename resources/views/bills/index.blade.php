@@ -12,7 +12,7 @@
             </div><!--/.smallstat-->
         </a>
     </div><!--/.col-->
-    
+
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <div class="smallstat">
             <span class="value text-muted">Q. {{ $register->sales->sum('total') }}</span>
@@ -38,7 +38,7 @@
             <a href="{{ route('cash.registers.edit', $register)}}" class="title">Caja</a>
         </div><!--/.smallstat-->
     </div><!--/.col-->
-    
+
 </div>
 <div class="row">
     <div class="col-sm-12">
@@ -59,7 +59,8 @@
                             <th>Productos</th>
                             <th>Total</th>
                             <th>Vendedor</th>
-                            <th>Crédito</th>
+                            <th>Metódo</th>
+                            <th>Doc.</th>
                             <th>Estado</th>
                             <td></td>
                         </tr>
@@ -71,11 +72,8 @@
                             <td>{{ $bill->details->sum('lot') }}</td>
                             <td>Q. {{ $bill->total }}</td>
                             <td>{{ $bill->user->name }}</td>
-                            <td>
-                                @if ($bill->credit)
-                                    <span class="fa fa-check text-success"></span>
-                                @endif
-                            </td>
+                            <td>{{ $bill->payment_method->name}}</td>
+                            <td>{{ $bill->voucher}}</td>
                             <td>
                                 @if ($bill->status == 'Ingresado')
                                     <span class="label label-success">Facturado</span>
@@ -97,4 +95,3 @@
 </div>
 
 @stop
-

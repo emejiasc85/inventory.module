@@ -3,7 +3,7 @@
     <li class=""><a href="{{ route('cash.registers.edit', $register)}}">regresar a caja</a></li>
 @stop
 @section('content')
-<div class="row hidden-print">    
+<div class="row hidden-print">
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
         <div class="smallstat">
             <i class="fa fa-inbox info text-muted hidden-xs"></i>
@@ -46,7 +46,7 @@
                             <td>Q. {{ $payment->amount }}</td>
                             <td>{{ $payment->order->total }}</td>
                             <td>{{ $payment->order->user->name }}</td>
-                            
+
                             <td class="hidden-print"><a href="{{ $payment->order->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Factura</a></td>
                         </tr>
                         @endforeach

@@ -38,19 +38,19 @@
                 </tr>
                 @endforeach
                 <tr>
-                    <td></td>                    
+                    <td></td>
                     <td></td>
                     <td><strong>Total</strong></td>
                     <td>{{ $order->payments->sum('amount')}}</td>
                 </tr>
                 <tr>
-                    <td></td>                   
+                    <td></td>
                     <td></td>
                     <td><strong>Total Factura</strong></td>
                     <td>{{ $order->total}}</td>
                 </tr>
             </table>
-            </div>    
+            </div>
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@ $(document).ready(function() {
    $("#barcode").focus();
 });
 
-{{-- 
+{{--
 @if ($order->status == 'Ingresado' && !$order->credit)
     $(document).ready(function() {
         window.print()
@@ -158,6 +158,16 @@ $('#add_payment').click( function (e) {
     $('#addPayment').modal('toggle');
 });
 
+$('.showVoucher').click( function (e){
+    //e.preventDefault();
+    $('#collapseVoucher').collapse('show')
+});
+
+$('.hideVoucher').click( function (e){
+    //e.preventDefault();
+    $('#collapseVoucher').collapse('hide')
+});
+
 
 $('#OrderStatus').click(function (e) {
     e.preventDefault();
@@ -180,5 +190,3 @@ $('#OrderStatus').click(function (e) {
 </script>
 
 @stop
-
-

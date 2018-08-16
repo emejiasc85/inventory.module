@@ -195,7 +195,9 @@ return [
         'bank'                    => 'banco',
         'account'                 => 'cuenta',
         'cash_register_id'        => 'ID caja',
-        'price'                   => 'precio venta'
+        'price'                   => 'precio venta',
+        'payment_method_id'       => 'Metódo de pago',
+        'voucher'                 => 'Documento'
     ],
 
 

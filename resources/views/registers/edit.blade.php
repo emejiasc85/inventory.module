@@ -12,34 +12,20 @@
                 <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
                     <a href="{{ route('cash.registers.bills', $register)}}">
                         <div class="smallstat">
-                            <span class="value text-success">Q. {{ $register->sales->sum('total')}}</span>
+                            <span class="value text-success">Q. {{ number_format($register->sales->sum('total'),2)}}</span>
                             <span class="title">Ventas</span>
                         </div><!--/.smallstat-->
                     </a>
-                </div><!--/.col-->                        
+                </div><!--/.col-->
+
                 <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <a href="{{ route('cash.registers.payments', $register)}}">
+                    <a  href="#" data-toggle="modal" data-target="#addDeposit">
                         <div class="smallstat">
-                            <span class="value text-primary">Q. {{ $register->payments->sum('amount')}}</span>
-                            <span class="title">Abonos a Creditos</span>
+                            <i class="fa fa-inbox info"></i>
+                            <span class="value text-primary">Agregar Deposito</span>
                         </div><!--/.smallstat-->
                     </a>
-                </div><!--/.col-->                        
-                <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <a href="{{ route('cash.registers.credits', $register)}}">
-                    <div class="smallstat">
-                        <span class="value text-muted">Q. {{ $register->credits->sum('total')}}</span>
-                        <span class="title">Creditos</span>
-                    </div><!--/.smallstat-->
-                    </a>
-                </div><!--/.col-->                        
-                <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <div class="smallstat">
-                        <span class="value text-muted">Q. {{ $register->initial_cash}}</span>
-                        <p class="title">Saldo Inicial  @if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash">Editar</a>@endif</p>
-                        
-                    </div><!--/.smallstat-->
-                </div><!--/.col-->     
+                </div><!--/.col-->
                 @if(!$register->status)
                     <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
                         <a  href="#" data-toggle="modal" data-target="#closeRegister">
@@ -48,21 +34,72 @@
                                 <span class="value text-primary">Cerrar Caja</span>
                             </div><!--/.smallstat-->
                         </a>
-                    </div><!--/.col-->                        
+                    </div><!--/.col-->
 
-                @endif                   
-                <div class="col-lg-4 col-sm-6 col-xs-6 col-xxs-12">
-                    <a  href="#" data-toggle="modal" data-target="#addDeposit">
-                        <div class="smallstat">
-                            <i class="fa fa-inbox info"></i>
-                            <span class="value text-primary">Agregar Deposito</span>
-                        </div><!--/.smallstat-->
-                    </a>
-                </div><!--/.col-->                        
+                @endif
+            </div>
+            <div class="panel panel-default" style="border-top: 2px solid #4dbd74">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                            <table class="table">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Apertura</th>
+                                    <th>Cierre</th>
+                                    <th>Usuario</th>
+                                </tr>
+                                <tr>
+                                    <td>#{{$register->id}}</td>
+                                    <td>{{$register->created_at}}</td>
+                                    <td>{{$register->closing_date}}</td>
+                                    <td>{{$register->user->name}}</td>
+                                </tr>
+                            </table>
+                            <strong>Resumen</strong>
+                    <table class="table table-striped table-condended">
+                        <tr>
+                            <th>Saldo Inicial</th>
+                            <th>{{ $register->initial_cash }}</th>
+                            <th>@if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash">Editar</a>@endif</th>
+                        </tr>
+                        <tr>
+                            <th>Pagos en Efectivo</th>
+                            <th>{{ number_format($register->sales->where('payment_method_id', 1)->sum('total'),2) }}</th>
+                            <th><a href="{{ route('cash.registers.bills', $register)}}">Detalles </a></th>
+                        </tr>
+                        <tr>
+                            <th>Pagos con tarjeta</th>
+                            <th>{{ number_format($register->sales->where('payment_method_id', 2)->sum('total'),2) }}</th>
+                            <th> <a href="{{ route('cash.registers.bills', $register)}}">Detalles </a></th>
+                        </tr>
+                        <tr>
+                            <th>Pagos con cheque</th>
+                            <th>{{ number_format($register->sales->where('payment_method_id', 3)->sum('total'),2) }}</th>
+                            <th> <a href="{{ route('cash.registers.bills', $register)}}">Detalles </a> </th>
+                        </tr>
+                        <tr>
+                            <th>Credito</th>
+                            <th>{{ number_format($register->sales->where('payment_method_id', 4)->sum('total'),2) }}</th>
+                            <th><a href="{{ route('cash.registers.credits', $register)}}">Detalles</a></th>
+                        </tr>
+                        <tr>
+                            <th>Abonos a credito</th>
+                            <th>{{ number_format($register->payments->sum('amount'),2) }}</th>
+                            <th><a href="{{ route('cash.registers.payments', $register)}}">Detalles</a></th>
+                        </tr>
+                        <tr class="active">
+                            <th>Total</th>
+                            <th>{{ number_format($register->sales->sum('total') + $register->payments->sum('amount'),2 ) }}</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <div class="panel panel-default" style="border-top: 2px solid #4dbd74">
                 <div class="panel-heading">
                     <strong>Depositos</strong>
+
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
@@ -102,7 +139,7 @@
       </div>
         {!! Form::model($register, ['route' => ['cash.registers.close', $register ], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
       <div class="modal-body">
-            <h2>¿Estas seguro de cerrar esta caja?</h2>    
+            <h2>¿Estas seguro de cerrar esta caja?</h2>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -122,7 +159,7 @@
       </div>
         {!! Form::model($register, ['route' => ['cash.registers.update', $register ], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
       <div class="modal-body">
-            {!! Field::text('initial_cash')!!}    
+            {!! Field::text('initial_cash')!!}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -141,11 +178,11 @@
       </div>
         {!! Form::open(['route' => ['cash.registers.deposits.create', $register ], 'method' => 'POST', 'class' => 'form-horizontal']) !!}
       <div class="modal-body">
-            {!! Field::date('date')!!}    
-            {!! Field::text('bank')!!}    
-            {!! Field::text('account')!!}    
-            {!! Field::text('baucher')!!}    
-            {!! Field::text('amount')!!}    
+            {!! Field::date('date')!!}
+            {!! Field::text('bank')!!}
+            {!! Field::text('account')!!}
+            {!! Field::text('baucher')!!}
+            {!! Field::text('amount')!!}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -165,7 +202,7 @@
         {!! Form::open(['route' => ['cash.registers.deposits.destroy'], 'method' => 'delete', 'class' => 'form-horizontal']) !!}
       <div class="modal-body">
             <h2>¿Estas seguro de eliminar este deposito?</h2>
-            {!! Field::hidden('deposit_id', null, ['id' =>'deposit_id'])!!}    
+            {!! Field::hidden('deposit_id', null, ['id' =>'deposit_id'])!!}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -189,8 +226,6 @@
                 $('#DeleteDeposit').modal('toggle');
             });
         });
-    
+
     </script>
 @endsection
-
-

@@ -17,27 +17,34 @@ class Order extends Entity
     	'order_type_id',
         'priority',
         'credit',
-        'cash_register_id'
+        'cash_register_id',
+        'payment_method_id',
+        'voucher'
     ];
 
     protected $date = ['created_at', 'updated_at'];
-    
+
     public function bill()
     {
         return $this->hasOne(Bill::class);
     }
-	
+
+    public function payment_method()
+    {
+        return $this->belongsTo(PaymentMethod::class);
+    }
+
 	public function setOrderTypeIdAttribute($value)
     {
         $this->attributes['order_type_id'] = $value;
-        
+
 		if($value == 2 && $this->cash_register_id == null ){
             $register = CashRegister::where('status', false)->orderBy('id', 'desc')->get()->first()->id;
 			$this->attributes['cash_register_id'] = $register;
 		}
-        
+
     }
-	
+
     public function cash_register()
     {
         return $this->belongsTo(CashRegister::class);
