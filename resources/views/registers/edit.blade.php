@@ -19,7 +19,6 @@
                                         <p><strong>{{$commerce->name}}</strong></p>
                                         <p>{{$commerce->patent_name}}</p>
                                         <p>{{$commerce->address}}</p>
-                                        <p>{{$commerce->phone}}</p>
                                     </div>
                                 </div>
                             </div><!--/col-->
@@ -148,7 +147,7 @@
                                                     <td class="right">Q.{{number_format($register->sales->sum('total'),2)}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="left"><strong>Saldo Inicial @if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash"><i class="fa fa-pencil"></i></a>@endif </strong></td>
+                                                    <td class="left"><strong>Saldo Inicial @if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash" class="hidden-print"><i class="fa fa-pencil"></i></a>@endif </strong></td>
                                                     <td class="right">Q.{{ $register->initial_cash }}</td>
                                                 </tr>
                                                 <tr>
