@@ -11,6 +11,9 @@
 		<div class="col-xs-12 col-sm-3">
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
+                    @if ($order->status == 'Creado' || $order->status == 'Solicitado')
+                        <a href="{{ $order->editUrl }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i></a>
+                    @endif
                     <strong>Pedido</strong>
                     <i class="badge pull-right">{{ $order->id }}</i>
                 </div>
@@ -82,5 +85,3 @@
     </script>
 
 @stop
-
-

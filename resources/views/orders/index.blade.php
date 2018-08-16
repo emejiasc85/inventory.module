@@ -48,11 +48,6 @@
                                     <td>Q. {{ $order->total }}</td>
                                     <td><a href="{{ $order->url }}" class="btn btn-info btn-sm"> <i class="fa fa-eye"></i> Detalle</a></td>
                                     <td>
-                                        @if ($order->status == 'Creado' || $order->status == 'Solicitado')
-                                        <a href="{{ $order->editUrl }}" class="btn btn-success btn-sm"> <i class="fa fa-pencil"></i> Editar</a>
-                                        @endif
-                                    </td>
-                                    <td>
                                         @if ($order->status != 'Ingresado' || auth()->user()->isAdmin())
                                             <a href="#" data-id="{{ $order->id }}"  class="btn btn-danger btn-sm destroyOrder" >Eliminar</a>
                                         @endif
@@ -89,5 +84,3 @@
     });
 </script>
 @stop
-
-
