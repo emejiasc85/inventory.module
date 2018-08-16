@@ -18,7 +18,6 @@
                                         <p><strong>{{$commerce->name}}</strong></p>
                                         <p>{{$commerce->patent_name}}</p>
                                         <p>{{$commerce->address}}</p>
-                                        <p>{{$commerce->phone}}</p>
                                     </div>
                                 </div>
                             </div>
