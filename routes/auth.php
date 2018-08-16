@@ -314,6 +314,7 @@ Route::name('payments.destroy')->delete('elimianr-pago', 'PaymentController@dest
 //registers
 Route::name('cash.registers.index')->get('cajas-aperturadas', 'CashRegisterController@index');
 Route::name('cash.registers.download')->get('cajas-aperturadas/descargar-listado', 'CashRegisterController@download');
+Route::name('cash.registers.report')->get('cajas-aperturadas/reporte', 'CashRegisterController@report');
 Route::name('cash.registers.payments')->get('caja/{register}/pagos', 'CashRegisterController@payments');
 Route::name('cash.registers.bills')->get('caja/{register}/facturas', 'CashRegisterController@bills');
 Route::name('cash.registers.credits')->get('caja/{register}/creditos', 'CashRegisterController@credits');
@@ -330,6 +331,3 @@ Route::name('cash.registers.deposits.destroy')->delete('deposito-a-caja-eliminar
 //temporal
 Route::name('prices')->get('actualizar-precios', 'EditProductsController@UpdatePrices');
 Route::name('sales-to-cash-registers')->get('ingresar-ventas-en-cajas', 'CashRegisterController@SalesToCashRegister');
-
-
-

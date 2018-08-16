@@ -192,4 +192,20 @@ class CashRegisterController extends Controller
         });
         return redirect()->route('index');
     }
+
+
+    public function report(Request $request)
+    {
+        $users = User::pluck('name', 'id')->toArray();
+        $commerce = Commerce::first();
+        $registers = CashRegister::
+        id($request->cash_register_id)
+        ->user($request->user_id)
+        ->date($request->from, $request->to)
+        ->where('status', true)
+        ->with('orders.details')
+        ->get();
+        $sales = Order::whereIn('cash_register_id', $registers->pluck('id')->toArray())->get();
+        return view('registers.report', compact('registers', 'sales', 'users', 'commerce'));
+    }
 }
