@@ -140,43 +140,43 @@
                         </div>
 
                     </div>
+                    <div id="container"></div>
         </div>
 
-        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 <table id="datatable" class="hidden">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Ventas</th>
-      <th>Productos</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-        <tbody>
+    <thead>
         <tr>
-        <th>Efectivo</th>
-        <td class="center">{{ $sales->where('payment_method_id', 1)->count() }}</td>
-        <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 1), '*.details.*.lot'))  }}</td>
-        <td class="right">{{ number_format($sales->where('payment_method_id', 1)->sum('total'),2) }}</td>
+            <th></th>
+            <th>Ventas</th>
+            <th>Productos</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Efectivo</th>
+            <td class="center">{{ $sales->where('payment_method_id', 1)->count() }}</td>
+            <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 1), '*.details.*.lot'))  }}</td>
+            <td class="right">{{ number_format($sales->where('payment_method_id', 1)->sum('total'),2) }}</td>
         </tr>
         <tr>
-        <th>Tarjeta</th>
-        <td class="center">{{ $sales->where('payment_method_id', 2)->count() }}</td>
-        <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 2), '*.details.*.lot'))  }}</td>
-        <td class="right">{{ number_format($sales->where('payment_method_id', 2)->sum('total'),2) }}</td>
+            <th>Tarjeta</th>
+            <td class="center">{{ $sales->where('payment_method_id', 2)->count() }}</td>
+            <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 2), '*.details.*.lot'))  }}</td>
+            <td class="right">{{ number_format($sales->where('payment_method_id', 2)->sum('total'),2) }}</td>
         </tr>
         <tr>
-        <th>Cheque</th>
-        <td class="center">{{ $sales->where('payment_method_id', 3)->count() }}</td>
-        <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 3), '*.details.*.lot'))  }}</td>
-        <td class="right">{{ number_format($sales->where('payment_method_id', 3)->sum('total'),2) }}</td>
+            <th>Cheque</th>
+            <td class="center">{{ $sales->where('payment_method_id', 3)->count() }}</td>
+            <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 3), '*.details.*.lot'))  }}</td>
+            <td class="right">{{ number_format($sales->where('payment_method_id', 3)->sum('total'),2) }}</td>
         </tr>
         <tr>
-        <th>Credito</th>
-        <td class="center">{{ $sales->where('payment_method_id', 4)->count() }}</td>
-        <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 4), '*.details.*.lot'))  }}</td>
-        <td class="right">{{ number_format($sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
+            <th>Credito</th>
+            <td class="center">{{ $sales->where('payment_method_id', 4)->count() }}</td>
+            <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 4), '*.details.*.lot'))  }}</td>
+            <td class="right">{{ number_format($sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
         </tr>
         </tbody>
 </table>
