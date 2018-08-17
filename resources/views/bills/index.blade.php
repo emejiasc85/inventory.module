@@ -72,7 +72,7 @@
                             <td>{{ $bill->details->sum('lot') }}</td>
                             <td>Q. {{ $bill->total }}</td>
                             <td>{{ $bill->user->name }}</td>
-                            <td>{{ $bill->payment_method->name}}</td>
+                            <td>{{ $bill->payment_method ? $bill->payment_method->name: '' }}</td>
                             <td>{{ $bill->voucher}}</td>
                             <td>
                                 @if ($bill->status == 'Ingresado')
