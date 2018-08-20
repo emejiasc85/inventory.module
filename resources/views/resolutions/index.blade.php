@@ -32,7 +32,10 @@
                             <td>{{ $resolution->date->format('d-m-Y') }}</td>
                             <td>{{ $resolution->from }} al {{ $resolution->to }} </td>
                             <td><span {!! Html::classes(['fa fa-square', 'text-success' => $resolution->status, 'text-muted' => !$resolution->status]) !!}></span></td>
-                            <td><a href="{{ $resolution->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>  Editar</a></td>
+                            <td>
+                                <a href="{{ $resolution->editUrl }}" class="btn btn-link btn-sm "> <i class="fa fa-pencil text-success"></i>  Editar</a>
+                                <a href="{{ $resolution->reportUrl }}" class="btn btn-link btn-sm "> <i class="fa fa-download text-info"></i>  Reporte</a>
+                            </td>
                         </tr>
                         @endforeach
                     </table>
@@ -45,5 +48,3 @@
     </div>
 </div>
 @stop
-
-

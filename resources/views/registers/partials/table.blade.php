@@ -22,9 +22,9 @@
                     {{ $register->closing_date }}
                 @endif
             </td>
-            <td>{{ number_format($register->sales->sum('total'),2) }}</td>
-            <td>{{ number_format($register->sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
-            <td>{{ number_format($register->payments->sum('amount'),2) }} </td>
+            <td>{{ number_format($register->payments->whereIn('payment_method_id', [1,2,3])->sum('amount'),2) }} </td>
+            <td>{{ number_format($register->payments->where('payment_method_id', 4)->sum('amount'),2) }} </td>
+            <td>{{ number_format($register->payments->where('payment_method_id', 6)->sum('amount'),2) }} </td>
             <td>{{ number_format($register->Deposits->sum('amount'),2)}}</td>
             <td>{{ $register->user->name}}</td>
             <td><a href="{{ $register->editUrl }}" class="btn btn-info "> <i class="fa fa-eye"></i> Detalle</a></td>

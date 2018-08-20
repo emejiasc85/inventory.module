@@ -22,8 +22,17 @@ class Resolution extends Model
         return $this->belongsTo(Commerce::class);
      }
 
+     public function bills()
+     {
+            return $this->hasMany(Bill::class);
+     }
+
      public function getEditUrlAttribute()
      {
         return route('resolutions.edit', $this);
+     }
+     public function getReportUrlAttribute()
+     {
+        return route('resolutions.report', $this);
      }
 }

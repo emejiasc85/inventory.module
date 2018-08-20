@@ -75,19 +75,19 @@ class People extends Entity
     {
         return $this->orders->where('order_type_id', 2)->where('status', 'Ingresado')->where('credit', true);
     }
-    
+
     public function getCurrentCreditAttribute()
     {
         $credits = $this->orders->where('order_type_id', 2)->where('credit', true);
 
         if ($credits->count() > 0) {
             $payments = 0;
-
+            $c = 0;
             foreach ($credits as $credit) {
-                $payments = $payments + $credit->payments->sum('amount');
+                $c = $c + $credit->payments->where('payment_method_id', 4)->sum('amount');
+                $payments = $payments + $credit->payments->where('payment_method_id', 6)->sum('amount');
             }
-
-            return $credits->sum('total') - $payments;
+            return $c - $payments;
         }
 
         return 0;
@@ -117,7 +117,7 @@ class People extends Entity
             return $query->where('id', $value);
         }
     }
-    
+
     public function scopeNit($query, $value)
     {
         if (trim($value) != "") {
@@ -130,7 +130,7 @@ class People extends Entity
             return $query->where('partner', $value);
         }
     }
-    
+
     public function scopeCredit($query, $value)
     {
         if (trim($value) != "") {

@@ -266,6 +266,7 @@ Route::name('bills.destroy')->delete('factura/{order}/eliminar', 'DeleteBillCont
 Route::name('bills.confirm')->put('confirmar-factura/{order}', 'EditBillController@confirm');
 //resolutions
 Route::name('resolutions.index')->get('resoluciones', 'ResolutionController@index');
+Route::name('resolutions.report')->get('resoluciones/{resolution}/reporte', 'ResolutionController@report');
 Route::name('resolutions.create')->get('agregar-resoluciones', 'CreateResolutionController@create');
 Route::name('resolutions.store')->post('agregar-resolucion', 'CreateResolutionController@store');
 Route::name('resolutions.edit')->get('editar-resolucion/{resolution}', 'EditResolutionController@edit');
@@ -320,7 +321,7 @@ Route::name('cash.registers.bills')->get('caja/{register}/facturas', 'CashRegist
 Route::name('cash.registers.credits')->get('caja/{register}/creditos', 'CashRegisterController@credits');
 Route::name('cash.registers.create')->get('aperturar-caja', 'CashRegisterController@create');
 Route::name('cash.registers.store')->post('aperturar-caja', 'CashRegisterController@store');
-Route::name('cash.registers.edit')->get('caja/{register}', 'CashRegisterController@edit');
+Route::name('cash.registers.resume')->get('caja/{register}', 'CashRegisterController@resume');
 Route::name('cash.registers.close')->put('cerrar-caja/{register}', 'CashRegisterController@close');
 Route::name('cash.registers.update')->put('editar-caja/{register}', 'CashRegisterController@update');
 //deposits

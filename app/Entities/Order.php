@@ -3,11 +3,12 @@ namespace EmejiasInventory\Entities;
 
 use Carbon\Carbon;
 use EmejiasInventory\Traits\OrderTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class Order extends Entity
 {
-    use OrderTrait;
+    use OrderTrait, SoftDeletes;
 
     protected $fillable = [
     	'status',
@@ -24,7 +25,7 @@ class Order extends Entity
 
     public function bill()
     {
-        return $this->hasOne(Bill::class);
+        return $this->hasOne(Bill::class)->where('status', true);
     }
 
 	public function setOrderTypeIdAttribute($value)
@@ -184,5 +185,13 @@ class Order extends Entity
         return true;
     }
 
-
+    public function scopePaymentMethod($query, $id)
+    {
+        if(trim($id) != '')
+        {
+            $query->whereHas('payments', function($q) use($id){
+                $q->where("payment_method_id",  $id);
+            });
+        }
+    }
 }

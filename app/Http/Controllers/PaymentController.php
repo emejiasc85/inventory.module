@@ -36,15 +36,26 @@ class PaymentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
+        $request->request->add(['payment_method_id' => 6]);
         $register = CashRegister::orderBy('id', 'DESC')->first()->id;
         $order = Order::findOrFail($request->order_id);
         $this->validate($request, ['amount' => 'required|numeric' ]);
         $request->request->add(['cash_register_id'=> $register]);
+
+        $payments = $order->payments->where('payment_method_id', 6)->sum('amount') + $request->amount;
+        $credit = $order->payments->where('payment_method_id', 4)->sum('amount');
+
+        if ($payments > $credit)
+        {
+            Alert::danger('Alerta')->details('No se pudo realizar el abono a credito')->items(['El pago excede el monto de acreditado']);
+            return redirect()->back();
+        }
+
         $new = Payment::create($request->all());
-        $payments = $order->payments->sum('amount');
-        
-        if ($payments == $order->total) {
+        $payments = $order->payments->where('payment_method_id', 6)->sum('amount');
+
+        if ($payments == $credit) {
             $order->credit  = false;
             $order->save();
             Alert::success('Pago Agregado correctamente')->details('Factura cancelada');
@@ -52,19 +63,19 @@ class PaymentController extends Controller
         return redirect()->back();
     }
 
-   
+
     public function show(Payment $payment)
     {
         //
     }
 
-   
+
     public function edit(Payment $payment)
     {
         //
     }
 
-   
+
     public function update(Request $request, Payment $payment)
     {
         //

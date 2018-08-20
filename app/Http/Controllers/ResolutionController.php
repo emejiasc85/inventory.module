@@ -13,4 +13,9 @@ class ResolutionController extends Controller
 
         return view('resolutions.index', compact('resolutions'));
     }
+
+    public function report(Resolution $resolution)
+    {
+        return view('resolutions.report', compact('resolution'));
+    }
 }

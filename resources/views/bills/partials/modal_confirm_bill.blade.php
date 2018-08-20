@@ -12,16 +12,16 @@
             <div class="modal-body">
                 {!! Field::text('bill_number', $order->bill ? $order->bill->bill:null ) !!}
                 <label class="radio-inline hideVoucher" title="Efectivo">
-                <input   {{ ($order->payment_method_id == 1 || $order->payment_method_id == null ) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="1"> <i class="fa fa-money"></i> Efectivo
+                <input   {{ ($order->payments->where('payment_method_id',1 )->count() > 0 || $order->payments->count()  == 0 ) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="1"> <i class="fa fa-money"></i> Efectivo
                 </label>
                 <label class="radio-inline showVoucher" title="Tarjeta" >
-                    <input {{ ($order->payment_method_id == 2) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="2"> <i class="fa fa-credit-card"></i> Tarjeta
+                    <input {{ ($order->payments->where('payment_method_id',2 )->count() > 0) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="2"> <i class="fa fa-credit-card"></i> Tarjeta
                 </label>
                 <label class="radio-inline showVoucher" title="Cheque" >
-                    <input {{ ($order->payment_method_id == 3) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="3"> <i class="fa fa-bank" ></i> Cheque
+                    <input {{ ($order->payments->where('payment_method_id',3 )->count() > 0) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="3"> <i class="fa fa-bank" ></i> Cheque
                 </label>
                 <label class="radio-inline hideVoucher" title="Cheque">
-                    <input {{ ($order->payment_method_id == 4) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="4"> <i class="fa fa-inbox"></i> Credito
+                    <input {{ ($order->payments->where('payment_method_id',4 )->count() > 0) ? 'checked="checked"': 'false' }} type="radio" name="payment_method_id" value="4"> <i class="fa fa-inbox"></i> Credito
                 </label>
                 <br>
                 <br>

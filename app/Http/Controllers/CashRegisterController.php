@@ -101,10 +101,10 @@ class CashRegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CashRegister $register)
+    public function resume(CashRegister $register)
     {
         $commerce = Commerce::first();
-        return view('registers.edit', compact('register', 'commerce'));
+        return view('registers.resume', compact('register', 'commerce'));
     }
 
     /**
@@ -147,16 +147,17 @@ class CashRegisterController extends Controller
 
     public function bills(Request $request, CashRegister $register)
     {
-        return view('registers.bills', compact('register'));
+        $sales = Order::where('cash_register_id', $register->id)->with('payments')->paymentMethod($request->payment_method_id)->get();
+        return view('registers.bills', compact('register', 'sales'));
     }
-    public function credits(CashRegister $register)
+    /* public function credits(CashRegister $register)
     {
         return view('registers.credits', compact('register'));
     }
     public function payments(CashRegister $register)
     {
         return view('registers.payments', compact('register'));
-    }
+    } */
 
 
     public function SalesToCashRegister()

@@ -1,21 +1,20 @@
 @extends('layouts.base')
 @section('breadcrumb')
-    <li class=""><a href="{{ route('cash.registers.edit', $register)}}">regresar a caja</a></li>
+    <li class=""><a href="{{ route('cash.registers.resume', $register)}}">regresar a caja</a></li>
 @stop
 @section('content')
 <div class="row hidden-print">
-    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
         <div class="smallstat">
             <i class="fa fa-inbox info text-muted hidden-xs"></i>
-            <span class="value text-success">Q. {{ $register->sales->sum('total') + $register->payments->sum('amount') }}</span>
-            <a href="{{ route('cash.registers.edit', $register)}}" class="title">Caja</a>
+            <span class="value">Q. {{ number_format($register->payments->whereIn('payment_method_id', [1,2,3,6])->sum('amount'),2) }}</span>
+            <a href="{{ route('cash.registers.resume', $register)}}" class="title">Caja</a>
         </div><!--/.smallstat-->
     </div><!--/.col-->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 1])}}">
         <div class="smallstat">
-            <i class="fa fa-money success text-muted hidden-xs"></i>
-            <span class="value text-muted">Q. {{ $register->sales->where('payment_method_id', 1)->sum('total') }}</span>
+            <span class="value text-muted">Q. {{ number_format($register->payments->whereIn('payment_method_id', [1])->sum('amount'),2) }}</span>
             <span class="title">Efectivo</span>
         </div><!--/.smallstat-->
         </a>
@@ -23,8 +22,7 @@
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 2])}}">
         <div class="smallstat">
-            <i class="fa fa-credit-card info text-muted hidden-xs"></i>
-            <span class="value text-muted">Q. {{ $register->sales->where('payment_method_id', 2)->sum('total') }}</span>
+            <span class="value text-muted">Q. {{ number_format($register->payments->whereIn('payment_method_id', [2])->sum('amount'),2) }}</span>
             <span class="title">Tarjeta</span>
         </div><!--/.smallstat-->
         </a>
@@ -32,8 +30,7 @@
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 3])}}">
         <div class="smallstat">
-            <i class="fa fa-bank info text-muted hidden-xs"></i>
-            <span class="value text-muted">Q. {{ $register->sales->where('payment_method_id', 3)->sum('total') }}</span>
+            <span class="value text-muted">Q. {{ number_format($register->payments->whereIn('payment_method_id', [3])->sum('amount'),2) }}</span>
             <span class="title">Cheques</span>
         </div><!--/.smallstat-->
         </a>
@@ -41,9 +38,17 @@
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 4])}}">
         <div class="smallstat">
-            <i class="fa fa-inbox warning text-muted hidden-xs"></i>
-            <span class="value text-muted">Q. {{ $register->sales->where('payment_method_id', 4)->sum('total') }}</span>
+            <span class="value text-muted">Q. {{ number_format($register->payments->whereIn('payment_method_id', [4])->sum('amount'),2) }}</span>
             <span class="title">Creditos</span>
+        </div><!--/.smallstat-->
+        </a>
+    </div><!--/.col-->
+    <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
+        <a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 4])}}">
+        <div class="smallstat">
+
+            <span class="value text-muted">Q. {{ number_format($register->payments->whereIn('payment_method_id', [6])->sum('amount'),2) }}</span>
+            <span class="title">Abonos </span>
         </div><!--/.smallstat-->
         </a>
     </div><!--/.col-->
@@ -66,16 +71,10 @@
                             <th>Total</th>
                             <th>Vendedor</th>
                             <th>Metódo</th>
-                            <th>Doc</th>
                             <th>Estado</th>
                             <td class="hidden-print"></td>
                         </tr>
-                        @php
-                            $sales = $register->sales;
-                            if(request()->has('payment_method_id')){
-                                $sales = $register->sales->where('payment_method_id', request()->payment_method_id);
-                            }
-                        @endphp
+
 
                         @foreach ($sales as $bill)
                         <tr>
@@ -84,9 +83,30 @@
                             <td>{{ $bill->details->sum('lot') }}</td>
                             <td>Q. {{ $bill->total }}</td>
                             <td>{{ $bill->user->name }}</td>
-                            <td>{{ $bill->payment_method->name }}</td>
-                            <td>{{ $bill->voucher }}</td>
-
+                            <td>
+                                    @if ($bill->payments->count() > 0)
+                                    @foreach ($bill->payments->whereIn('payment_method_id', [1,2,3,4,5]) as $payment)
+                                            @if ($payment->payment_method_id == 1)
+                                                <span class="label label-success">{{ $payment->payment_method->name}}</span>
+                                            @endif
+                                            @if ($payment->payment_method_id == 2)
+                                                <span class="label label-primary">{{ $payment->payment_method->name}}</span>
+                                            @endif
+                                            @if ($payment->payment_method_id == 3)
+                                                <span class="label label-info">{{ $payment->payment_method->name}}</span>
+                                            @endif
+                                            @if ($payment->payment_method_id == 4)
+                                                <span class="label label-danger">{{ $payment->payment_method->name}}</span>
+                                            @endif
+                                            @if ($payment->payment_method_id == 5)
+                                                <span class="label label-default">{{ $payment->payment_method->name}}</span>
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    @if ($bill->payments->where('payment_method_id', 6)->count() > 0)
+                                        <span class="label label-success">Abonos</span>
+                                    @endif
+                            </td>
                             <td>
                                 @if ($bill->status == 'Ingresado')
                                     <span class="label label-success">Facturado</span>
@@ -94,7 +114,7 @@
                                     <span class="label label-warning">No Facturado</span>
                                 @endif
                             </td>
-                            <td class="hidden-print"><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
+                            <td class="hidden-print"><a href="{{ $bill->urlBill }}" class="btn btn-link btn-sm"> <i class="fa fa-eye text-info"></i> Detalle</a></td>
                         </tr>
                         @endforeach
                     </table>

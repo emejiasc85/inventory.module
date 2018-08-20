@@ -1,4 +1,4 @@
-<table class="table col-sm-12">
+<table class="table col-sm-12 table-condenced">
     <tr>
         <th>ID</th>
         <th>Nit</th>
@@ -30,7 +30,7 @@
         <td>{{ $person->purchases->sum('total')}}</td>
         <td>{{ $person->currentCredit}}</td>
         <td>{{ $person->max_credit }}</td>
-        <td><a href="{{ $person->profileUrl }}" class="btn btn-info "> <i class="fa fa-eye"></i>  Perfil</a></td>
+        <td><a href="{{ $person->profileUrl }}" class="btn btn-link btn-sm "> <i class="fa fa-eye text-info"></i> Detalle</a></td>
     </tr>
     @endforeach
 </table>

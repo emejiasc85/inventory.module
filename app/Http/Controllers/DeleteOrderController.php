@@ -8,6 +8,7 @@ use EmejiasInventory\Entities\StockHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Styde\Html\Facades\Alert;
+use EmejiasInventory\Entities\Bill;
 
 class DeleteOrderController extends Controller
 {
@@ -27,6 +28,7 @@ class DeleteOrderController extends Controller
             Alert::danger('Upps!! a ocurrido un error...')->details('Intente nuevamente, si persiste el problema comuniquese con soporte al 54606633');
             return redirect()->back();
         }
+
         DB::commit();
 
         Alert::success('Se ha eliminado el pedido');

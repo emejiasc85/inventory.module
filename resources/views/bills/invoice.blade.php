@@ -13,7 +13,7 @@
             @include('bills.partials.details')
         </div>
     @endif
-    @if($order->credit)
+    @if($order->payments->where('payment_method_id', 6)->count() > 0 || $order->credit)
     <div class="col-sm-7">
         <div class="panel panel-default ">
             <div class="panel-body">
@@ -24,30 +24,34 @@
             <div class="panel-body">
             <table class="table table-striped">
                 <tr>
-                    <td>Doc.</td>
+                    <td style="width:40px"></td>
                     <td>Fecha</td>
-                    <td>Monto</td>
-                    <td>Opciones</td>
+                    <td>Doc.</td>
+                    <td class="text-right">Monto</td>
                 </tr>
-                @foreach($order->payments as $payment)
+                @foreach($order->payments->where('payment_method_id', 6) as $payment)
                 <tr>
-                    <td>{{ $payment->baucher}}</td>
+                    <td>
+                        @if (auth()->user()->isAdmin())
+                            <a href=""  data-id="{{$payment->id}}" class="btn btn-sm btn-link destroy_payment"><i class="fa fa-trash text-danger"></i></a>
+                        @endif
+                    </td>
                     <td>{{ $payment->created_at->format('d-m-Y')}}</td>
-                    <td>{{ $payment->amount}}</td>
-                    <td><a href=""  data-id="{{$payment->id}}" class="btn btn-sm btn-danger destroy_payment"><i class="fa fa-trash"></i></a></td>
+                    <td>{{ $payment->baucher}}</td>
+                    <td class="text-right">{{ number_format($payment->amount,2)}}</td>
                 </tr>
                 @endforeach
                 <tr>
                     <td></td>
                     <td></td>
                     <td><strong>Total</strong></td>
-                    <td>{{ $order->payments->sum('amount')}}</td>
+                    <td class="text-right">{{ number_format($order->payments->where('payment_method_id', 6)->sum('amount'),2)}}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
-                    <td><strong>Total Factura</strong></td>
-                    <td>{{ $order->total}}</td>
+                    <td ><strong>Total Factura</strong></td>
+                    <td class="text-right">{{ number_format($order->payments->where('payment_method_id', 4)->sum('amount'),2)}}</td>
                 </tr>
             </table>
             </div>

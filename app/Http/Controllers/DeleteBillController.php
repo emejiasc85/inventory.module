@@ -8,6 +8,7 @@ use EmejiasInventory\Entities\StockHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Styde\Html\Facades\Alert;
+use EmejiasInventory\Entities\Bill;
 
 class DeleteBillController extends Controller
 {
@@ -29,12 +30,28 @@ class DeleteBillController extends Controller
                 $stock->save();
             }
         }
+
+        if ($order->bill) {
+            $bill = Bill::findOrFail($order->bill->id);
+            $bill->status = false;
+            $bill->save();
+        }
+
+        if($order->payments->count() > 0)
+        {
+            foreach ($order->payments as $payment)
+            {
+                $payment->delete();
+            }
+        }
+
         $destroy = Order::destroy($order->id);
         if(!$destroy){
             DB::rollback();
             Alert::danger('Upps!! a ocurrido un error...')->details('Intente nuevamente, si persiste el problema comuniquese con soporte al 54606633');
             return redirect()->back();
         }
+
         DB::commit();
 
         Alert::success('Se ha eliminado la factura');

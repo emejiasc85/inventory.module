@@ -9,7 +9,8 @@ class Bill extends Model
     protected $fillable = [
         'bill',
         'order_id',
-        'resolution_id'
+        'resolution_id',
+        'status'
     ];
 
     public function resolution()

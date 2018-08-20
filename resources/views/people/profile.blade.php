@@ -250,7 +250,7 @@
                                 <td>{{ $bill->details->sum('lot') }}</td>
                                 <td>Q. {{ $bill->total }}</td>
                                 <td>{{ $bill->user->name }}</td>
-                                <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
+                                <td><a href="{{ $bill->urlBill }}" class="btn btn-link "> <i class="fa fa-eye text-info"></i> Detalle</a></td>
                             </tr>
                             @endforeach
                         </table>
@@ -270,11 +270,11 @@
                             <tr>
                                 <td>{{ $bill->created_at->format('d-m-Y') }}</td>
                                 <td>{{ $bill->details->sum('lot') }}</td>
-                                <td>Q. {{ $bill->payments->sum('amount') }}</td>
-                                <td>Q. {{ $bill->total  - $bill->payments->sum('amount') }}</td>
+                                <td>Q. {{ $bill->payments->where('payment_method_id', 6)->sum('amount') }}</td>
+                                <td>Q. {{ $bill->payments->where('payment_method_id', 4)->sum('amount') - $bill->payments->where('payment_method_id', 6)->sum('amount') }}</td>
                                 <td>Q. {{ $bill->total }}</td>
                                 <td>{{ $bill->user->name }}</td>
-                                <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
+                                <td><a href="{{ $bill->urlBill }}" class="btn btn-link "> <i class="fa fa-eye text-info"></i>  Detalle</a></td>
                             </tr>
                             @endforeach
                         </table>

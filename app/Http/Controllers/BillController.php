@@ -18,13 +18,13 @@ class BillController extends Controller
 
 
         $open_register= CashRegister::where('status', false)->orderBy('id', 'DESC')->get();
-        
+
         if($open_register->count() == 0){
             Alert::warning('Debe aperturar una caja antes de realizar ventas');
-    
+
             return redirect()->route('cash.registers.create');
-        }  
-        $register = $open_register->first();            
+        }
+        $register = $open_register->first();
 
         $bills = Order::select('orders.*')->where('order_type_id', 2)
             ->where('cash_register_id', $register->id)
@@ -58,6 +58,6 @@ class BillController extends Controller
                 ->get();
         }
         $commerce = Commerce::first();
-        return view('bills.show', compact('order', 'commerce', 'products'));
+        return view('bills.invoice', compact('order', 'commerce', 'products'));
     }
 }

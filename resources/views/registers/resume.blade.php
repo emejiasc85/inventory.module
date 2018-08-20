@@ -92,33 +92,33 @@
                                             <td class="center">1</td>
                                             <td class="left">Pagos en Efectivo</td>
                                             <td class="left hidden-print"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 1])}}">Detalles </a></td>
-                                            <td class="center">{{ $register->sales->where('payment_method_id', 1)->count() }}</td>
-                                            <td class="right">{{ array_sum(data_get($register->sales->where('payment_method_id', 1), '*.details.*.lot'))  }}</td>
-                                            <td class="right">{{ number_format($register->sales->where('payment_method_id', 1)->sum('total'),2) }}</td>
+                                            <td class="center">{{ $register->payments->where('payment_method_id', 1)->count() }}</td>
+                                            <td class="right">{{  array_sum(data_get($register->payments->where('payment_method_id', 1)->load('order.details'), '*.order.details.*.lot'))  }}</td>
+                                            <td class="right">{{ number_format($register->payments->where('payment_method_id', 1)->sum('amount'),2) }}</td>
                                         </tr>
                                         <tr>
                                             <td class="center">2</td>
                                             <td class="left">Pagos con tarjeta</td>
                                             <td class="left hidden-print"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 2])}}">Detalles </a></td>
-                                            <td class="center">{{ $register->sales->where('payment_method_id', 2)->count() }}</td>
-                                            <td class="right">{{ array_sum(data_get($register->sales->where('payment_method_id', 2), '*.details.*.lot'))  }}</td>
-                                            <td class="right">{{ number_format($register->sales->where('payment_method_id', 2)->sum('total'),2) }}</td>
+                                            <td class="center">{{ $register->payments->where('payment_method_id', 2)->count() }}</td>
+                                            <td class="right">{{  array_sum(data_get($register->payments->where('payment_method_id', 2)->load('order.details'), '*.order.details.*.lot'))  }}</td>
+                                            <td class="right">{{ number_format($register->payments->where('payment_method_id', 2)->sum('amount'),2) }}</td>
                                         </tr>
                                         <tr>
                                             <td class="center">3</td>
                                             <td class="left">Pagos con cheques</td>
                                             <td class="left hidden-print"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 3])}}">Detalles </a></td>
-                                            <td class="center">{{ $register->sales->where('payment_method_id', 3)->count() }}</td>
-                                            <td class="right">{{ array_sum(data_get($register->sales->where('payment_method_id', 3), '*.details.*.lot'))  }}</td>
-                                            <td class="right">{{ number_format($register->sales->where('payment_method_id', 3)->sum('total'),2) }}</td>
+                                            <td class="center">{{ $register->payments->where('payment_method_id', 3)->count() }}</td>
+                                            <td class="right">{{  array_sum(data_get($register->payments->where('payment_method_id', 3)->load('order.details'), '*.order.details.*.lot'))  }}</td>
+                                            <td class="right">{{ number_format($register->payments->where('payment_method_id', 3)->sum('amount'),2) }}</td>
                                         </tr>
                                         <tr>
                                             <td class="center">4</td>
                                             <td class="left">Creditos</td>
                                             <td class="left hidden-print"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 4])}}">Detalles </a></td>
-                                            <td class="center">{{  $register->sales->where('payment_method_id', 4)->count() }}</td>
-                                            <td class="right">{{ array_sum(data_get($register->sales->where('payment_method_id', 4), '*.details.*.lot'))  }}</td>
-                                            <td class="right">{{ number_format($register->sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
+                                            <td class="center">{{ $register->payments->where('payment_method_id', 4)->count() }}</td>
+                                            <td class="right">{{  array_sum(data_get($register->payments->where('payment_method_id', 4)->load('order.details'), '*.order.details.*.lot'))  }}</td>
+                                            <td class="right">{{ number_format($register->payments->where('payment_method_id', 4)->sum('amount'),2) }}</td>
                                         </tr>
                                         <tr>
                                             <td class="center">5</td>
@@ -126,7 +126,7 @@
                                             <td class="left hidden-print"><a href="{{ route('cash.registers.payments', $register)}}">Detalles </a></td>
                                             <td class="center">N/A</td>
                                             <td class="right">N/A</td>
-                                            <td class="right">{{ number_format($register->payments->sum('amount'),2) }}</td>
+                                            <td class="right">{{ number_format($register->payments->where('payment_method_id', 6)->sum('amount'),2) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -144,7 +144,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="left"><strong>Subtotal</strong></td>
-                                                    <td class="right">Q.{{number_format($register->sales->sum('total'),2)}}</td>
+                                                    <td class="right">Q.{{number_format($register->payments->whereIn('payment_method_id', [1,2,3,4,5,6])->sum('amount'),2)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="left"><strong>Saldo Inicial @if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash" class="hidden-print"><i class="fa fa-pencil"></i></a>@endif </strong></td>
@@ -152,11 +152,11 @@
                                                 </tr>
                                                 <tr>
                                                     <td class="left"><strong>Creditos <i class="text-danger">(-)</i></strong></td>
-                                                    <td class="right text-danger">Q.{{ number_format($register->sales->where('payment_method_id', 4)->sum('total'),2)}}</td>
+                                                    <td class="right text-danger">Q.{{ number_format($register->payments->where('payment_method_id', 4)->sum('amount'),2)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="left"><strong>Total</strong></td>
-                                                    <td class="right"><strong>Q.{{ number_format($register->sales->sum('total') + $register->payments->sum('amount') - $register->sales->where('payment_method_id', 4)->sum('total'),2 )}}</strong></td>
+                                                    <td class="right"><strong>Q.{{ number_format($register->payments->whereIn('payment_method_id', [1,2,3,5,6])->sum('amount'),2)}}</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>

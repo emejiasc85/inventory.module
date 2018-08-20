@@ -21,21 +21,21 @@
     </div><!--/.col-->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <div class="smallstat">
-            <span class="value text-muted">Q. {{ $register->payments->sum('amount') }}</span>
+            <span class="value text-muted">Q. {{ $register->payments->where('payment_method_id', 6)->sum('amount') }}</span>
             <span class="title">Abono a credito</span>
         </div><!--/.smallstat-->
     </div><!--/.col-->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <div class="smallstat">
-            <span class="value text-muted">Q. {{ $register->credits->sum('total') }}</span>
+            <span class="value text-muted">Q. {{ $register->payments->where('payment_method_id', 4)->sum('amount') }}</span>
             <span class="title">Creditos</span>
         </div><!--/.smallstat-->
     </div><!--/.col-->
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
         <div class="smallstat">
             <i class="fa fa-inbox info text-muted hidden-xs"></i>
-            <span class="value text-success">Q. {{ $register->sales->sum('total') + $register->payments->sum('amount') }}</span>
-            <a href="{{ route('cash.registers.edit', $register)}}" class="title">Caja</a>
+            <span class="value text-success">Q. {{ $register->sales->sum('total') + $register->payments->where('payment_method_id', 6)->sum('amount') }}</span>
+            <a href="{{ route('cash.registers.resume', $register)}}" class="title">Caja</a>
         </div><!--/.smallstat-->
     </div><!--/.col-->
 
@@ -60,7 +60,6 @@
                             <th>Total</th>
                             <th>Vendedor</th>
                             <th>Metódo</th>
-                            <th>Doc.</th>
                             <th>Estado</th>
                             <td></td>
                         </tr>
@@ -72,13 +71,36 @@
                             <td>{{ $bill->details->sum('lot') }}</td>
                             <td>Q. {{ $bill->total }}</td>
                             <td>{{ $bill->user->name }}</td>
-                            <td>{{ $bill->payment_method ? $bill->payment_method->name: '' }}</td>
-                            <td>{{ $bill->voucher}}</td>
+                            <td>
+                                @if ($bill->payments->count() > 0)
+                                @foreach ($bill->payments->whereIn('payment_method_id', [1,2,3,4,5]) as $payment)
+                                        @if ($payment->payment_method_id == 1)
+                                            <span class="label label-success">{{ $payment->payment_method->name}}</span>
+                                        @endif
+                                        @if ($payment->payment_method_id == 2)
+                                            <span class="label label-primary">{{ $payment->payment_method->name}}</span>
+                                        @endif
+                                        @if ($payment->payment_method_id == 3)
+                                            <span class="label label-info">{{ $payment->payment_method->name}}</span>
+                                        @endif
+                                        @if ($payment->payment_method_id == 4)
+                                            <span class="label label-danger">{{ $payment->payment_method->name}}</span>
+                                        @endif
+                                        @if ($payment->payment_method_id == 5)
+                                            <span class="label label-default">{{ $payment->payment_method->name}}</span>
+                                        @endif
+                                    @endforeach
+                                @endif
+                                @if ($bill->payments->where('payment_method_id', 6)->count() > 0)
+                                    <span class="label label-success">Abonos</span>
+
+                                @endif
+                            </td>
                             <td>
                                 @if ($bill->status == 'Ingresado')
                                     <span class="label label-success">Facturado</span>
                                 @elseif($bill->status == 'Creado')
-                                    <span class="label label-warning">No Facturado</span>
+                                    <span class="label label-default">No Facturado</span>
                                 @endif
                             </td>
                             <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>

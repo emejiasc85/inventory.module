@@ -25,9 +25,9 @@ class CashRegister extends Model
         return $this->hasMany(Payment::class);
     }
 
-    public function getSalesAttribute()
+    public function sales()
     {
-        return $this->orders->where('order_type_id', 2);
+        return $this->hasMany(Order::class)->where('order_type_id', 2)->with('payments');
     }
     public function getCreditsAttribute()
     {
@@ -41,7 +41,7 @@ class CashRegister extends Model
 
     public function getEditUrlAttribute()
     {
-        return route('cash.registers.edit', $this->id);
+        return route('cash.registers.resume', $this->id);
     }
 
     public function scopeDate($query, $from, $to)
@@ -71,6 +71,4 @@ class CashRegister extends Model
             $query->where('user_id', $id);
         }
     }
-
-
 }

@@ -39,7 +39,9 @@
                                         Fecha desde
                                     </div>
                                     <div class="panel-body">
-                                        <p><strong>{{$registers->first()->created_at}}</strong></p>
+                                        @if ($registers->first())
+                                            <p><strong>{{$registers->first()->created_at}}</strong></p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +51,9 @@
                                         Fecha hasta
                                     </div>
                                     <div class="panel-body">
-                                        <p><strong>{{$registers->last()->closing_date}}</strong></p>
+                                        @if ($registers->last())
+                                            <p><strong>{{$registers->last()->closing_date}}</strong></p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

@@ -33,7 +33,7 @@ class ReportsController extends Controller
         $products = OrderDetail::topProducts($request)->paginate();
         return view('reports.products', compact('products'));
     }
-   
+
     public function productsDownload(Request $request)
     {
         $products = OrderDetail::topProducts($request)->get();
@@ -44,7 +44,7 @@ class ReportsController extends Controller
             });
         })->export('xls');
     }
-    
+
     public function productsGroupByDate(Request $request)
     {
         $products = OrderDetail::topProductsByDate($request)->paginate();
@@ -84,8 +84,7 @@ class ReportsController extends Controller
     }
 
     public function minStock(Request $request)
-    {
-        $stocks = Stock::leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+    { $stocks = Stock::leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
             ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
             ->where('warehouse_id', 1)
 
@@ -111,7 +110,7 @@ class ReportsController extends Controller
         $people = People::topCustomers($request)->paginate();
         return view('reports.top_customers', compact('people'));
     }
-    
+
     public function topCustomersDownload(Request $request)
     {
         $people = People::topCustomers($request)->get();
@@ -121,6 +120,6 @@ class ReportsController extends Controller
             });
         })->export('xls');
 
-        
+
     }
 }
