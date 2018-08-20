@@ -10,7 +10,7 @@ use EmejiasInventory\Http\Requests\CreatePeopleRequest;
 class CreatePeopleController extends Controller
 {
 
-   
+
     public function create()
     {
         return view('people.create');
@@ -24,6 +24,6 @@ class CreatePeopleController extends Controller
         }
         $people = People::create($request->all());
         Alert::success('Persona creada correctamente');
-        return redirect($people->profileUrl);
+        return redirect()->route('people.index');
     }
 }

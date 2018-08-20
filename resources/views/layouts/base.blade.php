@@ -19,7 +19,7 @@
         <!-- Custom styles for this template -->
         {!! Html::style('css/style.css') !!}
         {!! Html::style('css/add-ons.css') !!}
-        {!! Html::style('plugins/select2/css/select2.css') !!}
+        {{-- {!! Html::style('plugins/select2/css/select2.css') !!} --}}
         @yield('styles')
     </head>
     <style>
@@ -139,7 +139,7 @@
         {!! Html::script('js/core.min.js') !!}
         {!! Html::script('plugins/jquery-cookie/jquery.cookie.min.js') !!}
         {!! Html::script('js/demo.min.js') !!}
-        {!! Html::script('plugins/select2/js/select2.min.js') !!}
+        {{-- {!! Html::script('plugins/select2/js/select2.min.js') !!} --}}
         <!-- end: JavaScript-->
         <script>
             /****

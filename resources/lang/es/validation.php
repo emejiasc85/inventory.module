@@ -198,7 +198,9 @@ return [
         'price'                   => 'precio venta',
         'payment_method_id'       => 'Metódo de pago',
         'voucher'                 => 'No. Documento',
-        'baucher'                 => 'No. Documento'
+        'baucher'                 => 'No. Documento',
+        'make_order'              => 'Crear Pedido',
+        'due_date'                => 'fecha de vencimiento'
     ],
 
 

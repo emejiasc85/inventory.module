@@ -17,8 +17,38 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
-							@include('products.partials.fields')
-                        </div>
+                            @include('products.partials.fields')
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        {!! Field::checkbox('make_order', true, false, [ 'id' => 'showMakeOrderButton'])!!}
+                                    </div>
+                                </div>
+                                <div class="collapse" id="showMakeOrder">
+                                    <div class="well">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-6">
+                                                {!! Field::text('purchase_price', ['placeholder' => '0.00']) !!}
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                {!! Field::text('price',0, ['placeholder' => '0.00']) !!}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-6">
+                                                {!! Field::number('lot') !!}
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                {!! Field::select('people_id', $providers) !!}
+                                            </div>
+                                            <div class="col-xs-12 col-md-6">
+                                                {!! Field::date('due_date') !!}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                     </div>
                     <!--/.row-->
                 </div>
@@ -38,5 +68,12 @@
         </div>
 	</div>
 @stop
+@section('scripts')
 
+<script>
+    $('#showMakeOrderButton').click( function (e){
+        $('#showMakeOrder').collapse('toggle')
+    });
+</script>
 
+@endsection

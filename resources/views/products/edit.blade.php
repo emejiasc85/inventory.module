@@ -19,7 +19,11 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
-							@include('products.partials.fields')
+                            @include('products.partials.fields')
+
+                            <div class="col-xs-12 col-md-6">
+                                {!! Field::text('price',null, ['placeholder' => '0.00']) !!}
+                            </div>
                         </div>
                     </div>
                     <!--/.row-->
@@ -40,5 +44,3 @@
         </div>
 	</div>
 @stop
-
-
