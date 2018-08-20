@@ -12,9 +12,9 @@
                     <a class="btn btn-default"  href="{{ route('cash.registers.download', Request::all())}}" >
                         <i class="fa fa-download"></i>
                     </a>
-                    {{-- <a class="btn btn-default" title="generar reporte" href="{{ route('cash.registers.report', Request::all())}}" >
+                    <a class="btn btn-default" title="generar reporte" href="{{ route('cash.registers.report', Request::all())}}" >
                         <i class="fa fa-file"></i>
-                    </a> --}}
+                    </a>
                 </span>
             </div>
         </div>

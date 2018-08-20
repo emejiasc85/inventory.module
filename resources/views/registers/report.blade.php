@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="row header">
-                            <div class="col-xs-1">
+                            <div class="col-xs-2">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Cierres
@@ -69,7 +69,6 @@
                                             <th class="center">#</th>
                                             <th>Movimiento</th>
                                             <th class="center">Ventas</th>
-                                            <th class="right">Productos</th>
                                             <th class="right">Total</th>
                                         </tr>
                                     </thead>
@@ -77,37 +76,32 @@
                                             <tr>
                                                 <td class="center">1</td>
                                                 <td class="left">Pagos en Efectivo</td>
-                                                <td class="center">{{ $sales->where('payment_method_id', 1)->count() }}</td>
-                                                <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 1), '*.details.*.lot'))  }}</td>
-                                                <td class="right">{{ number_format($sales->where('payment_method_id', 1)->sum('total'),2) }}</td>
+                                                <td class="center">{{ $payments->where('payment_method_id', 1)->groupBy('order_id')->count() }}</td>
+                                                <td class="right">{{ number_format($payments->where('payment_method_id', 1)->sum('amount'),2) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="center">2</td>
                                                 <td class="left">Pagos con tarjeta</td>
-                                                <td class="center">{{ $sales->where('payment_method_id', 2)->count() }}</td>
-                                                <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 2), '*.details.*.lot'))  }}</td>
-                                                <td class="right">{{ number_format($sales->where('payment_method_id', 2)->sum('total'),2) }}</td>
+                                                <td class="center">{{ $payments->where('payment_method_id', 2)->groupBy('order_id')->count() }}</td>
+                                                <td class="right">{{ number_format($payments->where('payment_method_id', 2)->sum('amount'),2) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="center">3</td>
                                                 <td class="left">Pagos con cheques</td>
-                                                <td class="center">{{ $sales->where('payment_method_id', 3)->count() }}</td>
-                                                <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 3), '*.details.*.lot'))  }}</td>
-                                                <td class="right">{{ number_format($sales->where('payment_method_id', 3)->sum('total'),2) }}</td>
+                                                <td class="center">{{ $payments->where('payment_method_id', 3)->groupBy('order_id')->count() }}</td>
+                                                <td class="right">{{ number_format($payments->where('payment_method_id', 3)->sum('amount'),2) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="center">4</td>
                                                 <td class="left">Creditos</td>
-                                                <td class="center">{{  $sales->where('payment_method_id', 4)->count() }}</td>
-                                                <td class="right">{{ array_sum(data_get($sales->where('payment_method_id', 4), '*.details.*.lot'))  }}</td>
-                                                <td class="right">{{ number_format($sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
+                                                <td class="center">{{ $payments->where('payment_method_id', 4)->groupBy('order_id')->count() }}</td>
+                                                <td class="right">{{ number_format($payments->where('payment_method_id', 4)->sum('amount'),2) }}</td>
                                             </tr>
                                             <tr>
                                                 <td class="center">5</td>
                                                 <td class="left">Abonos a creditos</td>
                                                 <td class="center">N/A</td>
-                                                <td class="right">N/A</td>
-                                                <td class="right">{{ number_format($registers->sum('orders.payments.amount'),2) }}</td>
+                                                <td class="right">{{ number_format($payments->where('payment_method_id', 6)->sum('amount'),2) }}</td>
                                             </tr>
                                         </tbody>
                                 </table>
@@ -123,19 +117,19 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="left"><strong>Subtotal</strong></td>
-                                                    <td class="right">Q. {{ number_format($sales->sum('total'),2) }}</td>
+                                                    <td class="right">Q. {{ number_format($payments->sum('amount'),2) }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="left"><strong>Creditos <i class="text-danger">(-)</i></strong></td>
-                                                    <td class="right text-danger">Q. {{ number_format($sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
+                                                    <td class="right text-danger">Q. {{ number_format($payments->where('payment_method_id', 4)->sum('amount'),2) }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="left"><strong>Total</strong></td>
-                                                    <td class="right"><strong>Q. {{ number_format($sales->whereNotIn('payment_method_id', [4])->sum('total'),2) }}</strong></td>
+                                                    <td class="right"><strong>Q. {{ number_format($payments->whereNotIn('payment_method_id', [4])->sum('amount'),2) }}</strong></td>
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <a href="#" class="hidden-print btn btn-info" onclick="javascript:window.print();"><i class="  fa fa-print"></i> Imprimir</a>
+                                        <a href="#" class="hidden-print btn btn-info pull-right" onclick="javascript:window.print();"><i class="  fa fa-print"></i> Imprimir</a>
                                     </div>
 
                                 </div>
@@ -147,7 +141,7 @@
         </div>
 
 
-<table id="datatable" class="hidden">
+{{-- <table id="datatable" class="hidden">
     <thead>
         <tr>
             <th></th>
@@ -182,7 +176,7 @@
             <td class="right">{{ number_format($sales->where('payment_method_id', 4)->sum('total'),2) }}</td>
         </tr>
         </tbody>
-</table>
+</table> --}}
 
     </div>
 @stop

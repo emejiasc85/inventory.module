@@ -5,7 +5,7 @@ namespace EmejiasInventory\Http\Controllers;
 use Illuminate\Http\Request;
 use EmejiasInventory\Entities\CashRegister;
 use Styde\Html\Facades\Alert;
-use EmejiasInventory\Entities\{CashRegisterDeposit,Order};
+use EmejiasInventory\Entities\{CashRegisterDeposit,Order, Payment};
 use EmejiasInventory\Entities\User;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -203,10 +203,12 @@ class CashRegisterController extends Controller
         id($request->cash_register_id)
         ->user($request->user_id)
         ->date($request->from, $request->to)
-        ->where('status', true)
+        //->where('status', true)
         ->with('orders.details')
         ->get();
-        $sales = Order::whereIn('cash_register_id', $registers->pluck('id')->toArray())->get();
-        return view('registers.report', compact('registers', 'sales', 'users', 'commerce'));
+
+        $payments = Payment::whereIn('cash_register_id', $registers->pluck('id')->toArray())->get();
+
+        return view('registers.report', compact('registers', 'payments', 'users', 'commerce'));
     }
 }
