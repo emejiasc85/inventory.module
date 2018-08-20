@@ -18,8 +18,6 @@ class Order extends Entity
         'priority',
         'credit',
         'cash_register_id',
-        'payment_method_id',
-        'voucher'
     ];
 
     protected $date = ['created_at', 'updated_at'];
@@ -27,11 +25,6 @@ class Order extends Entity
     public function bill()
     {
         return $this->hasOne(Bill::class);
-    }
-
-    public function payment_method()
-    {
-        return $this->belongsTo(PaymentMethod::class);
     }
 
 	public function setOrderTypeIdAttribute($value)
@@ -49,6 +42,7 @@ class Order extends Entity
     {
         return $this->belongsTo(CashRegister::class);
     }
+
     public function payments()
     {
         return $this->hasMany(Payment::class);
