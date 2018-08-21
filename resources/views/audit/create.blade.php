@@ -7,7 +7,7 @@
 
 @section('content')
 	<div class="row">
-		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3">
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading">
                     <i class="fa fa-list-ol"></i>
@@ -52,5 +52,3 @@
   })
 </script>
 @stop
-
-

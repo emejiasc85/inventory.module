@@ -12,15 +12,6 @@ use Illuminate\Support\Facades\Validator;
 use Styde\Html\Facades\Alert;
 
 class AuditDetailController extends Controller {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index() {
-        return ("hola");
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -29,26 +20,14 @@ class AuditDetailController extends Controller {
      */
     public function create(Request $request, Audit $audit) {
         $data = $request->all();
+
         $data = array_where($data, function ($value, $key) {
             return is_string($value);
         });
 
-        if (empty($data)) {
-            $products = [];
-        } else {
-            $products= Stock::select(['products.*'])->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
-            ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
-            ->where('warehouse_id', 1)
-            ->order($request->get('order_id'))
-            ->product($request->get('name'))
-            ->productId($request->get('id'))
-            ->dueDate($request->get('from_due'), $request->get('to_due'))
-            ->stock($request->get('simbol'), $request->get('stock'))
-            ->where('status', true)
-            //->groupBy('id', 'DESC')
+        $products = [];
 
-            ->paginate();
-            // dd($products);
+        if (!empty($data)) {
             $products = Product::name($request->get('name'))
                 ->id($request->get('id'))
                 ->makes($request->get('make_id'))
@@ -60,9 +39,10 @@ class AuditDetailController extends Controller {
                 ->get();
 
         }
+
         return view('audit.details.create', compact('audit', 'products'));
-        //
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -70,66 +50,53 @@ class AuditDetailController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Audit $audit) {
-        $rules = [
+
+        $this->validate($request, [
             'product_id' => 'required|exists:products,id',
-        ];
-        $this->validate($request, $rules);
-       $stocks = Stock::select(['stocks.id','stocks.stock'])->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+        ]);
+
+        if($audit->details->where('product_id', $request->product_id)->count() > 0 )
+        {
+            Alert::danger('Alerta')->details('El Producto ya existe en la Auditoria');
+            return redirect($audit->url);
+        }
+
+        $stocks = Stock::select(['stocks.id','stocks.stock'])->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
             ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
             ->where('warehouse_id', 1)
-            ->order($request->get('order_id'))
-            ->product($request->get('name'))
-            ->productId($request->get('id'))
-            ->dueDate($request->get('from_due'), $request->get('to_due'))
-            ->stock($request->get('simbol'), $request->get('stock'))
+            ->productId($request->id)
+            ->product($request->name)
+            ->order($request->order_id)
+            ->dueDate($request->from_due, $request->to_due)
+            ->stock($request->simbol, $request->stock)
+            ->where('product_id', $request->product_id)
             ->where('status', true)
-            ->where('product_id', $request->input('product_id'))
-            //->OrderBy('id', 'DESC')
+            ->get();
 
-            ->paginate();
-//Stock::where('id',);
-$data=[];
-        // dd($data, $stocks);
-if(count($audit->details->where('product_id', $request->input('product_id')))>0 )
-{
-       Alert::danger('Alerta')->details('El Producto ya existe en la Auditoria');
-        return redirect($audit->url);
-}
-// dd("no entro");
-foreach ($stocks as $key => $value) {
-// dd($value->stock);
-    $data=[];
-    $data = array_add($data, 'audit_id', $audit->id);
-    $data = array_add($data, 'product_id',  $request->input('product_id'));
-    $data = array_add($data, 'stock_id', $value->id);
-    $data = array_add($data, 'current_stock', $value->stock);
-    $data = array_add($data, 'audited_stock', 0);
-        $new_detail = auditDetail::create($data);
-}
+        $this->addDetails($request, $stocks, $audit);
 
         Alert::success('Producto Agregado correctamente');
         return redirect($audit->url);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \EmejiasInventory\Entities\auditDetail  $auditDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function show(auditDetail $auditDetail) {
-        //
+    public function addDetails(Request $request, $stocks, Audit $audit)
+    {
+
+        foreach ($stocks as $key => $value)
+        {
+            auditDetail::create([
+                'audit_id'      => $audit->id,
+                'product_id'    => $request->input('product_id'),
+                'stock_id'      => $value->id,
+                'current_stock' => $value->stock,
+                'audited_stock' => 0
+            ]);
+        }
+
+        return $audit->details;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \EmejiasInventory\Entities\auditDetail  $auditDetail
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(auditDetail $auditDetail) {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.

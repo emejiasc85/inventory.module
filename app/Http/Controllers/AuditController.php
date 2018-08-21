@@ -2,10 +2,7 @@
 
 namespace EmejiasInventory\Http\Controllers;
 
-use EmejiasInventory\Entities\Audit;
-use EmejiasInventory\Entities\Commerce;
-use EmejiasInventory\Entities\OrderType;
-use EmejiasInventory\Entities\User;
+use EmejiasInventory\Entities\{Audit,Commerce,OrderType,User,Stock,auditDetail};
 use Illuminate\Http\Request;
 use Styde\Html\Facades\Alert;
 
@@ -18,7 +15,6 @@ class AuditController extends Controller {
     public function index(Request $request) {
         $audits = Audit::id(request()->get('id'))->orderBy('id', 'DESC')->paginate();
         return view('audit.index', compact('audits'));
-
     }
 
     /**
@@ -40,13 +36,42 @@ class AuditController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        // dd(request()->all());
+
         $this->validate($request, ['user_id' => 'required']);
-        $data = array_add($request->all(), 'user_id', auth()->user()->id);
-        // dd($data);
-        $new_audit = Audit::create($data);
+
+        $request->request->add(['user_id' => auth()->user()->id]);
+
+        $audit = Audit::create($request->all());
+
+        if($request->type)
+        {
+            $this->auditAllProducts($audit);
+        }
+
         Alert::success('Auditoria Creada')->details('Agrega los detalles');
-        return redirect()->route('audit.show', $new_audit);
+        return redirect()->route('audit.show', $audit);
+    }
+
+    public function auditAllProducts(Audit $audit)
+    {
+        $stocks = Stock::select('stocks.id','stocks.stock', 'order_details.product_id')
+            ->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+            ->where('warehouse_id', 1)
+            ->where('status', true)
+            ->get();
+
+        foreach ($stocks as $key => $value)
+        {
+            auditDetail::create([
+                'audit_id'      => $audit->id,
+                'product_id'    => $value->product_id,
+                'stock_id'      => $value->id,
+                'current_stock' => $value->stock,
+                'audited_stock' => 0
+            ]);
+        }
+
+        return $audit->details;
     }
 
     /**
