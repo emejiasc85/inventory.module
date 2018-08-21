@@ -29,10 +29,10 @@
                  <td>{{ $product->minimum_stock }}</td>
                  <td>{{ $product->price }}</td>
                  <td>
-                    <a href="{{ $product->url }}" class="btn btn-info "> <i class="fa fa-eye"></i> Detalle</a>
+                    <a href="{{ $product->url }}" class="btn btn-link "> <i class="fa fa-eye text-info"></i> Detalle</a>
                 </td>
                 <td>
-                    <a href="{{ $product->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a>
+                    <a href="{{ $product->editUrl }}" class="btn btn-link "> <i class="fa fa-pencil text-success"></i> Editar</a>
                 </td>
              </tr>
          @endforeach

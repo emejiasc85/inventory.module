@@ -120,14 +120,12 @@
             </ol>
             @yield('content')
         </div>
-
         @yield('modals')
         <!-- end: Content -->
 
-        <!--
-        <footer>
-        </footer>
-        -->
+        {{-- <footer>
+                @include('layouts.partials.footer')
+        </footer> --}}
         {!! Html::script('js/jquery-3.1.0.min.js') !!}
         {!! Html::script('js/jquery-migrate-1.4.1.min.js') !!}
         {!! Html::script('js/bootstrap.min.js') !!}

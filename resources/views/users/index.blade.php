@@ -43,8 +43,8 @@
                            <td>{{ $user->email }}</td>
                            <td>{{ $user->username }}</td>
                            <td>{{ $user->role->name }}</td>
-                           <td><a href="{{ $user->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>  Editar</a></td>
-                           <td><a href="{{ $user->editPasswordUrl }}" class="btn btn-warning"> <i class="fa fa-key"></i>  Contraseña</a></td>
+                           <td><a href="{{ $user->editUrl }}" class="btn btn-link "> <i class="fa fa-pencil text-success"></i>  Editar</a></td>
+                           <td><a href="{{ $user->editPasswordUrl }}" class="btn btn-link"> <i class="fa fa-key text-primary"></i>  Contraseña</a></td>
                        </tr>
                    @endforeach
               </table>
@@ -57,5 +57,3 @@
     </div>
 	</div>
 @stop
-
-

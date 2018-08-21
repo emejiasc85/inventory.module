@@ -44,7 +44,7 @@
                                 <td>{{ $presentation->id }}</td>
                                 <td>{{ $presentation->name }}</td>
                                 <td>{{ $presentation->description }}</td>
-                                <td><a href="{{ $presentation->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a></td>
+                                <td><a href="{{ $presentation->editUrl }}" class="btn btn-link "> <i class="fa fa-pencil text-success"></i> Editar</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -59,5 +59,3 @@
     </div>
 </div>
 @stop
-
-

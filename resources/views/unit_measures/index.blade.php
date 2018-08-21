@@ -39,7 +39,7 @@
                         <tr>
                             <td>{{ $unit->id }}</td>
                             <td>{{ $unit->name }}</td>
-                            <td><a href="{{ $unit->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a></td>
+                            <td><a href="{{ $unit->editUrl }}" class="btn btn-link "> <i class="fa fa-pencil text-success"></i> Editar</a></td>
                         </tr>
                         @endforeach
                     </table>
@@ -53,5 +53,3 @@
     </div>
 </div>
 @stop
-
-

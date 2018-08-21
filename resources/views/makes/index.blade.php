@@ -50,7 +50,7 @@
                                 </td>
                                 <td>{{ $make->id }}</td>
                                 <td>{{ $make->name }}</td>
-                                <td><a href="{{ $make->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i> Editar</a></td>
+                                <td><a href="{{ $make->editUrl }}" class="btn btn-slink "> <i class="fa fa-pencil text-success"></i> Editar</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -64,5 +64,3 @@
     </div>
 </div>
 @stop
-
-

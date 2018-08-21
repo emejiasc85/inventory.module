@@ -41,7 +41,7 @@
                             <td>{{ $group->id }}</td>
                             <td>{{ $group->name }}</td>
                             <td>{{ $group->description }}</td>
-                            <td><a href="{{ $group->editUrl }}" class="btn btn-success "> <i class="fa fa-pencil"></i>  Editar</a></td>
+                            <td><a href="{{ $group->editUrl }}" class="btn btn-link "> <i class="fa fa-pencil text-success"></i>  Editar</a></td>
                         </tr>
                         @endforeach
                     </table>
@@ -54,5 +54,3 @@
     </div>
 </div>
 @stop
-
-
