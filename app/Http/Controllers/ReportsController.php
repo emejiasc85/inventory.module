@@ -107,7 +107,7 @@ class ReportsController extends Controller
 
     public function topCustomers(Request $request)
     {
-        $people = People::topCustomers($request)->paginate();
+        $people = People::paginate();
         return view('reports.top_customers', compact('people'));
     }
 

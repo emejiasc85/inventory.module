@@ -40,9 +40,9 @@
                                         <td>{{ $order->type->name }}</td>
                                         @if ($order->type->id == 1)
                                             <td></td>
-                                            <td>Q. {{ round($order->total, 2) }}</td>
+                                            <td>Q. {{ number_format($order->total, 2) }}</td>
                                         @elseif($order->type->id == 2)
-                                            <td>Q. {{ round($order->total, 2) }}</td>
+                                            <td>Q. {{ number_format($order->payments->whereIn('payment_method_id', [1,2,3,6])->sum('amount'), 2) }}</td>
                                             <td></td>
                                         @endif
                                         <td>{{ $order->user->name }}</td>
@@ -62,5 +62,3 @@
     </div>
 </div>
 @stop
-
-
