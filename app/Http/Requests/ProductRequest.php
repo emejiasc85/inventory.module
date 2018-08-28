@@ -24,15 +24,18 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                      => 'required',
-            'description'               => 'nullable',
-            'minimum_stock'             => 'numeric',
-            'product_presentation_id'   => 'required|exists:product_presentations,id',
-            'product_group_id'          => 'required|exists:product_groups,id',
-            'unit_measure_id'           => 'required|exists:unit_measures,id',
-            'make_id'                   => 'required|exists:makes,id',
-            'barcode'                   => 'nullable|unique:products,barcode',
-            'price'                     => 'nullable|numeric|min:0'
+            'name'                    => 'required',
+            'description'             => 'nullable',
+            'minimum_stock'           => 'numeric',
+            'product_presentation_id' => 'required|exists:product_presentations,id',
+            'product_serie_id'        => 'required|exists:product_series,id',
+            'category_id'             => 'required|exists:categories,id',
+            'product_group_id'        => 'required|exists:product_groups,id',
+            'unit_measure_id'         => 'required|exists:unit_measures,id',
+            'make_id'                 => 'required|exists:makes,id',
+            'barcode'                 => 'nullable|unique:products,barcode',
+            'price'                   => 'nullable|numeric|min:0',
+            'offer_price'             => 'nullable|numeric|min:0'
         ];
     }
 }

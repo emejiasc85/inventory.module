@@ -25,15 +25,18 @@ class EditProductRequest extends FormRequest
     {
         $product  = $this->route()->parameter('product')->id;
         return [
-            'name'                      => 'required',
-            'description'               => 'nullable',
-            'minimum_stock'             => 'numeric',
-            'product_presentation_id'   => 'required|exists:product_presentations,id',
-            'product_group_id'          => 'required|exists:product_groups,id',
-            'unit_measure_id'           => 'required|exists:unit_measures,id',
-            'make_id'                   => 'required|exists:makes,id',
-            'barcode'                   => 'nullable|unique:products,barcode,'.$product,
-            'price'                     => 'nullable|numeric|min:0' 
+            'name'                    => 'required',
+            'description'             => 'nullable',
+            'minimum_stock'           => 'numeric',
+            'product_presentation_id' => 'required|exists:product_presentations,id',
+            'product_group_id'        => 'required|exists:product_groups,id',
+            'unit_measure_id'         => 'required|exists:unit_measures,id',
+            'make_id'                 => 'required|exists:makes,id',
+            'barcode'                 => 'nullable|unique:products,barcode,'.$product,
+            'price'                   => 'nullable|numeric|min:0',
+            'offer_price'             => 'nullable|numeric|min:0',
+            'product_serie_id'        => 'required|exists:product_series,id',
+            'category_id'             => 'required|exists:categories,id',
         ];
     }
 }
