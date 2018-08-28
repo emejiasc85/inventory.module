@@ -9,25 +9,7 @@ use EmejiasInventory\Entities\CashRegister;
 
 class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,7 +19,15 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->request->add(['payment_method_id' => 6]);
+        if ($request->has('deposit'))
+        {
+            $request->request->add(['payment_method_id' => 7]);
+        }
+        else
+        {
+            $request->request->add(['payment_method_id' => 6]);
+        }
+
         $register = CashRegister::orderBy('id', 'DESC')->first()->id;
         $order = Order::findOrFail($request->order_id);
         $this->validate($request, ['amount' => 'required|numeric' ]);
@@ -63,23 +53,6 @@ class PaymentController extends Controller
         return redirect()->back();
     }
 
-
-    public function show(Payment $payment)
-    {
-        //
-    }
-
-
-    public function edit(Payment $payment)
-    {
-        //
-    }
-
-
-    public function update(Request $request, Payment $payment)
-    {
-        //
-    }
 
 
     public function destroy(Request $request)

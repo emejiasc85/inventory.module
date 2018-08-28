@@ -32,7 +32,9 @@ class EditBillController extends Controller
             $message = 'Compra Finalizada';
         }
 
-        return redirect()->back();
+        Alert::success('Venta Finalizada');
+        //return redirect()->back();
+        return redirect()->route('bills.index');
     }
 
     public function setBillNumber(Request $request, Order $order)

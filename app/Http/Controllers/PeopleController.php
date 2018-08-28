@@ -18,6 +18,7 @@ class PeopleController extends Controller
             ->id($request->id)
             ->nit($request->nit)
             ->partner($request->partner)
+            ->credit($request->credit)
             ->orderBy('id', 'DESC')
             ->paginate();
 
@@ -27,19 +28,19 @@ class PeopleController extends Controller
 
     public function download(Request $request)
     {
-        
+
         $people = People::name($request->name)
             ->id($request->id)
             ->nit($request->nit)
             ->partner($request->partner)
             ->orderBy('id', 'DESC')
             ->get();
-            
+
         Excel::create('Personas', function($excel) use($people) {
             $excel->sheet('Personas', function($sheet) use($people) {
                 $sheet->loadView('people.partials.table', compact('people'));
             });
-    
+
         })->export('xls');
     }
 
@@ -48,7 +49,7 @@ class PeopleController extends Controller
         $search =  People::select('id', 'name', 'nit', 'address')
             ->where('nit',  $people)
             ->get();
-        if ($search->first()) 
+        if ($search->first())
         {
             return response()->json([
                 'success' => true,
@@ -84,7 +85,7 @@ class PeopleController extends Controller
     }
 
 
-   
+
 
     public function avatar(People $people)
     {

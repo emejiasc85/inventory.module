@@ -16,6 +16,7 @@ class QuotationController extends Controller
 
         return view('quotes.index', compact('quotes'));
     }
+
     public function details(Request $request, Order $order)
     {
         $data = $request->all();
