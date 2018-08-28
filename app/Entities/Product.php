@@ -9,16 +9,19 @@ class Product extends Entity
 {
     protected $fillable = [
         'name',
+        'slug',
+        'price',
+        'offer_price',
+    	'barcode',
+        'make_id',
         'full_name',
     	'description',
-    	'barcode',
-    	'product_presentation_id' ,
-    	'product_group_id',
-    	'unit_measure_id',
-        'make_id',
+        'category_id',
     	'minimum_stock',
-        'slug',
-        'price'
+    	'unit_measure_id',
+        'product_group_id',
+        'product_serie_id',
+    	'product_presentation_id' ,
     ];
     public function setNameAttribute($value)
     {
