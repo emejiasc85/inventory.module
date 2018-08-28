@@ -17,26 +17,18 @@
     <div class="collapse" id="collapseExample">
         <div class="well">
             <div class="row ">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     {!! Field::text('nit') !!}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     {!! Field::text('id') !!}
                 </div>
-                {{--
-                    <div class="col-xs-4">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                {!! Field::select('simbol', ['=' => '=', '<' => '<', '>' => '>'],null,  ['class' => 'form-control ']) !!}
-                            </div>
-                            <div class="col-sm-8">
-                                {!! Field::text('credit', null,  ['class' => 'form-control ', 'placeholder' => '300']) !!}
-                            </div>
-                        </div>
-                    </div>
-                --}}
-                <div class="col-xs-4">
+
+                <div class="col-xs-3">
                     {!! Field::checkbox('partner')!!}
+                    {!! Field::checkbox('credit')!!}
+                </div>
+                <div class="col-xs-3">
                 </div>
             </div>
         </div>

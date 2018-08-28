@@ -18,8 +18,8 @@
         <div class="panel panel-default ">
             <div class="panel-body">
             <div class="panel-heading">
-            Pagos
-            <a href="#" id="add_payment" class="btn btn-sm btn-primary pull-right"><span class="fa fa-plus"></span> Agregar</a>
+                Pagos
+                <a href="#" id="add_payment" class="btn btn-sm btn-primary pull-right"><span class="fa fa-plus"></span> Agregar</a>
             </div>
             <div class="panel-body">
             <table class="table table-striped">
@@ -29,7 +29,7 @@
                     <td>Doc.</td>
                     <td class="text-right">Monto</td>
                 </tr>
-                @foreach($order->payments->where('payment_method_id', 6) as $payment)
+                @foreach($order->payments->whereIn('payment_method_id', [6,7]) as $payment)
                 <tr>
                     <td>
                         @if (auth()->user()->isAdmin())
@@ -44,14 +44,20 @@
                 <tr>
                     <td></td>
                     <td></td>
-                    <td><strong>Total</strong></td>
-                    <td class="text-right">{{ number_format($order->payments->where('payment_method_id', 6)->sum('amount'),2)}}</td>
+                    <td><strong>Total Pagos</strong></td>
+                    <th class="text-right">{{ number_format($order->payments->whereIn('payment_method_id', [6,7])->sum('amount'),2)}}</th>
                 </tr>
                 <tr>
                     <td></td>
                     <td></td>
                     <td ><strong>Total Factura</strong></td>
-                    <td class="text-right">{{ number_format($order->payments->where('payment_method_id', 4)->sum('amount'),2)}}</td>
+                    <th class="text-right">{{ number_format($order->payments->where('payment_method_id', 4)->sum('amount'),2)}}</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td ><strong>Resta</strong></td>
+                    <th class="text-right">{{ number_format($order->payments->where('payment_method_id', 4)->sum('amount') - $order->payments->whereIn('payment_method_id', [6,7])->sum('amount'),2)}}</th>
                 </tr>
             </table>
             </div>

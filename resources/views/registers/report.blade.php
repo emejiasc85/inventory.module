@@ -103,6 +103,12 @@
                                                 <td class="center">N/A</td>
                                                 <td class="right">{{ number_format($payments->where('payment_method_id', 6)->sum('amount'),2) }}</td>
                                             </tr>
+                                            <tr>
+                                                <td class="center">5</td>
+                                                <td class="left">Abonos a creditos (depositos)</td>
+                                                <td class="center">N/A</td>
+                                                <td class="right">{{ number_format($payments->where('payment_method_id', 7)->sum('amount'),2) }}</td>
+                                            </tr>
                                         </tbody>
                                 </table>
 
@@ -124,7 +130,6 @@
                                                     <td class="right text-danger">Q. {{ number_format($payments->where('payment_method_id', 4)->sum('amount'),2) }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="left"><strong>Total</strong></td>
                                                     <td class="right"><strong>Q. {{ number_format($payments->whereNotIn('payment_method_id', [4])->sum('amount'),2) }}</strong></td>
                                                 </tr>
                                             </tbody>

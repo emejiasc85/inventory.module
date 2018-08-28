@@ -123,10 +123,18 @@
                                         <tr>
                                             <td class="center">5</td>
                                             <td class="left">Abonos a creditos</td>
-                                            <td class="left hidden-print"><a href="{{ route('cash.registers.payments', $register)}}">Detalles </a></td>
+                                            <td class="left hidden-print"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 6])}}">Detalles </a></td>
                                             <td class="center">N/A</td>
                                             <td class="right">N/A</td>
                                             <td class="right">{{ number_format($register->payments->where('payment_method_id', 6)->sum('amount'),2) }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="center">6</td>
+                                            <td class="left">Depositos</td>
+                                            <td class="left hidden-print"><a href="{{ route('cash.registers.bills', [$register, 'payment_method_id' => 7])}}">Detalles </a></td>
+                                            <td class="center">N/A</td>
+                                            <td class="right">N/A</td>
+                                            <td class="right">{{ number_format($register->payments->where('payment_method_id', 7)->sum('amount'),2) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -144,7 +152,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="left"><strong>Subtotal</strong></td>
-                                                    <td class="right">Q.{{number_format($register->payments->whereIn('payment_method_id', [1,2,3,4,5,6])->sum('amount'),2)}}</td>
+                                                    <td class="right">Q.{{number_format($register->payments->whereIn('payment_method_id', [1,2,3,4,5,6,7])->sum('amount'),2)}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="left"><strong>Saldo Inicial @if(!$register->status)<a href="#" data-toggle="modal" data-target="#editInitialCash" class="hidden-print"><i class="fa fa-pencil"></i></a>@endif </strong></td>

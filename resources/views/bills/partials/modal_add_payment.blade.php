@@ -10,6 +10,7 @@
             <div class="modal-body">
                 {!! Field::text('amount') !!}
                 {!! Field::text('baucher') !!}
+                {!! Field::checkbox('deposit') !!}
                 {!! Field::hidden('order_id', $order->id) !!}
             </div>
             <div class="modal-footer">

@@ -73,7 +73,7 @@
     <div class="panel-footer">
         @if ($order->details->count() > 0)
             @if ($order->status != 'Ingresado')
-                <a href="#" id="Bill" class="btn btn-success btn-lg btn-block" style="margin-top: 10px">Facturar</a>
+                <a href="#" id="Bill" class="btn btn-success btn-lg btn-block" style="margin-top: 10px">Finalizar Venta</a>
             @endif
             @if ($order->status == 'Ingresado')
                 <a href="#" class="btn btn-primary hidden-print btn-lg btn-block " title="Imprimir" onclick="window.print()"><span class="fa  fa-print"></span> Imprimir</a>

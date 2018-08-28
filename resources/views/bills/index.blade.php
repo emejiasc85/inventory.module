@@ -21,7 +21,7 @@
     </div><!--/.col-->
     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
         <div class="smallstat">
-            <span class="value text-muted">Q. {{ $register->payments->where('payment_method_id', 6)->sum('amount') }}</span>
+            <span class="value text-muted">Q. {{ $register->payments->whereIn('payment_method_id', [6,7])->sum('amount') }}</span>
             <span class="title">Abono a credito</span>
         </div><!--/.smallstat-->
     </div><!--/.col-->
@@ -91,7 +91,7 @@
                                         @endif
                                     @endforeach
                                 @endif
-                                @if ($bill->payments->where('payment_method_id', 6)->count() > 0)
+                                @if ($bill->payments->whereIn('payment_method_id', [6,7])->count() > 0)
                                     <span class="label label-success">Abonos</span>
 
                                 @endif
@@ -103,7 +103,7 @@
                                     <span class="label label-default">No Facturado</span>
                                 @endif
                             </td>
-                            <td><a href="{{ $bill->urlBill }}" class="btn btn-info "> <i class="fa fa-eye-o"></i>  Ver Detalle</a></td>
+                            <td><a href="{{ $bill->urlBill }}" class="btn btn-link "> <i class="fa fa-eye text-info"></i> Detalle</a></td>
                         </tr>
                         @endforeach
                     </table>
