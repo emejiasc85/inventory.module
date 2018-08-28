@@ -4,7 +4,7 @@
     </label>
 
     @if ($required)
-        <span class="label label-info">Required</span>
+        <small><span class="fa fa-asterisk text-info"></span></small>
     @endif
 
     <div class="controls">

@@ -40,6 +40,8 @@ class CreateProductsController extends Controller
             $new->save();
         }
 
+        $new->colors()->sync($request->color);
+
         if ($request->has('make_order')) {
             $order  = $this->addToOrder($request, $new);
             Alert::success('Producto creado correctamente')->details('Producto ingresado a existencias');
@@ -47,6 +49,7 @@ class CreateProductsController extends Controller
         else{
             Alert::success('Producto creado correctamente');
         }
+
 
     	return redirect()->route('products.index');
     }

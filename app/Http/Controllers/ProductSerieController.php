@@ -4,6 +4,9 @@ namespace EmejiasInventory\Http\Controllers;
 
 use EmejiasInventory\Entities\ProductSerie;
 use Illuminate\Http\Request;
+use EmejiasInventory\Http\Requests\ProductSerieStoreRequest;
+use Styde\Html\Facades\Alert;
+use EmejiasInventory\Http\Requests\ProductSerieUpdateRequest;
 
 class ProductSerieController extends Controller
 {
@@ -14,7 +17,8 @@ class ProductSerieController extends Controller
      */
     public function index()
     {
-        //
+        $series = ProductSerie::search()->paginate();
+        return view('product_series.index', compact('series'));
     }
 
     /**
@@ -24,7 +28,7 @@ class ProductSerieController extends Controller
      */
     public function create()
     {
-        //
+        return view('product_series.create');
     }
 
     /**
@@ -33,31 +37,22 @@ class ProductSerieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductSerieStoreRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \EmejiasInventory\Entities\ProductSerie  $productSerie
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ProductSerie $productSerie)
-    {
-        //
+        $serie = ProductSerie::create($request->only(['name', 'description']));
+        Alert::success('Agregado correctamente');
+        return redirect()->route('product_series.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \EmejiasInventory\Entities\ProductSerie  $productSerie
+     * @param  \EmejiasInventory\Entities\ProductSerie  $product_series
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductSerie $productSerie)
+    public function edit(ProductSerie $product_series)
     {
-        //
+        return view('product_series.edit', compact('product_series'));
     }
 
     /**
@@ -67,9 +62,11 @@ class ProductSerieController extends Controller
      * @param  \EmejiasInventory\Entities\ProductSerie  $productSerie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductSerie $productSerie)
+    public function update(ProductSerieUpdateRequest $request, ProductSerie $product_series)
     {
-        //
+        $product_series->update($request->only(['name', 'description']));
+        Alert::success('Editado correctamente');
+        return redirect()->route('product_series.index');
     }
 
     /**

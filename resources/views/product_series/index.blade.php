@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
 <li class="breadcrumb-item">Herramientas</li>
-<li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Categorias</a></li>
+<li class="breadcrumb-item"><a href="{{ route('product_series.index') }}">Series</a></li>
 @stop
 
 @section('content')
@@ -11,12 +11,12 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i-fa class="fa-grid"></i-fa>
-                <strong>Categorias de  Productos</strong>
+                <strong>Series de  Productos</strong>
                 <small>Listado</small>
-                <a href="{{ route('categories.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar</a>
+                <a href="{{ route('product_series.create') }}" class="btn btn-primary pull-right btn-sm" style="margin-top: 5px"><span class="fa fa-plus"></span> Agregar</a>
             </div>
             <div class="panel-body">
-                {{ Form::model(Request::all(),['categories.index', 'method' => 'get']) }}
+                {{ Form::model(Request::all(),['product_series.index', 'method' => 'get']) }}
                 <div class="form-group row">
                     <div class="col-md-12">
                         <div class="input-group">
@@ -32,23 +32,23 @@
                     <table class="table col-sm-12">
                         <tr>
                             <th>ID</th>
-                            <th>Categoria</th>
+                            <th>Serie</th>
                             <th>Descripción</th>
                             <th>Acciones</th>
                         </tr>
-                        @foreach ($categories as $category)
+                        @foreach ($series as $serie)
                         <tr>
-                            <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->description }}</td>
-                            <td><a href="{{ $category->editUrl }}" class="btn btn-link "> <i class="fa fa-pencil text-success"></i>  Editar</a></td>
+                            <td>{{ $serie->id }}</td>
+                            <td>{{ $serie->name }}</td>
+                            <td>{{ $serie->description }}</td>
+                            <td><a href="{{ $serie->editUrl }}" class="btn btn-link "> <i class="fa fa-pencil text-success"></i>  Editar</a></td>
                         </tr>
                         @endforeach
                     </table>
                 </div>
             </div>
             <div class="panel-footer">
-                {{ $categories->links() }}
+                {{ $series->links() }}
             </div>
         </div>
     </div>

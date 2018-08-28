@@ -1,5 +1,7 @@
 @extends('layouts.base')
-
+@section('styles')
+    {!! Html::style('icheck/all.css') !!}
+@endsection
 @section('breadcrumb')
 	 <li><a href="{{ route('products.index') }}">Productos</a></li>
      <li><a href="{{ $product->url }}">{{ $product->name }}</a></li>
@@ -24,6 +26,9 @@
                             <div class="col-xs-12 col-md-6">
                                 {!! Field::text('price',null, ['placeholder' => '0.00']) !!}
                             </div>
+                            <div class="col-xs-12 col-md-6">
+                                {!! Field::text('offer_price',null, ['placeholder' => '0.00']) !!}
+                            </div>
                         </div>
                     </div>
                     <!--/.row-->
@@ -44,3 +49,17 @@
         </div>
 	</div>
 @stop
+@section('scripts')
+{!! Html::script('icheck/icheck.js') !!}
+<script>
+    $('#showAddColors').click( function (e){
+        $('#showColors').collapse('toggle')
+    });
+
+    $('.color').iCheck({
+        checkboxClass: 'icheckbox_flat',
+        radioClass: 'iradio_flat'
+    });
+</script>
+
+@endsection

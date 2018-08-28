@@ -40,6 +40,21 @@ class Product extends Entity
         return $this->belongsTo(ProductGroup::class, 'product_group_id');
     }
 
+    public function colors()
+    {
+        return $this->belongsToMany(Color::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'product_group_id');
+    }
+
+    public function serie()
+    {
+        return $this->belongsTo(ProductSerie::class, 'product_group_id');
+    }
+
     public function getFullNameAttribute()
     {
         return $this->name.' '.$this->presentation->name.' '.$this->make->name;

@@ -17,9 +17,10 @@ class EditProductsController extends Controller
     }
 
     public function update(EditProductRequest $request, Product $product)
-    { 
+    {
     	$product->fill($request->all());
-    	$product->save();
+        $product->save();
+        $product->colors()->sync($request->color);
 
     	Alert::success('Producto editado correctamente');
     	return redirect()->route('products.index');
@@ -32,13 +33,13 @@ class EditProductsController extends Controller
         {
             foreach ($orders as $key => $items) {
                $price =  max($items->pluck('sale_price')->toArray());
-    
+
                $product = Product::findOrFail($key);
                $product->price = $price;
                $product->save();
             }
         });
-           
+
         Alert::success('Precios Actualizados');
         return redirect('/');
     }

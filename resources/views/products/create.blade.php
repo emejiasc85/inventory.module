@@ -1,5 +1,7 @@
 @extends('layouts.base')
-
+@section('styles')
+    {!! Html::style('icheck/all.css') !!}
+@endsection
 @section('breadcrumb')
 	 <li><a href="{{ route('products.index') }}"></a>Productos</li>
 	 <li>Nuevo</li>
@@ -27,21 +29,24 @@
                                 <div class="collapse" id="showMakeOrder">
                                     <div class="well">
                                         <div class="row">
-                                            <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-md-4">
                                                 {!! Field::text('purchase_price', ['placeholder' => '0.00']) !!}
                                             </div>
-                                            <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-md-4">
                                                 {!! Field::text('price',0, ['placeholder' => '0.00']) !!}
+                                            </div>
+                                            <div class="col-xs-12 col-md-4">
+                                                {!! Field::text('offer_price',0, ['placeholder' => '0.00']) !!}
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-md-4">
                                                 {!! Field::number('lot') !!}
                                             </div>
-                                            <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-md-4">
                                                 {!! Field::select('people_id', $providers) !!}
                                             </div>
-                                            <div class="col-xs-12 col-md-6">
+                                            <div class="col-xs-12 col-md-4">
                                                 {!! Field::date('due_date') !!}
                                             </div>
                                         </div>
@@ -69,11 +74,20 @@
 	</div>
 @stop
 @section('scripts')
+{!! Html::script('icheck/icheck.js') !!}
 
 <script>
     $('#showMakeOrderButton').click( function (e){
         $('#showMakeOrder').collapse('toggle')
     });
+    $('#showAddColors').click( function (e){
+        $('#showColors').collapse('toggle')
+    });
+
+    $('.color').iCheck({
+    checkboxClass: 'icheckbox_flat',
+    radioClass: 'iradio_flat'
+  });
 </script>
 
 @endsection

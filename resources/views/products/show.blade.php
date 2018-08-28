@@ -19,14 +19,26 @@
                 <ul class="list">
                     <li>
                         <p>
-                            <span class="icon-badge"></span>
-                            <strong>Marca:</strong> {{ $product->make->name }}
+                            <span class="icon-grid"></span>
+                            <strong>Grupo:</strong> {{ $product->group->name }}
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <span class="fa fa-bookmark-o"></span>
+                            <strong>Serie:</strong> {{ $product->serie->name }}
                         </p>
                     </li>
                     <li>
                         <p>
                             <span class="icon-grid"></span>
-                            <strong>Grupo:</strong> {{ $product->group->name }}
+                            <strong>Categoria:</strong> {{ $product->category->name }}
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            <span class="icon-badge"></span>
+                            <strong>Marca:</strong> {{ $product->make->name }}
                         </p>
                     </li>
                     <li>
@@ -37,7 +49,7 @@
                     </li>
                     <li>
                         <p>
-                            <span class="icon-chemistry"></span>
+                            <span class="fa fa-arrows-v"></span>
                             <strong>Medida:</strong> {{ $product->unit->name }}
                         </p>
                     </li>
@@ -47,6 +59,24 @@
                             <strong>Precio Venta:</strong> Q. {{ $product->price }}
                         </p>
                     </li>
+                    <li>
+                        <p>
+                            <span class="fa fa-certificate"></span>
+                            <strong>Precio Oferta:</strong> Q. {{ $product->offer_price }}
+                        </p>
+                    </li>
+                    @if ($product->colors->count() > 0)
+                    <li>
+
+                        <p>
+                            <strong>Colores:</strong>
+                            <br>
+                            @foreach ($product->colors as $color)
+                                <span class="fa fa-square" style="color: {{ $color->color }}; font-size: 2em"></span>
+                            @endforeach
+                        </p>
+                    </li>
+                    @endif
                     <li>
                         <p>
                             <span class="fa fa-barcode"></span>
