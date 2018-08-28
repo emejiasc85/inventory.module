@@ -276,13 +276,13 @@ Route::name('resolutions.update')->put('editar-resolucion/{resolution}', 'EditRe
 Route::name('quotes.index')->get('cotizaciones', 'QuotationController@index');
 Route::name('quotes.create')->get('agregar-cotizacion', 'CreateQuotationController@create');
 Route::name('quotes.store')->post('agregar-cotizacion', 'CreateQuotationController@store');
-Route::name('quotes.edit')->get('editar-cotizacion/{quotation}', 'EditQuotationController@edit');
-Route::name('quotes.update')->put('editar-cotizacion/{quotation}', 'EditQuotationController@update');
+//Route::name('quotes.edit')->get('editar-cotizacion/{quotation}', 'EditQuotationController@edit');
+//Route::name('quotes.update')->put('editar-cotizacion/{quotation}', 'EditQuotationController@update');
 Route::name('quotes.details')->get('cotizacion/{order}/detalles', 'QuotationController@details');
 Route::name('quotes.details.store')->post('cotizacion/{order}/agregar-producto', 'CreateQuotationDetailsController@store');
 Route::name('quotes.details.destroy')->delete('cotizacion/{order}/eliminar-producto', 'DeleteQuotationDetailsController@destroy');
 Route::name('quotes.destroy')->delete('cotizacion/{order}/eliminar', 'DeleteQuotationController@destroy');
-Route::name('quotes.confirm')->put('confirmar-cotizacion/{order}', 'EditQuotationController@confirm');
+//Route::name('quotes.confirm')->put('confirmar-cotizacion/{order}', 'EditQuotationController@confirm');
 Route::name('quotes.revert')->put('revertir-cotizacion/{order}', 'EditBillController@revert');
 
 //users
@@ -332,3 +332,8 @@ Route::name('cash.registers.deposits.destroy')->delete('deposito-a-caja-eliminar
 //temporal
 Route::name('prices')->get('actualizar-precios', 'EditProductsController@UpdatePrices');
 Route::name('sales-to-cash-registers')->get('ingresar-ventas-en-cajas', 'CashRegisterController@SalesToCashRegister');
+
+//category
+
+Route::resource('categories', 'CategoryController');
+Route::resource('product_series', 'ProductSerieController');
