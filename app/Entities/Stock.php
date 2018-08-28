@@ -81,7 +81,7 @@ class Stock extends Model
             $query->where('product_groups.id', $field);
         }
     }
-   
+
     public function scopeOrder($query, $field)
     {
         if(trim($field) != "")
