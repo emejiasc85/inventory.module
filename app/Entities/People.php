@@ -85,7 +85,7 @@ class People extends Entity
             $c = 0;
             foreach ($credits as $credit) {
                 $c = $c + $credit->payments->where('payment_method_id', 4)->sum('amount');
-                $payments = $payments + $credit->payments->where('payment_method_id', 6)->sum('amount');
+                $payments = $payments + $credit->payments->whereIn('payment_method_id', [6,7])->sum('amount');
             }
             return $c - $payments;
         }
@@ -134,7 +134,10 @@ class People extends Entity
     public function scopeCredit($query, $value)
     {
         if (trim($value) != "") {
-            return $query->where('partner', $value);
+
+            return  $query->whereHas('orders', function($q){
+                $q->where("credit",  true);
+            });
         }
     }
 
