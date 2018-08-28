@@ -2,13 +2,14 @@
 
 namespace Tests\Feature\People;
 
-use Tests\FeatureTestCase;
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
-class CreatePeopleTest extends FeatureTestCase
+class CreatePeopleTest extends TestCase
 {
+    use RefreshDatabase;
 
-    function test_user_can_create_people()
+    function test_it_create_people()
     {
         //having
         $this->actingAs($this->defaultUser());
@@ -24,11 +25,11 @@ class CreatePeopleTest extends FeatureTestCase
         ];
 
         //when
-        $this->visit(route('people.create'))
-            ->form($fields);
-        $this->press('Guardar');
+
+        $this->from(route('people.create'))
+            ->post(route('people.store'), $fields);
         //then
-        $this->seeInDatabase('people', $fields);
+        $this->assertDatabaseHas('people', $fields);
     }
 
 
@@ -37,13 +38,16 @@ class CreatePeopleTest extends FeatureTestCase
         //having
         $this->actingAs($this->defaultUser());
          //when
-        $this->visit(route('people.create'))
-            ->press('Guardar');
+        $this->post(route('people.store'), []);
         //then
-        $this->seeErrors([
-            'nit'     => 'El campo nit es obligatorio',
-            'name'    => 'El campo nombre es obligatorio',
-            'address' => 'El Campo dirección es obligatorio',
+        $this->assertArrayHasKey([
+            'errors' => [
+                'nit'     => 'El campo nit es obligatorio',
+                'name'    => 'El campo nombre es obligatorio',
+                'address' => 'El Campo dirección es obligatorio',
+            ]
         ]);
+
+
     }
 }
