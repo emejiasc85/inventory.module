@@ -18,5 +18,6 @@ class PaymentMethodTableSeeder extends Seeder
         PaymentMethod::create(['name' => 'Credito']);
         PaymentMethod::create(['name' => 'Gift Card']);
         PaymentMethod::create(['name' => 'Abono a credito']);
+        PaymentMethod::create(['name' => 'Deposito']);
     }
 }
