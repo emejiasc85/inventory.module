@@ -203,7 +203,7 @@ return [
         'due_date'                => 'fecha de vencimiento',
         'deposit'                 => 'deposito bancario',
         'category_id'             => 'categoria',
-        'serie_id'                => 'serie',
+        'product_serie_id'                => 'serie',
         'offer_price'             => 'precio oferta',
         'add_colors'              => 'Agregar Colores'
     ],

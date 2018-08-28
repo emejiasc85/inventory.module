@@ -27,8 +27,6 @@ class CreateProductsController extends Controller
 
     public function store(ProductRequest $request)
     {
-
-
         $name=$request->input('name');
         $val1=substr($name, 0, 1);
         $val2=substr($name,1, 1);
@@ -41,6 +39,8 @@ class CreateProductsController extends Controller
         }
 
         $new->colors()->sync($request->color);
+        $new->full_name = $new->group->name.' '. $new->unit->name.' '. $new->category->name.' '. $new->serie->name.' '.$new->make->name;
+        $new->save();
 
         if ($request->has('make_order')) {
             $order  = $this->addToOrder($request, $new);

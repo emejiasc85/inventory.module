@@ -10,7 +10,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        {!! Field::select('serie_id', $product_series, ['template' => '', 'required']) !!}
+        {!! Field::select('product_serie_id', $product_series, ['template' => '', 'required']) !!}
     </div>
     <div class="col-xs-12 col-md-6">
         {!! Field::select('unit_measure_id', $units, ['template' => '', 'required']) !!}

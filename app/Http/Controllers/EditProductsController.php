@@ -21,6 +21,8 @@ class EditProductsController extends Controller
     	$product->fill($request->all());
         $product->save();
         $product->colors()->sync($request->color);
+        $product->full_name = $product->group->name.' '. $product->unit->name.' '. $product->category->name.' '. $product->serie->name.' '.$product->make->name;
+        $product->save();
 
     	Alert::success('Producto editado correctamente');
     	return redirect()->route('products.index');

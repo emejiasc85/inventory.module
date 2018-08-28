@@ -19,6 +19,8 @@
                     <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="75">
                 @endif
                 <p>{{ $product->name }}</p>
+                <p>{{ $product->group->name }}</p>
+                <p>{{ $product->unit->name }}</p>
                 <p><strong> Q. {{ $product->price }} </strong></p>
                 <p style="background-color: #ccc">ID: {{ $product->id }}</p>
                 <p class="text-center">
