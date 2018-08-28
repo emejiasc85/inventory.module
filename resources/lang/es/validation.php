@@ -154,7 +154,7 @@ return [
         'minimum_stock'           => 'stock Minimo',
         'product_presentation_id' => 'presentación',
         'product_group_id'        => 'grupo',
-        'unit_measure_id'         => 'unidad de medida',
+        'unit_measure_id'         => 'medida',
         'make_id'                 => 'marca',
         'order_type_id'           => 'tipo de orden',
         'provider_id'             => 'proveedor',
@@ -200,7 +200,10 @@ return [
         'voucher'                 => 'No. Documento',
         'baucher'                 => 'No. Documento',
         'make_order'              => 'Crear Pedido',
-        'due_date'                => 'fecha de vencimiento'
+        'due_date'                => 'fecha de vencimiento',
+        'deposit'                 => 'deposito bancario',
+        'category_id'             => 'categoria',
+        'serie_id'                => 'serie'
     ],
 
 
