@@ -14,6 +14,8 @@
                 <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li>
                 <li><a href="{{ route('quotes.index') }}"><i class="fa fa-calendar"></i><span class="text"> Cotizaciones  </span></a></li>
                 <li><a href="{{ route('people.index') }}"><i class="fa fa-users"></i><span class="text"> Personas</span></a></li>
+                <li><a href="{{ route('products.index') }}"><i class="fa fa-barcode"></i><span class="text"> Productos</span></a></li>
+
                 <li>
                     <a href="#"><i class="fa fa-filter"></i><span class="text"> Reportes</span> <span class="indicator"></span></a>
                     <ul>
@@ -29,11 +31,12 @@
                 <li>
                     <a href="#"><i class="fa fa-book"></i><span class="text"> Catalagos</span> <span class="indicator"></span></a>
                     <ul>
-                        <li><a href="{{ route('products.index') }}"><i class="fa fa-barcode"></i><span class="text"> Productos</span></a></li>
-                        <li><a href="{{ route('makes.index') }}"><i class="icon-badge"></i><span class="text"> Marcas</span></a></li>
+                        <li><a href="{{ route('categories.index') }}"><i class="icon-grid"></i><span class="text"> Categorias</span></a></li>
+                        <li><a href="{{ route('product_series.index') }}"><i class="fa fa-bookmark"></i><span class="text"> Series</span></a></li>
                         <li><a href="{{ route('product.groups.index') }}"><i class="icon-grid"></i><span class="text"> Grupos</span></a></li>
                         <li><a href="{{ route('product.presentations.index') }}"><i class="icon-tag"></i><span class="text"> Presentaciones</span></a></li>
-                        <li><a href="{{ route('unit.measures.index') }}"><i class="icon-chemistry"></i><span class="text"> Unidades</span></a></li>
+                        <li><a href="{{ route('makes.index') }}"><i class="icon-badge"></i><span class="text"> Marcas</span></a></li>
+                        <li><a href="{{ route('unit.measures.index') }}"><i class="icon-chemistry"></i><span class="text"> Medidas</span></a></li>
                         {{--
                             <li><a href="{{ route('orders.type.index') }}"><i class="fa fa-tags"></i><span class="text"> Tipos de ordenes</span></a></li>
                             <li><a href="{{ route('warehouses.index') }}"><i class="fa fa-database"></i><span class="text"> Bodegas</span></a></li>
