@@ -5,6 +5,8 @@
             <th>Producto</th>
             <th>Marca</th>
             <th>Grupo</th>
+            <th>Serie</th>
+            <th>Medida</th>
             <th>Presentación</th>
             <th class="text-right">Existencia</th>
             <th class="text-right">Precio Venta</th>
@@ -18,6 +20,8 @@
                 <td><a target="_blank" href="{{ route('products.show', [$stock->id, $stock->slug]) }}">{{ $stock->name }}</a></td>
                 <td>{{ $stock->make}}</td>
                 <td>{{ $stock->product_group}}</td>
+                <td>{{ $stock->serie}}</td>
+                <td>{{ $stock->unit}}</td>
                 <td>{{ $stock->presentation}}</td>
                 <td class="text-right">{{ $stock->stock}}</td>
                 <td class="text-right">{{ $stock->price}}</td>
