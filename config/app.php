@@ -105,7 +105,7 @@ return [
 
     'key' => env('APP_KEY'),
 
-    'cipher' => 'AES-256-CBC',    
+    'cipher' => 'AES-256-CBC',
 
     /*
     |--------------------------------------------------------------------------
@@ -160,6 +160,8 @@ return [
         EmejiasInventory\Providers\RouteServiceProvider::class,
         EmejiasInventory\Providers\ViewServiceProvider::class,
         EmejiasInventory\Providers\ValidatorServiceProvider::class,
+        EmejiasInventory\Providers\MacroServiceProvider::class,
+
 
     ],
 
