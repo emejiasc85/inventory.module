@@ -20,6 +20,13 @@
                     <div class="row">
                         <div class="col-sm-12">
                             @include('products.partials.fields')
+
+                            <div class="col-xs-12 col-md-4">
+                                    {!! Field::text('price',0, ['placeholder' => '0.00']) !!}
+                                </div>
+                                <div class="col-xs-12 col-md-4">
+                                    {!! Field::text('offer_price',0, ['placeholder' => '0.00']) !!}
+                                </div>
                             <div class="col-xs-12">
                                 <div class="row">
                                     <div class="col-xs-12 col-md-6">
@@ -31,12 +38,6 @@
                                         <div class="row">
                                             <div class="col-xs-12 col-md-4">
                                                 {!! Field::text('purchase_price', ['placeholder' => '0.00']) !!}
-                                            </div>
-                                            <div class="col-xs-12 col-md-4">
-                                                {!! Field::text('price',0, ['placeholder' => '0.00']) !!}
-                                            </div>
-                                            <div class="col-xs-12 col-md-4">
-                                                {!! Field::text('offer_price',0, ['placeholder' => '0.00']) !!}
                                             </div>
                                         </div>
                                         <div class="row">
