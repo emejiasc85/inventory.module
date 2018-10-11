@@ -52,7 +52,7 @@ class Product extends Entity
 
     public function serie()
     {
-        return $this->belongsTo(ProductSerie::class, 'product_group_id');
+        return $this->belongsTo(ProductSerie::class, 'product_serie_id');
     }
 
     public function getFullNameAttribute()
