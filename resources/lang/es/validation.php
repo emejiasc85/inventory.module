@@ -205,7 +205,11 @@ return [
         'category_id'             => 'categoria',
         'product_serie_id'                => 'serie',
         'offer_price'             => 'precio oferta',
-        'add_colors'              => 'Agregar Colores'
+        'add_colors'              => 'Agregar Colores',
+        'card_voucher' => 'documento',
+        'check_voucher' => 'documento',
+        'card' => 'tarjeta',
+        'check' => 'cheque'
     ],
 
 

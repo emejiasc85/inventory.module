@@ -26,10 +26,14 @@ window.Vue = require('vue');
  */
 
 window.axios = require('axios');
+let token = document.head.querySelector('meta[name="api-token"]');
+window.toastr = require('toastr');
 
 window.axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
+    /* 'X-CSRF-TOKEN': window.Laravel.csrfToken,
+    'X-Requested-With': 'XMLHttpRequest', */
+    'X-Requested-With': 'XMLHttpRequest',
+    'Authorization': 'Bearer ' + token.content
 };
 
 /**

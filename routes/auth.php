@@ -337,3 +337,9 @@ Route::name('sales-to-cash-registers')->get('ingresar-ventas-en-cajas', 'CashReg
 
 Route::resource('categories', 'CategoryController');
 Route::resource('product_series', 'ProductSerieController');
+
+Route::group(['namespace' => 'Sales', 'prefix' => 'sales'], function() {
+    Route::view('invoice', 'sales.invoice');
+});
+
+Route::view('gift-cards', 'gift_cards');
