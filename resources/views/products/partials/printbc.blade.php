@@ -24,7 +24,7 @@
                 <p style="margin: 0px 0 1px;">{{ $product->name }}</p>
                 <p style="margin: 0px 0 1px;">{{ $product->unit->name }}</p>
                 <p style="margin: 0px 0 1px;"><strong>Normal Q. {{ $product->price }} </strong></p>
-                <p style="background-color: red; background-image: url('/img/paper.gif'); margin: 0px 0 1px;"><strong>Descuento Q. {{ $product->offer_price }} </strong></p>
+                <p class="discount" style="background-color: red; background-image: url('/img/paper.gif'); margin: 0px 0 1px;"><strong>Descuento Q. {{ $product->offer_price }} </strong></p>
                 <p style="margin: 0px 0 1px;">ID: {{ $product->id }}</p>
                 <p style="margin: 0px 0 1px;" class="text-center">
                     <div class="bcTarget text-center">
@@ -44,4 +44,19 @@
         //window.print();
         $(".bcTarget").barcode("{{ $product->barcode }}", "code39", {barWidth:1});
     </script>
+@endsection
+@section('styles')
+    <style>
+    @media print {
+    p.discount {
+        background-color: red !important;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+@media print {
+    .discount th {
+        color: red !important;
+    }
+}</style>
 @endsection
