@@ -15,6 +15,7 @@
             <td style="background-color: white" class="text-center">
 
                 <br>
+                <br>
                 @if ($commerce->logo_path)
                     <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="75">
                 @endif
