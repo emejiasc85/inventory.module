@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'slug', 'username'
+        'name', 'email', 'password', 'role_id', 'slug', 'username', 'api_token'
     ];
 
     /**
@@ -82,4 +82,3 @@ class User extends Authenticatable
         return $this->id == $order->user_id;
     }
 }
-

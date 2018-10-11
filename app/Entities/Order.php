@@ -15,6 +15,7 @@ class Order extends Entity
     	'user_id',
     	'people_id',
     	'total',
+    	'total_offer',
     	'order_type_id',
         'priority',
         'credit',
@@ -22,6 +23,11 @@ class Order extends Entity
     ];
 
     protected $date = ['created_at', 'updated_at'];
+
+    public function gift_cards()
+    {
+        return $this->belongsToMany(GiftCard::class);
+    }
 
     public function bill()
     {
@@ -32,10 +38,10 @@ class Order extends Entity
     {
         $this->attributes['order_type_id'] = $value;
 
-		if($value == 2 && $this->cash_register_id == null ){
+		/* if($value == 2 && $this->cash_register_id == null ){
             $register = CashRegister::where('status', false)->orderBy('id', 'desc')->get()->first()->id;
 			$this->attributes['cash_register_id'] = $register;
-		}
+		} */
 
     }
 
@@ -107,7 +113,17 @@ class Order extends Entity
 
     public function sumTotals()
     {
-        return $this->total = $this->details->sum('total_purchase');
+        $details = $this->details->sum('total_purchase');
+        $gift_cards = $this->gift_cards->sum('value');
+        $this->total = $details + $gift_cards;
+        return $this->total;
+    }
+    public function sumOfferTotals()
+    {
+        $details = $this->details->sum('total_offer_purchase');
+        $gift_cards = $this->gift_cards->sum('value');
+        $this->total_offer = $details + $gift_cards;
+        return $this->total_offer;
     }
 
     public function scopeDate($query, $from, $to)
@@ -193,5 +209,67 @@ class Order extends Entity
                 $q->where("payment_method_id",  $id);
             });
         }
+    }
+
+    /* invoice methods */
+
+    public function addPayment(int $method, float $amount, string $voucher = null)
+    {
+        $payment = $this->payments()->updateOrCreate([
+            'cash_register_id'  => $this->cash_register_id,
+            'order_id'          => $this->id,
+            'payment_method_id' => $method,
+        ],[
+            'amount' => $amount,
+            'voucher' => $voucher
+        ]);
+
+
+        if ($method == 5 &&  $amount > 0) {
+            $card = GiftCard::findOrFail($voucher);
+            $card->current_value = $card->current_value - $amount;
+            $card->save();
+        }
+
+        return $payment;
+    }
+
+    public function addBillNumber()
+    {
+        if(trim(request()->bill_number) != '')
+        {
+            if (Resolution::where('status', true)->first()) {
+
+                $resolution = Resolution::where('status', true)->first();
+
+                request()->validate([
+                    'bill_number' => 'nullable|integer|unique:bills,bill|max:'.$resolution->to
+                ]);
+
+                if ($this->bill) {
+                    $bill                 = Bill::findOrFail($this->bill->id);
+                    $bill->status         = false;
+                    $bill->save();
+
+                    $bill                 = new Bill();
+                    $bill->order_id       = $this->id;
+                    $bill->resolution_id  = $resolution->id;
+                    $bill->bill           = request()->bill_number;
+                    $bill->save();
+                }
+                else {
+                    $bill                 = new Bill();
+                    $bill->order_id       = $this->id;
+                    $bill->resolution_id  = $resolution->id;
+                    $bill->bill           = request()->bill_number;
+                    $bill->save();
+                }
+
+                return $bill;
+            }
+
+        }
+
+        return null;
     }
 }
