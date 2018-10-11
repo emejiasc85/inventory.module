@@ -18,11 +18,12 @@
                 @if ($commerce->logo_path)
                     <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="75">
                 @endif
+                <br>
                 <p>{{ $product->name }}</p>
-                <p>{{ $product->group->name }}</p>
                 <p>{{ $product->unit->name }}</p>
-                <p><strong> Q. {{ $product->price }} </strong></p>
-                <p style="background-color: #ccc">ID: {{ $product->id }}</p>
+                <p style="text-decoration: line-through;"><strong> Q. {{ $product->price }} </strong></p>
+                <p style="background-color: red"><strong> Q. {{ $product->offer_price }} </strong></p>
+                <p>ID: {{ $product->id }}</p>
                 <p class="text-center">
                     <div class="bcTarget text-center">
                         {{ $product->barcode }}
