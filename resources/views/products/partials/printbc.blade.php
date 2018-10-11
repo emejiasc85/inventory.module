@@ -2,8 +2,8 @@
 
 @section('content')
     @php
-        $alto=6;
-        $ancho=6;
+        $alto=3;
+        $ancho=4;
     @endphp
     <table class="table table-bordered text-center">
         <a href="#" class="btn btn-primary hidden-print btn-lg btn-print" title="Imprimir" onclick="window.print()">
