@@ -6,6 +6,13 @@ class Invoice {
         .then(({data}) => then(data));
     }
 
+    static show(element, params, then) {
+        axios.get('/api/invoice/'+element, {
+            params: params
+        })
+        .then(({data}) => then(data));
+    }
+
     static store(data, then, error) {
         axios.post('/api/invoice', data)
             .then(({data}) => then(data))

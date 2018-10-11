@@ -416,10 +416,12 @@ export default {
         }
     },
     created(){
+        this.LoadCommerce();
         if (this.invoice_id == null) {
             this.getCashRegister();
+        }else{
+            this.loadInvoice();
         }
-        this.LoadCommerce();
     },
     computed: {
         nit() {
@@ -434,6 +436,9 @@ export default {
         },
     },
     methods:{
+        loadInvoice(){
+            Invoice.show(this.invoice_id, {}, data => { this.invoice = data.data});
+        },
         revert(){
             let params = {
             };
@@ -450,7 +455,6 @@ export default {
                 window.location.href = '/';
             }, errors => this.errors = errors);
         },
-
         finalInvoice(){
             let params = {
                 bill_number : this.bill_number ? this.bill_number :'',
@@ -471,7 +475,6 @@ export default {
                 this.errors = [];
             }, errors => this.errors = errors);
         },
-
         addGiftCard(){
             let params = {
                 gift_card_id: this.gift_card_id

@@ -103,7 +103,7 @@
                                     <span class="label label-default">No Facturado</span>
                                 @endif
                             </td>
-                            <td><a href="{{ $bill->urlBill }}" class="btn btn-link "> <i class="fa fa-eye text-info"></i> Detalle</a></td>
+                            <td><a href="{{'/sales/invoice/?id='.$bill->id}}" class="btn btn-link "> <i class="fa fa-eye text-info"></i> Detalle</a></td>
                         </tr>
                         @endforeach
                     </table>

@@ -51,9 +51,9 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Invoice $invoice)
     {
-        //
+        return new InvoiceResource($invoice->load('details', 'gift_cards', 'bill'));
     }
 
     /**
