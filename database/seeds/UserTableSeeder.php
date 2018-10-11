@@ -11,20 +11,22 @@ class UserTableSeeder extends Seeder {
      */
     public function run() {
         factory(User::class)->create([
-            'name' => 'administrador',
+            'name'     => 'administrador',
             'username' => 'admin',
-            'email' => 'admin@admin.com',
+            'email'    => 'admin@admin.com',
             'role_id'  => 1
         ]);
-         
-        factory(User::class)->create([
-            'name' => 'Enrique Mejias',
-            'username' => 'emejias',
-            'email' => 'emejiasc85@gmail.com',
-            'role_id'  => 1
-        ]);
-            
 
-         
+        factory(User::class)->create([
+            'name'     => 'Enrique Mejias',
+            'username' => 'emejias',
+            'email'    => 'emejiasc85@gmail.com',
+            'role_id'  => 1
+        ]);
+
+        foreach (User::all() as $user) {
+            $user->api_token = str_random(100);
+            $user->save();
+        }
     }
 }
