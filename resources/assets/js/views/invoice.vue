@@ -417,7 +417,7 @@ export default {
     },
     created(){
         this.LoadCommerce();
-        if (this.invoice_id == null) {
+        if (this.invoice_id == '') {
             this.getCashRegister();
         }else{
             this.loadInvoice();
