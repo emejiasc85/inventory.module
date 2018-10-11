@@ -6,6 +6,7 @@
          <th>Marca</th>
          <th>Descripción</th>
          <th>Grupo</th>
+         <th>Serie</th>
          <th>Presentación</th>
          <th>Unid. Medida</th>
          <th>Acciones</th>
@@ -21,6 +22,7 @@
                  <td>{{ $product->make->name }}</td>
                  <td>{{ $product->description }}</td>
                  <td>{{ $product->group->name }}</td>
+                 <td>{{ $product->serie->name }}</td>
                  <td>{{ $product->presentation->name }}</td>
                  <td>{{ $product->unit->name }}</td>
                  <td>
