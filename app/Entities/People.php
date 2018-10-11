@@ -27,13 +27,16 @@ class People extends Entity
         'partner'
     ];
 
-    protected $dates = ['birthday'];
+    protected $dates = ['birthday', 'created_at', 'updated_at'];
 
+    /* muttators */
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = title_case($value);
         $this->attributes['slug'] = Str::slug($value);
     }
+
+    /* relations */
     public function colors()
     {
         return $this->belongsToMany(Color::class);
@@ -42,6 +45,12 @@ class People extends Entity
     {
         return $this->belongsToMany(Tag::class);
     }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /* accesors */
     public function getEditUrlAttribute()
     {
         return route('people.edit', [$this, $this->slug]);
@@ -62,10 +71,7 @@ class People extends Entity
         return $this->tags()->pluck('tag_id')->toArray();
     }
 
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
+
 
     public function getPurchasesAttribute()
     {
@@ -93,6 +99,8 @@ class People extends Entity
         return 0;
 
     }
+
+
     public function getRestCreditAttribute()
     {
         $credits = $this->orders->where('order_type_id', 2)->where('credit', true);
@@ -111,34 +119,45 @@ class People extends Entity
         return $this->max_credit;
     }
 
-    public function scopeId($query, $value)
+    public function scopeSearch($query)
     {
-        if (trim($value) != "") {
-            return $query->where('id', $value);
-        }
+        return $query->id()
+            ->nit()
+            ->name()
+            ->partner()
+            ->credit();
     }
 
-    public function scopeNit($query, $value)
+    public function scopeId($query)
     {
-        if (trim($value) != "") {
-            return $query->where('nit', $value);
-        }
-    }
-    public function scopePartner($query, $value)
-    {
-        if (trim($value) != "") {
-            return $query->where('partner', $value);
-        }
+        return $query->when(request()->has('id'), function($q) {
+            $q->where('id', request()->id);
+        });
     }
 
-    public function scopeCredit($query, $value)
+    public function scopeNit($query)
     {
-        if (trim($value) != "") {
 
-            return  $query->whereHas('orders', function($q){
+        return $query->when(request()->has('nit'), function($q) {
+            $q->where('nit', request()->nit);
+        });
+    }
+
+    public function scopePartner($query)
+    {
+        return $query->when(request()->has('partner'), function($q) {
+            $q->where('partner', request()->partner);
+        });
+    }
+
+    public function scopeCredit($query)
+    {
+        return $query->when(request()->has('credit'), function($q) {
+            $q->whereHas('orders', function($q){
                 $q->where("credit",  true);
             });
-        }
+        });
+
     }
 
     public function scopeTopCustomers($query, $request)

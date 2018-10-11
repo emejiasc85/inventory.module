@@ -18,9 +18,9 @@
                  <td>{{ $product->name }}</td> {{-- groups --}}
                  <td>{{ $product->stock }}</td>
                  <td>{{ $product->price }}</td>
-                 <td>{{ $product->price }}</td>
+                 <td>{{ $product->offer_price }}</td>
                  <td>
-                    <a href="#" title="agregar" data-id="{{ $product->id }}" data-name="{{ $product->full_name }}" data-price="{{ $product->price }}"  class="btn btn-default  add-product"> <i class="text-success fa fa-shopping-cart"></i></a>
+                    <a href="#" title="agregar" data-id="{{ $product->id }}" data-name="{{ $product->full_name }}" data-offer="{{ $product->offer_price }}" data-price="{{ $product->price }}" v  class="btn btn-default  add-product"> <i class="text-success fa fa-shopping-cart"></i></a>
                 </td>
              </tr>
          @endforeach

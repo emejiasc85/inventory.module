@@ -35,6 +35,9 @@ class CreateUserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, $this->rules);
+        $request->merge([
+            'api_token' => str_random(100)
+        ]);
         $user = User::create($request->all());
         Alert::success('Usuario creado correctamente');
         return redirect('/');

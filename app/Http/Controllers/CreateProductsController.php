@@ -15,6 +15,9 @@ use EmejiasInventory\Entities\People;
 use EmejiasInventory\Entities\Order;
 use EmejiasInventory\Entities\OrderDetail;
 use EmejiasInventory\Entities\Stock;
+use EmejiasInventory\Entities\ProductSerie;
+use EmejiasInventory\Entities\Category;
+use EmejiasInventory\Entities\Make;
 
 class CreateProductsController extends Controller
 {
@@ -27,20 +30,36 @@ class CreateProductsController extends Controller
 
     public function store(ProductRequest $request)
     {
+
+
         $name=$request->input('name');
+        $new = new Product();
+        $new->product_presentation_id  = is_numeric($request->product_presentation_id)? $request->product_presentation_id : ProductPresentation::firstOrCreate(['name' => title_case($request->product_presentation_id)])->id;
+        $new->product_group_id  = is_numeric($request->product_group_id)? $request->product_group_id : ProductGroup::firstOrCreate(['name' => title_case($request->product_group_id)])->id;
+        $new->category_id  = is_numeric($request->category_id)? $request->category_id : Category::firstOrCreate(['name' => title_case($request->category_id)])->id;
+        $new->product_serie_id  = is_numeric($request->product_serie_id)? $request->product_serie_id : ProductSerie::firstOrCreate(['name' => title_case($request->product_serie_id)])->id;
+        $new->unit_measure_id  = is_numeric($request->unit_measure_id)? $request->unit_measure_id : UnitMeasure::firstOrCreate(['name' => title_case($request->unit_measure_id)])->id;
+        $new->make_id  = is_numeric($request->make_id)? $request->make_id : Make::firstOrCreate(['name' => title_case($request->make_id)])->id;
+        $new->name          = $request->name;
+        $new->description   = $request->description;
+        $new->minimum_stock = $request->minimum_stock;
+        $new->minimum_stock = $request->minimum_stock;
+        $new->price         = $request->price;
+        $new->price         = $request->price;
+        $new->offer_price   = $request->offer_price;
+        $new->full_name = $new->group->name.' '. $new->unit->name.' '. $new->category->name.' '. $new->serie->name.' '.$new->make->name;
+        $new->save();
+
         $val1=substr($name, 0, 1);
         $val2=substr($name,1, 1);
         $val3=substr($name, 2, 2);
         $salida=ord($val1).ord($val2).ord($val3);
-        $new = Product::create($request->all());
         if ($request->barcode == '') {
             $new->barcode=$salida.$new->id;
             $new->save();
         }
 
         $new->colors()->sync($request->color);
-        $new->full_name = $new->group->name.' '. $new->unit->name.' '. $new->category->name.' '. $new->serie->name.' '.$new->make->name;
-        $new->save();
 
         if ($request->has('make_order')) {
             $order  = $this->addToOrder($request, $new);

@@ -47,7 +47,7 @@ class BillController extends Controller
         if (empty($data)) {
             $products = [];
         }else{
-            $products = Stock::selectRaw("product_groups.name,  CONCAT(products.full_name,' (', makes.name,')') as full_name, products.id as id , sum(stock) as stock,   products.price, products.slug")
+            $products = Stock::selectRaw("product_groups.name,  CONCAT(products.full_name,' (', makes.name,')') as full_name, products.id as id , sum(stock) as stock,   products.price, products.offer_price, products.slug")
                 ->leftJoin('order_details', 'order_details.id', '=', 'stocks.order_detail_id' )
                 ->leftJoin('products', 'products.id', '=', 'order_details.product_id' )
                 ->leftJoin('makes', 'makes.id', '=', 'products.make_id' )
@@ -56,9 +56,10 @@ class BillController extends Controller
                 ->product($request->name)
                 ->productId($request->id)
                 ->where('status', true)
-                ->groupBy('products.full_name', 'products.id', 'makes.name', 'products.price', 'products.slug', 'product_groups.name')
+                ->groupBy('products.full_name', 'products.id', 'makes.name', 'products.price', 'products.offer_price', 'products.slug', 'product_groups.name')
                 ->get();
         }
+
         $commerce = Commerce::first();
         return view('bills.invoice', compact('order', 'commerce', 'products'));
     }

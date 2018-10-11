@@ -77,6 +77,9 @@
 {!! Html::script('icheck/icheck.js') !!}
 
 <script>
+    $("select").select2({
+        tags: true
+    });
     $('#showMakeOrderButton').click( function (e){
         $('#showMakeOrder').collapse('toggle')
     });
@@ -85,9 +88,9 @@
     });
 
     $('.color').iCheck({
-    checkboxClass: 'icheckbox_flat',
-    radioClass: 'iradio_flat'
-  });
+        checkboxClass: 'icheckbox_flat',
+        radioClass: 'iradio_flat'
+    });
 </script>
 
 @endsection

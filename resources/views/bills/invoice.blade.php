@@ -97,15 +97,18 @@ $(document).ready(function() {
 //on click show modal with hidden form to update status
 $('.add-product').click( function (e) {
     e.preventDefault();
-    var link        = $(this)
-    var value       = link.data('id');
-    var name        = link.data('name');
-    var price       = link.data('price');
-    var input_value = $('#product_id');
-    var input_price = $('#sale_price');
-    var ProductName = $('#addProductName');
+    var link              = $(this)
+    var value             = link.data('id');
+    var name              = link.data('name');
+    var price             = link.data('price');
+    var offer_price       = link.data('offer');
+    var input_value       = $('#product_id');
+    var input_price       = $('#sale_price');
+    var input_offer_price = $('#offer_price');
+    var ProductName       = $('#addProductName');
     input_value.val(value);
     input_price.val(price);
+    input_offer_price.val(offer_price);
     ProductName.html(name);
 
     $('#addProduct').modal('toggle');

@@ -71,4 +71,11 @@ class CashRegister extends Model
             $query->where('user_id', $id);
         }
     }
+
+    public function scopeOpen($query)
+    {
+        return $query->when(request()->has('latest'), function($q) {
+            $q->where('status', false);
+        });
+    }
 }

@@ -16,7 +16,9 @@ class OrderDetail extends Model
     	'due_date',
         'purchase_price',
         'sale_price',
+        'offer_price',
     	'total_purchase',
+        'total_offer_purchase',
     ];
 
     protected $dates = ['created_at', 'updated_at'];

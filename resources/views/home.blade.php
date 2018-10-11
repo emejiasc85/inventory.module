@@ -9,7 +9,7 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
 }
 </style>
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-        <a  href="{{ route('bills.create') }}">
+        <a  href="/sales/invoice">
             <div class="smallstat">
                 <i class="fa fa-shopping-cart primary"></i>
                 <span class="value text-primary">Facturar</span>
@@ -79,22 +79,17 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
         <a  href="{{ route('orders.index') }}">
             <div class="smallstat">
-                <i class="fa fa-truck warning" style="background-color: #95a5a6"></i>
+                <i class="fa fa-truck " style="background-color: #95a5a6"></i>
                 <span class="value" style="color: #95a5a6">Pedidos</span>
             </div><!--/.smallstat-->
         </a>
     </div>
-
-
-
-
-    <!--/.co
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-        <a  href="{{-- route('audit.index') --}}">
-            <div class="smallstat">
-                <i class="fa fa-list-alt danger"></i>
-                <span class="value text-danger">Auditoria</span>
+        <a  href="/gift-cards">
+            <div class="smallstat" >
+                <i class="fa fa-gift " style="background-color: #badc58"></i>
+                <span class="value " style="color: #badc58">Gift Cards</span>
             </div>
         </a>
-    </div><!--/.col-->
+    </div>
 @stop

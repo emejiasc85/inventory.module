@@ -4,6 +4,7 @@ namespace EmejiasInventory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class Commerce extends Model
 {
@@ -43,6 +44,9 @@ class Commerce extends Model
     {
        return storage_path('app/'.$this->logo_path);
     }
+
+    public function getShowStorageUrlAttribute()
+    {
+        return Storage::url('app/'.$this->logo_path);
+    }
 }
-
-

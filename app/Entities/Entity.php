@@ -5,11 +5,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entity extends Model
 {
-	public function scopeName($query, $value)
+	public function scopeName($query)
     {
-        if (trim($value) != '') {
-            return $query->where('name', 'LIKE', "%$value%");
-        }
+        return $query->when(request()->has('name'), function($q) {
+            $q->where('name', 'LIKE', '%'.request()->name.'%');
+        });
     }
 
 }
