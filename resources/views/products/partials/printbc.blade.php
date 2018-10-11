@@ -46,18 +46,9 @@
     </script>
 @endsection
 @section('styles')
-    {{-- <style>
-    @media print {
-        p.discount {
-            color: red !important;
-            -webkit-print-color-adjust: exact;
-        }
+    <style>
+    td{
+        padding: 8px 0px !important;
     }
-
-    @media print {
-        .discount {
-            color: red !important;
-        }
-    }
-</style> --}}
+</style>
 @endsection
