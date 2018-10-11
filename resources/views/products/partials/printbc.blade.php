@@ -24,7 +24,7 @@
                 <p style="margin: 0px 0 1px;">{{ $product->name }}</p>
                 <p style="margin: 0px 0 1px;">{{ $product->unit->name }}</p>
                 <p style="margin: 0px 0 1px;"><strong>Normal Q. {{ $product->price }} </strong></p>
-                <p class="discount" style="background-color: red; background-image: url('/img/paper.gif'); margin: 0px 0 1px;"><strong>Descuento Q. {{ $product->offer_price }} </strong></p>
+                <p class="discount" style="color: red; margin: 0px 0 1px;"><strong>Descuento Q. {{ $product->offer_price }} </strong></p>
                 <p style="margin: 0px 0 1px;">ID: {{ $product->id }}</p>
                 <p style="margin: 0px 0 1px;" class="text-center">
                     <div class="bcTarget text-center">
@@ -48,15 +48,16 @@
 @section('styles')
     <style>
     @media print {
-    p.discount {
-        background-color: red !important;
-        -webkit-print-color-adjust: exact;
+        p.discount {
+            color: red !important;
+            -webkit-print-color-adjust: exact;
+        }
     }
-}
 
-@media print {
-    .discount th {
-        color: red !important;
+    @media print {
+        .discount th {
+            color: red !important;
+        }
     }
-}</style>
+</style>
 @endsection
