@@ -13,11 +13,12 @@
         <tr>
             @for ($j = 0; $j < $ancho; $j++)
             <td style="background-color: white" class="text-center">
-                <br>
+
                 <br>
                 @if ($commerce->logo_path)
                     <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="75">
                 @endif
+                <br>
                 <br>
                 <p style="margin: 0px 0 1px;">{{ $product->name }}</p>
                 <p style="margin: 0px 0 1px;">{{ $product->unit->name }}</p>
