@@ -199,7 +199,7 @@
                     </div>
                 </div>
             </div>
-            <button slot="btnCancel" type="button" @click="show_form_people = false" class="btn btn-link">Cancelar</button>
+            <a href="/" slot="btnCancel" type="button" class="btn btn-link">Cancelar</a>
             <button v-if="people.id != null || (people.name != null && people.address != null)" slot="btnSave" type="button" class="btn btn-success" @click="getPeople">Siguiente</button>
         </modal>
 
@@ -217,6 +217,7 @@
                     </div>
                 </div>
             </div>
+            <a href="/" slot="btnCancel" type="button" class="btn btn-link">Salir</a>
             <button slot="btnSave" type="button" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
         </modal>
         <modal v-if="show_delete_detail"  title="Alerta"  size="modal-sm">
@@ -355,6 +356,10 @@
             <button  slot="btnSave" type="button" class="btn btn-danger" @click="revert">Si, Revertir</button>
         </modal>
         <modal v-if="show_destroy"  title="¿Estas seguro de Eliminar esta venta?"  size="modal-sm">
+            <h4 v-if="errors.on_destroy"  class="text-danger">UPSS!!! Error al intentar Eliminar</h4>
+            <ul>
+                <li v-if="errors.on_destroy" v-for="(error, index) in errors.on_destroy" :key="index">{{ error }}</li>
+            </ul>
             <button slot="btnCancel" type="button" @click="show_destroy = false" class="btn btn-link">Cancelar</button>
             <button  slot="btnSave" type="button" class="btn btn-danger" @click="destroy">Si, Eliminar</button>
         </modal>
@@ -441,15 +446,9 @@ export default {
             }, errors => this.errors = errors);
         },
         destroy(){
-            let params = {
-            };
-                this.show_destroy = false;
-
-            /* Invoice.destroy(this.invoice.id, params, data => {
-                this.$toastr.w("Venta Revertida");
-                this.invoice = data.data;
-                this.errors = [];
-            }, errors => this.errors = errors); */
+            Invoice.destroy(this.invoice.id,{}, data => {
+                window.location.href = '/';
+            }, errors => this.errors = errors);
         },
 
         finalInvoice(){

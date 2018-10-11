@@ -18,8 +18,8 @@ class Invoice {
             .catch(({response}) => error(response.data.errors));
     }
 
-    static destroy(element, then) {
-        axios.delete('/api/invoice/' + element)
+    static destroy(element, data, then) {
+        axios.delete('/api/invoice/' + element, data)
             .then(({data}) => then(data));
     }
 

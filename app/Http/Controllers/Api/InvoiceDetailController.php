@@ -107,7 +107,7 @@ class InvoiceDetailController extends Controller
                 $stock = Stock::findOrFail($item->stock_id);
                 if(!$stock){
                     DB::rollback();
-                    return redirect()->json(['errors' => ['error' =>['error al eliminar']]]);
+                    return redirect()->json(['errors' => ['error' =>['error al eliminar']]], 422);
                 }
                 $stock->stock = $stock->stock + $item->lot;
                 $stock->status = true;
@@ -115,7 +115,7 @@ class InvoiceDetailController extends Controller
             }
             if(!$stock){
                 DB::rollback();
-                return redirect()->json(['errors' => ['error' =>['error al eliminar']]]);
+                return redirect()->json(['errors' => ['error' =>['error al eliminar']]], 422);
             }
 
             $invoice_detail->delete();

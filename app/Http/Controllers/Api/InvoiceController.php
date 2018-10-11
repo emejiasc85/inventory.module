@@ -6,8 +6,12 @@ use Illuminate\Http\Request;
 use EmejiasInventory\Http\Controllers\Controller;
 use EmejiasInventory\Entities\CashRegister;
 use EmejiasInventory\Http\Requests\InvoiceStore;
-use EmejiasInventory\Entities\Order;
+use EmejiasInventory\Entities\Order as Invoice;
 use EmejiasInventory\Http\Resources\InvoiceResource;
+use Illuminate\Support\Facades\DB;
+use EmejiasInventory\Entities\StockHistory;
+use EmejiasInventory\Entities\Stock;
+use EmejiasInventory\Entities\Bill;
 
 class InvoiceController extends Controller
 {
@@ -29,7 +33,7 @@ class InvoiceController extends Controller
      */
     public function store(InvoiceStore $request)
     {
-         $invoice = new Order();
+         $invoice = new Invoice();
          $invoice->order_type_id = 2;
          $invoice->cash_register_id = request()->people_id;
          $invoice->people_id = request()->people_id;
@@ -81,8 +85,33 @@ class InvoiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Invoice $invoice)
     {
-        //
+
+        //pasar esto al modelo
+        DB::beginTransaction();
+            $history = StockHistory::where('order_id', $invoice->id)->get();
+            if(isset($history)){
+                foreach ($history as $item) {
+
+                    //refactoppaurizar esto como se hizo en inbox bill abajo
+                    $stock = Stock::findOrFail($item->stock_id);
+
+                    if(!$stock){
+                        DB::rollback();
+                        return response(['errors' => ['on_destroy' => ['Intente nuevamente, si persiste el problema comuniquese con soporte']]], 422);
+                    }
+                    $stock->stock = $stock->stock + $item->lot;
+                    $stock->status = true;
+                    $stock->save();
+                }
+            }
+
+            $invoice->bill ? $invoice->bill()->update(['status' => false]) : '';
+            $invoice->payments()->delete();
+            $invoice->delete();
+        DB::commit();
+        return response([], 204);
+
     }
 }
