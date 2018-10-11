@@ -10,14 +10,15 @@ class UserTableSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        factory(User::class)->create([
+        User::create([
             'name'     => 'administrador',
             'username' => 'admin',
             'email'    => 'admin@admin.com',
             'role_id'  => 1
         ]);
 
-        factory(User::class)->create([
+
+        User::create([
             'name'     => 'Enrique Mejias',
             'username' => 'emejias',
             'email'    => 'emejiasc85@gmail.com',
