@@ -10,7 +10,7 @@ class StocksController extends Controller
 {
     public function index(Request $request)
     {
-        $stocks = Stock::select('products.id', 'products.name', 'products.slug', 'products.price', 'status')
+        $stocks = Stock::select('products.id', 'products.name', 'products.slug', 'products.price', 'products.offer_price', 'status')
             ->selectRaw('SUM(stocks.stock) as stock, makes.name as make, product_groups.name as product_group, product_presentations.name as presentation')
             ->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
             ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
@@ -27,7 +27,7 @@ class StocksController extends Controller
             ->dueDate($request->from_due, $request->to_due)
             ->stock($request->simbol, $request->stock)
             ->where('status', true)
-            ->groupBy('products.id', 'products.name', 'products.slug', 'products.price', 'stocks.status', 'makes.name', 'product_groups.name', 'product_presentations.name')
+            ->groupBy('products.id', 'products.name', 'products.slug', 'products.price', 'products.offer_price', 'stocks.status', 'makes.name', 'product_groups.name', 'product_presentations.name')
             ->paginate();
         return view('stocks.index', compact('stocks'));
     }
@@ -46,10 +46,10 @@ class StocksController extends Controller
             ->where('status', true)
             ->OrderBy('products.id', 'DESC')
             ->paginate();
-         return view('stocks.byOrder', compact('stocks')); 
+         return view('stocks.byOrder', compact('stocks'));
     }
-    
-    
+
+
     public function download(Request $request)
     {
         $stocks = Stock::select('products.id', 'products.name', 'products.slug', 'products.price', 'status')
@@ -69,12 +69,12 @@ class StocksController extends Controller
             ->where('status', true)
             ->groupBy('products.id', 'products.name', 'products.slug', 'products.price', 'stocks.status', 'makes.name', 'product_groups.name', 'product_presentations.name')
             ->get();
-            
+
         Excel::create('inventario', function($excel) use($stocks) {
             $excel->sheet('Inventario', function($sheet) use($stocks) {
                 $sheet->loadView('stocks.partials.table', compact('stocks'));
             });
-    
+
         })->export('xls');
     }
 
@@ -98,7 +98,7 @@ class StocksController extends Controller
             $excel->sheet('Inventario', function($sheet) use($stocks) {
                 $sheet->loadView('stocks.partials.tableByOrder', compact('stocks'));
             });
-    
+
         })->export('xls');
     }
 }

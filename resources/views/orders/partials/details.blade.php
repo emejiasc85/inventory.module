@@ -62,7 +62,7 @@
                             <li>Si El Precio de Venta es Mayor al Precio Actual el sistema <strong>Actualizará</strong> al nuevo precio </li>
                             <li>Si El Precio de Venta es Menor al Precio Actual el sistema <strong>Mantendrá</strong> el precio </li>
                         </ul>
-                    </div>	
+                    </div>
                 </div>
          <div class="col-lg-4 col-lg-offset-2 col-sm-5 col-sm-offset-2 recap">
             <table class="table table-clear table-striped">

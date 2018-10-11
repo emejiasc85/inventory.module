@@ -8,6 +8,7 @@
             <th>Presentación</th>
             <th class="text-right">Existencia</th>
             <th class="text-right">Precio Venta</th>
+            <th class="text-right">Precio Oferta</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
                 <td>{{ $stock->presentation}}</td>
                 <td class="text-right">{{ $stock->stock}}</td>
                 <td class="text-right">{{ $stock->price}}</td>
+                <td class="text-right">{{ $stock->offer_price}}</td>
             </tr>
         @endforeach
     </tbody>
