@@ -8,6 +8,7 @@ use EmejiasInventory\Entities\CashRegister;
 use EmejiasInventory\Http\Resources\CashRegisterResource;
 use EmejiasInventory\Http\Requests\CashRegisterStore;
 use Illuminate\Support\Carbon;
+use EmejiasInventory\Rules\hasOpenInvoice;
 
 class CashRegisterController extends Controller
 {
@@ -73,6 +74,9 @@ class CashRegisterController extends Controller
     public function update(Request $request, CashRegister $cash_register)
     {
 
+        $this->validate(request(), [
+            'status' => [ new hasOpenInvoice($cash_register->id)]
+        ]);
         request()->merge(['closing_date' => Carbon::now(), 'user_id' =>  auth()->user()->id ]);
         $cash_register->update(request()->only(['status', 'user_id', 'closing_date']));
         $cash_register->load('invoices.people', 'invoices.user', 'user');

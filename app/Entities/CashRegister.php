@@ -26,6 +26,11 @@ class CashRegister extends Model
         return $this->hasMany(Order::class)->where('order_type_id', 2)->with('payments');
     }
 
+    public function open_invoices()
+    {
+        return $this->hasMany(Order::class)->where('order_type_id', 2)->where('status', 'Creado');
+    }
+
     public function payments()
     {
         return $this->hasMany(Payment::class);

@@ -141,9 +141,11 @@
         </div>
     </div>
     <modal v-if="show_close_cash_register"  title="Alerta!!!"  size="modal-sm">
-        <h2>¿Estas seguro de cerrar esta caja?</h2>
+        <h2 v-if="!errors.status">¿Estas seguro de cerrar esta caja?</h2>
+        <h2 v-if="errors.status">No se pudo cerrar</h2>
+        <p v-if="errors.status" class="text-danger">{{ errors.status[0]}}</p>
         <button @click="show_close_cash_register = !show_close_cash_register" slot="btnCancel" type="button" class="btn btn-link">Cancelar</button>
-        <button slot="btnSave" type="button" class="btn btn-danger" @click="closeCashRegister">Si, Cerrar Caja</button>
+        <button v-if="!errors.status" slot="btnSave" type="button" class="btn btn-danger" @click="closeCashRegister">Si, Cerrar Caja</button>
     </modal>
 </div>
 </template>
@@ -157,6 +159,7 @@
                 show_close_cash_register:false,
                 cash_register:{},
                 commerce:{},
+                errors:[]
 
             }
         },
