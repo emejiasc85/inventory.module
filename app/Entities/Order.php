@@ -15,7 +15,8 @@ class Order extends Entity
     	'user_id',
     	'people_id',
     	'total',
-    	'total_offer',
+        'total_offer',
+        'final_total',
     	'order_type_id',
         'priority',
         'credit',
@@ -92,11 +93,11 @@ class Order extends Entity
     {
     	return route('orders.edit', $this);
     }
-    public function scopeId($query, $value)
+    public function scopeId($query)
     {
-        if (trim($value) != null) {
-            return $query->where('id', $value);
-        }
+        return $query->when(request()->has('id'), function($q) {
+            $q->where('id', request()->id);
+        });
     }
     public function scopeStatus($query, $value)
     {
@@ -126,21 +127,29 @@ class Order extends Entity
         return $this->total_offer;
     }
 
-    public function scopeDate($query, $from, $to)
+    public function setFinalTotal()
     {
-
-        if(trim($from) != "" && trim($to) != "")
-        {
-            $from = Carbon::parse($from)->startOfDay();  //2016-09-29 00:00:00.000000
-            $to = Carbon::parse($to)->endOfDay(); //2016-09-29 23:59:59.000000
-            $query->whereBetween('orders.created_at', [$from, $to]);
-        }
+        $details = $this->details->sum('total_offer_purchase');
+        $gift_cards = $this->gift_cards->sum('value');
+        $this->final_total = $details + $gift_cards;
+        return $this->final_total;
     }
-    public function scopeCredit($query, $credit)
+
+    public function scopeDate($query)
     {
-        if ($credit) {
-            $query->where('orders.credit', true);
-        }
+        return $query->when( request()->has('from') && request()->has('to') ,function($q){
+            $from = Carbon::parse(request()->from)->startOfDay();  //2016-09-29 00:00:00.000000
+            $to = Carbon::parse(request()->to)->endOfDay(); //2016-09-29 23:59:59.000000
+            $q->whereBetween('orders.created_at', [$from, $to]);
+        });
+
+    }
+    public function scopeCredit($query)
+    {
+        $query->when(request()->has('credit'), function($q){
+            $q->where('orders.credit', true);
+
+        });
     }
     public function scopeTotal($query, $simbol, $field)
     {
@@ -164,13 +173,12 @@ class Order extends Entity
             return $query->where('users.name', 'LIKE', "%$value%");
         }
     }
-    public function scopePeopleName($query, $value)
+    public function scopePeopleName($query)
     {
-        if (trim($value) != null) {
-            $query->leftJoin('people', 'people.id', '=', 'orders.people_id' )
-                ->where('people.name', 'LIKE', "%$value%");
-            return $query;
-        }
+        return $query->when(request()->has('people_name'), function($q) {
+            $q->Join('people', 'people.id', '=', 'orders.people_id' )
+                ->where('people.name', 'LIKE', '%'.request()->people_name.'%');
+        });
     }
 
     public function scopePeopleId($query, $value)
@@ -209,6 +217,13 @@ class Order extends Entity
                 $q->where("payment_method_id",  $id);
             });
         }
+    }
+
+    public function scopeCashRegisterId($query)
+    {
+        return $query->when(request()->has('cash_register_id'), function($q) {
+            $q->where('cash_register_id', request()->cash_register_id);
+        });
     }
 
     /* invoice methods */

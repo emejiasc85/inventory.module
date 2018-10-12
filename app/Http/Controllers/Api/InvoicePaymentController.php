@@ -21,6 +21,8 @@ class InvoicePaymentController extends Controller
         $invoice->addPayment(5, request()->gift_card, request()->gift_card_code);
         $invoice->addBillNumber();
 
+        //crear prueba para esto
+        $invoice->final_total = request()->card > 0 ? $invoice->total: $invoice->total_offer;
         $invoice->status = 'Ingresado';
         $invoice->save();
         return new InvoiceResource($invoice->load('details', 'gift_cards', 'bill'));

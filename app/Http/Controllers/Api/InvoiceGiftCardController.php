@@ -35,6 +35,7 @@ class InvoiceGiftCardController extends Controller
         $invoice->gift_cards()->attach(request()->gift_card_id);
         $invoice->sumTotals();
         $invoice->sumOfferTotals();
+        $invoice->setFinalTotal();
 
         $invoice->save();
 
@@ -61,6 +62,8 @@ class InvoiceGiftCardController extends Controller
 
         $invoice->sumTotals();
         $invoice->sumOfferTotals();
+        $invoice->setFinalTotal();
+
 
         $invoice->save();
 

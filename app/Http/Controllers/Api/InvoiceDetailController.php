@@ -52,6 +52,7 @@ class InvoiceDetailController extends Controller
             }
             $invoice->sumTotals();
             $invoice->sumOfferTotals();
+            $invoice->setFinalTotal();
             $invoice->save();
         DB::commit();
 
@@ -121,6 +122,7 @@ class InvoiceDetailController extends Controller
             $invoice_detail->delete();
             $invoice->sumTotals();
             $invoice->sumOfferTotals();
+            $invoice->setFinalTotal();
 
             $invoice->save();
         DB::commit();

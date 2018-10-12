@@ -17,12 +17,11 @@
                     <strong>{{ $product->name }}</strong>
                     <small>Editar</small>
                 </div>
-				{!! Form::model($product, ['route' => ['products.update', $product], 'method' => 'PUT', 'class' => 'form-horizontal', ]) !!}
+				{!! Form::model($product, ['route' => ['products.update', $product], 'method' => 'PUT', 'class' => 'form-horizontal' ]) !!}
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-sm-12">
                             @include('products.partials.fields')
-
                             <div class="col-xs-12 col-md-6">
                                 {!! Field::text('price',null, ['placeholder' => '0.00']) !!}
                             </div>

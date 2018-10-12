@@ -20,6 +20,12 @@ class CashRegister extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Order::class)->where('order_type_id', 2)->with('payments');
+    }
+
     public function payments()
     {
         return $this->hasMany(Payment::class);
@@ -29,6 +35,7 @@ class CashRegister extends Model
     {
         return $this->hasMany(Order::class)->where('order_type_id', 2)->with('payments');
     }
+
     public function getCreditsAttribute()
     {
         return $this->orders->where('order_type_id', 2)->where('credit', true);

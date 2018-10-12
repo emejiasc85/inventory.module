@@ -20,9 +20,18 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $invoices = Invoice::query()
+            ->cashRegisterId()
+            //->peopleName()
+            ->id()
+            ->date()
+            ->credit()
+            ->orderBy('created_at', 'DESC')
+            ->with('people', 'user')->orderByDesc('id')->paginateIf();
+
+        return InvoiceResource::collection($invoices);
     }
 
     /**
@@ -35,7 +44,7 @@ class InvoiceController extends Controller
     {
          $invoice = new Invoice();
          $invoice->order_type_id = 2;
-         $invoice->cash_register_id = request()->people_id;
+         $invoice->cash_register_id = request()->cash_register_id;
          $invoice->people_id = request()->people_id;
          $invoice->user_id = auth()->user()->id;
          $invoice->status = 'Creado';

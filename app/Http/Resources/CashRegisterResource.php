@@ -3,6 +3,7 @@
 namespace EmejiasInventory\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class CashRegisterResource extends JsonResource
 {
@@ -15,13 +16,20 @@ class CashRegisterResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'           => $this->id,
-            'initial_cash' => $this->initial_cash,
-            'user_id'      => $this->user,
-            'status'       => $this->status,
-            'baucher'      => $this->baucher,
-            'amount'       => $this->amount,
-            'closing_date' => $this->closing_date
+            'id'              => $this->id,
+            'initial_cash'    => $this->initial_cash,
+            'user_id'         => $this->user,
+            'status'          => $this->status,
+            'baucher'         => $this->baucher,
+            'amount'          => $this->amount,
+            'closing_date'    => $this->closing_date,
+            'invoices'        => InvoiceResource::collection($this->whenLoaded('invoices')),
+            'sales'           => $this->invoices->sum('final_total'),
+            'credit_payments' => $this->payments->whereIn('payment_method_id', [6,7])->sum('amount'),
+            'total_credits'   => $this->payments->where('payment_method_id', 4)->sum('amount'),
+            'total' => $this->invoices->sum('final_total') + $this->payments->where('payment_method_id', 6)->sum('amount'),
+            'created_at' => Carbon::parse($this->created_at)->format('d/m/Y h:m:s A'),
+            'closing_date' => Carbon::parse($this->closing_date)->format('d/m/Y h:m:s A'),
         ];
     }
 }

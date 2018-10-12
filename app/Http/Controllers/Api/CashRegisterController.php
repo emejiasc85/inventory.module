@@ -45,9 +45,10 @@ class CashRegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(CashRegister $cash_register)
     {
-        //
+        $cash_register->load('invoices.people', 'invoices.user', 'user');
+        return new CashRegisterResource($cash_register);
     }
 
     /**
