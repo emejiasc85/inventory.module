@@ -66,37 +66,37 @@
                             <tr>
                                 <td class="center">1</td>
                                 <td class="left">Pagos en Efectivo</td>
-                                <td class="right">Q.{{ cash_register.cash_payments}}</td>
+                                <td class="right">Q. {{ cash_register.cash_payments}}</td>
                             </tr>
                             <tr>
                                 <td class="center">2</td>
                                 <td class="left">Pagos con tarjeta</td>
-                                <td class="right">Q.{{ cash_register.card_payments }}</td>
+                                <td class="right">Q. {{ cash_register.card_payments }}</td>
                             </tr>
                             <tr>
                                 <td class="center">3</td>
                                 <td class="left">Pagos con cheques</td>
-                                <td class="right">Q.{{ cash_register.check_payments }}</td>
+                                <td class="right">Q. {{ cash_register.check_payments }}</td>
                             </tr>
                             <tr>
                                 <td class="center">4</td>
                                 <td class="left">Creditos</td>
-                                <td class="right">Q.{{ cash_register.credit_payments }}</td>
+                                <td class="right">Q. {{ cash_register.credit_payments }}</td>
                             </tr>
                             <tr>
                                 <td class="center">4</td>
-                                <td class="left">GiftCard</td>
-                                <td class="right">Q.{{ cash_register.gift_card_payments }}</td>
+                                <td class="left">Pagos con gift card</td>
+                                <td class="right">Q. {{ cash_register.gift_card_payments }}</td>
                             </tr>
                             <tr>
                                 <td class="center">5</td>
                                 <td class="left">Abonos a creditos</td>
-                                <td class="right">Q.{{ cash_register.credit_abones }}</td>
+                                <td class="right">Q. {{ cash_register.credit_abones }}</td>
                             </tr>
                             <tr>
                                 <td class="center">6</td>
                                 <td class="left">Depositos</td>
-                                <td class="right">Q.{{ cash_register.deposits }}</td>
+                                <td class="right">Q. {{ cash_register.deposits }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -118,15 +118,15 @@
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Saldo Inicial</strong></td>
-                                        <td class="right">Q.{{ cash_register.initial_cash }}</td>
+                                        <td class="right">Q. {{ cash_register.initial_cash }}</td>
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Total</strong></td>
-                                        <td class="right"><strong>Q.{{ cash_register.total}}</strong></td>
+                                        <td class="right"><strong>Q. {{ cash_register.total}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Total Efectivo</strong></td>
-                                        <td class="right"><strong>Q.{{ cash_register.cash_payments }}</strong></td>
+                                        <td class="right"><strong>Q. {{ cash_register.cash_payments }}</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
