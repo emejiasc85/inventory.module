@@ -18,7 +18,7 @@ class CashRegister {
     }
 
     static update(element, data, then, error) {
-        axios.post('/api/cash-register/' + element, data)
+        axios.put('/api/cash-register/' + element, data)
             .then(({data}) => then(data))
             .catch(({response}) => error(response.data.errors));
     }

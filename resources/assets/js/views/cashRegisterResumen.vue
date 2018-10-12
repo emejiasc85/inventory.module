@@ -2,20 +2,18 @@
 <div class="col-xs-12">
     <div class="row">
         <div class="invoice">
-            <!-- <div class="row header visible-print-block">
+            <div class="row header visible-print-block">
                 <div class="col-xs-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            @if ($commerce->logo_path)
-                                <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded pull-right" width="75">
-                            @endif
-                            <p><strong>{{$commerce->name}}</strong></p>
-                            <p>{{$commerce->patent_name}}</p>
-                            <p>{{$commerce->address}}</p>
+                            <img :src="commerce.logo" alt="" class="img-rounded pull-right" width="75">
+                            <p><strong>{{ commerce.name}}</strong></p>
+                            <p>{{ commerce.patent_name}}</p>
+                            <p>{{ commerce.address}}</p>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="row header">
                 <div class="col-xs-1">
                     <div class="panel panel-default">
@@ -61,7 +59,6 @@
                             <tr>
                                 <th class="center">#</th>
                                 <th>Movimiento</th>
-                                <th class="center">Ventas</th>
                                 <th class="right">Total</th>
                             </tr>
                         </thead>
@@ -69,38 +66,37 @@
                             <tr>
                                 <td class="center">1</td>
                                 <td class="left">Pagos en Efectivo</td>
-                                <td class="center"><!-- {{ $register->payments->where('payment_method_id', 1)->count() }} --></td>
-                                <td class="right"><!-- {{ number_format($register->payments->where('payment_method_id', 1)->sum('amount'),2) }} --></td>
+                                <td class="right">{{ cash_register.cash_payments}}</td>
                             </tr>
                             <tr>
                                 <td class="center">2</td>
                                 <td class="left">Pagos con tarjeta</td>
-                                <td class="center"><!-- {{ $register->payments->where('payment_method_id', 2)->count() }} --></td>
-                                <td class="right"><!-- {{ number_format($register->payments->where('payment_method_id', 2)->sum('amount'),2) }} --></td>
+                                <td class="right">{{ cash_register.card_payments }}</td>
                             </tr>
                             <tr>
                                 <td class="center">3</td>
                                 <td class="left">Pagos con cheques</td>
-                                <td class="center"><!-- {{ $register->payments->where('payment_method_id', 3)->count() }} --></td>
-                                <td class="right"><!-- {{ number_format($register->payments->where('payment_method_id', 3)->sum('amount'),2) }} --></td>
+                                <td class="right">{{ cash_register.check_payments }}</td>
                             </tr>
                             <tr>
                                 <td class="center">4</td>
                                 <td class="left">Creditos</td>
-                                <td class="center"><!-- {{ $register->payments->where('payment_method_id', 4)->count() }} --></td>
-                                <td class="right"><!-- {{ number_format($register->payments->where('payment_method_id', 4)->sum('amount'),2) }} --></td>
+                                <td class="right">{{ cash_register.credit_payments }}</td>
+                            </tr>
+                            <tr>
+                                <td class="center">4</td>
+                                <td class="left">GiftCard</td>
+                                <td class="right">{{ cash_register.gift_card_payments }}</td>
                             </tr>
                             <tr>
                                 <td class="center">5</td>
                                 <td class="left">Abonos a creditos</td>
-                                <td class="center">N/A</td>
-                                <td class="right"><!-- {{ number_format($register->payments->where('payment_method_id', 6)->sum('amount'),2) }} --></td>
+                                <td class="right">{{ cash_register.credit_abones }}</td>
                             </tr>
                             <tr>
                                 <td class="center">6</td>
                                 <td class="left">Depositos</td>
-                                <td class="center">N/A</td>
-                                <td class="right"><!-- {{ number_format($register->payments->where('payment_method_id', 7)->sum('amount'),2) }} --></td>
+                                <td class="right">{{ cash_register.deposits }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -113,29 +109,29 @@
                             </div> -->
                         </div>
 
-                        <div class="col-lg-4 col-lg-offset-4 col-sm-5 col-sm-offset-2 recap">
+                        <div class="col-lg-3 col-lg-offset-5 col-sm-5 col-sm-offset-2 recap">
                             <table class="table table-clear">
                                 <tbody>
                                     <tr>
                                         <td class="left"><strong>Subtotal</strong></td>
-                                        <td class="right">Q.<!-- {{number_format($register->payments->whereIn('payment_method_id', [1,2,3,4,5,6,7])->sum('amount'),2)}} --></td>
+                                        <td class="right">Q. {{ cash_register.sub_total }}</td>
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Saldo Inicial</strong></td>
-                                        <td class="right">Q.<!-- {{ $register->initial_cash }} --></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="left"><strong>Creditos <i class="text-danger">(-)</i></strong></td>
-                                        <td class="right text-danger">Q.<!-- {{ number_format($register->payments->where('payment_method_id', 4)->sum('amount'),2)}} --></td>
+                                        <td class="right">Q.{{ cash_register.initial_cash }}</td>
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Total</strong></td>
-                                        <td class="right"><strong>Q.<!-- {{ number_format($register->payments->whereIn('payment_method_id', [1,2,3,5,6])->sum('amount'),2)}} --></strong></td>
+                                        <td class="right"><strong>Q.{{ cash_register.total}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="left"><strong>Total Efectivo</strong></td>
+                                        <td class="right"><strong>Q.{{ cash_register.cash_payments }}</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <a href="#" class="hidden-print btn btn-info" onclick="javascript:window.print();"><i class="  fa fa-print"></i> Imprimir</a>
-                            <button type="button" @click="showDetails" class="hidden-print btn btn-success"> Detalles</button>
+                            <button type="button" @click="showDetails" class="hidden-print btn btn-default"> Salir</button>
                         </div>
 
                     </div>
@@ -152,17 +148,24 @@
 </div>
 </template>
 <script>
+    import Commerce from '../models/Commerce';
     import CashRegister from '../models/CashRegister';
     export default {
         props:['cash_register_id'],
         data(){
             return {
                 show_close_cash_register:false,
-                cash_register:{}
+                cash_register:{},
+                commerce:{},
+
             }
         },
         created(){
+            this.LoadCommerce();
             this.loadCashRegister();
+        },
+        computed: {
+
         },
         methods:{
 
@@ -179,7 +182,17 @@
                     cash_register_id: this.cash_register_id,
                     status :1
                 };
-            }
+
+                CashRegister.update(this.cash_register_id, params, data => {
+                    this.show_close_cash_register = false;
+                    this.loadCashRegister();
+                    this.errors = {};
+                    this.$toastr.s("Caja cerrada");
+                }, errors => this.errors = errors);
+            },
+            LoadCommerce(){
+                Commerce.show(1,{}, data => { this.commerce = data.data});
+            },
         }
     }
 </script>

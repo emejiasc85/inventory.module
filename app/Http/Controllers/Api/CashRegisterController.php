@@ -7,6 +7,7 @@ use EmejiasInventory\Http\Controllers\Controller;
 use EmejiasInventory\Entities\CashRegister;
 use EmejiasInventory\Http\Resources\CashRegisterResource;
 use EmejiasInventory\Http\Requests\CashRegisterStore;
+use Illuminate\Support\Carbon;
 
 class CashRegisterController extends Controller
 {
@@ -69,9 +70,13 @@ class CashRegisterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, CashRegister $cash_register)
     {
-        //
+
+        request()->merge(['closing_date' => Carbon::now(), 'user_id' =>  auth()->user()->id ]);
+        $cash_register->update(request()->only(['status', 'user_id', 'closing_date']));
+        $cash_register->load('invoices.people', 'invoices.user', 'user');
+        return new CashRegisterResource($cash_register);
     }
 
     /**

@@ -25,7 +25,7 @@ class CommerceResource extends JsonResource
             'nit'         => $this->nit,
             'tax'         => $this->tax,
             'profit'      => $this->profit,
-            'logo'        => url($this->id.'/logo')
+            'logo'        => route('commerces.logo', $this)
         ];
     }
 }
