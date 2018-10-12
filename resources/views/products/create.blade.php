@@ -22,9 +22,9 @@
                             @include('products.partials.fields')
                             <div class="col-xs-12">
                                 <div class="row">
-                                    {!! Field::checkbox('make_order', true, true, [ 'id' => 'showMakeOrderButton'])!!}
+                                    {!! Field::checkbox('make_order', true, false, [ 'id' => 'showMakeOrderButton'])!!}
                                 </div>
-                                <div class="" id="showMakeOrder">
+                                <div class="collapse" id="showMakeOrder">
                                     <div class="well">
                                         <div class="row">
                                             <div class="col-xs-12 col-md-4">
@@ -52,6 +52,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                     <!--/.row-->
                 </div>
@@ -79,7 +80,6 @@
         tags: true
     });
     $('#showMakeOrderButton').click( function (e){
-        alert('hola');
         $('#showMakeOrder').collapse('toggle')
     });
     $('#showAddColors').click( function (e){
