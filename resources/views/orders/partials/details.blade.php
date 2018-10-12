@@ -95,7 +95,7 @@
             </table>
             @if ($order->status == 'Creado' || $order->status == 'Solicitado')
                 @if ($order->details->count()>0)
-                    <button type="submit" class="btn btn-default btn-block"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="submit" class="btn btn-success btn-block"><i class="fa fa-save"></i> Guardar</button>
                 @endif
             @endif
         </div>
