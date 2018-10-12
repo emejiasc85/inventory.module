@@ -340,7 +340,7 @@ Route::resource('product_series', 'ProductSerieController');
 
 Route::group(['namespace' => 'Sales', 'prefix' => 'sales'], function() {
     Route::view('invoice', 'sales.invoice');
-    Route::view('cash_register', 'sales.cash_register');
+    Route::view('cash-register', 'sales.cash_register');
 });
 
 Route::view('gift-cards', 'gift_cards');
