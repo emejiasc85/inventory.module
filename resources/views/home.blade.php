@@ -17,7 +17,7 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
         </a>
     </div><!--/.col-->
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-        <a  href="/sales/cash_register">
+        <a  href="/sales/cash-register">
             <div class="smallstat">
                 <i class="fa fa-inbox info"></i>
                 <span class="value text-info">Caja</span>
