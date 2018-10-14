@@ -32,7 +32,7 @@ class ProductRequest extends FormRequest
             'category_id'             => 'required|exists:categories,id',
             'product_group_id'        => 'required|exists:product_groups,id',
             'unit_measure_id'         => 'required|exists:unit_measures,id',
-            'make_id'                 => 'required|exists;makes,id',
+            'make_id'                 => 'required|exists:makes,id',
             'barcode'                 => 'nullable|unique:products,barcode',
             'price'                   => 'nullable|numeric|min:0|required_if:make_order,1',
             'offer_price'             => 'nullable|numeric|min:0|required_if:make_order,1',
