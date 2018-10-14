@@ -24,6 +24,16 @@ class EditProductsController extends Controller
         $product->full_name = $product->group->name.' '. $product->unit->name.' '. $product->category->name.' '. $product->serie->name.' '.$product->make->name;
         $product->save();
 
+        $name=$request->name;
+        $val1=substr($name, 0, 1);
+        $val2=substr($name,1, 1);
+        $val3=substr($name, 2, 2);
+        $salida=ord($val1).ord($val2).ord($val3);
+        if ($request->barcode == '') {
+            $product->barcode=$salida.$product->id;
+            $product->save();
+        }
+
     	Alert::success('Producto editado correctamente');
     	return redirect()->route('products.index');
     }
