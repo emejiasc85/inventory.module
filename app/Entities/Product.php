@@ -47,7 +47,7 @@ class Product extends Entity
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'product_group_id');
+        return $this->belongsTo(Category::class, 'product_category_id');
     }
 
     public function serie()

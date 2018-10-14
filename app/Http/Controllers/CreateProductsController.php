@@ -34,12 +34,12 @@ class CreateProductsController extends Controller
 
         $name=$request->input('name');
         $new = new Product();
-        $new->product_presentation_id  = is_numeric($request->product_presentation_id)? $request->product_presentation_id : ProductPresentation::firstOrCreate(['name' => title_case($request->product_presentation_id)])->id;
-        $new->product_group_id  = is_numeric($request->product_group_id)? $request->product_group_id : ProductGroup::firstOrCreate(['name' => title_case($request->product_group_id)])->id;
-        $new->category_id  = is_numeric($request->category_id)? $request->category_id : Category::firstOrCreate(['name' => title_case($request->category_id)])->id;
-        $new->product_serie_id  = is_numeric($request->product_serie_id)? $request->product_serie_id : ProductSerie::firstOrCreate(['name' => title_case($request->product_serie_id)])->id;
-        $new->unit_measure_id  = is_numeric($request->unit_measure_id)? $request->unit_measure_id : UnitMeasure::firstOrCreate(['name' => title_case($request->unit_measure_id)])->id;
-        $new->make_id  = is_numeric($request->make_id)? $request->make_id : Make::firstOrCreate(['name' => title_case($request->make_id)])->id;
+        $new->product_presentation_id  = $request->product_presentation_id;
+        $new->product_group_id  = $request->product_group_id;
+        $new->category_id  = $request->category_id;
+        $new->product_serie_id  = $request->product_serie_id;
+        $new->unit_measure_id  = $request->unit_measure_id;
+        $new->make_id  = $request->make_id;
         $new->name          = $request->name;
         $new->description   = $request->description;
         $new->minimum_stock = $request->minimum_stock;
