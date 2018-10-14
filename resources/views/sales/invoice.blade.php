@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('breadcrumb')
-    <li class="breadcrumb-item"><a href="/">Caja</a></li>
+    <li class="breadcrumb-item"><a href="/sales/cash-register">Caja</a></li>
     <li class="breadcrumb-item">Venta</li>
 @stop
 

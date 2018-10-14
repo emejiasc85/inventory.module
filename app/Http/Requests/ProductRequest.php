@@ -34,8 +34,11 @@ class ProductRequest extends FormRequest
             'unit_measure_id'         => 'required',
             'make_id'                 => 'required',
             'barcode'                 => 'nullable|unique:products,barcode',
-            'price'                   => 'nullable|numeric|min:0',
-            'offer_price'             => 'nullable|numeric|min:0'
+            'price'                   => 'nullable|numeric|min:0|required_if:make_order,1',
+            'offer_price'             => 'nullable|numeric|min:0|required_if:make_order,1',
+            'purchase_price' => 'required_if:make_order,1',
+            'lot' => 'required_if:make_order,1',
+            'people_id' => 'required_if:make_order,1'
         ];
     }
 }

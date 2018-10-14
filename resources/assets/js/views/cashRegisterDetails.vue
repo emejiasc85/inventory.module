@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xxs-12">
+        <div v-if="cash_register.status != 1" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xxs-12">
             <a  href="/sales/invoice">
                 <div class="smallstat">
                     <i class="fa fa-shopping-cart primary"></i>

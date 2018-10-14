@@ -30,19 +30,22 @@
 
     export default {
         components: {CashRegisterDetails, CashRegisterResumen},
-
+        props:['cash_register_id'],
         data() {
             return  {
                 create_cash_register :false,
                 show_details:false,
                 show_resumen: false,
                 cash_register: {},
-                cash_register_id: '',
                 errors:[]
             }
         },
         created(){
-            this.loadCashRegisters();
+            if (this.cash_register_id != '' ) {
+                this.details(this.cash_register_id);
+            }else{
+                this.loadCashRegisters();
+            }
         },
         methods: {
             loadCashRegisters(){

@@ -22,9 +22,9 @@
                             @include('products.partials.fields')
                             <div class="col-xs-12">
                                 <div class="row">
-                                    {!! Field::checkbox('make_order', true, false, [ 'id' => 'showMakeOrderButton'])!!}
+                                    {!! Field::checkbox('make_order', true, true, [ 'id' => 'showMakeOrderButton'])!!}
                                 </div>
-                                <div class="collapse" id="showMakeOrder">
+                                <div class="collapse in" id="showMakeOrder">
                                     <div class="well">
                                         <div class="row">
                                             <div class="col-xs-12 col-md-4">

@@ -8,7 +8,7 @@
         <div class="sidebar-menu">
             <ul class="nav nav-sidebar">
                 <li><a href="/sales/cash-register"><i class="fa fa-inbox"></i><span class="text"> Caja</span></a></li>
-                <li><a href="{{ route('cash.registers.index') }}"><i class="fa fa-bar-chart-o"></i><span class="text"> Ventas</span></a></li>
+                <li><a href="/sales/report-cash-registers"><i class="fa fa-bar-chart-o"></i><span class="text"> Ventas</span></a></li>
                 <li><a href="{{ route('stocks.index') }}"><i class="fa fa-cubes"></i><span class="text"> Existencias</span></a></li>
                 <li><a href="{{ route('orders.index') }}"><i class="fa fa-truck"></i><span class="text"> Pedidos</span></a></li>
                 <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li>

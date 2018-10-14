@@ -19,7 +19,11 @@ class CashRegisterController extends Controller
      */
     public function index(Request $request)
     {
-        $cash_registers = CashRegister::open()->orderByDesc('id')->paginateIf();
+        $cash_registers = CashRegister::open()
+            ->id()
+            ->date()
+            ->orderByDesc('id')
+            ->paginateIf();
         return CashRegisterResource::collection($cash_registers);
     }
 

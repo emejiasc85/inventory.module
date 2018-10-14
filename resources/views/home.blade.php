@@ -53,7 +53,7 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
         </a>
     </div>
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-            <a  href="{{ route('cash.registers.index') }}">
+            <a  href="/sales/report-cash-registers">
                 <div class="smallstat">
                     <i class="fa fa-bar-chart-o success" style="background-color:#7f8c8d"></i>
                     <span class="value text-success" style="color:#7f8c8d">Ventas</span>

@@ -14,7 +14,8 @@ require('./bootstrap');
  */
 
 Vue.component('modal', require('./components/Modal.vue'));
-Vue.component('cash_register', require('./views/cashRegister.vue'));
+Vue.component('report-cash-registers', require('./views/reportCashRegisters.vue'));
+Vue.component('cash-register', require('./views/cashRegister.vue'));
 Vue.component('invoice', require('./views/invoice.vue'));
 Vue.component('gift-cards', require('./views/giftCards.vue'));
 

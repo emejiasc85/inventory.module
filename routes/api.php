@@ -25,7 +25,9 @@ Route::middleware('auth:api')->group(function() {
     Route::resource('stock', 'StockController');
     Route::put('invoices/{invoice}/payments', 'InvoicePaymentController@update');
     Route::put('invoices/{invoice}/reverts', 'InvoiceRevertController@update');
+
 });
+
 
 /* Route::middleware('auth:api')->get('/user', function (Request $request) {
     //return $request->user();

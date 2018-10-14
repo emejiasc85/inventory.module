@@ -56,23 +56,19 @@ class CashRegister extends Model
         return route('cash.registers.resume', $this->id);
     }
 
-    public function scopeDate($query, $from, $to)
+    public function scopeDate($query)
     {
-
-        if(trim($from) != "" && trim($to) != "")
-        {
-            $from = Carbon::parse($from)->startOfDay();  //2016-09-29 00:00:00.000000
-            $to = Carbon::parse($to)->endOfDay(); //2016-09-29 23:59:59.000000
+        if (trim(request()->from) != '' && trim(request()->from) != '') {
+            $from = Carbon::parse(request()->from)->startOfDay();  //2016-09-29 00:00:00.000000
+            $to = Carbon::parse(request()->to)->endOfDay(); //2016-09-29 23:59:59.000000
             $query->whereBetween('created_at', [$from, $to]);
         }
     }
 
-    public function scopeId($query, $id)
+    public function scopeId($query)
     {
-
-        if(trim($id) != '')
-        {
-            $query->where('id', $id);
+        if (trim(request()->id) != '') {
+            return $query->where('id', request()->id);
         }
     }
     public function scopeUser($query, $id)

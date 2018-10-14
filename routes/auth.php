@@ -339,8 +339,13 @@ Route::resource('categories', 'CategoryController');
 Route::resource('product_series', 'ProductSerieController');
 
 Route::group(['namespace' => 'Sales', 'prefix' => 'sales'], function() {
+    Route::view('report-cash-registers', 'sales.report_cash_registers');
     Route::view('invoice', 'sales.invoice');
     Route::view('cash-register', 'sales.cash_register');
+});
+
+Route::group(['namespace' => 'Export', 'prefix' => 'export'], function() {
+    Route::get('cash_registers/resumen/exports', 'CashRegisterExportController@index');
 });
 
 Route::view('gift-cards', 'gift_cards');
