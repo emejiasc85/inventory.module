@@ -47,6 +47,7 @@ class CreateProductsController extends Controller
         $new->price         = $request->price;
         $new->price         = $request->price;
         $new->offer_price   = $request->offer_price;
+        $new->save();
         $new->full_name = $new->group->name.' '. $new->unit->name.' '. $new->category->name.' '. $new->serie->name.' '.$new->make->name;
         $new->save();
 
