@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'description'             => 'nullable',
             'minimum_stock'           => 'numeric',
             'product_presentation_id' => 'required',
-            'product_serie_id'        => 'required',
+            'product_serie_id'        => 'required|exists:product_series,id',
             'category_id'             => 'required',
             'product_group_id'        => 'required',
             'unit_measure_id'         => 'required',
