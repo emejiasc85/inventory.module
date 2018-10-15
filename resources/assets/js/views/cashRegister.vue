@@ -84,17 +84,6 @@
                 this.show_resumen = false;
                 this.cash_register_id = cash_register_id;
             }
-            /* startProspect(prospect) {
-                this.prospect_id = prospect;
-                this.supplementary_data = false;
-                this.show_prospect = true;
-
-            },
-            supplementaryData(prospect) {
-                this.prospect_id = prospect;
-                this.show_prospect = false;
-                this.supplementary_data = true;
-            }, */
         }
     }
 </script>

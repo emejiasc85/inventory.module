@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->group(function() {
+    Route::resource('makes', 'MakeController');
+    Route::resource('products', 'ProductController');
     Route::resource('commerces', 'CommerceController');
     Route::resource('people', 'PeopleController');
     Route::resource('invoice', 'InvoiceController');

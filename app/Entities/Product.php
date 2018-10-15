@@ -120,18 +120,16 @@ class Product extends Entity
             return $query->where('make_id', $value);
         }
     }
-
-
-    public function scopeBarcode($query, $value)
+    public function scopeBarcode($query)
     {
-        if (trim($value) != '') {
-            return $query->where('barcode', $value);
-        }
+        return $query->when(request()->has('barcode'), function($q){
+            $q->where('barcode', request()->barcode);
+        });
     }
-    public function scopeId($query, $value)
+    public function scopeId($query)
     {
-        if (trim($value) != '') {
-            return $query->where('id', $value);
+        if (trim(request()->id) != '') {
+            return $query->where('id', request()->id);
         }
     }
 }

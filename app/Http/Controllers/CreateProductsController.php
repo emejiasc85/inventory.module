@@ -51,12 +51,13 @@ class CreateProductsController extends Controller
         $new->full_name = $new->group->name.' '. $new->unit->name.' '. $new->category->name.' '. $new->serie->name.' '.$new->make->name;
         $new->save();
 
-        $val1=substr($name, 0, 1);
+       /*  $val1=substr($name, 0, 1);
         $val2=substr($name,1, 1);
         $val3=substr($name, 2, 2);
-        $salida=ord($val1).ord($val2).ord($val3);
+        $salida=ord($val1).ord($val2).ord($val3); */
         if ($request->barcode == '') {
-            $new->barcode=$salida.$new->id;
+            //$new->barcode=$salida.$new->id;
+             $new->barcode= $this->generateBarcodeNumber($new->id);;
             $new->save();
         }
 
@@ -73,6 +74,27 @@ class CreateProductsController extends Controller
 
     	return redirect()->route('products.index');
     }
+
+
+    function generateBarcodeNumber(int $id) {
+        $id = sprintf('%04d', $id);
+        $number = mt_rand(100000, 999999).$id; // better than rand()
+
+        // call the same function if the barcode exists already
+        if ($this->barcodeNumberExists($number)) {
+            return $this->generateBarcodeNumber();
+        }
+
+        // otherwise, it's valid and can be used
+        return $number;
+    }
+
+    function barcodeNumberExists($number) {
+        // query the database and return a boolean
+        // for instance, it might look like this in Laravel
+        return Product::whereBarcode($number)->exists();
+    }
+
 
     public function addToOrder(Request $request, Product $product)
     {

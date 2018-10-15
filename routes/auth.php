@@ -349,3 +349,4 @@ Route::group(['namespace' => 'Export', 'prefix' => 'export'], function() {
 });
 
 Route::view('gift-cards', 'gift_cards');
+Route::view('products', 'products');
