@@ -225,11 +225,11 @@ class Order extends Entity
 
     public function addPayment(int $method, float $amount, string $voucher = null)
     {
-        $payment = $this->payments()->updateOrCreate([
+        $this->payments()->delete();
+        $payment = $this->payments()->create([
             'cash_register_id'  => $this->cash_register_id,
             'order_id'          => $this->id,
             'payment_method_id' => $method,
-        ],[
             'amount' => $amount,
             'voucher' => $voucher
         ]);
