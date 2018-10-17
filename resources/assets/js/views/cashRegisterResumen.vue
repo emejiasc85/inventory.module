@@ -81,7 +81,7 @@
                             <tr>
                                 <td class="center">4</td>
                                 <td class="left">Creditos</td>
-                                <td class="right">Q. {{ cash_register.credit_payments }}</td>
+                                <td class="right">Q. {{ cash_register.total_credits }}</td>
                             </tr>
                             <tr>
                                 <td class="center">4</td>

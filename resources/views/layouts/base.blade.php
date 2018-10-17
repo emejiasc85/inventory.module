@@ -85,7 +85,6 @@
         {!! Html::script('js/core.min.js') !!}
         {!! Html::script('plugins/jquery-cookie/jquery.cookie.min.js') !!}
         {!! Html::script('js/demo.min.js') !!}
-        {!! Html::script('plugins/select2/js/select2.min.js') !!}
         <!-- end: JavaScript-->
         <script>
             /****
@@ -119,7 +118,6 @@
                 });
             }, 4000);
 
-            $('select').select2();
 
         </script>
 
