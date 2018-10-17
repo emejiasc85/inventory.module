@@ -27,9 +27,10 @@ class ProductResource extends JsonResource
             'minimum_stock' => $this->minimum_stock,
             'unit' => new UnitResource($this->unit),
             'group' => new GroupResource($this->group),
-            'serie' => new SerieResource($this->group),
+            'serie' => new SerieResource($this->serie),
             'presentation' => new PresentationResource($this->presentation) ,
             'minimum_stock' => $this->minimum_stock,
+            'colors' =>  $this->colors->pluck('id')->toArray()
         ];
     }
 }

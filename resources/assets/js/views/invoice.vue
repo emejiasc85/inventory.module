@@ -76,12 +76,12 @@
             <div class="col-xs-12 col-sm-5" :class="{'col-sm-offset-3': invoice.status == 'Finalizado' && invoice.credit == null }">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <div v-if="people.max_credit == 0">
+                        <div v-if="people.max_credit > 0">
                             Credito:
                             <span v-if="people.rest_credit == 0 " class="text-danger">Q. {{ people.rest_credit}}</span>
                             <span v-if="people.rest_credit > 0" class="text-success">Q. {{ people.rest_credit}}</span>
                         </div>
-                        <a  @click="show_destroy = true" href="#" title="Cancelar"  class="btn btn-link btn-sm pull-right hidden-print" style="margin-top: 2px"><span class="fa fa-2x fa-trash-o text-danger"></span></a>
+                        <a v-if="invoice.status != 'Ingresado'" @click="show_destroy = true" href="#" title="Cancelar"  class="btn btn-link btn-sm pull-right hidden-print" style="margin-top: 2px"><span class="fa fa-2x fa-trash-o text-danger"></span></a>
                         <a v-if="invoice.status == 'Ingresado'" href="#" title="Revertir" @click="show_revert = true"  class="btn btn-link btn-sm pull-right hidden-print" style="margin-top: 2px"><span class="fa fa-2x fa-undo text-success"></span></a>
                     </div>
                         <div class="panel-body">
@@ -321,7 +321,7 @@
                             <p class="text-danger" v-if="errors.credit">{{errors.credit[0]}}</p>
                         </th>
                         <td>
-                            <input :readonly="!people.max_credit == 0" type="text" class="form-control input-sm text-right" v-model="payment_method.credit" placeholder="0">
+                            <input :readonly="people.rest_credit == 0" type="text" class="form-control input-sm text-right" v-model="payment_method.credit" placeholder="0">
                         </td>
                         <td></td>
                     </tr>

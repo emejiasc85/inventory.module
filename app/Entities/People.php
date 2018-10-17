@@ -71,8 +71,6 @@ class People extends Entity
         return $this->tags()->pluck('tag_id')->toArray();
     }
 
-
-
     public function getPurchasesAttribute()
     {
         return $this->orders->where('order_type_id', 2)->where('status', 'Ingresado')->where('credit', false);
@@ -100,7 +98,6 @@ class People extends Entity
 
     }
 
-
     public function getRestCreditAttribute()
     {
         $credits = $this->orders->where('order_type_id', 2)->where('credit', true);
@@ -122,10 +119,18 @@ class People extends Entity
     public function scopeSearch($query)
     {
         return $query->id()
+            ->type()
             ->nit()
             ->name()
             ->partner()
             ->credit();
+    }
+
+    public function scopeType($query)
+    {
+        return $query->when(request()->has('type'), function($q) {
+            $q->where('type', request()->type);
+        });
     }
 
     public function scopeId($query)

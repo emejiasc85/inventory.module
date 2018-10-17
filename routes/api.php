@@ -15,7 +15,14 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->group(function() {
     Route::resource('makes', 'MakeController');
+    Route::resource('colors', 'ColorController');
+    Route::resource('groups', 'GroupController');
+    Route::resource('series', 'SerieController');
+    Route::resource('presentations', 'PresentationController');
+    Route::resource('categories', 'CategoryController');
+    Route::resource('unit_measures', 'UnitMeasureController');
     Route::resource('products', 'ProductController');
+    Route::post('products/{product}/quick-orders', 'ProductQuickOrderController@store');
     Route::resource('commerces', 'CommerceController');
     Route::resource('people', 'PeopleController');
     Route::resource('invoice', 'InvoiceController');

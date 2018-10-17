@@ -35,7 +35,7 @@
                         @endif
                     </td>
                     <td>{{$detail->product->id}}</td>
-                    <td><a href="{{ $detail->product->url }}">{{ $detail->product->name}} (medida: {{$detail->product->unit->name }}/serie: {{ $detail->product->serie->name }})</a></td>
+                    <td><a href="{{'/products/?id='.$detail->product->id }}">{{ $detail->product->name}} (medida: {{$detail->product->unit->name }}/serie: {{ $detail->product->serie->name }})</a></td>
                      @if ($order->status == 'Ingresado' || $order->status == 'Cancelado')
                         <td>{{ $detail->lot }}</td>
                         <td>Q. {{ $detail->purchase_price }}</td>

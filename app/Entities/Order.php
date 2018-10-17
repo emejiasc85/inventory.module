@@ -38,12 +38,6 @@ class Order extends Entity
 	public function setOrderTypeIdAttribute($value)
     {
         $this->attributes['order_type_id'] = $value;
-
-		/* if($value == 2 && $this->cash_register_id == null ){
-            $register = CashRegister::where('status', false)->orderBy('id', 'desc')->get()->first()->id;
-			$this->attributes['cash_register_id'] = $register;
-		} */
-
     }
 
     public function cash_register()
@@ -76,6 +70,7 @@ class Order extends Entity
     {
         return $this->belongsTo(user::class);
     }
+
     public function getUrlAttribute()
     {
         return route('orders.show', $this);

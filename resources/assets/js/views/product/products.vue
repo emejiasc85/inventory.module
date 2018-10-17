@@ -1,14 +1,19 @@
 <template>
     <div>
-        <product-list  v-if="show_product_list" ></product-list>
-        <!-- <cash-register-resumen :cash_register_id="cash_register_id" v-else-if="show_resumen" @showDetails="details"></cash-register-resumen> -->
+        <product-list  v-if="show_product_list" @create="create" @edit="edit" @show="show" ></product-list>
+        <product-create  v-if="create_product" @end="list" ></product-create>
+        <product-edit  v-if="edit_product" :product_id="product_id" @end="list" ></product-edit>
+        <product-show  v-if="show_product" :product_id="product_id" @end="list" ></product-show>
     </div>
 </template>
 
 <script>
     import ProductList from './ProductList';
+    import ProductCreate from './ProductCreate';
+    import ProductEdit from './ProductEdit';
+    import ProductShow from './ProductShow';
     export default {
-        components: {ProductList},
+        components: {ProductList, ProductCreate, ProductEdit, ProductShow},
         props:['product_id'],
         data() {
             return  {
@@ -16,6 +21,11 @@
                 edit_product :false,
                 show_product:false,
                 show_product_list:true,
+            }
+        },
+        created(){
+            if(this.product_id != ''){
+                this.show(this.product_id);
             }
         },
         methods: {

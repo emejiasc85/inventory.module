@@ -17,10 +17,10 @@ class ProductController extends Controller
     {
         $products = Product::name($request->name)
             ->id($request->id)
-            ->makes($request->make_id)
-    		->group($request->product_group_id)
-    		->presentation($request->product_presentation_id)
-    		->unit($request->unit_measure_id)
+            //->makes($request->make_id)
+    		//->group($request->product_group_id)
+    		//->presentation($request->product_presentation_id)
+    		//->unit($request->unit_measure_id)
     		->barcode($request->barcode)
     		->orderBy('id', 'DESC')
     		->paginate();

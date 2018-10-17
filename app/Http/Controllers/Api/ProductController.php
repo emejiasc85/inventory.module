@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use EmejiasInventory\Http\Controllers\Controller;
 use EmejiasInventory\Entities\Product;
 use EmejiasInventory\Http\Resources\ProductResource;
+use EmejiasInventory\Http\Requests\ProductStore;
+use EmejiasInventory\Http\Requests\ProductUpdate;
 
 class ProductController extends Controller
 {
@@ -16,19 +18,21 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::id()->barcode()->name()->paginateIf();
+        $products = Product::id()
+            ->barcode()
+            ->name()
+            ->make()
+            ->unitId()
+            ->serieId()
+            ->presentationId()
+            ->groupId()
+            ->categoryId()
+            ->orderByDesc('id')
+            ->paginateIf();
         return ProductResource::collection($products);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -36,9 +40,14 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductStore $request)
     {
-        //
+        $product = Product::create(request()->all());
+        $product->addBarcode();
+        $product->colors()->sync(request()->colors);
+        $product->addToStock();
+
+        return new ProductResource($product);
     }
 
     /**
@@ -47,21 +56,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        return new ProductResource($product);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -70,9 +70,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductUpdate $request, Product $product)
     {
-        //
+        $product->update(request()->all());
+        $product->addBarcode();
+        $product->colors()->sync(request()->colors);
+        return new ProductResource($product);
     }
 
     /**

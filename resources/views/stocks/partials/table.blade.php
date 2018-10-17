@@ -17,7 +17,7 @@
         @foreach ($stocks as $stock)
             <tr>
                 <td class="text-center">{{ $stock->id }}</td>
-                <td><a target="_blank" href="{{ route('products.show', [$stock->id, $stock->slug]) }}">{{ $stock->name }}</a></td>
+                <td><a target="_blank" href="{{'/products/?id='.$stock->id }}">{{ $stock->name }}</a></td>
                 <td>{{ $stock->make}}</td>
                 <td>{{ $stock->product_group}}</td>
                 <td class="text-center">{{ $stock->serie}}</td>

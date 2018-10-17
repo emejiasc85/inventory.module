@@ -13,11 +13,11 @@
         {!! Html::style('css/bootstrap.min.css') !!}
         {!! Html::style('css/jquery.mmenu.css') !!}
         {!! Html::style('css/simple-line-icons.css') !!}
-        {!! Html::style('css/simple-line-icons.css') !!}
         {!! Html::style('plugins/jquery-ui/css/jquery-ui-1.10.4.min.css') !!}
         {!! Html::style('css/font-awesome.min.css') !!}
         {!! Html::style('css/style.css') !!}
         {!! Html::style('css/add-ons.css') !!}
+        {!! Html::style('css/tooltip.css') !!}
         {!! Html::style('plugins/select2/css/select2.css') !!}
         <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
         <script>

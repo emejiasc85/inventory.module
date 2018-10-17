@@ -5,6 +5,8 @@ use EmejiasInventory\Entities\ProductPresentation;
 use EmejiasInventory\Entities\ProductGroup;
 use EmejiasInventory\Entities\UnitMeasure;
 use EmejiasInventory\Entities\Make;
+use EmejiasInventory\Entities\Category;
+use EmejiasInventory\Entities\ProductSerie;
 
 $factory->define(EmejiasInventory\Entities\Product::class, function (Faker $faker) {
     $name = $faker->name;
@@ -24,6 +26,12 @@ $factory->define(EmejiasInventory\Entities\Product::class, function (Faker $fake
         },
         'make_id'   => function () {
             return factory(Make::class)->create()->id;
+        },
+        'category_id'   => function () {
+            return factory(Category::class)->create()->id;
+        },
+        'product_serie_id'   => function () {
+            return factory(ProductSerie::class)->create()->id;
         },
         'minimum_stock' => 5,
         'price' => $faker->randomDigitNotNull,

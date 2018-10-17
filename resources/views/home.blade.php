@@ -26,7 +26,7 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
     </div><!--/.col-->
 
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-        <a  href="{{  route('products.index') }}">
+        <a  href="/products">
             <div class="smallstat">
                 <i class="fa fa-barcode warning" style="background-color:#487eb0"></i>
                 <span class="value" style="color: #487eb0">Productos</span>
@@ -44,14 +44,14 @@ box-shadow: 17px 21px 58px -13px rgba(0,0,0,0.75);
 
 
 
-    <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-        <a  href="{{ route('quotes.create') }}">
+    {{-- <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
+        <a disabled href="{{ route('quotes.create') }}">
             <div class="smallstat">
                 <i class="fa fa-calendar primary" style="background-color: #778899"></i>
                 <span class="value" style="color: #778899">Cotizar</span>
             </div><!--/.smallstat-->
         </a>
-    </div>
+    </div> --}}
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
             <a  href="/sales/report-cash-registers">
                 <div class="smallstat">

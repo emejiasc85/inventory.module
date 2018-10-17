@@ -33,7 +33,7 @@ class CashRegisterResource extends JsonResource
             'cash_payments'      => number_format($this->payments->where('payment_method_id', 1)->sum('amount'),2),
             'card_payments'      => number_format($this->payments->where('payment_method_id', 2)->sum('amount'),2),
             'check_payments'     => number_format($this->payments->where('payment_method_id', 3)->sum('amount'),2),
-            'credit_payments'    => number_format($this->payments->where('payment_method_id', 4)->sum('amount'),2),
+            //'credit_payments'    => number_format($this->payments->where('payment_method_id', 4)->sum('amount'),2),
             'gift_card_payments' => number_format($this->payments->where('payment_method_id', 5)->sum('amount'),2),
             'credit_abones'      => number_format($this->payments->where('payment_method_id', 6)->sum('amount'),2),
             'deposits'           => number_format($this->payments->where('payment_method_id', 7)->sum('amount'),2),
