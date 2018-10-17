@@ -81,7 +81,7 @@ class CashRegisterController extends Controller
         $this->validate(request(), [
             'status' => [ new hasOpenInvoice($cash_register->id)]
         ]);
-        request()->merge(['closing_date' => Carbon::now(), 'user_id' =>  auth()->user()->id ]);
+        request()->merge(['closing_date' => Carbon::now('America/Vancouver'), 'user_id' =>  auth()->user()->id ]);
         $cash_register->update(request()->only(['status', 'user_id', 'closing_date']));
         $cash_register->load('invoices.people', 'invoices.user', 'user');
         return new CashRegisterResource($cash_register);
