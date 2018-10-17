@@ -170,7 +170,7 @@
                             <td>{{deposit.account}}</td>
                             <td>{{ deposit.baucher}}</td>
                             <td>{{deposit.amount}}</td>
-                            <td><button type="button" @click="deleteDeposit(deposit)" class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+                            <td><button type="button" @click="deleteDeposit(deposit)" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
