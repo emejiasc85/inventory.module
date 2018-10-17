@@ -38,7 +38,8 @@ class CashRegisterResource extends JsonResource
             'credit_abones'      => number_format($this->payments->where('payment_method_id', 6)->sum('amount'),2),
             'deposits'           => number_format($this->payments->where('payment_method_id', 7)->sum('amount'),2),
             'sub_total'          => number_format($this->payments->whereIn('payment_method_id', [1,2,3,4,5,6,7])->sum('amount'),2),
-            'total_cash'         => number_format($this->payments->whereIn('payment_method_id', [1,2,3,4,5,6,7])->sum('amount'),2)
+            'total_cash'         => number_format($this->payments->whereIn('payment_method_id', [1,2,3,4,5,6,7])->sum('amount'),2),
+            'cr_deposits' => CashRegisterDepositResource::collection($this->deposits),
         ];
     }
 }

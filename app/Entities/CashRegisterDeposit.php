@@ -14,4 +14,11 @@ class CashRegisterDeposit extends Model
     {
         return $this->belongsTo(CashRegister::class);
     }
+
+    public function scopeCashRegister($query)
+    {
+        return $query->when(request()->has('cash_register_id'), function($q){
+            $q->where('cash_register_id', request()->cash_register_id);
+        });
+    }
 }

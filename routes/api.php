@@ -30,6 +30,7 @@ Route::middleware('auth:api')->group(function() {
     Route::post('invoice/{invoice}/gift-cards', 'InvoiceGiftCardController@store');
     Route::delete('invoice/{invoice}/gift-cards', 'InvoiceGiftCardController@destroy');
     Route::resource('cash-register', 'CashRegisterController');
+    Route::resource('cash-register-deposits', 'CashRegisterDepositController');
     Route::resource('gift-cards', 'GiftCardController');
     Route::resource('stock', 'StockController');
     Route::put('invoices/{invoice}/payments', 'InvoicePaymentController@update');

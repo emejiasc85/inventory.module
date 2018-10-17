@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="">
-            <div class="col-xs-12 col-sm-7 hidden-print">
+            <div class="col-xs-12 col-sm-7 hidden-print" v-if="invoice.status != 'Ingresado'">
                 <div class="panel panel-default ">
                     <div class="panel-heading ">
                         <button v-if="show_product_search"   @click="show_product_search = !show_product_search" type="button" class="btn btn-info btn-sm"><span class="fa fa-gift text-red"></span> Tarjeta de regalo</button>
