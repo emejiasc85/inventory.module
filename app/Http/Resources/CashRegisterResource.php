@@ -27,7 +27,7 @@ class CashRegisterResource extends JsonResource
             'sales'              => $this->invoices->sum('final_total'),
             'credit_payments'    => $this->payments->whereIn('payment_method_id', [6,7])->sum('amount'),
             'total_credits'      => $this->payments->where('payment_method_id', 4)->sum('amount'),
-            'total'              => number_format($this->initial_cash + $this->invoices->sum('final_total') + $this->payments->where('payment_method_id', 6)->sum('amount'),2),
+            'total'              => number_format($this->initial_cash + $this->payments->whereIn('payment_method_id', [1,2,3,4,5,6,7])->sum('amount') + $this->payments->where('payment_method_id', 6)->sum('amount'),2),
             'created_at'         => Carbon::parse($this->created_at)->format('d/m/Y h:m:s A'),
             'closing_date'       => Carbon::parse($this->closing_date)->format('d/m/Y h:m:s A'),
             'cash_payments'      => number_format($this->payments->where('payment_method_id', 1)->sum('amount'),2),
