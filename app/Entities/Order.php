@@ -226,7 +226,7 @@ class Order extends Entity
     public function addPayment(int $method, float $amount, string $voucher = null)
     {
 
-        Payment::where('payment_method_id', $method)->delete();
+        $this->payments()->where('payment_method_id', $method)->delete();
 
         $payment = Payment::create([
             'cash_register_id'  => $this->cash_register_id,
