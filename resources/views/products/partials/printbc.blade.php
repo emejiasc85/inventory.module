@@ -2,7 +2,7 @@
 
 @section('content')
     @php
-        $alto=3;
+        $alto= $product->unit ?3:4;
         $ancho=4;
     @endphp
     <table class="table table-bordered text-center">
@@ -15,15 +15,15 @@
             <td style="background-color: white" class="text-center">
                 @if ($product->unit)
                 <br>
-                <br>
                 @endif
+                <br>
                 @if ($commerce->logo_path)
                     <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="75">
                 @endif
+                <br>
                 @if ($product->unit)
-                <br>
+                    <br>
                 @endif
-                <br>
                 <p style="margin: 0px 0 1px;">{{ $product->name }}</p>
                 @if ($product->unit)
                     <p style="margin: 0px 0 1px;">{{ $product->unit->name }}</p>
