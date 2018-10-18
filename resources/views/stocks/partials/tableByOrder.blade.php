@@ -23,7 +23,7 @@
                     <td>{{ $stock->detail->product->make->name}}</td>
                     <td>{{ $stock->detail->product->group->name}}</td>
                     <td>{{ $stock->detail->product->serie->name}}</td>
-                    <td>{{ $stock->detail->product->unit->name}}</td>
+                    <td>{{ $stock->detail->product->unit? $stock->detail->product->unit->name:''}}</td>
                     <td>{{ $stock->detail->product->presentation->name}}</td>
                     <td class="text-right">{{ $stock->stock}}</td>
                     <td class="text-right">{{ $stock->price}}</td>

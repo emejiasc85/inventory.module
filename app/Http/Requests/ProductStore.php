@@ -28,7 +28,7 @@ class ProductStore extends FormRequest
             'name'                    => ['required', new UniqueProduct()],
             'product_presentation_id' => 'required|exists:product_presentations,id',
             'product_group_id'        => 'required|exists:product_groups,id',
-            'unit_measure_id'         => 'required|exists:unit_measures,id',
+            'unit_measure_id'         => 'nullable|exists:unit_measures,id',
             'make_id'                 => 'required|exists:makes,id',
             'product_serie_id'        => 'required|exists:product_series,id',
             'category_id'             => 'required|exists:categories,id',

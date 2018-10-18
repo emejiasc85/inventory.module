@@ -22,7 +22,9 @@
                 <br>
                 <br>
                 <p style="margin: 0px 0 1px;">{{ $product->name }}</p>
-                <p style="margin: 0px 0 1px;">{{ $product->unit->name }}</p>
+                @if ($product->unit)
+                    <p style="margin: 0px 0 1px;">{{ $product->unit->name }}</p>
+                @endif
                 <p class="discount" style="margin: 0px 0 1px;">
                     @if ($product->price != $product->offer_price )
                         <strong>Normal Q. {{ $product->price }} </strong>

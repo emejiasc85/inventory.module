@@ -124,7 +124,7 @@
                                         <td>{{ product.category.name}}</td>
                                         <td>{{ product.make.name}}</td>
                                         <td>{{ product.presentation.name}}</td>
-                                        <td>{{ product.unit.name}}</td>
+                                        <td>{{ product.unit? product.unit.name :''}}</td>
                                         <td>{{ product.minimum_stock}}</td>
                                         <td>{{ product.price}}</td>
                                         <td>{{ product.offer_price}}</td>
@@ -167,7 +167,7 @@
                             <td>{{ product.category.name}}</td>
                             <td>{{ product.make.name}}</td>
                             <td>{{ product.presentation.name}}</td>
-                            <td class="text-center">{{ product.unit.name}}</td>
+                            <td class="text-center">{{ product.unit? product.unit.name :''}}</td>
                         </tr>
                     </tbody>
                 </table>
