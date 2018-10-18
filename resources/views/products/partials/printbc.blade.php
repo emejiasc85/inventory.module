@@ -20,8 +20,8 @@
                 @if ($commerce->logo_path)
                     <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="75">
                 @endif
-                <br>
                 @if ($product->unit)
+                    <br>
                     <br>
                 @endif
                 <p style="margin: 0px 0 1px;">{{ $product->name }}</p>
