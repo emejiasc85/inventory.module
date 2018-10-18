@@ -28,13 +28,17 @@
                 @if ($product->unit)
                     <p style="margin: 0px 0 1px;">{{ $product->unit->name }}</p>
                 @endif
-                <p class="discount" style="margin: 0px 0 1px;">
-                    @if ($product->price != $product->offer_price )
+                @if ($product->price != $product->offer_price )
+                    <p class="discount" style="margin: 0px 0 1px;">
                         <strong>Normal Q. {{ $product->price }} </strong>
-                    @else
-                    &nbsp;
+                    </p>
+                @else
+                    @if ($product->unit)
+                        <p>
+                            &nbsp;
+                        </p>
                     @endif
-                </p>
+                @endif
                 <p style="margin: 0px 0 1px;"><strong>Descuento Q. {{ $product->offer_price }} </strong></p>
 
                 <p style="margin: 0px 0 1px;">ID: {{ $product->id }}</p>
