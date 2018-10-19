@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 
 class Product extends Entity
 {
+
     protected $fillable = [
         'name',
         'slug',
@@ -128,7 +129,7 @@ class Product extends Entity
             $q->where('category_id', request()->category_id);
         });
     }
-    public function scopeMake($query)
+    public function scopeMakeId($query)
     {
         return $query->when(request()->has('make_id'), function($q){
             $q->where('make_id', request()->make_id);
@@ -142,9 +143,10 @@ class Product extends Entity
     }
     public function scopeId($query)
     {
-        if (trim(request()->id) != '') {
-            return $query->where('id', request()->id);
-        }
+        return $query->when(request()->has('id'), function($q){
+            $q->where('id', request()->id);
+        });
+
     }
 
     /* methods */

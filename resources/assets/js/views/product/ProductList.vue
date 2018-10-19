@@ -281,9 +281,9 @@
             index(page = 1){
                 let params = {
                     page: page,
-                    id: this.filter.id,
-                    name: this.filter.name,
-                    barcode: this.filter.barcode,
+                    id: this.filter.id ? this.filter.id: null ,
+                    name: this.filter.name ? this.filter.name:null,
+                    barcode: this.filter.barcode ? this.filter.barcode:null,
                     make_id: this.filter.make ? this.filter.make.id :null,
                     product_serie_id: this.filter.serie? this.filter.serie.id:null,
                     category_id: this.filter.category ? this.filter.category.id:null,

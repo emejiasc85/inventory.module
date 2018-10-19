@@ -236,7 +236,6 @@ class Order extends Entity
             'voucher' => $voucher
         ]);
 
-
         if ($method == 5 &&  $amount > 0) {
             $card = GiftCard::findOrFail($voucher);
             $card->current_value = $card->current_value - $amount;

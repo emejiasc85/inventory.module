@@ -21,12 +21,11 @@ class ProductController extends Controller
         $products = Product::id()
             ->barcode()
             ->name()
-            ->make()
+            ->makeId()
             ->unitId()
             ->serieId()
             ->presentationId()
             ->groupId()
-            ->categoryId()
             ->orderByDesc('id')
             ->paginateIf();
         return ProductResource::collection($products);
