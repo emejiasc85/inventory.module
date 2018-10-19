@@ -92,16 +92,17 @@ class Stock extends Model
 
     public function scopeStockFilter($query)
     {
-        $query->selectRaw("product_groups.name,  CONCAT(products.name,' (', makes.name,')') as full_name, products.id as id , sum(stock) as stock,   products.price, products.offer_price, products.slug")
+        $query->selectRaw("product_groups.name, unit_measures.name as unit,  CONCAT(products.name,' (', makes.name,')') as full_name, products.id as id , sum(stock) as stock,   products.price, products.offer_price, products.slug")
             ->leftJoin('order_details', 'order_details.id', '=', 'stocks.order_detail_id' )
             ->leftJoin('products', 'products.id', '=', 'order_details.product_id' )
             ->leftJoin('makes', 'makes.id', '=', 'products.make_id' )
+            ->leftJoin('unit_measures', 'unit_measures.id', '=', 'products.unit_measure_id' )
             ->leftJoin('product_groups', 'product_groups.id', '=', 'products.product_group_id' )
             ->productBarcode(request()->barcode)
             ->product(request()->name)
             ->productId(request()->id)
             ->where('status', true)
-            ->groupBy('products.name', 'products.id', 'makes.name', 'products.price', 'products.offer_price', 'products.slug', 'product_groups.name');
+            ->groupBy('products.name', 'unit_measures.name',  'products.id', 'makes.name', 'products.price', 'products.offer_price', 'products.slug', 'product_groups.name');
         return $query;
     }
 

@@ -49,9 +49,10 @@
                                         <th>ID</th>
                                         <th>Producto</th>
                                         <th>Grupo</th>
+                                        <th class="text-center">Medida</th>
                                         <th>Existencia</th>
                                         <th>P/U</th>
-                                        <th>P/O</th>
+                                        <th>P/D</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -60,6 +61,7 @@
                                         <td>{{ product.id}}</td>
                                         <td>{{ product.full_name }}</td>
                                         <td>{{ product.name }}</td>
+                                        <td class="text-center">{{ product.unit }}</td>
                                         <td>{{ product.stock }}</td>
                                         <td>{{ product.price }}</td>
                                         <td>{{ product.offer_price }}</td>
@@ -117,8 +119,7 @@
                         <table v-if="invoice.details" class="table table-condensed">
                             <tr>
                                 <td colspan="2" class="text-left">Descripción</td>
-                                <td class="text-right" v-if="payment_method.card > 0">P/U</td>
-                                <td class="text-right" v-else>P/O</td>
+                                <td class="text-right">Precio</td>
                                 <td class="text-right">Total</td>
                             </tr>
                             <tr v-for="detail in invoice.details" :key="detail.id">
