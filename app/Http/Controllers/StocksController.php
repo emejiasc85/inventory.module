@@ -23,6 +23,7 @@ class StocksController extends Controller
             ->order($request->order_id)
             ->ProductBarcode($request->barcode)
             ->product($request->name)
+            ->productId($request->id)
             ->presentationId($request->product_presentation_id)
             ->groupId($request->product_group_id)
             ->makeId($request->make_id)
