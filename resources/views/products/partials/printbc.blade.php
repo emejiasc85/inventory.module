@@ -33,11 +33,9 @@
                         <strong>Normal Q. {{ $product->price }} </strong>
                     </p>
                 @else
-                    @if ($product->unit)
-                        <p>
-                            &nbsp;
-                        </p>
-                    @endif
+                    <p>
+                        &nbsp;
+                    </p>
                 @endif
                 <p style="margin: 0px 0 1px;"><strong>Descuento Q. {{ $product->offer_price }} </strong></p>
 
