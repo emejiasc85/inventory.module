@@ -19,6 +19,7 @@ Vue.component('cash-register', require('./views/cashRegister.vue'));
 Vue.component('invoice', require('./views/invoice.vue'));
 Vue.component('gift-cards', require('./views/giftCards.vue'));
 Vue.component('products', require('./views/product/products.vue'));
+Vue.component('people', require('./views/people/index.vue'));
 
 import VTooltip from 'v-tooltip';
 import CheckboxRadio from 'vue-checkbox-radio';

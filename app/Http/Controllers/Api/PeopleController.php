@@ -16,8 +16,7 @@ class PeopleController extends Controller
      */
     public function index(Request $request)
     {
-        $people = People::search()->get();
-
+        $people = People::search()->orderByDesc('id')->paginateIf();
         return PeopleResource::collection($people);
     }
 

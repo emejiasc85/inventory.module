@@ -32,7 +32,9 @@ class PeopleResource extends JsonResource
             'avatar'      => $this->avatar,
             'max_credit'  => $this->max_credit,
             'partner'     => $this->partner,
-            'rest_credit' => $this->rest_credit
+            'rest_credit' => $this->rest_credit,
+            'total_purchases' => $this->purchases->sum('total'),
+            'current_credit' => $this->currentCredit
         ];
     }
 }
