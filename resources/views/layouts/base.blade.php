@@ -40,25 +40,9 @@
           box-sizing: content-box;
         }
     </style>
-
-    <!-- BODY options, add following classes to body to change options
-
-        1. 'sidebar-minified'     - Switch sidebar to minified version (width 50px)
-        2. 'sidebar-hidden'       - Hide sidebar
-        3. 'rtl'                  - Switch to Right to Left Mode
-        4. 'container'            - Boxed layout
-        5. 'static-sidebar'       - Static Sidebar
-        6. 'static-header'        - Static Header
-    -->
-
     <body class="sidebar-hidden" >
-        <!-- start: Header -->
         @include('layouts.partials.header')
-        <!-- end: Header -->
-        <!-- start: Main Menu -->
         @include('layouts.partials.main-menu')
-        <!-- end: Main Menu -->
-        <!-- start: Content -->
         <div class="main" id="app">
             {!! Alert::render('templates.alert') !!}
             <ol class="breadcrumb hidden-print">
@@ -68,23 +52,15 @@
             @yield('content')
         </div>
         @yield('modals')
-        <!-- end: Content -->
-
         {{-- <footer>
                 @include('layouts.partials.footer')
         </footer> --}}
         <script src="{{ mix('/js/app.js') }}"></script>
-        {!! Html::script('js/jquery-3.1.0.min.js') !!}
-        {!! Html::script('js/jquery-migrate-1.4.1.min.js') !!}
-        {!! Html::script('js/bootstrap.min.js') !!}
-        {!! Html::script('plugins/jquery-ui/js/jquery-ui-1.10.4.min.js') !!}
 
         <!-- theme scripts -->
-        {!! Html::script('plugins/pace/pace.min.js') !!}
+
         {!! Html::script('js/jquery.mmenu.min.js') !!}
         {!! Html::script('js/core.min.js') !!}
-        {!! Html::script('plugins/jquery-cookie/jquery.cookie.min.js') !!}
-        {!! Html::script('js/demo.min.js') !!}
         <!-- end: JavaScript-->
         <script>
             /****

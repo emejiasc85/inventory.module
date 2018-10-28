@@ -21,7 +21,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-1">
-                                        <button class="btn btn-success" @click="addGiftCard"><i class="fa fa-shopping-cart"></i> Agregar</button>
+                                        <button class="btn btn-success"  @click="addGiftCard"><i class="fa fa-shopping-cart"></i> Agregar</button>
                                     </div>
                                 </div>
                             </div>
@@ -83,8 +83,8 @@
                             <span v-if="people.rest_credit == 0 " class="text-danger">Q. {{ people.rest_credit}}</span>
                             <span v-if="people.rest_credit > 0" class="text-success">Q. {{ people.rest_credit}}</span>
                         </div>
-                        <a v-if="invoice.status != 'Ingresado'" @click="show_destroy = true" href="#" title="Cancelar"  class="btn btn-link btn-sm pull-right hidden-print" style="margin-top: 2px"><span class="fa fa-2x fa-trash-o text-danger"></span></a>
-                        <a v-if="invoice.status == 'Ingresado'" href="#" title="Revertir" @click="show_revert = true"  class="btn btn-link btn-sm pull-right hidden-print" style="margin-top: 2px"><span class="fa fa-2x fa-undo text-success"></span></a>
+                        <a v-tooltip="'Cancelar Venta'" v-if="invoice.status != 'Ingresado'" @click="showDestroy" href="#"  class="btn btn-link btn-sm pull-right hidden-print" style="margin-top: 2px"><span class="fa fa-2x fa-trash-o text-danger"></span></a>
+                        <a v-tooltip="'Revertir Venta'" v-if="invoice.status == 'Ingresado'" href="#" title="Revertir" @click="showRevert"  class="btn btn-link btn-sm pull-right hidden-print" style="margin-top: 2px"><span class="fa fa-2x fa-undo text-success"></span></a>
                     </div>
                         <div class="panel-body">
                         <address class="text-center">
@@ -151,7 +151,7 @@
                         <span v-if="invoice.user"><small>Usuario: {{ invoice.user.name }}</small> </span>
                     </div>
                     <div class="panel-footer" v-if="invoice.details">
-                        <a v-if="invoice.status != 'Ingresado' && (invoice.details.length > 0 || invoice.gift_cards.length > 0)" href="#" @click="show_payment = true" id="Bill" class="btn btn-success  btn-block" style="margin-top: 10px">Finalizar Venta</a>
+                        <a v-if="invoice.status != 'Ingresado' && (invoice.details.length > 0 || invoice.gift_cards.length > 0)" href="#" @click="showPayment" id="Bill" class="btn btn-success  btn-block" style="margin-top: 10px">Finalizar Venta</a>
                         <a v-if="invoice.status == 'Ingresado'" href="#" class="btn btn-primary hidden-print  btn-block " title="Imprimir" onclick="window.print()"><span class="fa  fa-print"></span> Imprimir</a>
                     </div>
                 </div>
@@ -203,7 +203,6 @@
             <a href="/" slot="btnCancel" type="button" class="btn btn-link">Cancelar</a>
             <button v-if="people.id != null || (people.name != null && people.address != null)" slot="btnSave" type="button" class="btn btn-success" @click="getPeople">Siguiente</button>
         </modal>
-
         <modal v-if="create_cash_register"  title="Es necesario aperturar caja"  size="modal-sm">
             <div class="form" role="form">
                 <div class="row">
@@ -225,7 +224,7 @@
             <p>{{ detail.product.name}}</p>
             <p>¿Estas seguro de eliminarlo?</p>
             <button slot="btnCancel" type="button" class="btn btn-link" @click="cancelDeleteDetail">Cancelar</button>
-            <button slot="btnSave" type="button" class="btn btn-danger" @click="destroyDetail">Si, eliminar</button>
+            <button slot="btnSave" :disabled="destroyButton" type="button" class="btn btn-danger" @click="destroyDetail">Si, eliminar</button>
         </modal>
         <modal v-if="show_form_detail"  title="Agregar Producto"  size="modal-sm">
             <div class="form" role="form">
@@ -274,7 +273,7 @@
                 </div>
             </div>
             <button  slot="btnCancel" type="button" class="btn btn-default" @click="show_form_detail = !show_form_detail">Cancelar</button>
-            <button v-if="showAddDetailButton" slot="btnSave" type="button" class="btn btn-success" @click="storeDetail">Agregar <span class="fa fa-shopping-cart"></span></button>
+            <button v-if="showAddDetailButton" :disabled="storeDetailButton" slot="btnSave" type="button" class="btn btn-success" @click="storeDetail">Agregar <span class="fa fa-shopping-cart"></span></button>
         </modal>
         <modal v-if="show_payment" title="Finalizar" size="modal-md">
             <div class="form-group">
@@ -349,12 +348,11 @@
                 </tbody>
             </table>
             <button @click="show_payment = false" slot="btnCancel" type="button" class="btn btn-link">Cancelar</button>
-            <button @click="finalInvoice" slot="btnSave" :disabled="!totalsMatch" type="button" class="btn btn-success"><i class="fa fa-dot-circle-o"></i> Facturar</button>
+            <button @click="finalInvoice" slot="btnSave" :disabled="!totalsMatch || finalInvoiceButton" type="button" class="btn btn-success"><i class="fa fa-dot-circle-o"></i> Facturar</button>
         </modal>
-
         <modal v-if="show_revert"  title="¿Estas seguro de revertir esta venta?"  size="modal-sm">
             <button slot="btnCancel" type="button" @click="show_revert = false" class="btn btn-link">Cancelar</button>
-            <button  slot="btnSave" type="button" class="btn btn-danger" @click="revert">Si, Revertir</button>
+            <button :disabled="revertButton"  slot="btnSave" type="button" class="btn btn-danger" @click="revert">Si, Revertir</button>
         </modal>
         <modal v-if="show_destroy"  title="¿Estas seguro de Eliminar esta venta?"  size="modal-sm">
             <h4 v-if="errors.on_destroy"  class="text-danger">UPSS!!! Error al intentar Eliminar</h4>
@@ -362,7 +360,7 @@
                 <li v-if="errors.on_destroy" v-for="(error, index) in errors.on_destroy" :key="index">{{ error }}</li>
             </ul>
             <button slot="btnCancel" type="button" @click="show_destroy = false" class="btn btn-link">Cancelar</button>
-            <button  slot="btnSave" type="button" class="btn btn-danger" @click="destroy">Si, Eliminar</button>
+            <button :disabled="destroyButton"  slot="btnSave" type="button" class="btn btn-danger" @click="destroy">Si, Eliminar</button>
         </modal>
     </div>
 </template>
@@ -382,6 +380,10 @@ export default {
     props:['invoice_id'],
     data() {
         return{
+            destroyButton:true,
+            revertButton:true,
+            finalInvoiceButton:true,
+            storeDetailButton:true,
             show_revert : false,
             show_destroy : false,
             nit_focus: false,
@@ -437,26 +439,46 @@ export default {
         },
     },
     methods:{
+        showDestroy(){
+            this.show_destroy = true;
+            this.destroyButton = false;
+        },
+        showRevert(){
+            this.show_revert = true;
+            this.revertButton = false;
+        },
+        showPayment(){
+            this.show_payment = true;
+            this.finalInvoiceButton = false;
+        },
         loadInvoice(){
             Invoice.show(this.invoice_id, {}, data => { this.invoice = data.data});
         },
         revert(){
-            let params = {
-            };
+            this.revertButton = true;
+            let params = {};
 
             InvoiceRevert.update(this.invoice.id, params, data => {
                 this.$toastr.w("Venta Revertida");
                 this.invoice = data.data;
                 this.show_revert = false;
                 this.errors = [];
-            }, errors => this.errors = errors);
+            }, errors => {
+                this.errors = errors;
+                this.revertButton = true;
+            });
         },
         destroy(){
+            this.destroyButton = true;
             Invoice.destroy(this.invoice.id,{}, data => {
-                window.location.href = '/';
-            }, errors => this.errors = errors);
+                window.location.href = '/sales/cash-register/?id='+this.invoice.cash_register.id;
+            }, errors => {
+                this.destroyButton = false;
+                this.errors = errors
+            });
         },
         finalInvoice(){
+            this.finalInvoiceButton = true;
             let params = {
                 bill_number : this.bill_number ? this.bill_number :'',
                 cash: this.payment_method.cash,
@@ -474,7 +496,10 @@ export default {
                 this.invoice = data.data;
                 this.show_payment = false;
                 this.errors = [];
-            }, errors => this.errors = errors);
+            }, errors => {
+                this.finalInvoiceButton = false;
+                this.errors = errors
+            });
         },
         addGiftCard(){
             let params = {
@@ -517,8 +542,10 @@ export default {
         addDetail(product){
             this.show_form_detail = true;
             this.product = product;
+            this.storeDetailButton = false;
         },
         storeDetail(){
+            this.storeDetailButton = true;
             let params = {
                 product_id: this.product.id,
                 price: this.product.price,
@@ -526,7 +553,6 @@ export default {
                 lot: this.lot,
                 invoice_id : this.invoice.id
             };
-
             InvoiceDetail.store(params, data => {
                 this.$toastr.s("Producto Agregado");
                 this.invoice = data.data;
@@ -536,7 +562,10 @@ export default {
                 this.stock = [];
                 this.filter = [];
                 this.show_form_detail = false;
-            }, errors => this.errors = errors);
+            }, errors => {
+                this.errors = errors;
+                this.storeDetailButton = false;
+            });
         },
         loadStock(){
             let params = {

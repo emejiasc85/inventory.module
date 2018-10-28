@@ -179,7 +179,7 @@
                 </div>
                 <div class="panel-footer">
                     <button @click="end" type="button" class="btn btn-link"> Salir</button>
-                    <button @click="store" type="button" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
+                    <button @click="store" type="button" :disabled="storeButton" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
                 </div>
             </div>
         </div>
@@ -201,6 +201,7 @@
         components: { vSelect},
         data(){
             return {
+                storeButton:false,
                 colors:[],
                 add_colors:false,
                 create:{make_order:false, colors:[]},
@@ -222,7 +223,7 @@
                 return _.chunk(_.toArray(this.colors),20)
             },
             end(){
-                this.$emit('end');
+                this.$emit('end', 'Producto creado');
             },
             loadData(){
                 Color.get({}, data => { this.colors = data.data});
@@ -235,6 +236,7 @@
                 UnitMeasure.get({}, data => { this.unit_measures = data.data});
             },
             store(){
+                this.storeButton  = true;
                 this.create.make ? (this.create.make_id = this.create.make.id) :'',
                 this.create.serie ? (this.create.product_serie_id = this.create.serie.id) :'',
                 this.create.category ? (this.create.category_id = this.create.category.id) :'',
@@ -244,12 +246,18 @@
                 this.create.people ? (this.create.people_id = this.create.people.id) :'',
 
                 Product.store(this.create, data => {
+                    this.errors=[];
+                    this.create={make_order:false, colors:[]};
                     this.$toastr.s("Producto Agregado");
-                    this.errors={};
-                    create={make_order:false, colors:[]};
-                   //this.end();
-                }, errors => this.errors = errors);
+                    this.storeButton  = false;
+                }, errors => {
+                    this.errors = errors;
+                    this.storeButton  = false;
+                });
             }
+
+
+
 
         }
     }

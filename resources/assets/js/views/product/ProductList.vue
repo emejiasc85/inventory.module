@@ -226,7 +226,7 @@
                 </div>
             </div>
             <button @click="show_quick_order = false" type="button"  slot="btnCancel"  class="btn btn-link">Salir</button>
-            <button @click="storeQuickOrder" slot="btnSave" type="button" class="btn btn-primary" ><i class="fa fa-truck"></i> Crear Pedido</button>
+            <button :disabled="storeQuickOrderButton" @click="storeQuickOrder" slot="btnSave" type="button" class="btn btn-primary" ><i class="fa fa-truck"></i> Crear Pedido</button>
         </modal>
     </div>
 </template>
@@ -248,6 +248,7 @@
         components: {Paginator, vSelect},
         data(){
             return {
+                storeQuickOrderButton:true,
                 show_quick_order: false,
                 show_filter:false,
                 products:[],
@@ -308,8 +309,11 @@
             quickOrder(product){
                 this.show_quick_order = true;
                 this.product = product;
+                this.storeQuickOrderButton = false;
             },
             storeQuickOrder(){
+                this.storeQuickOrderButton = true;
+                this.block =  false;
                 this.product.make_order = true;
                 this.product.people ? (this.product.people_id = this.product.people.id) :'',
 
@@ -319,7 +323,10 @@
                     this.errors={};
                     this.index();
                     this.show_quick_order = false;
-                }, errors => this.errors = errors);
+                }, errors => {
+                    this.errors = errors;
+                    this.storeQuickOrderButton = false;
+                });
             }
         }
     }

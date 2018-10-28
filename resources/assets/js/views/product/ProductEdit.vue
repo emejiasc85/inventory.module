@@ -152,7 +152,7 @@
     import vSelect from 'vue-select';
 
     export default {
-        components: { vSelect},
+        components: {vSelect},
         props:['product_id'],
         data(){
             return {
@@ -204,7 +204,7 @@
 
                 Product.update(this.product_id,this.product, data => {
                     this.$toastr.s("Producto Editado");
-                    this.errors={};
+                    this.errors=[];
                     this.product= data.data;
                 }, errors => this.errors = errors);
             },

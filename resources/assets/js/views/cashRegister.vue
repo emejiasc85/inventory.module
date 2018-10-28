@@ -1,7 +1,7 @@
 <template>
     <div>
-        <cash-register-details :cash_register_id="cash_register_id" v-if="show_details" @showResumen="resumen"></cash-register-details>
-        <cash-register-resumen :cash_register_id="cash_register_id" v-else-if="show_resumen" @showDetails="details"></cash-register-resumen>
+        <cash-register-details :cash_register_id="other_cash_register_id" v-if="show_details" @showResumen="resumen"></cash-register-details>
+        <cash-register-resumen :cash_register_id="other_cash_register_id" v-else-if="show_resumen" @showDetails="details"></cash-register-resumen>
         <modal v-if="create_cash_register"  title="Es necesario aperturar caja"  size="modal-sm">
             <div class="form" role="form">
                 <div class="row">
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <a href="/" slot="btnCancel" type="button" class="btn btn-link">Salir</a>
-            <button slot="btnSave" type="button" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
+            <button slot="btnSave" type="button" :disabled="storeCashRegisterButton" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
         </modal>
     </div>
 </template>
@@ -33,11 +33,13 @@
         props:['cash_register_id'],
         data() {
             return  {
+                storeCashRegisterButton:true,
                 create_cash_register :false,
                 show_details:false,
                 show_resumen: false,
                 cash_register: {},
-                errors:[]
+                errors:[],
+                other_cash_register_id:null
             }
         },
         created(){
@@ -47,6 +49,7 @@
                 this.loadCashRegisters();
             }
         },
+
         methods: {
             loadCashRegisters(){
                 CashRegister.get({latest:1}, data => {
@@ -77,12 +80,12 @@
             resumen(cash_register_id){
                 this.show_details = false;
                 this.show_resumen = true;
-                this.cash_register_id = cash_register_id;
+                this.other_cash_register_id = cash_register_id;
             },
             details(cash_register_id){
                 this.show_details = true;
                 this.show_resumen = false;
-                this.cash_register_id = cash_register_id;
+                this.other_cash_register_id = cash_register_id;
             }
         }
     }

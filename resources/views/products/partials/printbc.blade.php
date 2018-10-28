@@ -35,7 +35,6 @@
                 @else
                     @if ($product->unit)
                         <p>
-
                         </p>
                     @endif
                 @endif

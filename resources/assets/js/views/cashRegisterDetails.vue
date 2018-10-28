@@ -154,6 +154,7 @@
 
                  Invoice.get(params, data => {
                      this.invoices = data.data;
+                     this.pagination = data.meta;
                  });
             },
         },

@@ -62,7 +62,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        return new InvoiceResource($invoice->load('details', 'gift_cards', 'bill'));
+        return new InvoiceResource($invoice->load('details', 'gift_cards', 'bill', 'cash_register'));
     }
 
     /**

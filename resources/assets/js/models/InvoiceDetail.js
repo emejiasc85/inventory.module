@@ -23,8 +23,6 @@ class InvoiceDetail {
             .then(({data}) => then(data));
     }
 
-
-
 }
 
 export default InvoiceDetail;

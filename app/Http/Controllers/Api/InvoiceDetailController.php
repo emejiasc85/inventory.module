@@ -56,7 +56,7 @@ class InvoiceDetailController extends Controller
             $invoice->save();
         DB::commit();
 
-        return new InvoiceResource($invoice->load('details', 'gift_cards', 'bill'));
+        return new InvoiceResource($invoice->load('details', 'gift_cards', 'bill', 'cash_register'));
     }
 
     public function updateStock($inventory, $lot, $new_detail)
@@ -127,6 +127,6 @@ class InvoiceDetailController extends Controller
             $invoice->save();
         DB::commit();
 
-        return new InvoiceResource($invoice->load('details', 'gift_cards', 'bill'));
+        return new InvoiceResource($invoice->load('details', 'gift_cards', 'bill', 'cash_register'));
     }
 }
