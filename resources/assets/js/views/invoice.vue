@@ -171,11 +171,13 @@
                         </address>
                         <table v-if="invoice.details" class="table table-condensed">
                             <tr>
+                                <td>ID</td>
                                 <td colspan="2" class="text-left">Descripción</td>
                                 <td class="text-right">Precio</td>
                                 <td class="text-right">Total</td>
                             </tr>
                             <tr v-for="detail in invoice.details" :key="detail.id">
+                                <td>{{ detail.product.id}}</td>
                                 <td class="col-xs-2">
                                     <a v-if="invoice.status != 'Ingresado'" href="#" @click="detailDelete(detail)"><i class="text-danger fa fa-minus-circle"></i></a>
                                     {{ detail.lot }}
