@@ -121,12 +121,16 @@
                                         <td class="right">Q. {{ cash_register.initial_cash }}</td>
                                     </tr>
                                     <tr>
+                                        <td class="left"><strong>Gastos de caja</strong></td>
+                                        <td class="right">Q. {{ cash_register.expenses_total }}</td>
+                                    </tr>
+                                    <tr>
                                         <td class="left"><strong>Total</strong></td>
                                         <td class="right"><strong>Q. {{ cash_register.total}}</strong></td>
                                     </tr>
                                     <tr>
                                         <td class="left"><strong>Total Efectivo</strong></td>
-                                        <td class="right"><strong>Q. {{ cash_register.cash_payments }}</strong></td>
+                                        <td class="right"><strong>Q. {{ cash_register.cash }}</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -143,13 +147,14 @@
     <div class="row page">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <ul class="nav nav-tabs pull-left" id="tabs">
+                <ul class="nav nav-tabs pull-left hidden-print" id="tabs">
                     <li :class="{ 'active': show_deposits}"><a @click="showDeposits" href="#deposits">Depositos de caja</a></li>
                     <li :class="{ 'active': show_payments}"><a @click="showPayments" href="#payments">Gastos de caja</a></li>
                 </ul>
             </div>
-            <div class="panel-body">
+            <div class="panel-body hidden-print">
                 <div v-if="show_deposits">
+                    <h4 class="visible-print-block">Depositos de caja</h4>
                     <table id="deposits"  class="table table-striped table-condensed table-responsive">
                         <thead>
                             <tr>
@@ -159,8 +164,8 @@
                                 <th>Cuenta</th>
                                 <th>No. Documento</th>
                                 <th>Monto</th>
-                                <th class="text-center">
-                                    <button v-tooltip="'Agregar Deposito'" @click="showCreateDeposit" type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i></button>
+                                <th class="text-center hidden-print">
+                                    <button v-tooltip="'Agregar Deposito'" @click="showCreateDeposit" type="button" class="btn btn-primary btn-xs hidden-print"><i class="fa fa-plus"></i></button>
                                 </th>
                             </tr>
                         </thead>
@@ -172,12 +177,13 @@
                                 <td>{{deposit.account}}</td>
                                 <td>{{ deposit.baucher}}</td>
                                 <td>{{deposit.amount}}</td>
-                                <td class="text-center"><button v-tooltip="'Eliminar'" type="button" @click="deleteDeposit(deposit)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
+                                <td class="text-center hidden-print"><button v-tooltip="'Eliminar'" type="button" @click="deleteDeposit(deposit)" class="btn btn-danger btn-xs hidden-print"><i class="fa fa-trash"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div v-if="show_payments">
+                    <h4 class="visible-print-block">Gastos de caja</h4>
                     <table id="payments"  class="table table-striped table-responsive table-condensed">
                         <thead>
                             <tr>
@@ -185,8 +191,8 @@
                                 <th>Fecha</th>
                                 <th>Descripción</th>
                                 <th>Monto</th>
-                                <th class="text-center">
-                                    <button v-tooltip="'Agregar Gasto'" @click="showCreateExpense" type="button" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i></button>
+                                <th class="text-center hidden-print">
+                                    <button v-tooltip="'Agregar Gasto'" @click="showCreateExpense" type="button" class="btn btn-primary btn-xs hidden-print"><i class="fa fa-plus"></i></button>
                                 </th>
                             </tr>
                         </thead>
@@ -196,7 +202,63 @@
                                 <td>{{ expense.created_at }}</td>
                                 <td>{{ expense.description}}</td>
                                 <td>{{expense.amount}}</td>
-                                <td class="text-center"><button type="button" @click="deleteExpense(expense)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
+                                <td class="text-center hidden-print"><button type="button" @click="deleteExpense(expense)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-body visible-print-block">
+                <div >
+                    <h4 class="visible-print-block">Depositos de caja</h4>
+                    <table id="deposits"  class="table table-striped table-condensed table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="center">#</th>
+                                <th>Fecha</th>
+                                <th>Banco</th>
+                                <th>Cuenta</th>
+                                <th>No. Documento</th>
+                                <th>Monto</th>
+                                <th class="text-center hidden-print">
+                                    <button v-tooltip="'Agregar Deposito'" @click="showCreateDeposit" type="button" class="btn btn-primary btn-xs hidden-print"><i class="fa fa-plus"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="deposit in cash_register.cr_deposits" :key="deposit.id">
+                                <td class="center">#</td>
+                                <td>{{ deposit.date }}</td>
+                                <td>{{ deposit.bank}}</td>
+                                <td>{{deposit.account}}</td>
+                                <td>{{ deposit.baucher}}</td>
+                                <td>{{deposit.amount}}</td>
+                                <td class="text-center hidden-print"><button v-tooltip="'Eliminar'" type="button" @click="deleteDeposit(deposit)" class="btn btn-danger btn-xs hidden-print"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <h4 class="visible-print-block">Gastos de caja</h4>
+                    <table id="payments"  class="table table-striped table-responsive table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="center">#</th>
+                                <th>Fecha</th>
+                                <th>Descripción</th>
+                                <th>Monto</th>
+                                <th class="text-center hidden-print">
+                                    <button v-tooltip="'Agregar Gasto'" @click="showCreateExpense" type="button" class="btn btn-primary btn-xs hidden-print"><i class="fa fa-plus"></i></button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="expense in cash_register.cr_expenses" :key="expense.id">
+                                <td class="center">#</td>
+                                <td>{{ expense.created_at }}</td>
+                                <td>{{ expense.description}}</td>
+                                <td>{{expense.amount}}</td>
+                                <td class="text-center hidden-print"><button type="button" @click="deleteExpense(expense)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button></td>
                             </tr>
                         </tbody>
                     </table>
