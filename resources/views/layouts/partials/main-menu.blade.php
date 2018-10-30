@@ -13,7 +13,7 @@
                 <li><a href="{{ route('orders.index') }}"><i class="fa fa-truck"></i><span class="text"> Pedidos</span></a></li>
                 {{-- <li><a href="{{ route('audit.index') }}"><i class="fa fa-list-alt"></i><span class="text"> Auditoria</span></a></li> --}}
                 {{-- <li><a href="{{ route('quotes.index') }}"><i class="fa fa-calendar"></i><span class="text"> Cotizaciones  </span></a></li> --}}
-                <li><a href="{{ route('people.index') }}"><i class="fa fa-users"></i><span class="text"> Personas</span></a></li>
+                <li><a href="/people"><i class="fa fa-users"></i><span class="text"> Personas</span></a></li>
                 <li><a href="/products"><i class="fa fa-barcode"></i><span class="text"> Productos</span></a></li>
                 <li><a href="/gift-cards"><i class="fa fa-gift"></i><span class="text"> Gift Cards</span></a></li>
 

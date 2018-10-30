@@ -4,7 +4,7 @@ namespace EmejiasInventory\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PeopleStore extends FormRequest
+class PeopleUpdate extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,11 @@ class PeopleStore extends FormRequest
      */
     public function rules()
     {
+
+        $person = $this->route()->parameter('person');
         return [
             'name'        => 'required',
-            'nit'         => 'nullable',
+            'nit'         => 'nullable|unique:people,nit,'.$person->id,
             'email'       => 'nullable|email',
             'address'     => 'required',
             'phone'       => 'nullable',

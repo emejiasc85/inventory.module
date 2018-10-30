@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('auth:api')->group(function() {
+    Route::apiResource('people', 'PeopleController');
     Route::resource('makes', 'MakeController');
     Route::resource('colors', 'ColorController');
     Route::resource('groups', 'GroupController');
@@ -24,7 +25,7 @@ Route::middleware('auth:api')->group(function() {
     Route::resource('products', 'ProductController');
     Route::post('products/{product}/quick-orders', 'ProductQuickOrderController@store');
     Route::resource('commerces', 'CommerceController');
-    Route::resource('people', 'PeopleController');
+    Route::resource('customers', 'CustomerController');
     Route::resource('invoice', 'InvoiceController');
     Route::resource('invoice-details', 'InvoiceDetailController');
     Route::post('invoice/{invoice}/gift-cards', 'InvoiceGiftCardController@store');
@@ -34,6 +35,7 @@ Route::middleware('auth:api')->group(function() {
     Route::resource('gift-cards', 'GiftCardController');
     Route::resource('stock', 'StockController');
     Route::put('invoices/{invoice}/payments', 'InvoicePaymentController@update');
+    Route::put('invoices/{invoice}/credit-payments', 'CreditInvoicePaymentController@update');
     Route::put('invoices/{invoice}/reverts', 'InvoiceRevertController@update');
 
 });

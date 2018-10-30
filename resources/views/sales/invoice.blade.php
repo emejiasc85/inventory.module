@@ -8,7 +8,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-12">
-        <invoice invoice_id="{{ request()->id }}"></invoice>
+        <invoice invoice_id="{{ request()->id }}" people_id="{{ request()->people_id }}"></invoice>
     </div>
 </div>
 @stop

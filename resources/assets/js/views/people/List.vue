@@ -30,7 +30,6 @@
                                  <div class="">
                                     <button @click="index" type="buttom" class="btn btn-info btn-sm"><i class="fa fa-filter"></i> Filtrar</button>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -83,6 +82,7 @@
                                         <td class="text-right" style="width:100px !important">
                                             <button @click="show(person.id)" v-tooltip="'Detalles'" type="button" class="btn btn-info btn-xs"><i class="fa fa-eye"></i></button>
                                             <button @click="edit(person.id)" v-tooltip="'Editar'" type="button" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <a v-tooltip="'Crear venta'" :href="'/sales/invoice/?people_id='+person.id" type="button" class="btn btn-default btn-xs"><i class="fa fa-shopping-cart text-success"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use EmejiasInventory\Entities\People;
 
-class PeopleTest extends TestCase
+class CustomerTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -17,7 +17,7 @@ class PeopleTest extends TestCase
         $this->actingAs($this->defaultUser(), 'api');
         $people = factory(People::class)->create();
 
-        $this->get('api/people')
+        $this->get('api/customers')
             ->assertStatus(200)
             ->assertJson([
                 'data' => [
@@ -37,7 +37,7 @@ class PeopleTest extends TestCase
         $params = [
             'nit' => 'cf'
         ];
-        $this->call('GET', 'api/people', $params)
+        $this->call('GET', 'api/customers', $params)
             ->assertStatus(200)
             ->assertJson([
                 'data' => [
@@ -59,7 +59,7 @@ class PeopleTest extends TestCase
             'address' => 'San Benito'
         ];
 
-        $this->postJson('api/people', $parameters)
+        $this->postJson('api/customers', $parameters)
             ->assertStatus(201)
             ->assertJson([
                 'data' => [

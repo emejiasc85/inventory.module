@@ -75,6 +75,59 @@
                     </div>
                 </div>
             </div>
+            <div v-if="invoice.status == 'Ingresado' && invoice.credit == 1" class="col-sm-7">
+                <div class="panel panel-default ">
+                    <div class="panel-heading">
+                        Pagos del crédito
+                        <div class="pull-right">
+                            <button type="button"  @click="showCreditPayment" class="btn btn-sm btn-primary"><span class="fa fa-plus"></span> Agregar</button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Doc.</th>
+                                    <th class="text-right">Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="payment in invoice.credit_payments" :key="payment.id">
+                                    <td>{{ payment.created_at}}</td>
+                                    <td>
+                                        <span v-if="payment.payment_method_id == 7" class="label label-primary">Deposito</span>
+                                        <span v-else class="label label-success">Efectivo</span>
+                                    </td>
+                                    <td>{{ payment.voucher}}</td>
+                                    <td class="text-right">{{ payment.amount}}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Total Pagos</strong></td>
+                                    <th class="text-right">{{ invoice.payments }}</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Total Credito</strong></td>
+                                    <th class="text-right">{{ invoice.credit_payment }}</th>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td><strong>Resta</strong></td>
+                                    <th class="text-right">
+                                        {{ parseFloat(invoice.credit_payment)-parseFloat(invoice.payments)}}
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-5" :class="{'col-sm-offset-3': invoice.status == 'Finalizado' && invoice.credit == null }">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -219,6 +272,35 @@
             </div>
             <a href="/" slot="btnCancel" type="button" class="btn btn-link">Salir</a>
             <button slot="btnSave" type="button" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
+        </modal>
+        <modal v-if="show_credit_payment"  title="Es necesario aperturar caja"  size="modal-sm">
+            <div class="form" role="form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text"  class="form-control" v-model="payment.amount" id="multimedia_name" placeholder="Cantidad">
+                            <p v-if="errors.amount" class="text-danger">{{ errors.amount[0] }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text"  class="form-control" v-model="payment.voucher" id="multimedia_name" placeholder="No. Documento">
+                            <p v-if="errors.voucher" class="text-danger">{{ errors.voucher[0] }}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="checkbox-inline" for="inline-checkbox1">
+                                <input v-model="payment.deposit" type="checkbox" value="1"> Deposito
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-danger" v-if="errors.failed">{{ errors.failed[0]}}</p>
+            </div>
+
+            <button slot="btnCancel" type="button" class="btn btn-link" @click="show_credit_payment = false">Cancelar</button>
+            <button :disabled="storeCreditPaymentButton" slot="btnSave" type="button" class="btn btn-primary" @click="storeCreditPayment">Agregar pago</button>
         </modal>
         <modal v-if="show_delete_detail"  title="Alerta"  size="modal-sm">
             <p>{{ detail.product.name}}</p>
@@ -366,10 +448,11 @@
 </template>
 <script>
 
-import People from '../models/People';
+import Customer from '../models/Customer';
 import Invoice from '../models/Invoice';
 import InvoiceDetail from '../models/InvoiceDetail';
 import InvoicePayment from '../models/InvoicePayment';
+import CreditPayment from '../models/CreditPayment';
 import InvoiceRevert from '../models/InvoiceRevert';
 import CashRegister from '../models/CashRegister';
 import Commerce from '../models/Commerce';
@@ -377,9 +460,12 @@ import Stock from '../models/Stock';
 import { focus } from 'vue-focus';
 export default {
     directives: { focus: focus },
-    props:['invoice_id'],
+    props:['invoice_id', 'people_id'],
     data() {
         return{
+            storeCreditPaymentButton:true,
+            payment: {},
+            show_credit_payment:false,
             destroyButton:true,
             revertButton:true,
             finalInvoiceButton:true,
@@ -439,6 +525,26 @@ export default {
         },
     },
     methods:{
+        showCreditPayment(){
+            this.show_credit_payment = true;
+            this.storeCreditPaymentButton = false;
+        },
+        storeCreditPayment(){
+            this.storeCreditPaymentButton = true;
+            CreditPayment.update(this.invoice.id, this.payment, data => {
+                this.invoice = data.data;
+                this.$toastr.s("Pago Agregado");
+                this.invoice = data.data;
+                this.payment = {};
+                this.errors = [];
+            }, errors => {
+                this.storeCreditPaymentButton = false;
+                this.errors = errors;
+            });
+
+
+
+        },
         showDestroy(){
             this.show_destroy = true;
             this.destroyButton = false;
@@ -580,9 +686,10 @@ export default {
         },
         searchPeople(){
             let params = {
-                nit: this.people.nit,
+                nit: this.people.nit ? this.people.nit: null,
+                id: this.people_id ? this.people_id:null,
             };
-            People.get(params, data => {
+            Customer.get(params, data => {
                 if (data.data.length > 0) {
                     this.people = _.first(data.data);
                     this.errors = [];
@@ -604,7 +711,7 @@ export default {
                 formData.append('phone', this.people.phone ? this.people.phone : '');
                 formData.append('email', this.people.email ? this.people.email : '');
 
-                People.store(formData, data => {
+                Customer.store(formData, data => {
                     this.people = data.data;
                     this.errors = {};
                     this.createInvoice();
@@ -623,8 +730,16 @@ export default {
                 }
                 if (data.data.length  == 1) {
                     this.cash_register = _.head(data.data);
-                    this.show_form_people = true;
-                    this.nit_focus = true;
+
+                    if (this.people_id == ''){
+                        this.show_form_people = true;
+                        this.nit_focus = true;
+                    }
+
+                    if (this.people_id != ''){
+                        this.searchPeople();
+                        this.createInvoice();
+                    }
                 }
                 this.errors = {};
             }, errors => this.errors = errors);
@@ -643,7 +758,7 @@ export default {
         },
         createInvoice(){
             let params = {
-                people_id: this.people.id,
+                people_id: this.people_id != null ? this.people_id: this.people.id,
                 cash_register_id: this.cash_register.id
             };
 

@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use EmejiasInventory\Http\Controllers\Controller;
 use EmejiasInventory\Entities\People;
 use EmejiasInventory\Http\Resources\PeopleResource;
-use EmejiasInventory\Http\Requests\PeopleStore;
-use EmejiasInventory\Http\Requests\PeopleUpdate;
 
-class PeopleController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,9 +26,17 @@ class PeopleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PeopleStore $request)
+    public function store(Request $request)
     {
-        $people = People::create(request()->all());
+        $people = People::updateOrCreate([
+            'nit'     => request()->nit
+        ],[
+            'name'    => request()->name,
+            'address' => request()->address,
+            'phone'   => request()->phone,
+            'email'   => request()->email,
+        ]);
+
         return new PeopleResource($people);
     }
 
@@ -40,11 +46,21 @@ class PeopleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(People $person)
+    public function show($id)
     {
-        return new PeopleResource($person);
+        //
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -53,10 +69,9 @@ class PeopleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PeopleUpdate $request, People $person)
+    public function update(Request $request, $id)
     {
-        $person->update(request()->all());
-        return new PeopleResource($person);
+        //
     }
 
     /**
@@ -65,9 +80,8 @@ class PeopleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(People $person)
+    public function destroy($id)
     {
-        $person->delete();
-        return response()->json([], 204);
+        //
     }
 }

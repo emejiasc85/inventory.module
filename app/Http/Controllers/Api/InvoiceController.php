@@ -24,11 +24,13 @@ class InvoiceController extends Controller
     {
         $invoices = Invoice::query()
             ->cashRegisterId()
-            //->peopleName()
+            ->peopleId()
             ->id()
             ->date()
             ->credit()
+
             ->orderBy('created_at', 'DESC')
+            ->where('order_type_id', 2)
             ->with('people', 'user')->orderByDesc('id')->paginateIf();
 
         return InvoiceResource::collection($invoices);

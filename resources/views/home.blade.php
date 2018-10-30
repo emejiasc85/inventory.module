@@ -73,7 +73,7 @@
 
 
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-        <a  href="{{ route('people.index') }}">
+        <a  href="/people">
             <div class="smallstat">
                 <i class="fa fa-users primary" style="background-color: #778899"></i>
                 <span class="value" style="color: #778899">Personas</span>

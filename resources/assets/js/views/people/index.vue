@@ -1,59 +1,60 @@
 <template>
     <div>
         <people-list  v-if="show_people_list" @create="create" @edit="edit" @show="show" ></people-list>
-       <!--  <product-create  v-if="create_product" @end="list" ></product-create>
-        <product-edit  v-if="edit_product" :product_id="product_id" @end="list" ></product-edit>
-        <product-show  v-if="show_product" :product_id="product_id" @end="list" ></product-show> -->
+        <people-create  v-if="create_people" @end="list" ></people-create>
+        <people-edit  v-if="edit_people" :people_id="people_id" @end="list" ></people-edit>
+        <people-show  v-if="show_people" :people_id="people_id" @end="list" ></people-show>
     </div>
 </template>
 
 <script>
-    import PeopleList from './PeopleList';
-    /* import ProductCreate from './ProductCreate';
-    import ProductEdit from './ProductEdit';
-    import ProductShow from './ProductShow'; */
+    import PeopleList from './List';
+    import PeopleCreate from './Create';
+    import PeopleEdit from './Edit';
+    import PeopleShow from './Show';
     export default {
-        components: {PeopleList},
-        props:['people_id'],
+        components: {PeopleList,PeopleCreate, PeopleEdit, PeopleShow},
+        //props:['people_id'],
         data() {
             return  {
-                create_product :false,
-                edit_product :false,
-                show_product:false,
+                create_people :false,
+                edit_people :false,
+                show_people:false,
                 show_people_list:true,
+                people_id:'',
             }
         },
         created(){
-            if(this.people_id != ''){
+            /* if(this.people_id != ''){
                 this.show(this.people_id);
-            }
+            } */
         },
         methods: {
             list(){
                 this.show_people_list = true;
-                this.create_product    = false;
-                this.edit_product      = false;
-                this.show_product      = false;
+                this.create_people    = false;
+                this.edit_people      = false;
+                this.show_people      = false;
             },
             create(){
-                this.create_product    = true;
+                this.create_people    = true;
                 this.show_people_list = false;
-                this.edit_product      = false;
-                this.show_product      = false;
+                this.edit_people      = false;
+                this.show_people      = false;
             },
-            edit(product_id){
-                this.edit_product      = true;
-                this.create_product    = false;
+            edit(people_id){
+                this.edit_people      = true;
+                this.create_people    = false;
                 this.show_people_list = false;
-                this.show_product      = false;
-                this.product_id = product_id
+                this.show_people      = false;
+                this.people_id = people_id
             },
-            show(product_id){
-                this.show_product      = true;
-                this.edit_product      = false;
-                this.create_product    = false;
+            show(people_id){
+                this.show_people      = true;
+                this.edit_people      = false;
+                this.create_people    = false;
                 this.show_people_list = false;
-                this.product_id = product_id
+                this.people_id = people_id
             }
         }
     }
