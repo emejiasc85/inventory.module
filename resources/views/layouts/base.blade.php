@@ -59,8 +59,17 @@
 
         <!-- theme scripts -->
 
+        {!! Html::script('js/jquery-3.1.0.min.js') !!}
+        {!! Html::script('js/jquery-migrate-1.4.1.min.js') !!}
+        {!! Html::script('js/bootstrap.min.js') !!}
+        {!! Html::script('plugins/jquery-ui/js/jquery-ui-1.10.4.min.js') !!}
+
+        {!! Html::script('plugins/pace/pace.min.js') !!}
         {!! Html::script('js/jquery.mmenu.min.js') !!}
         {!! Html::script('js/core.min.js') !!}
+        {!! Html::script('plugins/jquery-cookie/jquery.cookie.min.js') !!}
+        {!! Html::script('js/demo.min.js') !!}
+
         <!-- end: JavaScript-->
         <script>
             /****
