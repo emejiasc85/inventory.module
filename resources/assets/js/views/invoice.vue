@@ -723,7 +723,6 @@ export default {
                     this.nit_focus = true;
                     this.barcode_focus = true;
                 }, errors => this.errors = errors);
-
         },
         getCashRegister(){
             CashRegister.get({latest:1}, data => {
@@ -762,7 +761,7 @@ export default {
         },
         createInvoice(){
             let params = {
-                people_id: this.people_id != null ? this.people_id: this.people.id,
+                people_id: this.people_id != '' ? this.people_id: this.people.id,
                 cash_register_id: this.cash_register.id
             };
 
