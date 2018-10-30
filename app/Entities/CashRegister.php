@@ -11,7 +11,11 @@ class CashRegister extends Model
     use SoftDeletes;
     protected $fillable = ['initial_cash', 'user_id', 'status', 'baucher', 'amount', 'closing_date'];
 
-
+    /* relations */
+    public function expenses()
+    {
+        return $this->hasMany(CashRegisterExpense::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -36,19 +40,19 @@ class CashRegister extends Model
         return $this->hasMany(Payment::class);
     }
 
+    public function deposits()
+    {
+        return $this->hasMany(CashRegisterDeposit::class);
+    }
+
     public function sales()
     {
         return $this->hasMany(Order::class)->where('order_type_id', 2)->with('payments');
     }
-
+    /* accesors */
     public function getCreditsAttribute()
     {
         return $this->orders->where('order_type_id', 2)->where('credit', true);
-    }
-
-    public function deposits()
-    {
-        return $this->hasMany(CashRegisterDeposit::class);
     }
 
     public function getEditUrlAttribute()

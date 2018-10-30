@@ -3,6 +3,7 @@
 namespace EmejiasInventory\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class CashRegisterDepositResource extends JsonResource
 {
@@ -21,7 +22,7 @@ class CashRegisterDepositResource extends JsonResource
             'amount' => $this->amount,
             'bank' => $this->bank,
             'account' => $this->account,
-            'date' => $this->date
+            'date' => Carbon::parse($this->date)->format('d-m-Y')
         ];
     }
 }
