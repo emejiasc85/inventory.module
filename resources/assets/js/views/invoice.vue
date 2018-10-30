@@ -520,7 +520,6 @@ export default {
             if (this.payment_method.card > 0) {
                 return this.invoice.total == this.payment_method.total_payments;
             }
-
             return this.invoice.total_offer == this.payment_method.total_payments;
         },
     },
@@ -534,9 +533,10 @@ export default {
             CreditPayment.update(this.invoice.id, this.payment, data => {
                 this.invoice = data.data;
                 this.$toastr.s("Pago Agregado");
-                this.invoice = data.data;
                 this.payment = {};
                 this.errors = [];
+                this.show_credit_payment = false;
+
             }, errors => {
                 this.storeCreditPaymentButton = false;
                 this.errors = errors;
@@ -634,10 +634,12 @@ export default {
             this.show_delete_detail = false;
         },
         detailDelete(detail){
+            this.destroyButton=false;
             this.detail = detail;
             this.show_delete_detail = true;
         },
         destroyDetail(){
+            this.destroyButton=true;
             InvoiceDetail.destroy(this.detail.id, data => {
                 this.invoice = data.data;
                 this.$toastr.s("Eliminado exitosamente.");
