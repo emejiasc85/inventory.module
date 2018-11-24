@@ -20,6 +20,7 @@
         {!! Html::style('css/tooltip.css') !!}
         {!! Html::style('plugins/select2/css/select2.css') !!}
         <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
         <script>
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),

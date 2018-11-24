@@ -17,7 +17,7 @@
                 </div>
             </div>
             <a href="/" slot="btnCancel" type="button" class="btn btn-link">Salir</a>
-            <button slot="btnSave" type="button" :disabled="storeCashRegisterButton" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
+            <button slot="btnSave" type="button" :disabled="!storeCashRegisterButton" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
         </modal>
     </div>
 </template>
@@ -75,6 +75,7 @@
                     this.details(this.cash_register.id);
                     this.errors = {};
                     this.create_cash_register = false;
+                    this.storeCashRegisterButton = true;
                 }, errors => this.errors = errors);
             },
             resumen(cash_register_id){

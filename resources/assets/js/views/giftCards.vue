@@ -41,18 +41,20 @@
                             <tr v-for="(chunk, index) in chunk_cards " :key="'chunk_'+index">
                                 <td v-for="card in chunk" :key="'card_'+card.id">
                                     <div class="card">
-                                        <div class="col-xs-5 gift">
+                                        <div class="col-xs-6 gift">
                                             <div class="round" style="padding-top:1.8em">
-                                                <img src="/img/Recurso.png" alt="" width="150">
-                                                <h1 style="font-family: 'Anton', sans-serif; font-size:2em; padding-top:10px">Q. {{ card.value }}</h1>
+
+                                                <img class="bg-g" src="/img/open_gift2.png" alt="" >
+                                                <img :src="commerce.logo" alt="" width="100">
+                                                <!-- <h1 style="font-family: 'Anton', sans-serif; font-size:2em; padding-top:10px">Q. {{ card.value }}</h1> -->
                                                 <h3>Cod. {{ card.id}}</h3>
                                             </div>
                                         </div>
-                                        <div class="col-xs-7 commerce">
-                                            <h2 style="font-family: 'Anton', sans-serif; font-size:1.5em;">TARJETA DE REGALO</h2>
-                                            <hr>
-                                            <img :src="commerce.logo" alt="">
-                                            <hr>
+                                        <div class="col-xs-6 commerce">
+                                            <h2 style="font-family: 'Anton', sans-serif; font-size:1em;">TARJETA DE REGALO</h2>
+                                           <!--  <hr> -->
+                                            <h1>{{commerce.name}}</h1>
+                                            <!-- <hr> -->
                                             <!-- <h3>{{ commerce.name}}</h3> -->
                                             <p><span class="fa fa-phone"></span> {{ commerce.phone}}</p>
                                             <p><span class="fa fa-map-marker"></span> {{ commerce.address}}</p>
@@ -162,6 +164,16 @@ export default {
     display: flex;
     /* border: 1px solid gray; */
     -webkit-print-color-adjust: exact;
+    position: relative;
+    background-image: url("/img/14763.jpg");
+    background-repeat: round;
+
+}
+.card .bg{
+
+    position: absolute;
+    width: 41em;
+    height: 10.5em;
 }
 
 .card .commerce{
@@ -171,10 +183,53 @@ export default {
     text-align: center;
 }
 .card .gift{
-    height: 100% !important;
+    /* background-image: url(/img/open_gift2.png); */
+    /* background-repeat: no-repeat;
+    background-position: center; */
+    height: 10em !important;
+    position: relative;
 }
-.card .commerce img{
-   /*  padding-top: .7em; */
-    width: 4em;
+.card .gift .bg-g{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* background-image: url(/img/open_gift2.png); */
+    /* background-repeat: no-repeat;
+    background-position: center; */
 }
+.card .gift h3{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 900;
+}
+.card .gift img{
+    position: absolute;
+    top: 80px;
+    left: 93px;
+}
+.card .commerce h1{
+   font-family: 'Lobster', cursive;
+   font-weight: bold;
+   font-size: 1em !important;
+}
+.card .commerce p{
+   font-size: 12px !important;
+}
+
+
+@media print {
+    .card{
+        color:#535c68 !important;
+        -webkit-print-color-adjust: exact;
+        display: list-item;
+        list-style-image: url("/img/14763.jpg");
+        list-style-position: inside;
+    }
+}
+
+
+
+
+
 </style>
