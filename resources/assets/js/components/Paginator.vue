@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row hidden-print">
         <div class="col-md-4">
             <p style="margin-top: 30px">
                 Mostrando {{ pagination.from ? pagination.from : 0 }}

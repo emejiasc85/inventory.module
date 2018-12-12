@@ -11,22 +11,27 @@ class EditCommerceController extends Controller
 {
 
 
-	public function edit(Commerce $commerce, $slug)
-	{
-		return view('commerces.edit', compact('commerce'));
-	}
+    public function edit(Commerce $commerce, $slug)
+    {
+        return view('commerces.edit', compact('commerce'));
+    }
 
-	public function update(CommerceRequest $request, Commerce $commerce)
-	{
+    public function update(CommerceRequest $request, Commerce $commerce)
+    {
 
-		$commerce->fill($request->all());
-		if ($request->hasFile('logo'))
+        $commerce->fill($request->all());
+        if ($request->hasFile('logo'))
         {
             $commerce->logo_path = $request->file('logo')->store('logos');
         }
-		$commerce->save();
 
-		Alert::success('Se realizaron los cambios correctamente');
-		return redirect()->back();
-	}
+        if ($request->hasFile('gift_card'))
+        {
+            $commerce->gift_card_path = $request->file('gift_card')->store('cards');
+        }
+        $commerce->save();
+
+        Alert::success('Se realizaron los cambios correctamente');
+        return redirect()->back();
+    }
 }

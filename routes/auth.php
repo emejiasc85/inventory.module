@@ -42,6 +42,11 @@ Route::get('{commerce}/logo', [
     'as' => 'commerces.logo',
 ]);
 
+Route::get('{commerce}/gift-card', [
+    'uses' => 'CommerceController@giftCard',
+    'as' => 'commerces.gift_card',
+]);
+
 //makes
 
 Route::get('agregar-marcas', [

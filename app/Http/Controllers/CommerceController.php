@@ -29,4 +29,18 @@ class CommerceController extends Controller
             null, $header, ResponseHeaderBag::DISPOSITION_INLINE
             );
     }
+
+    function giftCard(Commerce $commerce)
+    {
+
+        $header = [
+        'Content-lenght'  => File::size($commerce->giftFile),
+        'Content-type'    => File::mimeType($commerce->giftFile)
+        ];
+
+        return response()->download(
+            $commerce->giftFile,
+            null, $header, ResponseHeaderBag::DISPOSITION_INLINE
+            );
+    }
 }

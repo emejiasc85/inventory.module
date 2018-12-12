@@ -8,3 +8,12 @@
 {!! Field::text('tax', ['template' => 'templates.inline']) !!}
 {!! Field::text('profit', ['template' => 'templates.inline']) !!}
 {!! Field::file('logo', ['template' => 'templates.inline']) !!}
+@if ($commerce->logo_path)
+    <img src="{{  route('commerces.logo', $commerce) }} " alt="" class="img-rounded" width="150">
+@else
+    <img src="{{ asset('/img/picture.svg') }}" class="img-rounded" width="150" id="blah">
+@endif
+{!! Field::file('gift_card', ['template' => 'templates.inline']) !!}
+@if ($commerce->gift_card_path)
+    <img src="{{  route('commerces.gift_card', $commerce) }} " alt="" class="img-rounded" width="150">
+@endif

@@ -10,17 +10,18 @@ class Commerce extends Model
 {
     protected $fillable = [
         'id',
-    	'name',
-    	'patent_name',
-    	'patent',
-    	'address',
-    	'phone',
-    	'other_phone',
-    	'nit',
-    	'tax',
-    	'profit',
-    	'logo_path',
-    	'slug'
+        'name',
+        'patent_name',
+        'patent',
+        'address',
+        'phone',
+        'other_phone',
+        'nit',
+        'tax',
+        'profit',
+        'logo_path',
+        'gift_card_path',
+        'slug'
     ];
 
 
@@ -36,13 +37,23 @@ class Commerce extends Model
     }
 
     public function getEditUrlAttribute()
-	{
-		return route('commerces.edit', [$this, $this->slug]);
-	}
+    {
+        return route('commerces.edit', [$this, $this->slug]);
+    }
 
     public function getLogoFileAttribute()
     {
        return storage_path('app/'.$this->logo_path);
+    }
+
+    public function getGiftFileAttribute()
+    {
+       return storage_path('app/'.$this->gift_card_path);
+    }
+
+    public function getShowStorageGiftUrlAttribute()
+    {
+       return Storage::url('app/'.$this->gift_card_path);
     }
 
     public function getShowStorageUrlAttribute()
