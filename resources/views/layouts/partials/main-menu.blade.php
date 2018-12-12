@@ -40,7 +40,6 @@
                         <li><a href="{{ route('unit.measures.index') }}"><i class="icon-chemistry"></i><span class="text"> Medidas</span></a></li>
                         {{--
                             <li><a href="{{ route('orders.type.index') }}"><i class="fa fa-tags"></i><span class="text"> Tipos de ordenes</span></a></li>
-                            <li><a href="{{ route('warehouses.index') }}"><i class="fa fa-database"></i><span class="text"> Bodegas</span></a></li>
                         --}}
                     </ul>
                 </li>
@@ -50,6 +49,7 @@
                         <li><a href="{{ route('commerces.edit', [1, 'comercio']) }}"><i class="fa fa-home"></i><span class="text"> Comercio</span></a></li>
                         <li><a href="{{ route('resolutions.index') }}"><i class="fa fa-list-ol"></i><span class="text"> Resoluciones</span></a></li>
                         <li><a href="{{ route('users.index') }}"><i class="fa fa-users"></i><span class="text"> Usuarios</span></a></li>
+                        <li><a href="/admin/warehouses"><i class="fa fa-database"></i><span class="text"> Bodegas</span></a></li>
                     </ul>
                 </li>
             </ul>

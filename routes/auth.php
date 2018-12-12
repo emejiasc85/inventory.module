@@ -353,6 +353,10 @@ Route::group(['namespace' => 'Export', 'prefix' => 'export'], function() {
     Route::get('cash_registers/resumen/exports', 'CashRegisterExportController@index');
 });
 
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
+    Route::view('warehouses', 'admin.warehouses' );
+});
+
 Route::view('gift-cards', 'gift_cards');
 Route::view('products', 'products');
 Route::view('people', 'people');

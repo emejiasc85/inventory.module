@@ -39,6 +39,13 @@ Route::middleware('auth:api')->group(function() {
     Route::put('invoices/{invoice}/credit-payments', 'CreditInvoicePaymentController@update');
     Route::put('invoices/{invoice}/reverts', 'InvoiceRevertController@update');
 
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
+        Route::apiResource('warehouses', 'WarehouseController');
+
+    });
+
+
+
 });
 
 
