@@ -22,7 +22,7 @@ class OrderTypeTableSeeder extends Seeder
         ]);
         OrderType::create([
             'id' => 3,
-            'name' => 'Movimientos'
+            'name' => 'Traslados'
         ]);
         OrderType::create([
             'id' => 4,

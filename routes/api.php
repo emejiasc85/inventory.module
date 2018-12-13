@@ -41,7 +41,10 @@ Route::middleware('auth:api')->group(function() {
 
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
         Route::apiResource('warehouses', 'WarehouseController');
+    });
 
+    Route::group(['namespace' => 'Transfer', 'prefix' => 'transfer'], function() {
+        Route::apiResource('transfers', 'TransferController');
     });
 
 
