@@ -672,6 +672,7 @@ export default {
                 this.stock = [];
                 this.filter = [];
                 this.show_form_detail = false;
+                this.barcode_focus = true;
             }, errors => {
                 this.errors = errors;
                 this.storeDetailButton = false;
