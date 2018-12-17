@@ -9,8 +9,9 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-    	$orders = Order::id($request->get('id'))
-            ->date($request->get('from'), $request->get('to'))
+        $orders = Order::query()
+            ->id()
+            ->date()
             ->status($request->get('status'))
             ->priority($request->get('priority'))
             ->total($request->get('simbol'), $request->get('total'))

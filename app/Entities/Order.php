@@ -90,7 +90,7 @@ class Order extends Entity
     }
     public function scopeId($query)
     {
-        return $query->when(request()->has('id'), function($q) {
+        return $query->when(request()->id != '', function($q) {
             $q->where('id', request()->id);
         });
     }
@@ -132,7 +132,7 @@ class Order extends Entity
 
     public function scopeDate($query)
     {
-        return $query->when( request()->has('from') && request()->has('to') ,function($q){
+        return $query->when( request()->from != '' && request()->to != '' ,function($q){
             $from = Carbon::parse(request()->from)->startOfDay();  //2016-09-29 00:00:00.000000
             $to = Carbon::parse(request()->to)->endOfDay(); //2016-09-29 23:59:59.000000
             $q->whereBetween('orders.created_at', [$from, $to]);
