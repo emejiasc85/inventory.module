@@ -73,7 +73,7 @@ class People extends Entity
 
     public function getPurchasesAttribute()
     {
-        return $this->orders->where('order_type_id', 2)->where('status', 'Ingresado')->where('credit', false);
+        return $this->orders->where('order_type_id', 2)->where('status', 'Ingresado');
     }
     public function getCreditsAttribute()
     {
@@ -82,7 +82,7 @@ class People extends Entity
 
     public function getCurrentCreditAttribute()
     {
-        $credits = $this->orders->where('order_type_id', 2)->where('credit', true);
+        $credits = $this->orders->where('order_type_id', 2)->where('credit', 1);
 
         if ($credits->count() > 0) {
             $payments = 0;

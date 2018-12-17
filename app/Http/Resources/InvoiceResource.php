@@ -31,10 +31,10 @@ class InvoiceResource extends JsonResource
             'total'          => $this->total ? $this->total:             0,
             'total_offer'    => $this->total_offer ? $this->total_offer: 0,
             'final_total'    => $this->final_total ? $this->final_total: 0,
-            'payments'       => number_format($this->payments->whereIn('payment_method_id', [6,7])->sum('amount'),2),
+            'payments'       => $this->payments->whereIn('payment_method_id', [6,7])->sum('amount'),
             'current_credit' => $this->payments->where('payment_method_id', 4)->sum('amount') - $this->payments->where('payment_method_id', 6)->sum('amount'),
             'credit_payments' => PaymentResource::collection($this->payments->whereIn('payment_method_id', [6,7])),
-            'credit_payment' =>  number_format($this->payments->where('payment_method_id', 4)->sum('amount'),2),
+            'credit_payment' =>  $this->payments->where('payment_method_id', 4)->sum('amount'),
         ];
     }
 }
