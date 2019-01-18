@@ -273,7 +273,7 @@
                 </div>
             </div>
             <a href="/" slot="btnCancel" type="button" class="btn btn-link">Salir</a>
-            <button slot="btnSave" type="button" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
+            <button v-if="!loading" slot="btnSave" type="button" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
         </modal>
         <modal v-if="show_credit_payment"  title="Es necesario aperturar caja"  size="modal-sm">
             <div class="form" role="form">
@@ -465,6 +465,7 @@ export default {
     props:['invoice_id', 'people_id'],
     data() {
         return{
+            loading : false,
             storeCreditPaymentButton:true,
             payment: {},
             show_credit_payment:false,
@@ -749,16 +750,21 @@ export default {
             }, errors => this.errors = errors);
         },
         storeCashRegister(){
+            this.loading = true;
             let params = {
                 initial_cash: this.cash_register.initial_cash
             };
             CashRegister.store(params, data => {
+                this.loading = false;
                 this.$toastr.s("Caja Aperturada.");
                 this.cash_register = data.data;
                 this.errors = {};
                 this.create_cash_register = false;
                 this.show_form_people = true;
-            }, errors => this.errors = errors);
+            }, errors => {
+                this.errors = errors;
+                this.loading = false;
+            });
         },
         createInvoice(){
             let params = {

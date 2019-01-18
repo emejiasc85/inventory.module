@@ -17,7 +17,7 @@
                 </div>
             </div>
             <a href="/" slot="btnCancel" type="button" class="btn btn-link">Salir</a>
-            <button slot="btnSave" type="button" :disabled="!storeCashRegisterButton" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
+            <button slot="btnSave" type="button" v-if="!loading" class="btn btn-primary" @click="storeCashRegister">Aperturar Caja</button>
         </modal>
     </div>
 </template>
@@ -33,7 +33,7 @@
         props:['cash_register_id'],
         data() {
             return  {
-                storeCashRegisterButton:true,
+                loading:true,
                 create_cash_register :false,
                 show_details:false,
                 show_resumen: false,
@@ -66,17 +66,23 @@
                 }, errors => this.errors = errors);
             },
             storeCashRegister(){
+                this.loading = true;
+
                 let params = {
                     initial_cash: this.cash_register.initial_cash
                 };
+
                 CashRegister.store(params, data => {
                     this.$toastr.s("Caja Aperturada.");
                     this.cash_register = data.data;
                     this.details(this.cash_register.id);
                     this.errors = {};
                     this.create_cash_register = false;
-                    this.storeCashRegisterButton = true;
-                }, errors => this.errors = errors);
+                    this.loading = false;
+                }, errors => {
+                    this.errors = errors;
+                    this.loading = false;
+                });
             },
             resumen(cash_register_id){
                 this.show_details = false;
