@@ -26,17 +26,17 @@ class AuditController extends Controller
 
         $audit->auditAllProducts($audit);
 
-        return new AuditResource($audit->load(['user', 'details.product', 'details.stock']));
+        return new AuditResource($audit->load(['user', 'details.product',]));
     }
 
     public function show(Audit $audit)
     {
-        return new AuditResource($audit->load(['user', 'details.product', 'details.stock']));
+        return new AuditResource($audit->load(['user', 'details.product',]));
     }
 
     public function update(Request $request, Audit $audit)
     {
         $audit->update($request->all());
-        return new AuditResource($audit->load(['user', 'details.product', 'details.stock']));
+        return new AuditResource($audit->load(['user', 'details.product',]));
     }
 }

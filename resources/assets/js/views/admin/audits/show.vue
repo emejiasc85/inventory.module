@@ -199,7 +199,7 @@ export default {
             AuditDetail.update(detail.id, params, data => {
                 this.index();
                 this.$toastr.removeByType("info");
-                this.$toastr.s("Validado");
+                this.$toastr.s("Producto "+detail.product.id+" Validado");
 
             }, errors => this.errors = errors);
 
@@ -223,7 +223,7 @@ export default {
                 this.show_reject_detail = false;
                 this.index();
                 this.$toastr.removeByType("info");
-                this.$toastr.s("Rechazado");
+                this.$toastr.s("Producto "+this.detail.product.id+" Rechazado");
             }, errors => this.errors = errors);
 
         },
@@ -231,7 +231,7 @@ export default {
             AuditDetail.destroy(this.detail.id, data => {
                 this.show_delete_detail = false;
                 this.index();
-                this.$toastr.s("Eliminado");
+                this.$toastr.s("Producto "+this.detail.product.id+" Eliminado");
             }, errors => this.errors = errors);
         },
         close(){

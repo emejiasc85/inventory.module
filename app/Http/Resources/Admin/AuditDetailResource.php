@@ -22,7 +22,6 @@ class AuditDetailResource extends JsonResource
             'audited_stock' => $this->audited_stock,
             'status'        => $this->status == 'ok' ? true:false,
             'product'       => new ProductResource($this->whenLoaded('product')),
-            'stock'         => new StockResource($this->whenLoaded('stock')),
         ];
     }
 }
