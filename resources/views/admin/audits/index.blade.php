@@ -4,7 +4,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-12">
-        <admin-warehouses></admin-warehouses>
+        <admin-audits></admin-audits>
     </div>
 </div>
 @stop

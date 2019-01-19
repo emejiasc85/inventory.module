@@ -15,7 +15,7 @@
                     <i class="badge pull-right">{{ $audit->id }}</i>
                 </div>
 				<div class="panel-body">
-                @include('audit.partials.head')
+                    @include('audit.partials.head')
                     @if ($audit->status == 'Cancelado')
                     <h2 class="text-muted">Auditoria Cancelada</h2>
                     @else
@@ -23,7 +23,6 @@
                         <a href="#" id="auditStatus" data-status="{{ $audit->status }}" {!! Html::classes([
                             'btn btn-block',
                             'btn-primary' => $audit->status == 'Creado',
-                            'btn-default' => $audit->status == 'Finalizado',
                             'btn-default' => $audit->status == 'Finalizado',
                         ]) !!}>
                             @if ($audit->status == 'Creado')
@@ -82,5 +81,3 @@
     </script>
 
 @stop
-
-

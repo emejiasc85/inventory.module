@@ -20,7 +20,9 @@ Vue.component('invoice', require('./views/invoice.vue'));
 Vue.component('gift-cards', require('./views/giftCards.vue'));
 Vue.component('products', require('./views/product/products.vue'));
 Vue.component('people', require('./views/people/index.vue'));
-Vue.component('warehouses', require('./views/admin/warehouses.vue'));
+Vue.component('admin-warehouses', require('./views/admin/warehouses.vue'));
+Vue.component('admin-audits', require('./views/admin/audits/index.vue'));
+Vue.component('admin-audit', require('./views/admin/audits/show.vue'));
 
 import VTooltip from 'v-tooltip';
 import CheckboxRadio from 'vue-checkbox-radio';

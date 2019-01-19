@@ -3,6 +3,7 @@
 namespace EmejiasInventory\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Audit extends Model {
 
@@ -11,25 +12,55 @@ class Audit extends Model {
         'commerce_id',
         'status',
     ];
+
+    /* relations */
+
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function details() {
+        return $this->hasMany(AuditDetail::class, 'audit_id');
+    }
+    public function commerce() {
+        return $this->belongsTo(Commerce::class, 'commerce_id');
+    }
+
+    /* scopes */
+
     public function scopeId($query, $value) {
         if (trim($value) != null) {
             return $query->where('id', $value);
         }
     }
-    public function details() {
-        return $this->hasMany(auditDetail::class, 'audit_id');
-    }
-    public function commerces() {
-        return $this->belongsTo(Commerce::class, 'commerce_id');
+
+    public function scopeDates($query) {
+        return $query->when(trim(request()->from_date) != '' && trim(request()->to_date) != '', function ($q)
+        {
+            $from = Carbon::parse(request()->from_date)->startOfDay();  //2016-09-29 00:00:00.000000
+            $to = Carbon::parse(request()->to_date)->endOfDay(); //2016-09-29 23:59:59.000000
+            $q->whereBetween('created_at', [$from, $to]);
+        });
     }
 
-    public function getUrlAttribute() {
-        return route('audit.show', $this);
-    }
-    public function getEditUrlAttribute() {
-        return route('audit.edit', $this);
+    /* methods */
+
+    public function auditAllProducts()
+    {
+        $stocks = Stock::GroupByProduct()
+            ->get();
+
+        foreach ($stocks as $key => $value)
+        {
+            AuditDetail::create([
+                'audit_id'      => $this->id,
+                'product_id'    => $value->id,
+                'stock_id'      => $value->id, //TODO: eliminar referencia de la tabla
+                'current_stock' => $value->stock,
+                'audited_stock' => 0
+            ]);
+        }
+
+        return $this;
     }
 }

@@ -4,7 +4,7 @@
 @section('content')
 <div class="row">
     <div class="col-sm-12">
-        <admin-warehouses></admin-warehouses>
+        <admin-audit audit_id="{{ request()->id }}"></admin-audit>
     </div>
 </div>
 @stop

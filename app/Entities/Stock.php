@@ -106,6 +106,24 @@ class Stock extends Model
         return $query;
     }
 
+    public function scopeGroupByProduct($query)
+    {
+        return $query->select('products.id', 'products.name', 'products.slug', 'products.price', 'products.offer_price', 'status')
+            ->selectRaw('SUM(stocks.stock) as stock, unit_measures.name as unit, product_series.name as serie, makes.name as make, product_groups.name as product_group, product_presentations.name as presentation')
+            ->leftJoin('order_details', 'stocks.order_detail_id', '=', 'order_details.id')
+            ->leftjoin('products', 'order_details.product_id', '=', 'products.id')
+            ->leftJoin('makes', 'makes.id', '=', 'products.make_id')
+            ->leftJoin('product_groups', 'product_groups.id', '=', 'products.product_group_id')
+            ->leftJoin('product_series', 'product_series.id', '=', 'products.product_serie_id')
+            ->leftJoin('unit_measures', 'unit_measures.id', '=', 'products.unit_measure_id')
+            ->leftJoin('product_presentations', 'product_presentations.id', '=', 'products.product_presentation_id')
+            ->where('warehouse_id', 1)
+            ->where('status', true)
+            ->groupBy('products.id', 'products.name', 'products.slug', 'unit_measures.name', 'products.price', 'products.offer_price', 'stocks.status', 'makes.name', 'product_series.name', 'product_groups.name', 'product_presentations.name')
+            ->orderByDesc('stocks.id');
+
+    }
+
 
 
 }

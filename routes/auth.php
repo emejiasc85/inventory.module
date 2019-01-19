@@ -355,6 +355,8 @@ Route::group(['namespace' => 'Export', 'prefix' => 'export'], function() {
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::view('warehouses', 'admin.warehouses' );
+    Route::view('audits/index', 'admin.audits.index');
+    Route::view('audits/show', 'admin.audits.show');
 });
 
 Route::view('gift-cards', 'gift_cards');

@@ -15,22 +15,22 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'price' => $this->price,
-            'offer_price' => $this->offer_price,
-            'barcode' => $this->barcode,
-            'make' => new MakeResource($this->make),
-            'full_name' => $this->full_name,
-            'description' => $this->description,
-            'category' => new CategoryResource($this->category),
+            'id'            => $this->id,
+            'name'          => $this->name,
+            'price'         => $this->price,
+            'offer_price'   => $this->offer_price,
+            'barcode'       => $this->barcode,
+            'full_name'     => $this->full_name,
+            'description'   => $this->description,
             'minimum_stock' => $this->minimum_stock,
-            'unit' => new UnitResource($this->unit),
-            'group' => new GroupResource($this->group),
-            'serie' => new SerieResource($this->serie),
-            'presentation' => new PresentationResource($this->presentation) ,
             'minimum_stock' => $this->minimum_stock,
-            'colors' =>  $this->colors->pluck('id')->toArray()
+            'colors'        => $this->colors->pluck('id')->toArray(),
+            'unit'          => new UnitResource($this->unit),
+            'make'          => new MakeResource($this->make),
+            'group'         => new GroupResource($this->group),
+            'serie'         => new SerieResource($this->serie),
+            'category'      => new CategoryResource($this->category),
+            'presentation'  => new PresentationResource($this->presentation) ,
         ];
     }
 }

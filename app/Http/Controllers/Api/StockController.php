@@ -12,6 +12,7 @@ class StockController extends Controller
     public function index()
     {
         $data = request()->all();
+
         $data = array_where($data, function ($value, $key) {
             return is_string($value);
         });

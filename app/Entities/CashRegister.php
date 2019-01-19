@@ -62,7 +62,7 @@ class CashRegister extends Model
 
     public function scopeDate($query)
     {
-        if (trim(request()->from) != '' && trim(request()->from) != '') {
+        if (trim(request()->from) != '' && trim(request()->to) != '') {
             $from = Carbon::parse(request()->from)->startOfDay();  //2016-09-29 00:00:00.000000
             $to = Carbon::parse(request()->to)->endOfDay(); //2016-09-29 23:59:59.000000
             $query->whereBetween('created_at', [$from, $to]);

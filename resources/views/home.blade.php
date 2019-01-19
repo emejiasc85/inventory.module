@@ -17,24 +17,24 @@
             <div class="smallstat">
                 <i class="fa fa-shopping-cart primary"></i>
                 <span class="value text-primary">Facturar</span>
-            </div><!--/.smallstat-->
+            </div>
         </a>
-    </div><!--/.col-->
+    </div>
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
         <a  href="/sales/cash-register">
             <div class="smallstat">
                 <i class="fa fa-inbox info"></i>
                 <span class="value text-info">Caja</span>
-            </div><!--/.smallstat-->
+            </div>
         </a>
-    </div><!--/.col-->
+    </div>
 
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
         <a  href="/products">
             <div class="smallstat">
                 <i class="fa fa-barcode warning" style="background-color:#487eb0"></i>
                 <span class="value" style="color: #487eb0">Productos</span>
-            </div><!--/.smallstat-->
+            </div>
         </a>
     </div>
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
@@ -42,42 +42,26 @@
             <div class="smallstat">
                 <i class="fa fa-cubes info" style="background-color: #3498db"></i>
                 <span class="value text-info" style="color: #3498db">Existencias</span>
-            </div><!--/.smallstat-->
+            </div>
         </a>
-    </div><!--/.col-->
+    </div>
 
 
-
-    {{-- <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-        <a disabled href="{{ route('quotes.create') }}">
-            <div class="smallstat">
-                <i class="fa fa-calendar primary" style="background-color: #778899"></i>
-                <span class="value" style="color: #778899">Cotizar</span>
-            </div><!--/.smallstat-->
-        </a>
-    </div> --}}
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
-            <a  href="/sales/report-cash-registers">
-                <div class="smallstat">
-                    <i class="fa fa-bar-chart-o success" style="background-color:#7f8c8d"></i>
-                    <span class="value text-success" style="color:#7f8c8d">Ventas</span>
-                </div><!--/.smallstat-->
-            </a>
-        </div><!--/.col-->
-
-
-
-
-
-
-
+        <a  href="/sales/report-cash-registers">
+            <div class="smallstat">
+                <i class="fa fa-bar-chart-o success" style="background-color:#7f8c8d"></i>
+                <span class="value text-success" style="color:#7f8c8d">Ventas</span>
+            </div>
+        </a>
+    </div>
 
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
         <a  href="/people">
             <div class="smallstat">
                 <i class="fa fa-users primary" style="background-color: #778899"></i>
                 <span class="value" style="color: #778899">Personas</span>
-            </div><!--/.smallstat-->
+            </div>
         </a>
     </div>
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
@@ -85,7 +69,7 @@
             <div class="smallstat">
                 <i class="fa fa-truck " style="background-color: #95a5a6"></i>
                 <span class="value" style="color: #95a5a6">Pedidos</span>
-            </div><!--/.smallstat-->
+            </div>
         </a>
     </div>
     <div class="col-lg-3 col-sm-6 col-xs-6 col-xs-12">
