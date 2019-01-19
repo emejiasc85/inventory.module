@@ -55,7 +55,6 @@ class Audit extends Model {
             AuditDetail::create([
                 'audit_id'      => $this->id,
                 'product_id'    => $value->id,
-                'stock_id'      => $value->id, //TODO: eliminar referencia de la tabla
                 'current_stock' => $value->stock,
                 'audited_stock' => 0
             ]);

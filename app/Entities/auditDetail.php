@@ -8,7 +8,6 @@ class AuditDetail extends Model {
     protected $fillable = [
         'audit_id',
         'product_id',
-        'stock_id',
         'current_stock',
         'audited_stock',
         'status',
@@ -19,10 +18,6 @@ class AuditDetail extends Model {
     }
     public function audit() {
         return $this->belongsTo(Audit::class);
-    }
-    public function stock() {
-
-        return $this->belongsTo(Stock::class);
     }
 
 }
