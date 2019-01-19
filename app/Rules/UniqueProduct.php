@@ -28,12 +28,12 @@ class UniqueProduct implements Rule
     public function passes($attribute, $value)
     {
         $products = Product::query()
-            ->make()
-            ->unitId()
-            ->serieId()
-            ->presentationId()
-            ->groupId()
-            ->categoryId()
+            ->makes()
+            ->unit()
+            ->serie()
+            ->presentation()
+            ->groups()
+            ->category()
             ->where('id', '!=', $this->product_id)
             ->get();
         return $products->count() > 0 ? false:true;
