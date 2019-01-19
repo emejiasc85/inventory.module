@@ -19,13 +19,14 @@ class CreateOrderDetailsController extends Controller
       if (empty($data)) {
         $products = [];
       }else{
-     		$products = Product::name($request->get('name'))
-          ->id($request->get('id'))
-          ->makes($request->get('make_id'))
-      		->group($request->get('product_group_id'))
-      		->presentation($request->get('product_presentation_id'))
-      		->unit($request->get('unit_measure_id'))
-      		->barcode($request->get('barcode'))
+         $products = Product::query()
+          ->name()
+          ->id()
+          ->makes()
+      		->presentation()
+      		->barcode()
+      		->unit()
+      		->groups()
       		->orderBy('id', 'DESC')
       		->get();
 

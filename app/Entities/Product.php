@@ -74,7 +74,7 @@ class Product extends Entity
         return $this->hasMany(ProductImage::class);
     }
 
-    /* accesors */
+    /* mutators */
 
     public function getFullNameAttribute()
     {
@@ -94,59 +94,62 @@ class Product extends Entity
         return route('product.images.create', [$this, $this->slug]);
     }
 
-    public function scopeGroupId($query)
+
+    /* scopes */
+
+    public function scopeGroups($query)
     {
-        return $query->when(request()->has('product_group_id'), function($q){
+        return $query->when(request()->filled('product_group_id'), function($q){
             $q->where('product_group_id', request()->product_group_id );
         });
-
     }
 
-
-    public function scopeSerieId($query)
+    public function scopePresentation($query)
     {
-        return $query->when(request()->has('product_serie_id'), function($q){
-            $q->where('product_serie_id', request()->product_serie_id );
-        });
-    }
-
-    public function scopePresentationId($query)
-    {
-        return $query->when(request()->has('product_presentation_id'), function($q){
+        return $query->when(request()->filled('product_presentation_id'), function($q){
             $q->where('product_presentation_id', request()->product_presentation_id );
         });
     }
 
-    public function scopeUnitId($query)
+    public function scopeSerie($query)
     {
-        return $query->when(request()->has('unit_measure_id'), function($q){
+        return $query->when(request()->filled('product_serie_id'), function($q){
+            $q->where('product_serie_id', request()->product_serie_id );
+        });
+    }
+
+
+
+    public function scopeUnit($query)
+    {
+        return $query->when(request()->filled('unit_measure_id'), function($q){
             $q->where('unit_measure_id', request()->unit_measure_id);
         });
     }
-    public function scopeCategoryId($query)
+
+    public function scopeCategory($query)
     {
-        return $query->when(request()->has('category_id'), function($q){
+        return $query->when(request()->filled('category_id'), function($q){
             $q->where('category_id', request()->category_id);
         });
     }
-    public function scopeMakeId($query)
+    public function scopeMakes($query)
     {
-        return $query->when(request()->has('make_id'), function($q){
+        return $query->when(request()->filled('make_id'), function($q){
             $q->where('make_id', request()->make_id);
         });
     }
     public function scopeBarcode($query)
     {
-        return $query->when(request()->has('barcode'), function($q){
+        return $query->when(request()->filled('barcode'), function($q){
             $q->where('barcode', request()->barcode);
         });
     }
     public function scopeId($query)
     {
-        return $query->when(request()->has('id'), function($q){
+        return $query->when(request()->filled('id'), function($q){
             $q->where('id', request()->id);
         });
-
     }
 
     /* methods */
