@@ -5,7 +5,7 @@
         <div class="col-xs-12">
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading text-right">
-                    Ocultar Finalizados
+                    Ocultar Validados
                     <label class="switch switch-primary">
                         <input type="checkbox" class="switch-input" v-model="hidden_trues">
                         <span class="switch-label" data-on="si" data-off="no"></span>
@@ -82,7 +82,7 @@
                                     <td class="text-center">{{ detail.current_stock }}</td>
                                     <td class="text-center">{{ detail.audited_stock }}</td>
                                     <td class="text-right ">
-                                        <button v-if="audit.open" v-tooltip="'Aceptar'" @click="passAudit(detail)" type="button" class="btn btn-primary btn-sm"><i class="fa fa-check-square-o"></i></button>
+                                        <button v-if="audit.open" v-tooltip="'Validar'" @click="passAudit(detail)" type="button" class="btn btn-primary btn-sm"><i class="fa fa-check-square-o"></i></button>
                                         <button v-if="audit.open" v-tooltip="'Rechazar'" @click="editDetail(detail)" type="button" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></button>
                                     </td>
                                 </tr>
@@ -190,7 +190,7 @@ export default {
             }
         },
         passAudit(detail){
-
+            this.$toastr.i("Validando...");
             let params = {
                 status: 'ok',
                 audited_stock : detail.current_stock
@@ -198,6 +198,9 @@ export default {
 
             AuditDetail.update(detail.id, params, data => {
                 this.index();
+                this.$toastr.removeByType("info");
+                this.$toastr.s("Validado");
+
             }, errors => this.errors = errors);
 
         },
@@ -210,7 +213,7 @@ export default {
             this.detail = _.cloneDeep(detail);
         },
         rejectAudit(){
-
+            this.$toastr.i("Validando");
             let params = {
                 status: 'bad',
                 audited_stock : this.detail.audited_stock
@@ -219,6 +222,8 @@ export default {
             AuditDetail.update(this.detail.id, params, data => {
                 this.show_reject_detail = false;
                 this.index();
+                this.$toastr.removeByType("info");
+                this.$toastr.s("Rechazado");
             }, errors => this.errors = errors);
 
         },
@@ -226,20 +231,30 @@ export default {
             AuditDetail.destroy(this.detail.id, data => {
                 this.show_delete_detail = false;
                 this.index();
+                this.$toastr.s("Eliminado");
             }, errors => this.errors = errors);
         },
         close(){
+            this.$toastr.i("Finalizando.");
+
             Audit.update(this.audit.id, {status:'Finalizado'}, data => {
                 this.audit = data.data;
                 this.errors = {};
                 this.show_close = false;
+                this.$toastr.removeByType("info");
+                this.$toastr.s("Finalizado.");
+
             }, errors => this.errors = errors);
         },
         undo(){
+            this.$toastr.i("Enviando petición.");
+
              Audit.update(this.audit.id, {status:'Creado'}, data => {
                 this.audit = data.data;
                 this.errors = {};
                 this.show_undo = false;
+                this.$toastr.removeByType("info");
+                this.$toastr.s("Auditoría revertida.");
             }, errors => this.errors = errors);
         },
     },
