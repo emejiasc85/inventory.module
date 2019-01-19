@@ -11,7 +11,7 @@ class AuditController extends Controller
 {
     public function index()
     {
-        $audits = Audit::dates()->with(['user', 'details.product', 'details.stock'])->orderByDesc('id')->paginateIf();
+        $audits = Audit::dates()->with(['user', 'details.product'])->orderByDesc('id')->paginateIf();
         return AuditResource::collection($audits);
     }
 
