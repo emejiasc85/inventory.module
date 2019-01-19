@@ -170,19 +170,27 @@ export default {
             Commerce.show(1, {}, data => { this.commerce = data.data});
         },
         loadAudit(){
-            Audit.show(this.audit_id, data => { this.audit = data.data; });
+            Audit.show(this.audit_id, data => {
+                this.audit = data.data;
+                this.$toastr.removeByType("info");
+            });
         },
         index(){
             let id = this.audit ? this.audit.id : this.audit_id;
-            Audit.show(id, data => { this.audit = data.data; });
+            Audit.show(id, data => {
+                this.audit = data.data;
+            });
         },
 
         storeAudit(){
+            this.$toastr.i("Cargando Auditoría...");
             if (!this.audit_id) {
 
                 Audit.store({}, data => {
                     this.audit = data.data;
                     this.errors = {};
+                    this.$toastr.removeByType("info");
+                    this.$toastr.s("Auditoría Creada con exito");
                 }, errors => this.errors = errors);
 
             }else{
