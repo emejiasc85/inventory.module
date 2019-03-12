@@ -44,6 +44,9 @@ Route::middleware('auth:api')->group(function() {
         Route::apiResource('audits', 'AuditController');
         Route::apiResource('audit-details', 'AuditDetailController');
         Route::apiResource('users', 'UserController');
+        Route::group(['namespace' => 'Reports', 'prefix' => 'reports'], function() {
+            Route::get('products', 'ProductReportController@index');
+        });
     });
 
     Route::group(['namespace' => 'Transfer', 'prefix' => 'transfer'], function() {

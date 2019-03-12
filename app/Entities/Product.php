@@ -3,6 +3,7 @@
 namespace EmejiasInventory\Entities;
 
 use Illuminate\Support\Str;
+use PhpParser\Node\Expr\FuncCall;
 
 
 class Product extends Entity
@@ -200,5 +201,37 @@ class Product extends Entity
             }
 
         }
+    }
+
+    public function orders()
+    {
+        $details = OrderDetail::where('product_id', $this->id)->whereHas('order', function ($q)
+        {
+           $q->where('order_type_id', 1)->where('status', 'Ingresado');
+        })->get();
+
+        return $details->sum('lot');
+    }
+
+    public function sales()
+    {
+
+        $details = OrderDetail::where('product_id', $this->id)->whereHas('order', function ($q)
+        {
+           $q->where('order_type_id', 2)->where('status', 'Ingresado');
+        })->get();
+
+        return $details->sum('lot');
+    }
+
+
+    public function stocks()
+    {
+
+        $details = Stock::whereHas('detail', function($q){
+            $q->where('product_id', $this->id);
+        })->get();
+
+        return $details->sum('stock');
     }
 }

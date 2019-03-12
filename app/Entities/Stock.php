@@ -120,7 +120,7 @@ class Stock extends Model
             ->where('warehouse_id', 1)
             ->where('status', true)
             ->groupBy('products.id', 'products.name', 'products.slug', 'unit_measures.name', 'products.price', 'products.offer_price', 'stocks.status', 'makes.name', 'product_series.name', 'product_groups.name', 'product_presentations.name')
-            ->orderByDesc('stocks.id');
+            ->orderBy('products.id');
 
     }
 

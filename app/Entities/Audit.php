@@ -50,7 +50,7 @@ class Audit extends Model {
         $stocks = Stock::GroupByProduct()
             ->get();
 
-        foreach ($stocks as $key => $value)
+        foreach ($stocks as  $value)
         {
             AuditDetail::create([
                 'audit_id'      => $this->id,

@@ -1,7 +1,5 @@
 <template>
     <div class="row">
-
-
         <div class="col-xs-12">
             <div class="panel panel-default " style="border-top: 2px solid #20a8d8">
                 <div class="panel-heading text-right">
@@ -136,9 +134,9 @@
 <script>
 
 import Commerce from '../../../models/Commerce';
-import User from '../../../models/Admin/User';
-import Audit from '../../../models/Admin/Audit';
-import AuditDetail from '../../../models/Admin/AuditDetail';
+import User from '../../../models/admin/User';
+import Audit from '../../../models/admin/Audit';
+import AuditDetail from '../../../models/admin/AuditDetail';
 import Stock from '../../../models/Stock';
 
 export default {

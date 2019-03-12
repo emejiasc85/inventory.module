@@ -357,6 +357,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::view('warehouses', 'admin.warehouses' );
     Route::view('audits/index', 'admin.audits.index');
     Route::view('audits/show', 'admin.audits.show');
+
+    Route::group(['namespace' => 'Reports', 'prefix' => 'reports'], function() {
+        Route::view('products', 'admin.reports.products');
+    });
+
 });
 
 Route::view('gift-cards', 'gift_cards');
