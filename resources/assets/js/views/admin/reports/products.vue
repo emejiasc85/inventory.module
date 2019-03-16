@@ -82,7 +82,7 @@
                     </tbody>
                 </table>
             </div>
-            <button type="button" @click="showDetails = false" slot="btnCancel" class="btn btn-link">Salir</button>
+            <button type="button" @click="showSales = false" slot="btnCancel" class="btn btn-link">Salir</button>
         </modal>
     </div>
 </template>
