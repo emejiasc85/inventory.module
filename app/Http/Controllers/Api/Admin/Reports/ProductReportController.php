@@ -11,7 +11,7 @@ class ProductReportController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::paginateIf();
+        $products = Product::with(['order_details', 'sale_details'])->paginateIf();
         return ProductResource::collection($products);
     }
 }

@@ -9,6 +9,7 @@ use EmejiasInventory\Http\Resources\GroupResource;
 use EmejiasInventory\Http\Resources\SerieResource;
 use EmejiasInventory\Http\Resources\CategoryResource;
 use EmejiasInventory\Http\Resources\PresentationResource;
+use EmejiasInventory\Http\Resources\OrderDetailResource;
 
 class ProductResource extends JsonResource
 {
@@ -21,17 +22,19 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'           => $this->id,
-            'name'         => $this->full_name,
-            'orders'       => $this->orders(),
-            'sales'        => $this->sales(),
-            'stocks'       => $this->stocks(),
-            'unit'         => new UnitResource($this->unit),
-            'make'         => new MakeResource($this->make),
-            'group'        => new GroupResource($this->group),
-            'serie'        => new SerieResource($this->serie),
-            'category'     => new CategoryResource($this->category),
-            'presentation' => new PresentationResource($this->presentation) ,
+            'id'            => $this->id,
+            'name'          => $this->full_name,
+            'orders'        => $this->orders(),
+            'order_details' => OrderDetailResource::collection($this->whenLoaded('order_details')),
+            'sale_details' => OrderDetailResource::collection($this->whenLoaded('sale_details')),
+            'sales'         => $this->sales(),
+            'stocks'        => $this->stocks(),
+            'unit'          => new UnitResource($this->unit),
+            'make'          => new MakeResource($this->make),
+            'group'         => new GroupResource($this->group),
+            'serie'         => new SerieResource($this->serie),
+            'category'      => new CategoryResource($this->category),
+            'presentation'  => new PresentationResource($this->presentation) ,
         ];
     }
 }

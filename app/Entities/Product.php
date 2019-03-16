@@ -75,6 +75,22 @@ class Product extends Entity
         return $this->hasMany(ProductImage::class);
     }
 
+    public function order_details()
+    {
+        return $this->hasMany(OrderDetail::class)->whereHas('order', function ($q)
+        {
+           $q->where('order_type_id', 1)->where('status', 'Ingresado');
+        });
+    }
+
+    public function sale_details()
+    {
+        return $this->hasMany(OrderDetail::class)->whereHas('order', function ($q)
+        {
+           $q->where('order_type_id', 2)->where('status', 'Ingresado');
+        });
+    }
+
     /* mutators */
 
     public function getFullNameAttribute()

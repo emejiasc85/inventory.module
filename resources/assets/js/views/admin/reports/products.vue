@@ -34,14 +34,56 @@
                             <td>{{ product.serie ? product.serie.name:'' }}</td>
                             <td class="text-center">{{ product.unit ? product.unit.name:'' }}</td>
                             <td>{{ product.presentation ? product.presentation.name:'' }}</td>
-                            <td>{{ product.orders}}</td>
-                            <td>{{ product.sales}}</td>
+                            <td><a href="#"  @click="show(product)" >{{ product.orders}}</a></td>
+                            <td><a href="#"  @click="showSaleDetails(product)" >{{ product.sales}}</a></td>
                             <td>{{ product.stocks}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <modal v-if="showDetails"  title="Detalles"  size="modal-sm">
+            <div style="height:400px !important" class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Orden</th>
+                            <th>Fecha</th>
+                            <th>Pedidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="detail in product.order_details" :key="detail.id">
+                            <td><a target="_black" :href="'/ordenes/detalle/orden-'+detail.order_id">{{ detail.order_id}}</a></td>
+                            <td>{{ detail.created_at}}</td>
+                            <td>{{ detail.lot}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" @click="showDetails = false" slot="btnCancel" class="btn btn-link">Salir</button>
+        </modal>
+        <modal v-if="showSales"  title="Ventas"  size="modal-sm">
+            <div style="height:400px !important" class="table-responsive">
+                <table  class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Factura</th>
+                            <th>Fecha</th>
+                            <th>Pedidos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="detail in product.sale_details" :key="detail.id">
+                            <td><a target="_black" :href="'/sales/invoice/?id='+detail.order_id">{{ detail.order_id}}</a></td>
+                            <td>{{ detail.created_at}}</td>
+                            <td>{{ detail.lot}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" @click="showDetails = false" slot="btnCancel" class="btn btn-link">Salir</button>
+        </modal>
     </div>
 </template>
 
@@ -50,13 +92,24 @@
     export default {
         data(){
             return {
-                products:[]
+                showDetails:false,
+                showSales:false,
+                products:[],
+                product:{},
             }
         },
         created(){
             this.index();
         },
         methods:{
+            show(product){
+                this.showDetails = true;
+                this.product     = product;
+            },
+            showSaleDetails(product){
+                this.showSales = true;
+                this.product   = product;
+            },
             index(){
                 ProductReport.get({}, data => {
                     this.products = data.data;
