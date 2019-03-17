@@ -359,7 +359,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function() {
     Route::view('audits/show', 'admin.audits.show');
 
     Route::group(['namespace' => 'Reports', 'prefix' => 'reports'], function() {
-        Route::view('products', 'admin.reports.products');
+        Route::view('product-movements', 'admin.reports.products');
+        Route::view('product-orders', 'admin.reports.product_orders');
     });
 
 });

@@ -59,6 +59,32 @@ class OrderDetail extends Model
             return $query->whereBetween('order_details.created_at', [$from, $to]);
         }
     }
+
+    //refactor this
+    public function scopeDates($query) {
+        return $query->when(trim(request()->from) != '' && trim(request()->to) != '', function ($q)
+        {
+            $from = Carbon::parse(request()->from)->startOfDay();
+            $to   = Carbon::parse(request()->to)->endOfDay();
+            $q->whereBetween('created_at', [$from, $to]);
+        });
+    }
+
+    public function scopeProductId($query) {
+        return $query->when(trim(request()->id) != '', function ($q)
+        {
+            $q->where('product_id', request()->id);
+        });
+    }
+
+    public function scopeIsOrder($query)
+    {
+        return $query->whereHas('order', function($q){
+            $q->where('order_type_id', 1)->where('status', 'Ingresado');
+        });
+    }
+
+
     public function scopeProductName($query, $value)
     {
         if (trim($value) != null) {

@@ -204,8 +204,17 @@
         },
         created(){
             this.index();
+            this.loadData();
         },
         methods:{
+            loadData(){
+                Make.get({}, data => { this.makes = data.data});
+                Group.get({}, data => { this.groups = data.data});
+                Serie.get({}, data => { this.series = data.data});
+                Presentation.get({}, data => { this.presentations = data.data});
+                Category.get({}, data => { this.categories = data.data});
+                UnitMeasure.get({}, data => { this.unit_measures = data.data});
+            },
             show(product){
                 this.showDetails = true;
                 this.product     = product;

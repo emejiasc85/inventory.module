@@ -24,6 +24,7 @@ Vue.component('admin-warehouses', require('./views/admin/warehouses.vue'));
 Vue.component('admin-audits', require('./views/admin/audits/index.vue'));
 Vue.component('admin-audit', require('./views/admin/audits/show.vue'));
 Vue.component('reports-products', require('./views/admin/reports/products.vue'));
+Vue.component('reports-product-orders', require('./views/admin/reports/productOrders.vue'));
 
 import VTooltip from 'v-tooltip';
 import CheckboxRadio from 'vue-checkbox-radio';

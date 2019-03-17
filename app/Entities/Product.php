@@ -135,8 +135,6 @@ class Product extends Entity
         });
     }
 
-
-
     public function scopeUnit($query)
     {
         return $query->when(request()->filled('unit_measure_id'), function($q){

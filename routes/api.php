@@ -46,6 +46,7 @@ Route::middleware('auth:api')->group(function() {
         Route::apiResource('users', 'UserController');
         Route::group(['namespace' => 'Reports', 'prefix' => 'reports'], function() {
             Route::get('products', 'ProductReportController@index');
+            Route::get('product-orders', 'ProductOrderReportController@index');
         });
     });
 
