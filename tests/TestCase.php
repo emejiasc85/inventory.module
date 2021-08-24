@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace tests;
 
 use EmejiasInventory\Entities\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;

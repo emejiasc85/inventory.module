@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace tests\Feature;
 
 use EmejiasInventory\Entities\{Product,ProductGroup, ProductPresentation, UnitMeasure, Make};
 use Tests\FeatureTestCase;

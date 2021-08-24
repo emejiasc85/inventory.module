@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\Admin;
+namespace tests\Feature\Api\Admin;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;

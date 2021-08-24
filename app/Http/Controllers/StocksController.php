@@ -31,9 +31,9 @@ class StocksController extends Controller
             ->stock($request->simbol, $request->stock)
             ->where('status', true)
             ->groupBy('products.id', 'products.name', 'products.slug', 'unit_measures.name', 'products.price', 'products.offer_price', 'stocks.status', 'makes.name', 'product_series.name', 'product_groups.name', 'product_presentations.name')
-            ->orderByDesc('stocks.id')
             ->paginate();
-        return view('stocks.index', compact('stocks'));
+        
+            return view('stocks.index', compact('stocks'));
     }
 
     public function byOrder(Request $request)

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace tests\Feature;
 
 use EmejiasInventory\Entities\Resolution;
 use Tests\FeatureTestCase;

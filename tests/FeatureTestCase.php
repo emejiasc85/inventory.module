@@ -1,5 +1,5 @@
 <?php
-namespace Tests;
+namespace tests;
 
 use Tests\BrowserKitTest;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

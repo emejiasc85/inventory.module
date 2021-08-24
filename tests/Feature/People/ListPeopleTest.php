@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\People;
+namespace tests\Feature\People;
 
 use EmejiasInventory\Entities\People;
 use Tests\FeatureTestCase;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace tests\Feature;
 
 use EmejiasInventory\Entities\People;
 use EmejiasInventory\Entities\{Commerce,OrderType,User};

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace tests\Feature;
 
 use EmejiasInventory\Entities\{Commerce,Order,User, Warehouse, OrderDetail};
 use Illuminate\Support\Facades\Artisan;

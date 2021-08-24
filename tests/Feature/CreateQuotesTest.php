@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace tests\Feature;
 
 use Illuminate\Support\Facades\Artisan;
 use Tests\FeatureTestCase;

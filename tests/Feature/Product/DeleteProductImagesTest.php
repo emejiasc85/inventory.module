@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\FeatureTestCase;
+namespace tests\FeatureTestCase;
 
 use EmejiasInventory\Entities\{Product, ProductImage};
 use Illuminate\Http\File;

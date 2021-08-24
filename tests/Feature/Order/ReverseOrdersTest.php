@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace tests\Feature;
 
 use EmejiasInventory\Entities\{Order, OrderDetail, Warehouse, Stock};
 use Tests\FeatureTestCase;
